@@ -1,103 +1,76 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Nunito:wght@200&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Caveat&family=Nunito:wght@200&display=swap");
 
 .layout {
-    background-color: #FFFFF6;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-bottom: 10px;
-    padding-top: 5px;
+  background-color: #fffff6;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 10px;
+  padding-top: 5px;
 }
 
 .site-layout-content {
-    min-height: calc(100vh - 200px);
+  min-height: calc(100vh - 200px);
 }
 
-.SigninBox h3, .SigninBox p {
-    font-size: calc(1.5vw + 60%);
+.SigninBox h3,
+.SigninBox p {
+  font-size: calc(1.5vw + 60%);
 }
-    
+
 .SigninBox h6 {
-    font-size: calc(1vw + 60%);
+  font-size: calc(1vw + 60%);
 }
-
-    /* Create two equal columns that floats next to each other */
-    * {
-        box-sizing: border-box;
-    }    
-    /* Create two equal columns that floats next to each other */
-
-    .twoColumn {
-        float: left;
-        width: 50%;
-        padding: 10px;
-    }
-    
-    /* Clear floats after the columns */
-    .oneRow:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-    
-    /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-    /*@media screen and (max-width: 600px) {
-        .twoColumn {
-        width: 100%;
-    }*/
-    /* Create two equal columns that floats next to each other */
-
 
 h1 {
-    font-family: 'Caveat', cursive;
-    font-weight: bold;
-    font-size: 3em;
-    color: #4C4C49;
+  font-family: "Caveat", cursive;
+  font-weight: bold;
+  font-size: 3em;
+  color: #4c4c49;
 }
 
 h2 {
-    font-size: 25px;
+  font-size: 25px;
 }
 
 h3 {
-    font-size: 23px;
-    padding-left: 25px;
+  font-size: 23px;
+  padding-left: 25px;
 }
 
 p {
-    font-family: 'Nunito' , sans-serif;
-    font-size: 18px;
-    padding-left: 50px;
+  font-family: "Nunito", sans-serif;
+  font-size: 18px;
+  padding-left: 50px;
 }
 
 .navbar {
-    border-bottom: 4px solid #FF914D;
-    background-color: #FFFFF6;
-    padding-bottom: 15px;
+  border-bottom: 4px solid #ff914d;
+  background-color: #fffff6;
+  padding-bottom: 15px;
 }
 
 .btn {
-    font-family: 'Nunito', cursive;
-    font-weight: bold;
-    font-size: 20px;
-    color: white;
+  font-family: "Nunito", cursive;
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
 }
 
 .donate-button {
-    background-color: #549BEA;
-
+  background-color: #549bea;
 }
 
 .signin-button {
-    background-color: #6AC66B;
+  background-color: #6ac66b;
 }
 
 hr {
-    border: 0.5px dotted #4C4C49;
+  border: 0.5px dotted #4c4c49;
 }
 
 footer {
-    font-family: 'Nunito';
-    position: "absolute";
-    bottom: 0;
-    height: "2.5rem";
+  font-family: "Nunito";
+  position: "absolute";
+  bottom: 0;
+  height: "2.5rem";
 }

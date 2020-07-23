@@ -1,13 +1,13 @@
-import React from "react";
-import { Route } from "react-router-dom";
+// import React from "react";
+// import { Route } from "react-router-dom";
 
-import Profile from "./components/Profile";
+// import Profile from "./components/Profile";
 
-const BaseRouter = () => (
-  <div>
-    <Route exact path="/" component={Profile} />
-    {/* <Route exact path="/profile/" component={Profile} /> */}
-  </div>
-);
+// const BaseRouter = () => (
+//   <div>
+//     <Route exact path="/" component={Profile} />
+//     {/* <Route exact path="/profile/" component={Profile} /> */}
+//   </div>
+// );
 
-export default BaseRouter;
+// export default BaseRouter;
