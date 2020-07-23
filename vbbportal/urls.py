@@ -7,6 +7,7 @@ from api.views import *
 urlpatterns = [
     # React
     re_path(r".*", TemplateView.as_view(template_name="index.html")),
+    # New Auth
     path("googlelogin/", GoogleLogin.as_view()),
     path("googleconnect/", GoogleConnect.as_view()),
     path("accounts/", include("allauth.urls")),
