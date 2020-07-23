@@ -16,7 +16,7 @@ const Layout = (props) => {
           href="https://www.villagebookbuilders.org/giftabook/"
           style={{ position: "relative", top: "15px" }}
         >
-          DONATE
+          DONATE!
         </a>
         <a
           class="btn btn-light signin-button"
