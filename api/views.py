@@ -1,17 +1,28 @@
 import random
 from datetime import date
 
+from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 from dateutil.relativedelta import relativedelta
+from django.shortcuts import render
+from rest_auth.registration.views import SocialConnectView, SocialLoginView
 from rest_framework.decorators import api_view
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
-# FIXME
-from django.shortcuts import render
-
 from .models import *
 from .serializers import *
+
+
+class GoogleLogin(SocialLoginView):
+    adapter_class = GoogleOAuth2Adapter
+    client_class = OAuth2Client
+
+
+class GoogleConnect(SocialConnectView):
+    adapter_class = GoogleOAuth2Adapter
+    client_class = OAuth2Client
 
 
 class LibraryListView(ListAPIView):
