@@ -1,9 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { Route } from "react-router-dom";
 
 import Layout from "./components/Layout";
-import Profile from "./components/Profile";
+import BaseRouter from "./routes";
 import "./Style.css";
 
 function App() {
@@ -11,9 +10,7 @@ function App() {
     <div className="App">
       <Router>
         <Layout>
-          <Route exact path="/" component={Profile} />
-          {/* <Route exact path="/profile/" component={Profile} /> */}
-          {/* <BaseRouter /> */}
+          <BaseRouter />
         </Layout>
       </Router>
     </div>

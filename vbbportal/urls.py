@@ -5,8 +5,6 @@ from django.views.generic import TemplateView
 from api.views import *
 
 urlpatterns = [
-    # React
-    re_path(r".*", TemplateView.as_view(template_name="index.html")),
     # New Auth
     path("googlelogin/", GoogleLogin.as_view()),
     path("googleconnect/", GoogleConnect.as_view()),
@@ -23,4 +21,6 @@ urlpatterns = [
     path("api/booking/", book_appointment),
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
     path("admin/", admin.site.urls),
+    # React
+    re_path(r".*", TemplateView.as_view(template_name="index.html")),
 ]
