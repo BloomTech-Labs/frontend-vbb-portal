@@ -59,8 +59,6 @@ export class SigninGoogle extends Component {
   }
 }
 
-// export default SigninGoogle;
-
 const mapStateToProps = (state) => {
   return {
     loading: state.loading,
