@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 
 import Booking from "./components/Booking";
 import Profile from "./components/Profile";
-import { SigninGoogle } from "./components/SigninGoogle";
+import SigninGoogle from "./components/SigninGoogle";
 
 const BaseRouter = () => (
   <div>
