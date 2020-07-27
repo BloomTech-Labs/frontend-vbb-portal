@@ -25,7 +25,7 @@ class Layout extends React.Component {
           <a
             className="btn btn-light signin-button"
             type="button"
-            href="/login"
+            href="/signin/"
             style={{ position: "relative", top: "15px" }}
           >
             SIGN IN
