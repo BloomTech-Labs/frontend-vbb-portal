@@ -14,8 +14,6 @@ urlpatterns = [
     # Django
     path("api/library/", LibraryListView.as_view()),
     path("api/language/", LanguageListView.as_view()),
-    path("api/day/", DayListView.as_view()),
-    path("api/time/", TimeListView.as_view()),
     path("api/available/", AvailableAppointmentTimeList.as_view()),
     path("api/myappointments/", MyAppointmentListView.as_view()),
     path("api/booking/", book_appointment),

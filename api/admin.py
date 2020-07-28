@@ -74,7 +74,7 @@ class AppointmentAdmin(admin.ModelAdmin):
         "mentee",
         "mentee_computer",
         "language",
-        "hsm","
+        "hsm",
         "start_date",
         "end_date",
         "calendar_id",
