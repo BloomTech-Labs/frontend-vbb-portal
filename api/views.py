@@ -3,7 +3,7 @@ from datetime import date
 
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
-from dateutil.relativedelta import relativedelta
+#from dateutil.relativedelta import relativedelta
 from django.shortcuts import render
 from rest_auth.registration.views import SocialConnectView, SocialLoginView
 from rest_framework.decorators import api_view
@@ -116,7 +116,7 @@ def book_appointment(request):
     myappt = random.choice(appts)
     myappt.mentor = request.user
     myappt.start_date = date.today()
-    myappt.end_date = date.today() + relativedelta(months=+4)
+    #myappt.end_date = date.today() + relativedelta(months=+4)
     myappt.save()
     # FIXME -- CALL TO SHWETHA'S GOOGLE API FUNCTION
     # FIXME - Add try/except/finally blocks for error checking (not logged in, appointment got taken before they refreshed)

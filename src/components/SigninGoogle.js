@@ -6,14 +6,18 @@ import * as actions from "../store/actions/auth";
 
 export class SigninGoogle extends Component {
   responseGoogle = (response) => {
+    console.log("failure: response, profile");
     console.log(response);
     console.log(response.profileObj);
+    console.log("-- end failure");
   };
 
   validateGoogle = (response) => {
+    console.log("success: response, profile");
     this.props.onGauth(response.accessToken);
-    this.props.history.push("/");
+    //this.props.history.push("/");
     console.log(response.accessToken);
+    console.log("-- end success message");
   };
 
   render() {
@@ -41,7 +45,7 @@ export class SigninGoogle extends Component {
             clientId="711431548719-lpoc2lbr4bmruqo7d9emua5huvpsvqgk.apps.googleusercontent.com"
             buttonText="Sign in with Google"
             onSuccess={this.validateGoogle}
-            onFailure={this.validateGoogle}
+            onFailure={this.responseGoogle}
             cookiePolicy={"single_host_origin"}
           />
           <br />
@@ -68,8 +72,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAuth: (username, password) =>
-      dispatch(actions.authLogin(username, password)),
     onGauth: (googleToken) => dispatch(actions.gAuth(googleToken)),
   };
 };
