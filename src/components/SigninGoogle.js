@@ -6,10 +6,8 @@ import * as actions from "../store/actions/auth";
 
 export class SigninGoogle extends Component {
   responseGoogle = (response) => {
-    console.log("failure: response, profile");
+    console.log("failure response");
     console.log(response);
-    console.log(response.profileObj);
-    console.log("-- end failure");
   };
 
   validateGoogle = (response) => {
