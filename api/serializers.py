@@ -15,20 +15,6 @@ class LanguageSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class DaySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Day
-        fields = "__all__"
-
-
-class TimeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Time
-        fields = [
-            "hour",
-        ]
-
-
 class MyAppointmentListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Appointment

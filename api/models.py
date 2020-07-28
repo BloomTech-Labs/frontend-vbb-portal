@@ -1,8 +1,4 @@
 from django.contrib.auth.models import User
-from django.core.validators import (
-    MaxValueValidator,
-    MinValueValidator,
-)
 from django.db import models
 from datetime import date
 
@@ -27,27 +23,6 @@ class Language(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class Day(models.Model):
-    name = models.CharField(verbose_name="name", max_length=100, null=True, blank=True)
-
-    def __str__(self):
-        return self.name
-
-
-class Time(models.Model):
-    # hour = models.IntegerField(verbose_name="hour", null=True, blank=True)
-    hour = models.PositiveIntegerField(
-        validators=[MinValueValidator(1), MaxValueValidator(24)], null=True, blank=True
-    )
-    # min = models.IntegerField(verbose_name="minute", null=True, blank=True)
-    min = models.PositiveIntegerField(
-        validators=[MinValueValidator(0), MaxValueValidator(60)], null=True, blank=True
-    )
-
-    def __str__(self):
-        return str(self.hour)
 
 
 class MentorProfile(models.Model):
@@ -150,15 +125,8 @@ class Appointment(models.Model):
         null=True,
         blank=True,
     )
-    day_of_week = models.ForeignKey(
-        Day, on_delete=models.CASCADE, related_name="appointment", null=True, blank=True
-    )
-    eastern_time = models.ForeignKey(
-        Time,
-        on_delete=models.CASCADE,
-        related_name="appointment",
-        null=True,
-        blank=True,
+    hsm = models.IntegerField(
+        verbose_name="hours since monday at 12am (eastern time)", null=True, blank=True
     )
     start_date = models.DateField(verbose_name="start date", null=True, blank=True)
     end_date = models.DateField(verbose_name="end date", null=True, blank=True)

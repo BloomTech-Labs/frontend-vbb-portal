@@ -18,18 +18,6 @@ class LanguageAdmin(admin.ModelAdmin):
     search_fields = ("id", "name")
 
 
-class DayAdmin(admin.ModelAdmin):
-    list_display = ("id", "name")
-    readonly_fields = ("id",)
-    search_fields = ("id", "name")
-
-
-class TimeAdmin(admin.ModelAdmin):
-    list_display = ("id", "hour")
-    readonly_fields = ("id",)
-    search_fields = ("id", "hour")
-
-
 class MentorProfileAdmin(admin.ModelAdmin):
     list_display = (
         "id",
@@ -86,8 +74,7 @@ class AppointmentAdmin(admin.ModelAdmin):
         "mentee",
         "mentee_computer",
         "language",
-        "day_of_week",
-        "eastern_time",
+        "hsm","
         "start_date",
         "end_date",
         "calendar_id",
@@ -101,18 +88,16 @@ class AppointmentAdmin(admin.ModelAdmin):
         "mentee",
         "mentee_computer",
         "language",
-        "day_of_week",
-        "eastern_time",
+        "hsm",
         "start_date",
-        "calendar_id," "event_id",
         "end_date",
+        "calendar_id",
+        "event_id",
     )
 
 
 admin.site.register(Library, LibraryAdmin)
 admin.site.register(Language, LanguageAdmin)
-admin.site.register(Day, DayAdmin)
-admin.site.register(Time, TimeAdmin)
 admin.site.register(MentorProfile, MentorProfileAdmin)
 admin.site.register(MenteeProfile, MenteeProfileAdmin)
 admin.site.register(Computer, ComputerAdmin)
