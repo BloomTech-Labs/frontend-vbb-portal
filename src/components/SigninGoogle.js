@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import GoogleLogin from "react-google-login";
+import { GoogleLogin } from "react-google-login";
 import hope_books from "../vbb_in_action.png";
 import * as actions from "../store/actions/auth";
 
