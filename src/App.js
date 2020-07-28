@@ -15,7 +15,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Router>
+        <Router {...this.props}>
           <Layout {...this.props}>
             <BaseRouter />
           </Layout>
@@ -28,6 +28,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.token !== null,
+    isLoading: state.loading,
   };
 };
 
