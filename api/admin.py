@@ -90,6 +90,8 @@ class AppointmentAdmin(admin.ModelAdmin):
         "eastern_time",
         "start_date",
         "end_date",
+        "calendar_id",
+        "event_id",
         "notes",
     )
     readonly_fields = ("id",)
@@ -102,6 +104,7 @@ class AppointmentAdmin(admin.ModelAdmin):
         "day_of_week",
         "eastern_time",
         "start_date",
+        "calendar_id," "event_id",
         "end_date",
     )
 

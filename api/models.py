@@ -2,11 +2,10 @@ from django.contrib.auth.models import User
 from django.core.validators import (
     MaxValueValidator,
     MinValueValidator,
-)  # FIXME - IS THIS THE BEST WAY TO STORE TIME?  HOUR AND DAY?
+)
 from django.db import models
 from datetime import date
 
-## FIXME - TIMEZONE MODEL REMOVED, FIX OTHER TIME ZONE FIELDS to CHAR FIELDS
 ## FIXME - LOOK INTO DOCUMENTATION ON ONDELETE MODELS CASCADE
 
 
@@ -163,6 +162,12 @@ class Appointment(models.Model):
     )
     start_date = models.DateField(verbose_name="start date", null=True, blank=True)
     end_date = models.DateField(verbose_name="end date", null=True, blank=True)
+    calendar_id = models.CharField(
+        verbose_name="calendar id", max_length=60, null=True, blank=True
+    )
+    event_id = models.CharField(
+        verbose_name="event id", max_length=60, null=True, blank=True
+    )
     notes = models.TextField(
         verbose_name="notes", max_length=500, null=True, blank=True
     )
