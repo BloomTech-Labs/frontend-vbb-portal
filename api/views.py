@@ -1,5 +1,7 @@
 import random
-from datetime import date
+
+# from datetime import date
+import datetime
 
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
@@ -7,7 +9,7 @@ from django.db.models import Q
 
 from dateutil.relativedelta import relativedelta
 from django.shortcuts import render
-from rest_auth.registration.views import SocialConnectView, SocialLoginView
+from rest_auth.registration.views import SocialLoginView
 from rest_framework.decorators import api_view
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -18,11 +20,6 @@ from .serializers import *
 
 
 class GoogleLogin(SocialLoginView):
-    adapter_class = GoogleOAuth2Adapter
-    client_class = OAuth2Client
-
-
-class GoogleConnect(SocialConnectView):
     adapter_class = GoogleOAuth2Adapter
     client_class = OAuth2Client
 
@@ -50,15 +47,15 @@ class AvailableAppointmentTimeList(ListAPIView):
 
     def get(self, request):
         appts = Appointment.objects.all()
-        url_library_params = self.request.query_params.get("library")
-        url_language_params = self.request.query_params.get("language")
-        url_min_params = self.request.query_params.get("min")
-        url_max_params = self.request.query_params.get("max")
+        library_params = self.request.query_params.get("library")
+        language_params = self.request.query_params.get("language")
+        min_hsm_params = int(self.request.query_params.get("min_hsm"))
+        max_hsm_params = int(self.request.query_params.get("max_hsm"))
 
         # library and mentor filtering
-        if url_library_params is None:
+        if library_params is None:
             appts = (
-                appts.filter(mentor=None, language=url_language_params,)
+                appts.filter(mentor=None, language=language_params,)
                 .values("hsm")
                 .distinct()
             )
@@ -66,24 +63,24 @@ class AvailableAppointmentTimeList(ListAPIView):
             appts = (
                 appts.filter(
                     mentor=None,
-                    mentee_computer__library=url_library_params,
-                    language=url_language_params,
+                    mentee_computer__library=library_params,
+                    language=language_params,
                 )
                 .values("hsm")
                 .distinct()
             )
 
         # hsm filtering
-        if url_min_params < 0:
+        if min_hsm_params < 0:
             appts = appts.filter(
-                Q(hsm__lt=url_max_params) | Q(hsm__gte=168 + url_min_params)
+                Q(hsm__lt=max_hsm_params) | Q(hsm__gte=168 + min_hsm_params)
             )
-        elif url_max_params >= 168:
+        elif max_hsm_params >= 168:
             appts = appts.filter(
-                Q(hsm__lt=168 - url_max_params) | Q(hsm__gte=url_min_params)
+                Q(hsm__lt=max_hsm_params - 168) | Q(hsm__gte=min_hsm_params)
             )
         else:
-            appts = appts.filter(hsm_gte=url_min_params, hsm_lte=url_max_params)
+            appts = appts.filter(hsm__gte=min_hsm_params, hsm__lte=max_hsm_params)
 
         return Response(appts)
 
@@ -96,25 +93,43 @@ def book_appointment(request):
     URL example:  api/booking/?library=1&language=1&hsm=1
     """
     appts = Appointment.objects.all()
-    url_library_params = request.query_params.get("library")
-    url_language_params = request.query_params.get("language")
-    url_hsm_params = request.query_params.get("hsm")
+    library_params = request.query_params.get("library")
+    language_params = request.query_params.get("language")
+    hsm_params = request.query_params.get("hsm")
 
-    if url_library_params is None:
-        appts = appts.filter(
-            mentor=None, language=url_language_params, hsm=url_hsm_params,
-        )
+    if library_params is None:
+        appts = appts.filter(mentor=None, language=language_params, hsm=hsm_params,)
     else:
         appts = appts.filter(
             mentor=None,
-            mentee_computer__library=url_library_params,
-            language=url_language_params,
-            hsm=url_hsm_params,
+            mentee_computer__library=library_params,
+            language=language_params,
+            hsm=hsm_params,
         )
     myappt = random.choice(appts)
-    myappt.mentor = request.user
-    myappt.start_date = date.today()
-    myappt.end_date = date.today() + relativedelta(months=+4)
+    # FIXME - Once you can login to api-auth/ and stay logged in for calls, comment out the next line (assigning a random mentor to the appointment) and uncomment the one after (assigning the authenticated user to the appointment).
+    myappt.mentor = random.choice(User.objects.all())
+    # myappt.mentor = request.user
+    # myappt.start_date = date.today()
+
+    call function to convert from hsm to day of week, store that day of week in var called start_day_of_week
+    convert start_day_of_week to enum
+
+    weekday =
+    myappt.start_date = date.today() + datetime.timedelta(7)
+
+    # days_till_first_appt = [selected date enum] - [today day of week enum] + [7]
+    # start_date = [date.today()] + [relative_delta(days_till_first_appt)]
+
+    # def next_weekday(d, weekday):
+    #     days_ahead = weekday - d.weekday() + 7
+    #     return d + datetime.timedelta(days_ahead)
+
+    # d = datetime.date(2011, 7, 2)
+    # next_monday = next_weekday(d, 0) # 0 = Monday, 1=Tuesday, 2=Wednesday...
+    # print(next_monday)
+
+    myappt.end_date = myappt.start_date + relativedelta(months=+4)
     myappt.save()
     # FIXME -- CALL TO SHWETHA'S GOOGLE API FUNCTION
     # FIXME - Add try/except/finally blocks for error checking (not logged in, appointment got taken before they refreshed)

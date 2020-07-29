@@ -30,6 +30,12 @@ class MentorProfile(models.Model):
     time_zone = models.CharField(
         verbose_name="time zone", max_length=40, null=True, blank=True
     )
+    personal_email = models.EmailField(
+        verbose_name="vbb email", max_length=60, null=True, blank=True
+    )
+    vbb_email = models.EmailField(
+        verbose_name="vbb email", max_length=60, null=True, blank=True
+    )
     phone_number = models.CharField(
         verbose_name="phone number", max_length=12, null=True, blank=True
     )
@@ -142,9 +148,10 @@ class Appointment(models.Model):
 
     def __str__(self):
         return (
-            str(self.day_of_week)
-            + "s @ "
-            + str(self.eastern_time)
+            "FIXME--"
+            + str(self.hsm)
+            + " from "
+            + str(self.start_date)
             + " until "
             + str(self.end_date)
         )
