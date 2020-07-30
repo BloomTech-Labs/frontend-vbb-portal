@@ -1,14 +1,10 @@
 import datetime
+
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from django.core.validators import (
-    MaxValueValidator,
-    MinValueValidator,
-)
 
 from api import aux_fns
-
-## FIXME - LOOK INTO DOCUMENTATION ON ONDELETE MODELS CASCADE
 
 
 class Library(models.Model):
@@ -65,7 +61,7 @@ class MentorProfile(models.Model):
 class MenteeProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="mentee")
     library = models.ForeignKey(
-        Library, on_delete=models.CASCADE, related_name="mentee", null=True, blank=True
+        Library, on_delete=models.SET_NULL, related_name="mentee", null=True, blank=True
     )
     time_zone = models.CharField(
         verbose_name="time zone", max_length=40, null=True, blank=True
@@ -78,14 +74,14 @@ class MenteeProfile(models.Model):
 class Computer(models.Model):
     library = models.ForeignKey(
         Library,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         related_name="computer",
         null=True,
         blank=True,
     )
     language = models.ForeignKey(
         Language,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         related_name="computer",
         null=True,
         blank=True,
@@ -111,28 +107,28 @@ class Computer(models.Model):
 class Appointment(models.Model):
     mentor = models.ForeignKey(
         User,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         related_name="mentor_appointments",
         null=True,
         blank=True,
     )
     mentee = models.ForeignKey(
         User,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         related_name="mentee_appointments",
         null=True,
         blank=True,
     )
     mentee_computer = models.ForeignKey(
         Computer,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         related_name="computer_appointments",
         null=True,
         blank=True,
     )
     language = models.ForeignKey(
         Language,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         related_name="appointment",
         null=True,
         blank=True,
