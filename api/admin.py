@@ -1,6 +1,6 @@
 from django.contrib import admin
-from api.models import *
 
+from api.models import *
 
 admin.site.site_header = "Admin - VBB Mentor Portal"
 admin.site.site_title = "VBB Mentor Portal"

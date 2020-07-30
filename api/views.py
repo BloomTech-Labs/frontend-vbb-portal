@@ -12,7 +12,6 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
 from api import aux_fns
-
 from api.models import *
 from api.serializers import *
 
