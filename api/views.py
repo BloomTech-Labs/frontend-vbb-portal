@@ -1,13 +1,9 @@
-import random
-
-# from datetime import date
 import datetime
+import random
 
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 from django.db.models import Q
-
-from dateutil.relativedelta import relativedelta
 from django.shortcuts import render
 from rest_auth.registration.views import SocialLoginView
 from rest_framework.decorators import api_view
@@ -15,8 +11,10 @@ from rest_framework.generics import ListAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
-from .models import *
-from .serializers import *
+from api import aux_fns
+
+from api.models import *
+from api.serializers import *
 
 
 class GoogleLogin(SocialLoginView):
@@ -106,39 +104,27 @@ def book_appointment(request):
             language=language_params,
             hsm=hsm_params,
         )
+    # Check if there are no appointments that match the request.
+    if not appts:
+        return Response(
+            {
+                "success": "false",
+                "message": "No available appointments exist with those specifications.",
+            }
+        )
     myappt = random.choice(appts)
     # FIXME - Once you can login to api-auth/ and stay logged in for calls, comment out the next line (assigning a random mentor to the appointment) and uncomment the one after (assigning the authenticated user to the appointment).
     myappt.mentor = random.choice(User.objects.all())
     # myappt.mentor = request.user
-    # myappt.start_date = date.today()
-
-    call function to convert from hsm to day of week, store that day of week in var called start_day_of_week
-    convert start_day_of_week to enum
-
-    weekday =
-    myappt.start_date = date.today() + datetime.timedelta(7)
-
-    # days_till_first_appt = [selected date enum] - [today day of week enum] + [7]
-    # start_date = [date.today()] + [relative_delta(days_till_first_appt)]
-
-    # def next_weekday(d, weekday):
-    #     days_ahead = weekday - d.weekday() + 7
-    #     return d + datetime.timedelta(days_ahead)
-
-    # d = datetime.date(2011, 7, 2)
-    # next_monday = next_weekday(d, 0) # 0 = Monday, 1=Tuesday, 2=Wednesday...
-    # print(next_monday)
-
-    myappt.end_date = myappt.start_date + relativedelta(months=+4)
+    myappt.start_date = datetime.datetime.today() + datetime.timedelta(
+        days=(aux_fns.diff_today_dsm(myappt.hsm) + 7)
+    )
+    myappt.end_date = myappt.start_date + datetime.timedelta(weeks=17)
     myappt.save()
     # FIXME -- CALL TO SHWETHA'S GOOGLE API FUNCTION
     # FIXME - Add try/except/finally blocks for error checking (not logged in, appointment got taken before they refreshed)
     return Response(
-        {
-            "success": "true",
-            "user": str(request.user),
-            "random": str(random.choice(appts)),
-        }
+        {"success": "true", "user": str(myappt.mentor), "appointment": str(myappt),}
     )
 
 

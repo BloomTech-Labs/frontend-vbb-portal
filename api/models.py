@@ -1,6 +1,12 @@
+import datetime
 from django.contrib.auth.models import User
 from django.db import models
-from datetime import date
+from django.core.validators import (
+    MaxValueValidator,
+    MinValueValidator,
+)
+
+from api import aux_fns
 
 ## FIXME - LOOK INTO DOCUMENTATION ON ONDELETE MODELS CASCADE
 
@@ -131,8 +137,11 @@ class Appointment(models.Model):
         null=True,
         blank=True,
     )
-    hsm = models.IntegerField(
-        verbose_name="hours since monday at 12am (eastern time)", null=True, blank=True
+    hsm = models.PositiveIntegerField(
+        verbose_name="hours since monday at 12am (eastern time)",
+        null=True,
+        blank=True,
+        validators=[MinValueValidator(0), MaxValueValidator(167)],
     )
     start_date = models.DateField(verbose_name="start date", null=True, blank=True)
     end_date = models.DateField(verbose_name="end date", null=True, blank=True)
@@ -147,11 +156,15 @@ class Appointment(models.Model):
     )
 
     def __str__(self):
+
+        if self.hsm is None:
+            return "** Add time **"
+        if self.end_date is None:
+            return "** Add end date **"
         return (
-            "FIXME--"
-            + str(self.hsm)
-            + " from "
-            + str(self.start_date)
+            aux_fns.hsm_to_day_name(self.hsm)
+            + "s @ "
+            + aux_fns.hsm_to_12hr(self.hsm)
             + " until "
-            + str(self.end_date)
+            + str(self.end_date.strftime("%x"))
         )
