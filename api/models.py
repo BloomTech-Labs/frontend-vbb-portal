@@ -33,7 +33,7 @@ class MentorProfile(models.Model):
         verbose_name="time zone", max_length=40, null=True, blank=True
     )
     personal_email = models.EmailField(
-        verbose_name="vbb email", max_length=60, null=True, blank=True
+        verbose_name="personal email", max_length=60, null=True, blank=True
     )
     vbb_email = models.EmailField(
         verbose_name="vbb email", max_length=60, null=True, blank=True
