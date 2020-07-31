@@ -35,7 +35,7 @@ class Layout extends React.Component {
         </nav>
         <br />
 
-        <div className="site-layout-content">{this.props.children}</div>
+        <div className="content">{this.props.children}</div>
 
         <footer style={{ textAlign: "center" }}>
           &copy; Village Book Builders | All Rights Reserved
