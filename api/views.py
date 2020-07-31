@@ -13,22 +13,26 @@ from rest_framework.response import Response
 from django.http import HttpResponse
 
 
-from oauth2client import file, client
-from google.oauth2 import service_account
-from googleapiclient import discovery
-from googleapiclient.discovery import build
+# from oauth2client import file, client
+# from google.oauth2 import service_account
+# from googleapiclient import discovery
+# from googleapiclient.discovery import build
+# # from email.mime.text import MIMEText
 
 from api import aux_fns
 from api.models import *
 from api.serializers import *
+from api.google_apis import *
 
-scopes = ['https://www.googleapis.com/auth/calendar','https://www.googleapis.com/auth/gmail.compose']
-SERVICE_ACCOUNT_FILE = r"api\service-account.json"
-credentials = service_account.Credentials.from_service_account_file(
-        SERVICE_ACCOUNT_FILE, scopes=scopes)
+# scopes = ['https://www.googleapis.com/auth/calendar','https://www.googleapis.com/auth/gmail.compose']
+# SERVICE_ACCOUNT_FILE = r"api\service-account.json"
+# credentials = service_account.Credentials.from_service_account_file(
+#         SERVICE_ACCOUNT_FILE, scopes=scopes)
 
-delegated_credentials = credentials.with_subject('webdevelopment@villagebookbuilders.org')
-service = build('calendar', 'v3', credentials=delegated_credentials)
+# delegated_credentials = credentials.with_subject('webdevelopment@villagebookbuilders.org')
+# service = build('calendar', 'v3', credentials=delegated_credentials)
+# # http = credentials.authorize(httplib2.Http())
+# # email_service = build('gmail', 'v1', http=http)
 
 class GoogleLogin(SocialLoginView):
     adapter_class = GoogleOAuth2Adapter
@@ -95,36 +99,75 @@ class AvailableAppointmentTimeList(ListAPIView):
 
         return Response(appts)
 
-def create_event(menteeEmail, mentorEmail, start_time, duration=1):
-    timezone = 'America/New_York'
-    start_date_time_obj = datetime.strptime(start_time, '%Y-%m-%dT%H:%M:%S')
-    end_time = start_date_time_obj + timedelta(hours=duration)
-    event = {
-        'summary': 'Village Book Builders Mentoring Meeting',
-        'start': {
-            'dateTime': start_date_time_obj.strftime("%Y-%m-%dT%H:%M:%S"),
-            'timeZone': timezone,
-        },
-        'end': {
-            'dateTime': end_time.strftime("%Y-%m-%dT%H:%M:%S"),
-            'timeZone': timezone,
-        },
-        'recurrence': [
-            'RRULE:FREQ=WEEKLY;COUNT=3'
-        ],
-        'attendees': [
-            {'email': menteeEmail},
-            {'email': mentorEmail}
-        ],
-        'reminders': {
-            'useDefault': False,
-            'overrides': [
-            {'method': 'email', 'minutes': 24 * 60}, # reminder 24 hrs before event
-            {'method': 'popup', 'minutes': 10}, # pop up reminder, 10 min before event
-            ],
-        },
-    }
-    return service.events().insert(calendarId='primary', body=event).execute()
+# def create_message(sender="mentor@villagebookbuilders.org", to, subject="Village Book Builders Welcome!", message_text):
+#   """Create a message for an email.
+
+#   Args:
+#     sender: Email address of the sender.
+#     to: Email address of the receiver.
+#     subject: The subject of the email message.
+#     message_text: The text of the email message.
+
+#   Returns:
+#     An object containing a base64url encoded email object.
+#   """
+#   message = MIMEText(message_text)
+#   message['to'] = to
+#   message['from'] = sender
+#   message['subject'] = subject
+#   return {'raw': base64.urlsafe_b64encode(message.as_string())}
+
+# def send_message(service, user_id, message):
+#   """Send an email message.
+
+#   Args:
+#     service: Authorized Gmail API service instance.
+#     user_id: User's email address. The special value "me"
+#     can be used to indicate the authenticated user.
+#     message: Message to be sent.
+
+#   Returns:
+#     Sent Message.
+#   """
+#   try:
+#     message = (service.users().messages().send(userId=user_id, body=message)
+#                .execute())
+#     print 'Message Id: %s' % message['id']
+#     return message
+#   except errors.HttpError, error:
+#     print 'An error occurred: %s' % error
+
+
+# def create_event(menteeEmail, mentorEmail, start_time, duration=1):
+    # timezone = 'America/New_York'
+    # start_date_time_obj = datetime.strptime(start_time, '%Y-%m-%dT%H:%M:%S')
+    # end_time = start_date_time_obj + timedelta(hours=duration)
+    # event = {
+    #     'summary': 'Village Book Builders Mentoring Meeting',
+    #     'start': {
+    #         'dateTime': start_date_time_obj.strftime("%Y-%m-%dT%H:%M:%S"),
+    #         'timeZone': timezone,
+    #     },
+    #     'end': {
+    #         'dateTime': end_time.strftime("%Y-%m-%dT%H:%M:%S"),
+    #         'timeZone': timezone,
+    #     },
+    #     'recurrence': [
+    #         'RRULE:FREQ=WEEKLY;COUNT=3'
+    #     ],
+    #     'attendees': [
+    #         {'email': menteeEmail},
+    #         {'email': mentorEmail}
+    #     ],
+    #     'reminders': {
+    #         'useDefault': False,
+    #         'overrides': [
+    #         {'method': 'email', 'minutes': 24 * 60}, # reminder 24 hrs before event
+    #         {'method': 'popup', 'minutes': 10}, # pop up reminder, 10 min before event
+    #         ],
+    #     },
+    # }
+    # return service.events().insert(calendarId='primary', body=event).execute()
 
 @api_view(["GET"])
 def temp_create_event(request): # temp to merge with book_appointment
@@ -140,7 +183,7 @@ def temp_create_event(request): # temp to merge with book_appointment
     url_menteeEmail_params = "shwetha.test1@villagebookbuilders.org"
     
     # url_startTime_params = request.query_params.get("startTime")
-    url_startTime_params = "2020-07-28T20:00:00"
+    url_startTime_params = "2020-07-30T20:00:00"
     create_event(url_mentorEmail_params, url_menteeEmail_params, url_startTime_params)
     # return HttpResponse("testing")
     return Response(
