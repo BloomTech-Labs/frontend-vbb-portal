@@ -7,7 +7,6 @@ from api.views import *
 urlpatterns = [
     # New Auth
     path("googlelogin/", GoogleLogin.as_view()),
-    path("googleconnect/", GoogleConnect.as_view()),
     path("accounts/", include("allauth.urls")),
     path("rest-auth/registration/", include("rest_auth.registration.urls")),
     path("rest-auth/", include("rest_auth.urls")),
