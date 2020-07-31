@@ -1,6 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import PrivateRoute from './store/PrivateRoute';
+import PrivateRoute from "./store/PrivateRoute";
 
 import Booking from "./components/Booking";
 import Profile from "./components/Profile";
@@ -11,7 +11,6 @@ const BaseRouter = () => (
     <PrivateRoute exact path="/" component={Profile} />
     <PrivateRoute exact path="/booking/" component={Booking} />
     <Route exact path="/signin/" component={SigninGoogle} />
-    {/* <Route exact path="/profile/" component={Profile} /> */}
   </div>
 );
 

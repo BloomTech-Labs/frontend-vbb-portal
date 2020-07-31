@@ -53,7 +53,7 @@ export class SigninGoogle extends Component {
             Don't have an account with us yet?
           </p>
           <h6>
-            <a href="/signup">Click here</a> to sign up to be a mentor!
+            <a href="/signup/">Click here</a> to sign up to be a mentor!
           </h6>
         </div>
       </div>

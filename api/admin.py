@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import *
 
+from api.models import *
 
-admin.site.site_header = "Admin - VBB Mentor Portal"
-admin.site.site_title = "VBB Mentor Portal"
+admin.site.site_header = "Admin - VBB Portal"
+admin.site.site_title = "VBB Portal"
 
 
 class LibraryAdmin(admin.ModelAdmin):
@@ -24,6 +24,8 @@ class MentorProfileAdmin(admin.ModelAdmin):
         "__str__",
         "user",
         "time_zone",
+        "personal_email",
+        "vbb_email",
         "phone_number",
         "occupation",
         "organization",
@@ -35,6 +37,9 @@ class MentorProfileAdmin(admin.ModelAdmin):
         "id",
         "user",
         "time_zone",
+        "personal_email",
+        "vbb_email",
+        "phone_number",
         "organization",
         "contact_source",
         "involvement",

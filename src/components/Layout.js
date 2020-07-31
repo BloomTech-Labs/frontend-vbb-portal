@@ -2,12 +2,12 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../store/actions/auth";
-import "../Style.css";
+import "../style.css";
 import logo from "../vbb-logo.png";
 
 class Layout extends React.Component {
   render() {
-    console.log('layout isauthenticated:');
+    console.log("layout isauthenticated:");
     console.log(this.props.isAuthenticated);
     return (
       <div className="layout">
@@ -35,7 +35,7 @@ class Layout extends React.Component {
         </nav>
         <br />
 
-        <div className="site-layout-content">{this.props.children}</div>
+        <div className="content">{this.props.children}</div>
 
         <footer style={{ textAlign: "center" }}>
           &copy; Village Book Builders | All Rights Reserved

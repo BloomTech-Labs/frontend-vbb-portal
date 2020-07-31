@@ -1,8 +1,10 @@
-from django.contrib.auth.models import User
-from django.db import models
-from datetime import date
+import datetime
 
-## FIXME - LOOK INTO DOCUMENTATION ON ONDELETE MODELS CASCADE
+from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
+from django.db import models
+
+from api import aux_fns
 
 
 class Library(models.Model):
@@ -30,6 +32,12 @@ class MentorProfile(models.Model):
     time_zone = models.CharField(
         verbose_name="time zone", max_length=40, null=True, blank=True
     )
+    personal_email = models.EmailField(
+        verbose_name="personal email", max_length=60, null=True, blank=True
+    )
+    vbb_email = models.EmailField(
+        verbose_name="vbb email", max_length=60, null=True, blank=True
+    )
     phone_number = models.CharField(
         verbose_name="phone number", max_length=12, null=True, blank=True
     )
@@ -53,7 +61,7 @@ class MentorProfile(models.Model):
 class MenteeProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="mentee")
     library = models.ForeignKey(
-        Library, on_delete=models.CASCADE, related_name="mentee", null=True, blank=True
+        Library, on_delete=models.SET_NULL, related_name="mentee", null=True, blank=True
     )
     time_zone = models.CharField(
         verbose_name="time zone", max_length=40, null=True, blank=True
@@ -66,14 +74,14 @@ class MenteeProfile(models.Model):
 class Computer(models.Model):
     library = models.ForeignKey(
         Library,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         related_name="computer",
         null=True,
         blank=True,
     )
     language = models.ForeignKey(
         Language,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         related_name="computer",
         null=True,
         blank=True,
@@ -99,34 +107,37 @@ class Computer(models.Model):
 class Appointment(models.Model):
     mentor = models.ForeignKey(
         User,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         related_name="mentor_appointments",
         null=True,
         blank=True,
     )
     mentee = models.ForeignKey(
         User,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         related_name="mentee_appointments",
         null=True,
         blank=True,
     )
     mentee_computer = models.ForeignKey(
         Computer,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         related_name="computer_appointments",
         null=True,
         blank=True,
     )
     language = models.ForeignKey(
         Language,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         related_name="appointment",
         null=True,
         blank=True,
     )
-    hsm = models.IntegerField(
-        verbose_name="hours since monday at 12am (eastern time)", null=True, blank=True
+    hsm = models.PositiveIntegerField(
+        verbose_name="hours since monday at 12am (eastern time)",
+        null=True,
+        blank=True,
+        validators=[MinValueValidator(0), MaxValueValidator(167)],
     )
     start_date = models.DateField(verbose_name="start date", null=True, blank=True)
     end_date = models.DateField(verbose_name="end date", null=True, blank=True)
@@ -141,10 +152,15 @@ class Appointment(models.Model):
     )
 
     def __str__(self):
+
+        if self.hsm is None:
+            return "** Add time **"
+        if self.end_date is None:
+            return "** Add end date **"
         return (
-            str(self.day_of_week)
+            aux_fns.hsm_to_day_name(self.hsm)
             + "s @ "
-            + str(self.eastern_time)
+            + aux_fns.hsm_to_12hr(self.hsm)
             + " until "
-            + str(self.end_date)
+            + str(self.end_date.strftime("%x"))
         )

@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import * as actions from "./store/actions/auth";
 
 import Layout from "./components/Layout";
-import BaseRouter from "./routes";
-import "./Style.css";
+import BaseRouter from "./Routes";
+import "./style.css";
 
 class App extends Component {
   componentDidMount() {
