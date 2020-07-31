@@ -23,7 +23,7 @@ from googleapiclient.discovery import build
 from .models import *
 from .serializers import *
 
-scopes = ['https://www.googleapis.com/auth/calendar']
+scopes = ['https://www.googleapis.com/auth/calendar','https://www.googleapis.com/auth/gmail.compose']
 SERVICE_ACCOUNT_FILE = r"api\service-account.json"
 credentials = service_account.Credentials.from_service_account_file(
         SERVICE_ACCOUNT_FILE, scopes=scopes)
@@ -147,9 +147,6 @@ def temp_create_event(request): # temp to merge with book_appointment
     
     # url_startTime_params = request.query_params.get("startTime")
     url_startTime_params = "2020-07-28T20:00:00"
-
-    print('stuff: ', url_mentorEmail_params, url_menteeEmail_params, url_startTime_params)
-    
     create_event(url_mentorEmail_params, url_menteeEmail_params, url_startTime_params)
     # return HttpResponse("testing")
     return Response(
