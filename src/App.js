@@ -8,6 +8,7 @@ import BaseRouter from "./routes";
 
 class App extends Component {
   componentDidMount() {
+    console.log("try auto sign up");
     this.props.onTryAutoSignup();
   }
 

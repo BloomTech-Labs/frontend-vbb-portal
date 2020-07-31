@@ -24,6 +24,7 @@ class Layout extends React.Component {
                 type="button"
                 href="https://www.villagebookbuilders.org/giftabook/"
                 target="_blank"
+                rel="noopener noreferrer"
                 style={{ position: "relative", top: "15px" }}
               >
                 DONATE
