@@ -5,7 +5,6 @@ import * as actions from "./store/actions/auth";
 
 import Layout from "./components/Layout";
 import BaseRouter from "./routes";
-import "./Style.css";
 
 class App extends Component {
   componentDidMount() {
