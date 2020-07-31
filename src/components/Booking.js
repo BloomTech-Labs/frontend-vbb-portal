@@ -4,15 +4,15 @@ const BasicBooking = () => {
   function handleDayChange(e) {
     console.log(e.target.value);
   }
-  function handleTzChange(e) {
-    console.log(e.target.value);
-  }
-  function handleLangChange(e) {
-    console.log(e.target.value);
-  }
-  function handleDayChange(e) {
-    console.log(e.target.value);
-  }
+  // function handleTzChange(e) {
+  //   console.log(e.target.value);
+  // }
+  // function handleLangChange(e) {
+  //   console.log(e.target.value);
+  // }
+  // function handleDayChange(e) {
+  //   console.log(e.target.value);
+  // }
   return (
     <div>
       <h1>Book Your Weekly 1-Hour Mentoring Session Below!</h1>
@@ -28,7 +28,7 @@ const BasicBooking = () => {
       <br />
       {/* Weekday */}
       <label htmlFor="weekday">Day of the Week:</label>
-      <select name="weekday" id="weekday" onChange={}>
+      <select name="weekday" id="weekday" onChange={handleDayChange}>
         <option value={0}>Monday</option>
         <option value={24}>Tuesday</option>
         <option value={48}>Wednesday</option>

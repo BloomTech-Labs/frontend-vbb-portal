@@ -7,6 +7,8 @@ const PrivateRoute = ({ component: Component, token, loading, ...rest }) => (
     {...rest}
     render={(props) => {
       console.log('privateroute isauthenticated:');
+      console.log(token);
+      console.log(loading);
       //console.log(auth.isAuthenticated);
       //console.log(props.isAuthenticated);
       //console.log(this.props.isAuthenticated);
@@ -35,7 +37,7 @@ const PrivateRoute = ({ component: Component, token, loading, ...rest }) => (
 const mapStateToProps = (state) => ({
   //auth: state,
   token: state.token,
-  token: state.loading,
+  loading: state.loading,
 });
 
 

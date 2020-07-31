@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../store/actions/auth";
-import "../style.css";
+import "../Style.css";
 import logo from "../vbb-logo.png";
 
 class Layout extends React.Component {
@@ -16,22 +16,49 @@ class Layout extends React.Component {
           <a href="/">
             <h1 style={{ position: "relative", top: "20px" }}>VBB Portal</h1>
           </a>
-          <a
-            className="btn btn-light donate-button"
-            type="button"
-            href="https://www.villagebookbuilders.org/giftabook/"
-            style={{ position: "relative", top: "15px" }}
-          >
-            DONATE
-          </a>
-          <a
-            className="btn btn-light signin-button"
-            type="button"
-            href="/signin/"
-            style={{ position: "relative", top: "15px" }}
-          >
-            SIGN IN
-          </a>
+          {
+            this.props.isAuthenticated ?
+            <div>
+              <a
+                className="btn btn-light donate-button"
+                type="button"
+                href="https://www.villagebookbuilders.org/giftabook/"
+                target="_blank"
+                style={{ position: "relative", top: "15px" }}
+              >
+                DONATE
+              </a>
+              <a
+                className="btn btn-light signin-button"
+                type="button"
+                href="/signin/"
+                style={{ position: "relative", top: "15px" }}
+                onClick={this.props.logout}
+              >
+                SIGN OUT
+              </a>
+            </div>
+            :
+            <div>
+              <a
+                className="btn btn-light donate-button"
+                type="button"
+                href="/signup/"
+                style={{ position: "relative", top: "15px" }}
+              >
+                REGISTER
+              </a>
+              <a
+                className="btn btn-light signin-button"
+                type="button"
+                href="/signin/"
+                style={{ position: "relative", top: "15px" }}
+              >
+                SIGN IN
+              </a>
+            </div>
+          }
+
         </nav>
         <br />
 
