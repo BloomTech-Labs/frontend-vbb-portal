@@ -2,30 +2,30 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-const PrivateRoute = ({ component: Component, auth, ...rest }) => (
+const PrivateRoute = ({ component: Component, token, loading, ...rest }) => (
   <Route
     {...rest}
     render={(props) => {
       console.log('privateroute isauthenticated:');
-      console.log(auth.isAuthenticated);
-      console.log(props.isAuthenticated);
-      console.log(this.props.isAuthenticated);
-      console.log("auth");
-      console.log(auth);
-      if (auth.loading) {
+      //console.log(auth.isAuthenticated);
+      //console.log(props.isAuthenticated);
+      //console.log(this.props.isAuthenticated);
+      //console.log("auth");
+      //console.log(auth);
+      if (loading) {
         console.log("auth.loading");
         return <h2>auth.loading...</h2>;
-      } else if (auth.token === null) {
+      } else if (token === null) {
         console.log("not authenticated");
-        console.log(auth.token);
-        console.log(auth.token === null);
-        console.log(auth.loading);
+        console.log(token);
+        console.log(token === null);
+        console.log(loading);
         return <Redirect to="/signin" />;
       } else {
         console.log('authenticated');
-        console.log(auth.token);
-        console.log(auth.token === null);
-        console.log(auth.loading);
+        console.log(token);
+        console.log(token === null);
+        console.log(loading);
         return <Component {...props} />;
       }
     }}
@@ -33,8 +33,9 @@ const PrivateRoute = ({ component: Component, auth, ...rest }) => (
 );
 
 const mapStateToProps = (state) => ({
-  auth: state,
+  //auth: state,
   token: state.token,
+  token: state.loading,
 });
 
 

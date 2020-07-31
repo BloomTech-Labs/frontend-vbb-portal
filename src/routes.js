@@ -8,8 +8,8 @@ import SigninGoogle from "./components/SigninGoogle";
 
 const BaseRouter = () => (
   <div>
-    <Route exact path="/" component={Profile} />
-    <Route exact path="/booking/" component={Booking} />
+    <PrivateRoute exact path="/" component={Profile} />
+    <PrivateRoute exact path="/booking/" component={Booking} />
     <Route exact path="/signin/" component={SigninGoogle} />
     {/* <Route exact path="/profile/" component={Profile} /> */}
   </div>
