@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime, timedelta
 import random
 
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
@@ -133,14 +133,21 @@ def book_appointment(request):
         )
     myappt = random.choice(appts)
     # FIXME - Once you can login to api-auth/ and stay logged in for calls, comment out the next line (assigning a random mentor to the appointment) and uncomment the one after (assigning the authenticated user to the appointment).
-    myappt.mentor = random.choice(User.objects.all())
+    # myappt.mentor = random.choice(User.objects.all())
+    print('HELLOOOOOOOOOOOOO')
+    myappt.mentor = User.objects.get(username="shwetha")
+    print('hey')
     # myappt.mentor = request.user
-    myappt.start_date = datetime.datetime.today() + datetime.timedelta(
+    myappt.start_date = datetime.today() + timedelta(
         days=(aux_fns.diff_today_dsm(myappt.hsm) + 7)
     )
-    myappt.end_date = myappt.start_date + datetime.timedelta(weeks=17)
-    myappt.save()
+    myappt.end_date = myappt.start_date + timedelta(weeks=17)
+    # myappt.save()
     # FIXME -- CALL TO SHWETHA'S GOOGLE API FUNCTION
+    gapi = google_apis()
+    start_time = aux_fns.date_combine_time(str(myappt.start_date), myappt.hsm)
+    print('mentor: ',  myappt.mentor.mentor)
+    gapi.calendar_event(myappt.mentee_computer.computer_email, myappt.mentor.mentor.vbb_email, start_time)
     # FIXME - Add try/except/finally blocks for error checking (not logged in, appointment got taken before they refreshed)
     return Response(
         {"success": "true", "user": str(myappt.mentor), "appointment": str(myappt),}
@@ -157,3 +164,26 @@ class MyAppointmentListView(ListAPIView):
 
     def get_queryset(self):
         return self.request.user.mentor_appointments.all()
+
+@api_view(["GET"])
+def testing(request):
+    # start_date format: "2020-07-31"
+    appts = Appointment.objects.all()
+    appts = Appointment.objects.exclude(start_date = None, hsm=None)
+    myappt = random.choice(appts)
+    start_date = str(myappt.start_date)
+    hsm = myappt.hsm
+   
+    result = aux_fns.date_combine_time(start_date, hsm)
+    if myappt.start_date:
+        return  Response(
+            {
+                "success": "true", 
+                "start_helper": str(result),
+            }
+        )
+    else:
+        return Response(
+            {"success": "false"}
+        )
+

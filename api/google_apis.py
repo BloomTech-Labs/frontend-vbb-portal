@@ -88,8 +88,9 @@ class google_apis:
       timezone = 'America/New_York'
       start_date_time_obj = datetime.strptime(start_time, '%Y-%m-%dT%H:%M:%S')
       end_time = start_date_time_obj + timedelta(hours=duration)
+      print('emails: ',mentorEmail, menteeEmail)
       event = {
-          'summary': 'Village Book Builders Mentoring Meeting',
+          'summary': 'IT WORKED Village Book Builders Mentoring Meeting',
           'start': {
               'dateTime': start_date_time_obj.strftime("%Y-%m-%dT%H:%M:%S"),
               'timeZone': timezone,
