@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import * as actions from "./store/actions/auth";
 
 import Layout from "./components/Layout";
-import BaseRouter from "./routes";
+import BaseRouter from "./Routes";
 
 class App extends Component {
   componentDidMount() {
@@ -17,7 +17,7 @@ class App extends Component {
       <div className="App">
         <Router {...this.props}>
           <Layout {...this.props}>
-            <BaseRouter/>
+            <BaseRouter />
           </Layout>
         </Router>
       </div>

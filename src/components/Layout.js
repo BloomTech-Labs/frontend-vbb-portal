@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../store/actions/auth";
-import "../Style.css";
+import "../style.css";
 import logo from "../vbb-logo.png";
 
 class Layout extends React.Component {
@@ -16,8 +16,7 @@ class Layout extends React.Component {
           <a href="/">
             <h1 style={{ position: "relative", top: "20px" }}>VBB Portal</h1>
           </a>
-          {
-            this.props.isAuthenticated ?
+          {this.props.isAuthenticated ? (
             <div>
               <a
                 className="btn btn-light donate-button"
@@ -39,7 +38,7 @@ class Layout extends React.Component {
                 SIGN OUT
               </a>
             </div>
-            :
+          ) : (
             <div>
               <a
                 className="btn btn-light donate-button"
@@ -58,8 +57,7 @@ class Layout extends React.Component {
                 SIGN IN
               </a>
             </div>
-          }
-
+          )}
         </nav>
         <br />
 
