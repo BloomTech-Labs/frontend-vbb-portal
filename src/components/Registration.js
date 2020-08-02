@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 // import {
 //   Form,
@@ -134,7 +134,7 @@ class MasterForm extends React.Component {
             lastname={this.state.lastname}
             password={this.state.password}
             
-            handleMultiChange={this.handleMultiChange}
+            // handleMultiChange={this.handleMultiChange}//never used
             setState={this.setState}
             state={this.state}
             selectChange={this.selectChange}
@@ -144,7 +144,7 @@ class MasterForm extends React.Component {
           <Step2
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
-            handleMultiChange={this.handleMultiChange}
+            // handleMultiChange={this.handleMultiChange}//never used?
             setState={this.setState}
             state={this.state}
             selectChange={this.selectChange}
@@ -211,13 +211,13 @@ class MasterForm extends React.Component {
 
 }
 
-
-function handleMultiChange(value, lifeStage) {
-  if (lifeStage == "lifeStage") {
-    lifeStage = value;
-  }
-  return lifeStage;
-}
+//never used?
+// function handleMultiChange(value, lifeStage) {
+//   if (lifeStage == "lifeStage") {
+//     lifeStage = value;
+//   }
+//   return lifeStage;
+// }
 
 /*Step 1*/
 
@@ -340,7 +340,7 @@ function Step2(props) {
       </div>
 
       {
-        props.lifeStage == "Retired" && (
+        props.lifeStage === "Retired" && (
 
           <div>
             <p>This fool's retired!</p>
@@ -904,7 +904,7 @@ function Step4(props) {
 }
 
 
-{/**Step 5 */}
+//Step 5
 
 function Step5(props) {
   if (props.currentStep !== 5) {
