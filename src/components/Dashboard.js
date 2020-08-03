@@ -52,4 +52,4 @@ const Dashboard = () => {
   );
 };
 
-export default ProfilePage;
+export default Dashboard;
