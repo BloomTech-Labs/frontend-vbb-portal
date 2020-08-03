@@ -80,6 +80,7 @@ class google_apis:
     with requests.Session() as s:
       s.auth = OAuth2BearerToken(self.__webdev_cred.token)
       r = s.post(url, headers=headers, data=data)
+      print('in while loop', data)
     return primaryEmail
 
 
@@ -90,7 +91,7 @@ class google_apis:
       end_time = start_date_time_obj + timedelta(hours=duration)
       print('emails: ',mentorEmail, menteeEmail)
       event = {
-          'summary': 'IT WORKED Village Book Builders Mentoring Meeting',
+          'summary': 'Village Book Builders Mentoring Meeting',
           'start': {
               'dateTime': start_date_time_obj.strftime("%Y-%m-%dT%H:%M:%S"),
               'timeZone': timezone,

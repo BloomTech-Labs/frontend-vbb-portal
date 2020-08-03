@@ -82,26 +82,6 @@ class AvailableAppointmentTimeList(ListAPIView):
 
         return Response(appts)
 
-@api_view(["GET"])
-def temp_create_event(request): # temp to merge with book_appointment
-    
-    """
-    Calls google api create_event function.
-    URL example: api/create-event/?mentorEmail="sohan.kalva.test2@villagementors.org"?menteeEmail="shwetha.test1@villagebookbuilders.org"?startTime=2020-07-28T20:00:00
-    """
-    url_mentorEmail_params = "sohan.kalva.test2@villagementors.org"
-    
-    # url_menteeEmail_params = request.query_params.get("menteeEmail")
-    url_menteeEmail_params = "shwetha.test1@villagebookbuilders.org"
-    
-    # url_startTime_params = request.query_params.get("startTime")
-    url_startTime_params = "2020-07-30T20:00:00"
-    return Response(
-        {
-            "success": "true",
-        }
-    )
-
 # FIXME - Change to POST once stable
 @api_view(["GET"])
 def book_appointment(request):
@@ -133,20 +113,16 @@ def book_appointment(request):
         )
     myappt = random.choice(appts)
     # FIXME - Once you can login to api-auth/ and stay logged in for calls, comment out the next line (assigning a random mentor to the appointment) and uncomment the one after (assigning the authenticated user to the appointment).
-    # myappt.mentor = random.choice(User.objects.all())
-    print('HELLOOOOOOOOOOOOO')
+    myappt.mentor = random.choice(User.objects.all())
     myappt.mentor = User.objects.get(username="shwetha")
-    print('hey')
-    # myappt.mentor = request.user
+    myappt.mentor = request.user
     myappt.start_date = datetime.today() + timedelta(
         days=(aux_fns.diff_today_dsm(myappt.hsm) + 7)
     )
     myappt.end_date = myappt.start_date + timedelta(weeks=17)
-    # myappt.save()
-    # FIXME -- CALL TO SHWETHA'S GOOGLE API FUNCTION
+    myappt.save()
     gapi = google_apis()
     start_time = aux_fns.date_combine_time(str(myappt.start_date), myappt.hsm)
-    print('mentor: ',  myappt.mentor.mentor)
     gapi.calendar_event(myappt.mentee_computer.computer_email, myappt.mentor.mentor.vbb_email, start_time)
     # FIXME - Add try/except/finally blocks for error checking (not logged in, appointment got taken before they refreshed)
     return Response(
@@ -167,23 +143,26 @@ class MyAppointmentListView(ListAPIView):
 
 @api_view(["GET"])
 def testing(request):
-    # start_date format: "2020-07-31"
-    appts = Appointment.objects.all()
-    appts = Appointment.objects.exclude(start_date = None, hsm=None)
-    myappt = random.choice(appts)
-    start_date = str(myappt.start_date)
-    hsm = myappt.hsm
-   
-    result = aux_fns.date_combine_time(start_date, hsm)
-    if myappt.start_date:
-        return  Response(
-            {
-                "success": "true", 
-                "start_helper": str(result),
+    # create user acct 
+    
+    test_mentor_prof = MentorProfile.objects.get(user=4)
+    gapi = google_apis()
+    # res = gapi.account_create(test_mentor_prof.user.first_name, test_mentor_prof.user.last_name, test_mentor_prof.personal_email)
+    # test_mentor_prof.vbb_email = res
+    # test_mentor_prof.save()
+    
+    # sending an email: 
+    # email_res = gapi.email_send(test_mentor_prof.vbb_email, 'hey', 'heytext')
+
+
+    
+    return Response(
+            {"success": "true", 
+            # "email": res, 
+            "first_name": str(test_mentor_prof.user),
+            "email": test_mentor_prof.vbb_email
             }
-        )
-    else:
-        return Response(
-            {"success": "false"}
+
+
         )
 

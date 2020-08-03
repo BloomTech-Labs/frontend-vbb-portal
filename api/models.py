@@ -12,6 +12,9 @@ class Library(models.Model):
     time_zone = models.CharField(
         verbose_name="time zone", max_length=40, null=True, blank=True
     )
+    calendar_id = models.CharField(
+        verbose_name="calendar id", max_length=60, null=True, blank=True
+    )
 
     class Meta:
         verbose_name_plural = "Libraries"
@@ -141,9 +144,6 @@ class Appointment(models.Model):
     )
     start_date = models.DateField(verbose_name="start date", null=True, blank=True)
     end_date = models.DateField(verbose_name="end date", null=True, blank=True)
-    calendar_id = models.CharField(
-        verbose_name="calendar id", max_length=60, null=True, blank=True
-    )
     event_id = models.CharField(
         verbose_name="event id", max_length=60, null=True, blank=True
     )

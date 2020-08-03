@@ -7,9 +7,9 @@ admin.site.site_title = "VBB Portal"
 
 
 class LibraryAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "time_zone")
+    list_display = ("id", "name", "time_zone","calendar_id")
     readonly_fields = ("id",)
-    search_fields = ("id", "name", "time_zone")
+    search_fields = ("id", "name", "time_zone","calendar_id")
 
 
 class LanguageAdmin(admin.ModelAdmin):
@@ -82,7 +82,6 @@ class AppointmentAdmin(admin.ModelAdmin):
         "hsm",
         "start_date",
         "end_date",
-        "calendar_id",
         "event_id",
         "notes",
     )
@@ -96,7 +95,6 @@ class AppointmentAdmin(admin.ModelAdmin):
         "hsm",
         "start_date",
         "end_date",
-        "calendar_id",
         "event_id",
     )
 
