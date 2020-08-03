@@ -1,7 +1,7 @@
 import React from "react";
 import "../style.css";
 
-const ProfilePage = () => {
+const Dashboard = () => {
   return (
     <div>
       <h2 style={{ color: "#4C4C49" }}>My Weekly Mentoring Session</h2>
