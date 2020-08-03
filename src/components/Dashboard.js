@@ -1,5 +1,4 @@
 import React from "react";
-import "../style.css";
 
 const Dashboard = () => {
   return (
@@ -50,6 +49,6 @@ const Dashboard = () => {
       <br />
     </div>
   );
-};
+}
 
 export default Dashboard;
