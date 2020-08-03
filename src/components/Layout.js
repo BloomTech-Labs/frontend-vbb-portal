@@ -10,7 +10,12 @@ class Layout extends React.Component {
     return (
       <div className="layout">
         <nav className="navbar sticky-top navbar-dark">
-          <img src={logo} alt="Logo" style={{ width: "250px" }} />
+          <a
+            href="https://www.villagebookbuilders.org/"
+            target="_blank"
+            rel="noopener noreferrer">
+            <img src={logo} alt="Logo" style={{ width: "250px" }} />
+          </a>
           <a href="/">
             <h1 style={{ position: "relative", top: "20px" }}>VBB Portal</h1>
           </a>
