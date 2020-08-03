@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import * as actions from "./store/actions/auth";
 
 import Layout from "./components/Layout";
-import BaseRouter from "./Routes";
+import BaseRouter from "./routes";
 
 class App extends Component {
   componentDidMount() {
