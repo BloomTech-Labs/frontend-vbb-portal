@@ -14,8 +14,7 @@ class Layout extends React.Component {
           <a href="/">
             <h1 style={{ position: "relative", top: "20px" }}>VBB Portal</h1>
           </a>
-          {
-            this.props.isAuthenticated ?
+          {this.props.isAuthenticated ? (
             <div>
               <a
                 className="btn btn-light donate-button"
@@ -37,7 +36,7 @@ class Layout extends React.Component {
                 SIGN OUT
               </a>
             </div>
-            :
+          ) : (
             <div>
               <a
                 className="btn btn-light donate-button"
@@ -56,8 +55,7 @@ class Layout extends React.Component {
                 SIGN IN
               </a>
             </div>
-          }
-
+          )}
         </nav>
         <br />
 
