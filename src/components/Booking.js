@@ -99,47 +99,15 @@ class Booking extends React.Component {
   }
 
   handleDropDownChange = (e) => {
-    console.log("target", e.target.name);
-    console.log(e.target.value);
-
     var newState = {};
     newState[e.target.name] = e.target.value; 
-    this.setState(newState, () => {console.log("state", this.state); this.fetchTimes();});
+    this.setState(newState, () => {this.fetchTimes();});
   }
 
   componentDidMount() {
-    console.log(moment.tz.names());
-    console.log("state before mount", this.state);
-    console.log('token', this.props.token);
     this.fetchBookingData();
-    console.log("state after mount", this.state);
-    console.log('token', this.props.token);
   }
 
-  // componentWillUpdate(){
-  //   console.log("component will update");
-  //   console.log("state", this.state);
-  //   console.log('token', this.props.token);
-  // }
-
-  // componentDidUpdate(){
-  //   if (!this.props.token) {
-  //     console.log("component did update");
-  //     console.log("state", this.state);
-  //     console.log('token', this.props.token);
-  //     this.fetchBookingData();
-  //   }
-  // }
-
-  // function handleTzChange(e) {
-  //   console.log(e.target.value);
-  // }
-  // function handleLangChange(e) {
-  //   console.log(e.target.value);
-  // }
-  // function handleDayChange(e) {
-  //   console.log(e.target.value);
-  // }
   render () {
     return (
       <div>

@@ -11,11 +11,6 @@ const PrivateRoute = ({ component: Component, token, loading, isLoading, isAuthe
       console.log(loading);
       console.log(isLoading);
       console.log(isAuthenticated);
-      //console.log(auth.isAuthenticated);
-      //console.log(props.isAuthenticated);
-      //console.log(this.props.isAuthenticated);
-      //console.log("auth");
-      //console.log(auth);
       if (loading) {
         console.log("auth.loading");
         return <h2>auth.loading...</h2>;
