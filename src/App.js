@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "./store/actions/auth";
 
 import Layout from "./components/Layout";
-import BaseRouter from "./routes";
+import Routes from "./Routes";
+import "./style.css";
 
 class App extends Component {
   componentDidMount() {
@@ -15,11 +16,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Router {...this.props}>
+        <BrowserRouter {...this.props}>
           <Layout {...this.props}>
-            <BaseRouter />
+            <Routes />
           </Layout>
-        </Router>
+        </BrowserRouter>
       </div>
     );
   }

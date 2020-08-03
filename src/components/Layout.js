@@ -2,7 +2,6 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../store/actions/auth";
-import "../style.css";
 import logo from "../vbb-logo.png";
 
 class Layout extends React.Component {

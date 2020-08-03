@@ -1,7 +1,6 @@
 import React from "react";
-import "../style.css";
 
-const ProfilePage = () => {
+function Profile() {
   return (
     <div>
       <h2 style={{ color: "#4C4C49" }}>My Weekly Mentoring Session</h2>
@@ -50,6 +49,6 @@ const ProfilePage = () => {
       <br />
     </div>
   );
-};
+}
 
-export default ProfilePage;
+export default Profile;
