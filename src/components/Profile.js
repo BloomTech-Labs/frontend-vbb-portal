@@ -1,10 +1,12 @@
 import React from "react";
-import "../Style.css";
 
-const ProfilePage = () => {
+function Profile() {
   return (
     <div>
       <h2 style={{ color: "#4C4C49" }}>My Weekly Mentoring Session</h2>
+      <a href="/booking/" style={{ color: "#6AC66B", textIndent: "25px" }}>
+        + Book a new appointment
+      </a>
       <h3 style={{ color: "#6AC66B", textIndent: "25px" }}>
         Tuesdays @ 6pm MST
       </h3>
@@ -47,6 +49,6 @@ const ProfilePage = () => {
       <br />
     </div>
   );
-};
+}
 
-export default ProfilePage;
+export default Profile;

@@ -38,6 +38,9 @@ def hsm_to_12hr(hsm):
     if am_pm_time > 12:
         am_pm_time = am_pm_time - 12
         return str(am_pm_time) + "pm"
-    elif am_pm_time is 0:
+    elif am_pm_time == 12:
+        return "12pm"
+    elif am_pm_time == 0:
         return "12am"
-    return str(am_pm_time) + "am"
+    else:
+        return str(am_pm_time) + "am"
