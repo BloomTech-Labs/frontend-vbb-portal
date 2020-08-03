@@ -120,7 +120,7 @@ class Booking extends React.Component {
   handleCommitChange = (e) => {
     this.setState({
       isCommitted: !this.state.isCommitted
-    }, () => { console.log("commit change", this.state.isCommitted);});
+    });
   }
 
   handleDropDownChange = (e) => {
@@ -144,8 +144,8 @@ class Booking extends React.Component {
         hsm: this.state.time,
       }
     }).then(res => {
-      console.log(res);
-      alert(res);
+      console.log("Success: ", res.success);
+      alert("Success:", res.success);
       this.props.history.push("/");
     }).catch(err => {
       console.log(err);
