@@ -12,18 +12,19 @@ class Booking extends React.Component {
     timezone: moment.tz.guess(),
     language: 1,
     weekday: 0,
+    displayDay: "",
     library: 0,
+    time: false,
+    displayTime: "",
     isReturning: false,
+    isCommitted: false,
   };
 
   fetchBookingData = () => {
-    console.log('fetching libraries');
-    console.log("token", this.props.token)
     axios.get("http://127.0.0.1:8000/api/library/")
     .then(res => {
-      res.data.unshift({id: 0, name: "Any", tz: null});
       this.setState({
-        libraries: res.data//.push({id: null, name: "any", tz: null})
+        libraries: res.data
       });
     })
     .catch(err => {
@@ -40,8 +41,11 @@ class Booking extends React.Component {
     this.fetchTimes();
   }
 
+  componentDidMount() {
+    this.fetchBookingData();
+  }
+
   fetchTimes = () => {
-    console.log('fetch times token', this.props.token);
     axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.headers = {
@@ -52,21 +56,33 @@ class Booking extends React.Component {
       params: {
         library: this.state.library,
         language: this.state.language,
-        min_hsm: this.state.weekday,
-        max_hsm: parseInt(this.state.weekday) + 23
+        min_hsm: this.shift_time(parseInt(this.state.weekday), false),
+        max_hsm: this.shift_time(parseInt(this.state.weekday), false) + 24
       }
     }).then(res => {
-      console.log("recieved times", res.data)
       this.setState({
         times: res.data
-      }, () => {console.log("recieved times", this.state.times);});
+      });
     }).catch(err => {
       console.log(err);
     });
   }
 
+  display_day = (day) => {
+    switch(day){
+      case 0: return("Monday");
+      case 24: return("Tuesday");
+      case 48: return("Wednesday");
+      case 72: return("Thursday");
+      case 96: return("Friday");
+      case 120: return("Saturday");
+      case 168: return("Sunday");
+      default: return("--")
+    }
+  }
+
   display_time = (hsm) => {
-    var tzhsm =  this.shift_time(hsm);
+    var tzhsm =  this.shift_time(hsm, true);
     var time24 = tzhsm %24;
     var time12 = tzhsm %12;
     if (time24 === 0 ) return("12 am");
@@ -75,15 +91,18 @@ class Booking extends React.Component {
     return(time12 + " pm");
   }
 
-  shift_time = (hsm) => {
+  shift_time = (hsm, isEastern) => {
     var now = moment();
     now.tz(this.state.timezone);
     var localOffset = now.utcOffset();
-    now.tz("America/New_York"); //eastern time zone is the server standard as of 8/1/2020
+    //eastern time zone is the server standard as of 8/1/2020
+    now.tz("America/New_York"); 
     var easternOffset = now.utcOffset();
     var diffInMinutes = localOffset - easternOffset;
     var diffInHours = diffInMinutes/60;
-    return(hsm + diffInHours + 168)%168;
+    //isEastern designates whether the given hsm is in Eastern or the local timezone
+    if(isEastern) return(hsm + diffInHours + 168)%168
+    return(hsm - diffInHours + 168)%168;
   }
 
   handleMentorChange = () => {
@@ -98,22 +117,56 @@ class Booking extends React.Component {
     });
   }
 
+  handleCommitChange = (e) => {
+    this.setState({
+      isCommitted: !this.state.isCommitted
+    }, () => { console.log("commit change", this.state.isCommitted);});
+  }
+
   handleDropDownChange = (e) => {
     var newState = {};
+    //newState["time"] = false; //FIXME make sure the time drop down is unselected so the user isn't confused.
     newState[e.target.name] = e.target.value; 
     this.setState(newState, () => {this.fetchTimes();});
   }
 
-  componentDidMount() {
-    this.fetchBookingData();
+  submitRequest = () => {
+    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+    axios.defaults.xsrfCookieName = "csrftoken";
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${this.props.token}`,
+    };
+    axios.get("http://127.0.0.1:8000/api/booking/", {
+      params: {
+        library: this.state.library,
+        language: this.state.language,
+        hsm: this.state.time,
+      }
+    }).then(res => {
+      console.log(res);
+      alert(res);
+      this.props.history.push("/");
+    }).catch(err => {
+      console.log(err);
+    });
   }
 
   render () {
     return (
       <div>
+        <br />
         <h1>Book Your Weekly 1-Hour Mentoring Session Below!</h1>
-        {/* Language */}
-        <label htmlFor="timezone">Reference Timezone:</label>&nbsp;
+        <br />
+        <label htmlFor="language">Mentoring Language:&nbsp;</label>
+        <select name="language" id="language" onChange={ this.handleDropDownChange }>
+        {this.state.languages && this.state.languages.length > 0 &&
+              this.state.languages.map(lang => {
+                return <option key={lang.id} value={lang.id}>{lang.name}</option>;
+              })}
+        </select>
+        <br /><br />
+        <label htmlFor="timezone">Your Timezone:</label>&nbsp;
         <select name="timezone" id="timezone" onChange={ this.handleDropDownChange } value={this.state.timezone}>
         {this.state.languages && this.state.languages.length > 0 &&
               moment.tz.names().map(tz => {
@@ -132,29 +185,18 @@ class Booking extends React.Component {
           <div>
             <label htmlFor="library">If you would like to continue with the same library as before, please select that library here:&nbsp;</label>
             <select name="library" id="library" onChange={ this.handleDropDownChange }>
-            {this.state.libraries && this.state.libraries.length > 0 &&
+              <option value="0">Any</option>
+              {this.state.libraries && this.state.libraries.length > 0 &&
                   this.state.libraries.map(lib => {
                     return <option key={lib.id} value={lib.id}>{lib.name}</option>;
-                  })}
+              })}
             </select>
-            <br />
-            <br />
+            <br /><br />
           </div>
         }
-        <label htmlFor="language">Mentoring Language:&nbsp;</label>
-        <select name="language" id="language" onChange={ this.handleDropDownChange }>
-        {this.state.languages && this.state.languages.length > 0 &&
-              this.state.languages.map(lang => {
-                return <option key={lang.id} value={lang.id}>{lang.name}</option>;
-              })}
-        </select>
-        {/* FIXME - Update to have full list of all languages offered. */}
-        <br />
-        <br />
-        {/* Weekday */}
         <label htmlFor="weekday">Day of the Week:&nbsp;</label>
         <select name="weekday" id="weekday" onChange={ this.handleDropDownChange }>
-          <option value={(168-1)%168}>Monday</option>
+          <option value={0}>Monday</option>
           <option value={24}>Tuesday</option>
           <option value={48}>Wednesday</option>
           <option value={72}>Thursday</option>
@@ -166,24 +208,36 @@ class Booking extends React.Component {
         <br />
         {/* Time */}
         <label htmlFor="time">Time of Day:&nbsp;</label>
-        <select name="time" id="time">
+        <select name="time" id="time" onChange={ this.handleDropDownChange }>
+          <option value={false}>Select from Avaliable Times:</option>
         {this.state.times && this.state.times.length > 0 &&
               this.state.times.map(time => {
                 return <option key={time.hsm} value={time.hsm}>{this.display_time(time.hsm)}</option>;
               })}
         </select>
-        {/* FIXME - Update to restrict to only the times mentoring is possible. */}
         <br />
         <br />
-        <input type="checkbox" id="commitment" name="commitment" />
-        <label htmlFor="commitment">
-          Can you commit to mentor weekly (at this date and time) for at least 4
-          months? 
-        </label>
-        <br />
-        <br />
-        {/* Submit */}
-        <input type="submit" />
+        {
+          this.state.time &&
+          <div>
+            <input type="checkbox" id="commitment" name="commitment" 
+              checked ={this.state.isCommitted}         
+              onChange={this.handleCommitChange}></input>
+            <label htmlFor="commitment">
+              Can you commit to mentor weekly (every {this.display_day(this.state.weekday)} at {this.display_time(parseInt(this.state.time))}) for at least 4
+              months? 
+            </label>
+            <br />
+            <br />
+          </div>
+        }
+        <button 
+          className="btn btn-light donate-button" 
+          disabled = {!this.state.isCommitted || this.state.time === false} 
+          onClick={this.submitRequest}>
+          Submit Appointment Request!
+        </button>
+        <br /><br />
       </div>
     );
   }

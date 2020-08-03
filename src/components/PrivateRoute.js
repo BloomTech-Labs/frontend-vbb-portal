@@ -6,14 +6,8 @@ const PrivateRoute = ({ component: Component, token, loading, isLoading, isAuthe
   <Route
     {...rest}
     render={(props) => {
-      console.log('privateroute isauthenticated:');
-      console.log(token);
-      console.log(loading);
-      console.log(isLoading);
-      console.log(isAuthenticated);
       if (loading) {
-        console.log("auth.loading");
-        return <h2>auth.loading...</h2>;
+        return <h2>Loading...</h2>;
       } else if (token === null) {
         return <Redirect to="/signin" />;
       } else {
@@ -24,11 +18,8 @@ const PrivateRoute = ({ component: Component, token, loading, isLoading, isAuthe
 );
 
 const mapStateToProps = (state) => ({
-  //auth: state,
   token: state.token,
   loading: state.loading,
-  isLoading: state.isLoading,
-  isAuthenticated: state.isAuthenticated,
 });
 
 

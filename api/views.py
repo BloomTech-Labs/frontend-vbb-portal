@@ -45,13 +45,9 @@ class AvailableAppointmentTimeList(ListAPIView):
     def get(self, request):
         appts = Appointment.objects.all()
         library_params = self.request.query_params.get("library")
-        print("library", library_params)
         language_params = self.request.query_params.get("language")
-        print("lang", language_params)
         min_hsm_params = int(self.request.query_params.get("min_hsm"))
-        print("lower bound", min_hsm_params)
         max_hsm_params = int(self.request.query_params.get("max_hsm"))
-        print("upper bound", max_hsm_params)
 
         # library and mentor filtering
         if library_params is None or library_params == "0":
@@ -98,7 +94,7 @@ def book_appointment(request):
     language_params = request.query_params.get("language")
     hsm_params = request.query_params.get("hsm")
 
-    if library_params is None:
+    if library_params is None or library_params == "0":
         appts = appts.filter(mentor=None, language=language_params, hsm=hsm_params,)
     else:
         appts = appts.filter(
@@ -117,7 +113,7 @@ def book_appointment(request):
         )
     myappt = random.choice(appts)
     # FIXME - Once you can login to api-auth/ and stay logged in for calls, comment out the next line (assigning a random mentor to the appointment) and uncomment the one after (assigning the authenticated user to the appointment).
-    myappt.mentor = random.choice(User.objects.all())
+    myappt.mentor = request.user
     # myappt.mentor = request.user
     myappt.start_date = datetime.datetime.today() + datetime.timedelta(
         days=(aux_fns.diff_today_dsm(myappt.hsm) + 7)
