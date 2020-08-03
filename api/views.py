@@ -51,7 +51,7 @@ class AvailableAppointmentTimeList(ListAPIView):
         max_hsm_params = int(self.request.query_params.get("max_hsm"))
 
         # library and mentor filtering
-        if library_params is None:
+        if library_params is None or library_params == "0":
             appts = (
                 appts.filter(mentor=None, language=language_params,)
                 .values("hsm")
@@ -94,7 +94,7 @@ def book_appointment(request):
     language_params = request.query_params.get("language")
     hsm_params = request.query_params.get("hsm")
 
-    if library_params is None:
+    if library_params is None or library_params == "0":
         appts = appts.filter(mentor=None, language=language_params, hsm=hsm_params,)
     else:
         appts = appts.filter(

@@ -2,13 +2,10 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../store/actions/auth";
-import "../Style.css";
 import logo from "../vbb-logo.png";
 
 class Layout extends React.Component {
   render() {
-    console.log("layout isauthenticated:");
-    console.log(this.props.isAuthenticated);
     return (
       <div className="layout">
         <nav className="navbar sticky-top navbar-dark">
@@ -16,14 +13,14 @@ class Layout extends React.Component {
           <a href="/">
             <h1 style={{ position: "relative", top: "20px" }}>VBB Portal</h1>
           </a>
-          {
-            this.props.isAuthenticated ?
+          {this.props.isAuthenticated ? (
             <div>
               <a
                 className="btn btn-light donate-button"
                 type="button"
                 href="https://www.villagebookbuilders.org/giftabook/"
                 target="_blank"
+                rel="noopener noreferrer"
                 style={{ position: "relative", top: "15px" }}
               >
                 DONATE
@@ -38,7 +35,7 @@ class Layout extends React.Component {
                 SIGN OUT
               </a>
             </div>
-            :
+          ) : (
             <div>
               <a
                 className="btn btn-light donate-button"
@@ -57,8 +54,7 @@ class Layout extends React.Component {
                 SIGN IN
               </a>
             </div>
-          }
-
+          )}
         </nav>
         <br />
 
