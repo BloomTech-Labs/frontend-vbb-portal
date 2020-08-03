@@ -4,11 +4,10 @@ import { connect } from "react-redux";
 import * as actions from "./store/actions/auth";
 
 import Layout from "./components/Layout";
-import BaseRouter from "./routes";
+import Routes from "./Routes";
 
 class App extends Component {
   componentDidMount() {
-    console.log("try auto sign up");
     this.props.onTryAutoSignup();
   }
 
@@ -17,7 +16,7 @@ class App extends Component {
       <div className="App">
         <Router {...this.props}>
           <Layout {...this.props}>
-            <BaseRouter />
+            <Routes/>
           </Layout>
         </Router>
       </div>
