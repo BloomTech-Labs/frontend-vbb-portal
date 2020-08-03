@@ -9,7 +9,6 @@ import "./style.css";
 
 class App extends Component {
   componentDidMount() {
-    console.log("try auto sign up");
     this.props.onTryAutoSignup();
   }
 

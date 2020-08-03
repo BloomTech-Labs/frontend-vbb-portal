@@ -6,8 +6,6 @@ import logo from "../vbb-logo.png";
 
 class Layout extends React.Component {
   render() {
-    console.log("layout isauthenticated:");
-    console.log(this.props.isAuthenticated);
     return (
       <div className="layout">
         <nav className="navbar sticky-top navbar-dark">
