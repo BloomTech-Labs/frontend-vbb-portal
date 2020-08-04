@@ -1,12 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import {
-//   Form,
-//   Input,
-// }
-//   from 'antd';
-
-
 
 class MasterForm extends React.Component {
   constructor(props) {
@@ -25,8 +18,6 @@ class MasterForm extends React.Component {
   }
 
   selectChange(event) {
-    console.log("Select was changed!")
-    console.log(event.target.value)
     let testVal = event.target.value
     this.setState(() =>({lifeStage: testVal}))
   }
