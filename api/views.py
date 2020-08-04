@@ -82,6 +82,25 @@ class AvailableAppointmentTimeList(ListAPIView):
 
         return Response(appts)
 
+# FIXME - change to post (I think)
+@api_view(["GET"])
+def first_time_signup(request):
+    """
+    When a user signs up, create a mentor profile. If they are new mentors, create a vbb email and send a
+    welcome email.
+    """
+    print('request.data', request.data)
+    gapi = google_apis()
+    if request.data.vbb_email == None:
+        request.data["vbb_email"] = gapi.account_create(request.data.first_name, request.data.last_name, request.data.personal_email)
+        gapi.email_send(request.data["vbb_email"], "test-subject", "test-text")
+    serializer = MentorProfileSerializer(data = request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 # FIXME - Change to POST once stable
 @api_view(["GET"])
 def book_appointment(request):

@@ -80,7 +80,7 @@ export const gAuth = (googleToken) => {
   };
 };
 
-export const authSignup = (username, email, password1, password2) => {
+export const authSignup = (user, time_zone, personal_email, vbb_email, phone_number, occupation, organization, contact_source, involvement) => {
   return (dispatch) => {
     dispatch(authStart());
     axios
