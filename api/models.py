@@ -157,7 +157,11 @@ class Appointment(models.Model):
         if self.hsm is None:
             return "** Add time **"
         if self.end_date is None:
-            return "** Add end date **"
+            return (
+                aux_fns.hsm_to_day_name(self.hsm)
+                + "s @ "
+                + aux_fns.hsm_to_12hr(self.hsm)
+            )
         return (
             aux_fns.hsm_to_day_name(self.hsm)
             + "s @ "
