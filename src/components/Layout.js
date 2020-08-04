@@ -66,6 +66,8 @@ class Layout extends React.Component {
         <div className="content">{this.props.children}</div>
 
         <footer style={{ textAlign: "center" }}>
+          <br/>
+          <br/>
           &copy; Village Book Builders | All Rights Reserved
         </footer>
       </div>

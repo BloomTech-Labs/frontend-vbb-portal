@@ -1,4 +1,5 @@
 import datetime
+from pytz import timezone
 
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -161,6 +162,18 @@ class Appointment(models.Model):
             aux_fns.hsm_to_day_name(self.hsm)
             + "s @ "
             + aux_fns.hsm_to_12hr(self.hsm)
+            + " until "
+            + str(self.end_date.strftime("%x"))
+        )
+
+    def display(self):
+        today = datetime.datetime.now()
+        tz1, tz2 = timezone("US/Eastern"), timezone(self.mentor.mentor.time_zone)
+        diff = (tz1.localize(today) - tz2.localize(today).astimezone(tz1)).seconds//3600
+        return (
+            aux_fns.hsm_to_day_name(self.hsm + diff)
+            + "s @ "
+            + aux_fns.hsm_to_12hr(self.hsm + diff)
             + " until "
             + str(self.end_date.strftime("%x"))
         )
