@@ -1,3 +1,18 @@
+This project is broken up into a backend (villageportal and api) and frontend (src). The backend contains the Django project which uses the Django Rest Framework to host a simple API. The frontend uses React and queries data from the API.
+
+Run the following commands to get started:
+
+```json
+virtualenv env
+pip install -r requirements.txt
+npm i
+npm run build
+python manage.py runserver
+```
+
+For the Youtube tutorials associated with this code (and preparing it for production), click here https://youtu.be/uZgRbnIsgrA
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
