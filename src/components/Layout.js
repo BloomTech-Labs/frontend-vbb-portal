@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../store/actions/auth";
-import logo from "../vbb-logo.png";
+import fullLogo from "../vbb-full-logo.png";
 
 class Layout extends React.Component {
   render() {
@@ -12,8 +12,9 @@ class Layout extends React.Component {
           <a
             href="https://www.villagebookbuilders.org/"
             target="_blank"
-            rel="noopener noreferrer">
-            <img src={logo} alt="Logo" style={{ width: "250px" }} />
+            rel="noopener noreferrer"
+          >
+            <img src={fullLogo} alt="Logo" style={{ width: "250px" }} />
           </a>
           <a href="/">
             <h1 style={{ position: "relative", top: "20px" }}>VBB Portal</h1>
@@ -21,7 +22,7 @@ class Layout extends React.Component {
           {this.props.isAuthenticated ? (
             <div>
               <a
-                className="btn btn-light donate-button"
+                className="btn btn-light donate-btn"
                 type="button"
                 href="https://www.villagebookbuilders.org/giftabook/"
                 target="_blank"
@@ -31,7 +32,7 @@ class Layout extends React.Component {
                 DONATE
               </a>
               <a
-                className="btn btn-light signin-button"
+                className="btn btn-light signin-btn"
                 type="button"
                 href="/signin/"
                 style={{ position: "relative", top: "15px" }}
@@ -43,7 +44,7 @@ class Layout extends React.Component {
           ) : (
             <div>
               <a
-                className="btn btn-light donate-button"
+                className="btn btn-light donate-btn"
                 type="button"
                 href="/signup/"
                 style={{ position: "relative", top: "15px" }}
@@ -51,7 +52,7 @@ class Layout extends React.Component {
                 REGISTER
               </a>
               <a
-                className="btn btn-light signin-button"
+                className="btn btn-light signin-btn"
                 type="button"
                 href="/signin/"
                 style={{ position: "relative", top: "15px" }}
@@ -61,15 +62,10 @@ class Layout extends React.Component {
             </div>
           )}
         </nav>
-        <br />
 
         <div className="content">{this.props.children}</div>
 
-        <footer style={{ textAlign: "center" }}>
-          <br/>
-          <br/>
-          &copy; Village Book Builders | All Rights Reserved
-        </footer>
+        <footer>&copy; Village Book Builders | All Rights Reserved</footer>
       </div>
     );
   }

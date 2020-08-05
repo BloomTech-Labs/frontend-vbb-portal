@@ -12,7 +12,7 @@ html {
 }
 
 .content {
-  min-height: calc(100vh - 200px);
+  min-height: 80vh;
 }
 
 .SigninBox h3,
@@ -50,6 +50,7 @@ p {
   border-bottom: 4px solid #ff914d;
   background-color: #fffff6;
   padding-bottom: 15px;
+  width: 100%;
 }
 
 .btn {
@@ -59,11 +60,26 @@ p {
   color: white;
 }
 
-.donate-button {
+#appt-change-note {
+  text-indent: -40px;
+}
+
+.donate-btn,
+.gcal-btn {
   background-color: #549bea;
 }
 
-.signin-button {
+.book-btn,
+.gcal-btn {
+  width: 270px;
+}
+
+.donate-btn {
+  margin-right: 20px;
+}
+
+.signin-btn,
+.book-btn {
   background-color: #6ac66b;
 }
 
@@ -73,7 +89,41 @@ hr {
 
 footer {
   font-family: "Nunito";
-  position: "absolute";
-  bottom: 0;
-  height: "2.5rem";
+  height: 40px;
+  text-align: center;
+  padding-top: 15px;
+}
+
+.twocol-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  column-count: 2;
+}
+
+.leftcol {
+  max-width: 600px;
+  margin: 5vw;
+}
+
+.rightcol {
+  max-width: 600px;
+  margin: 5vw;
+}
+
+/* MOBILE ADJUSTMENTS */
+@media screen and (max-width: 600px) {
+  footer {
+    font-size: 13px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  #appt-change-note {
+    text-indent: 0px;
+    margin-left: -20px;
+  }
 }
