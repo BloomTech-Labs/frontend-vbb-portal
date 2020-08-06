@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime, timedelta
 import random
 
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
@@ -11,24 +11,12 @@ from rest_framework.generics import ListAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from django.http import HttpResponse
-
-
-from oauth2client import file, client
-from google.oauth2 import service_account
-from googleapiclient import discovery
-from googleapiclient.discovery import build
+from rest_framework import status
 
 from api import aux_fns
 from api.models import *
 from api.serializers import *
-
-scopes = ['https://www.googleapis.com/auth/calendar']
-SERVICE_ACCOUNT_FILE = r"api\service-account.json"
-credentials = service_account.Credentials.from_service_account_file(
-        SERVICE_ACCOUNT_FILE, scopes=scopes)
-
-delegated_credentials = credentials.with_subject('webdevelopment@villagebookbuilders.org')
-service = build('calendar', 'v3', credentials=delegated_credentials)
+from api.google_apis import *
 
 class GoogleLogin(SocialLoginView):
     adapter_class = GoogleOAuth2Adapter
@@ -95,62 +83,25 @@ class AvailableAppointmentTimeList(ListAPIView):
 
         return Response(appts)
 
-def create_event(menteeEmail, mentorEmail, start_time, duration=1):
-    timezone = 'America/New_York'
-    start_date_time_obj = datetime.strptime(start_time, '%Y-%m-%dT%H:%M:%S')
-    end_time = start_date_time_obj + timedelta(hours=duration)
-    event = {
-        'summary': 'Village Book Builders Mentoring Meeting',
-        'start': {
-            'dateTime': start_date_time_obj.strftime("%Y-%m-%dT%H:%M:%S"),
-            'timeZone': timezone,
-        },
-        'end': {
-            'dateTime': end_time.strftime("%Y-%m-%dT%H:%M:%S"),
-            'timeZone': timezone,
-        },
-        'recurrence': [
-            'RRULE:FREQ=WEEKLY;COUNT=3'
-        ],
-        'attendees': [
-            {'email': menteeEmail},
-            {'email': mentorEmail}
-        ],
-        'reminders': {
-            'useDefault': False,
-            'overrides': [
-            {'method': 'email', 'minutes': 24 * 60}, # reminder 24 hrs before event
-            {'method': 'popup', 'minutes': 10}, # pop up reminder, 10 min before event
-            ],
-        },
-    }
-    return service.events().insert(calendarId='primary', body=event).execute()
-
-@api_view(["GET"])
-def temp_create_event(request): # temp to merge with book_appointment
-    
+# FIXME - change to post (I think)
+@api_view(["POST"])
+def first_time_signup(request):
     """
-    Calls google api create_event function.
-    URL example: api/create-event/?mentorEmail="sohan.kalva.test2@villagementors.org"?menteeEmail="shwetha.test1@villagebookbuilders.org"?startTime=2020-07-28T20:00:00
+    When a user signs up, create a mentor profile. If they are new mentors, create a vbb email and send a
+    welcome email.
     """
-    # url_mentorEmail_params = request.query_params.get("mentorEmail")
-    url_mentorEmail_params = "sohan.kalva.test2@villagementors.org"
-    
-    # url_menteeEmail_params = request.query_params.get("menteeEmail")
-    url_menteeEmail_params = "shwetha.test1@villagebookbuilders.org"
-    
-    # url_startTime_params = request.query_params.get("startTime")
-    url_startTime_params = "2020-07-28T20:00:00"
+    print('request.data', request.data)
+    gapi = google_apis()
+    if request.data["vbb_email"] == None or request.data["vbb_email"] == '':
+        request.data["vbb_email"] = gapi.account_create(request.data["first_name"], request.data["last_name"], request.data["personal_email"])
+        print('new vbb email: ', request.data["vbb_email"])
+        gapi.email_send(request.data["personal_email"], "test-subject", "test-text")
+    serializer = MentorProfileSerializer(data = request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    print('stuff: ', url_mentorEmail_params, url_menteeEmail_params, url_startTime_params)
-    
-    create_event(url_mentorEmail_params, url_menteeEmail_params, url_startTime_params)
-    # return HttpResponse("testing")
-    return Response(
-        {
-            "success": "true",
-        }
-    )
 
 # FIXME - Change to POST once stable
 @api_view(["GET"])
@@ -183,14 +134,17 @@ def book_appointment(request):
         )
     myappt = random.choice(appts)
     # FIXME - Once you can login to api-auth/ and stay logged in for calls, comment out the next line (assigning a random mentor to the appointment) and uncomment the one after (assigning the authenticated user to the appointment).
+    myappt.mentor = random.choice(User.objects.all())
+    myappt.mentor = User.objects.get(username="shwetha")
     myappt.mentor = request.user
-    # myappt.mentor = request.user
-    myappt.start_date = datetime.datetime.today() + datetime.timedelta(
+    myappt.start_date = datetime.today() + timedelta(
         days=(aux_fns.diff_today_dsm(myappt.hsm) + 7)
     )
-    myappt.end_date = myappt.start_date + datetime.timedelta(weeks=17)
+    myappt.end_date = myappt.start_date + timedelta(weeks=17)
     myappt.save()
-    # FIXME -- CALL TO SHWETHA'S GOOGLE API FUNCTION
+    gapi = google_apis()
+    start_time = aux_fns.date_combine_time(str(myappt.start_date), myappt.hsm)
+    gapi.calendar_event(myappt.mentee_computer.computer_email, myappt.mentor.mentor.vbb_email, start_time)
     # FIXME - Add try/except/finally blocks for error checking (not logged in, appointment got taken before they refreshed)
     return Response(
         {"success": "true", "user": str(myappt.mentor), "appointment": str(myappt),}
@@ -238,3 +192,29 @@ class MyAppointmentListView(ListAPIView):
 
     def get_queryset(self):
         return self.request.user.mentor_appointments.all()
+
+@api_view(["GET"])
+def testing(request):
+    # create user acct 
+    
+    test_mentor_prof = MentorProfile.objects.get(user=4)
+    gapi = google_apis()
+    # res = gapi.account_create(test_mentor_prof.user.first_name, test_mentor_prof.user.last_name, test_mentor_prof.personal_email)
+    # test_mentor_prof.vbb_email = res
+    # test_mentor_prof.save()
+    
+    # sending an email: 
+    # email_res = gapi.email_send(test_mentor_prof.vbb_email, 'hey', 'heytext')
+
+
+    
+    return Response(
+            {"success": "true", 
+            # "email": res, 
+            "first_name": str(test_mentor_prof.user),
+            "email": test_mentor_prof.vbb_email
+            }
+
+
+        )
+
