@@ -6,16 +6,12 @@ import * as actions from "../store/actions/auth";
 
 export class SigninGoogle extends Component {
   responseGoogle = (response) => {
-    console.log("failure response");
-    console.log(response);
+    console.log("failure response", response);
+    alert("google authorization failed: ", response);
   };
-
   validateGoogle = (response) => {
-    console.log("success: response, profile");
     this.props.onGauth(response.accessToken);
     this.props.history.push("/");
-    console.log(response.accessToken);
-    console.log("-- end success message");
   };
 
   render() {

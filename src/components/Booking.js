@@ -120,7 +120,7 @@ class Booking extends React.Component {
   handleCommitChange = (e) => {
     this.setState({
       isCommitted: !this.state.isCommitted
-    }, () => { console.log("commit change", this.state.isCommitted);});
+    });
   }
 
   handleDropDownChange = (e) => {
@@ -144,8 +144,8 @@ class Booking extends React.Component {
         hsm: this.state.time,
       }
     }).then(res => {
-      console.log(res);
-      alert(res);
+      console.log("Success: ", res.success);
+      alert("Success:", res.success);
       this.props.history.push("/");
     }).catch(err => {
       console.log(err);
@@ -155,31 +155,30 @@ class Booking extends React.Component {
   render () {
     return (
       <div>
-        <br />
+        <br/>
         <h1>Book Your Weekly 1-Hour Mentoring Session Below!</h1>
-        <br />
+        <br/>
         <label htmlFor="language">Mentoring Language:&nbsp;</label>
         <select name="language" id="language" onChange={ this.handleDropDownChange }>
         {this.state.languages && this.state.languages.length > 0 &&
-              this.state.languages.map(lang => {
-                return <option key={lang.id} value={lang.id}>{lang.name}</option>;
-              })}
+          this.state.languages.map(lang => {
+            return <option key={lang.id} value={lang.id}>{lang.name}</option>;
+        })}
         </select>
-        <br /><br />
+        <br/><br/>
         <label htmlFor="timezone">Your Timezone:</label>&nbsp;
         <select name="timezone" id="timezone" onChange={ this.handleDropDownChange } value={this.state.timezone}>
         {this.state.languages && this.state.languages.length > 0 &&
-              moment.tz.names().map(tz => {
-                return <option key={tz} value={tz}>{tz}</option>;
-              })}
+          moment.tz.names().map(tz => {
+            return <option key={tz} value={tz}>{tz}</option>;
+        })}
         </select>
-        <br/> <br/>
+        <br/><br/>
         <input type="checkbox" id="mentor" name="mentor" onChange={ this.handleMentorChange }/>
         <label htmlFor="mentor">
           Are you a returning mentor/Do you wish to rebook an existing appointment?
         </label>
-        <br />
-        <br />
+        <br/><br/>
         {
           this.state.isReturning &&
           <div>
@@ -187,8 +186,8 @@ class Booking extends React.Component {
             <select name="library" id="library" onChange={ this.handleDropDownChange }>
               <option value="0">Any</option>
               {this.state.libraries && this.state.libraries.length > 0 &&
-                  this.state.libraries.map(lib => {
-                    return <option key={lib.id} value={lib.id}>{lib.name}</option>;
+                this.state.libraries.map(lib => {
+                  return <option key={lib.id} value={lib.id}>{lib.name}</option>;
               })}
             </select>
             <br /><br />
@@ -206,14 +205,13 @@ class Booking extends React.Component {
         </select>
         <br />
         <br />
-        {/* Time */}
         <label htmlFor="time">Time of Day:&nbsp;</label>
         <select name="time" id="time" onChange={ this.handleDropDownChange }>
           <option value={false}>Select from Avaliable Times:</option>
         {this.state.times && this.state.times.length > 0 &&
-              this.state.times.map(time => {
-                return <option key={time.hsm} value={time.hsm}>{this.display_time(time.hsm)}</option>;
-              })}
+          this.state.times.map(time => {
+            return <option key={time.hsm} value={time.hsm}>{this.display_time(time.hsm)}</option>;
+        })}
         </select>
         <br />
         <br />
@@ -227,17 +225,22 @@ class Booking extends React.Component {
               Can you commit to mentor weekly (every {this.display_day(this.state.weekday)} at {this.display_time(parseInt(this.state.time))}) for at least 4
               months? 
             </label>
-            <br />
-            <br />
+            <br/><br/>
           </div>
         }
+        <a 
+          href="/" 
+          type="button"
+          className="btn btn-light signin-button">
+          Go Back
+        </a>
         <button 
           className="btn btn-light donate-button" 
           disabled = {!this.state.isCommitted || this.state.time === false} 
           onClick={this.submitRequest}>
           Submit Appointment Request!
         </button>
-        <br /><br />
+        <br/>
       </div>
     );
   }
