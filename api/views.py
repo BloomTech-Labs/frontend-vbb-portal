@@ -150,6 +150,37 @@ def book_appointment(request):
         {"success": "true", "user": str(myappt.mentor), "appointment": str(myappt),}
     )
 
+# FIXME - Change to POST once stable
+@api_view(["GET"])
+def generate_appointments(request):
+    """
+    Generates appointments from opentime to closetime on days from startday to endday
+    URL example:  api/generate/?computer=3&language=1&startday=0&endday=4&opentime=5&closetime=6
+    """
+    computer_params = request.query_params.get("computer")
+    language_params = request.query_params.get("language")
+    startday_params = int(request.query_params.get("startday"))
+    endday_params = int(request.query_params.get("endday"))
+    opentime_params = int(request.query_params.get("opentime"))
+    closetime_params = int(request.query_params.get("closetime"))
+    
+    computer = Computer.objects.get(pk=computer_params)
+    if language_params is None:
+        lang = computer.language
+    else:
+        lang = Language.objects.get(pk=language_params)
+    for i in range(opentime_params, closetime_params):
+        for j in range(startday_params, endday_params+1):
+            apt = Appointment()
+            apt.mentee_computer = computer
+            apt.language = lang
+            apt.hsm = i + (j*24)
+            apt.save()
+
+    return Response(
+        {"success": "true"}
+    )
+            
 
 class MyAppointmentListView(ListAPIView):
     """

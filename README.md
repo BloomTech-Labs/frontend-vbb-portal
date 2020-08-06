@@ -1,14 +1,21 @@
-This project is broken up into a backend (villageportal and api) and frontend (src). The backend contains the Django project which uses the Django Rest Framework to host a simple API. The frontend uses React and queries data from the API.
+This project is broken up into a backend and frontend. The backend contains the Django project which uses the Django Rest Framework to host a simple API. The frontend uses React and queries data from the API. The backend is found in the django apps: api and vbbportal. The frontend is a react app, and most of the code is located in the src folder.
 
-Run the following commands to get started:
+Run the following commands inside of the repository folder to get started:
 
 ```json
 virtualenv env
 pip install -r requirements.txt
-npm i
+npm i 
 npm run build
 python manage.py runserver
 ```
+
+These commands (respectively)
+1. virtualenv env (create a virual environment for all of your python packages)
+2. pip install -r requirements.txt (install all of the python packages listed in requirements.txt)
+3. npm i (install the node_js modules) (node js needs to be installed on your computer first)
+4. npm run build (this will create a static build file so that django can host the react app)
+5. python manage.py runserver (this will run your server locally)
 
 For the Youtube tutorials associated with this code (and preparing it for production), click here https://youtu.be/uZgRbnIsgrA
 
