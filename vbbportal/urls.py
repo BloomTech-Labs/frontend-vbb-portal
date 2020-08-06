@@ -17,7 +17,7 @@ urlpatterns = [
     path("api/myappointments/", MyAppointmentListView.as_view()),
     path("api/booking/", book_appointment),
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
-    path("api/sign-up", first_time_signup),
+    path("api/sign-up/", first_time_signup),
     path("admin/", admin.site.urls),
     path("api/testing/", testing),
     # React

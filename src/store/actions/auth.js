@@ -80,22 +80,23 @@ export const gAuth = (googleToken) => {
   };
 };
 
-export const authSignup = (user, time_zone, personal_email, vbb_email, phone_number, occupation, organization, contact_source, involvement) => {
+export const authSignup = (first_name, last_name, time_zone, personal_email, vbb_email, phone_number, occupation, organization, contact_source, involvement) => {
   return (dispatch) => {
     dispatch(authStart());
     axios
-      .post("http://127.0.0.1:8000/rest-auth/registration/", {
-        username: username,
-        email: email,
-        password1: password1,
-        password2: password2,
+      .post("http://127.0.0.1:8000/api/sign-up/", {
+        first_name: first_name,
+        last_name: last_name,
+        time_zone: time_zone,
+        personal_email: personal_email,
+        vbb_email: vbb_email,
+        phone_number: phone_number,
+        occupation: occupation,
+        organization: organization,
+        contact_source: contact_source,
+        involvement: involvement,
       })
       .then((res) => {
-        const token = res.data.key;
-        const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
-        localStorage.setItem("token", token);
-        localStorage.setItem("expirationDate", expirationDate);
-        dispatch(authSuccess(token));
         dispatch(checkAuthTimeout(3600));
       })
       .catch((err) => {

@@ -11,6 +11,7 @@ from rest_framework.generics import ListAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from django.http import HttpResponse
+from rest_framework import status
 
 from api import aux_fns
 from api.models import *
@@ -83,7 +84,7 @@ class AvailableAppointmentTimeList(ListAPIView):
         return Response(appts)
 
 # FIXME - change to post (I think)
-@api_view(["GET"])
+@api_view(["POST"])
 def first_time_signup(request):
     """
     When a user signs up, create a mentor profile. If they are new mentors, create a vbb email and send a
@@ -91,9 +92,10 @@ def first_time_signup(request):
     """
     print('request.data', request.data)
     gapi = google_apis()
-    if request.data.vbb_email == None:
-        request.data["vbb_email"] = gapi.account_create(request.data.first_name, request.data.last_name, request.data.personal_email)
-        gapi.email_send(request.data["vbb_email"], "test-subject", "test-text")
+    if request.data["vbb_email"] == None or request.data["vbb_email"] == '':
+        request.data["vbb_email"] = gapi.account_create(request.data["first_name"], request.data["last_name"], request.data["personal_email"])
+        print('new vbb email: ', request.data["vbb_email"])
+        gapi.email_send(request.data["personal_email"], "test-subject", "test-text")
     serializer = MentorProfileSerializer(data = request.data)
     if serializer.is_valid():
         serializer.save()
