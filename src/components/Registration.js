@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
+import * as actions from '../store/actions/auth';
 
 class MasterForm extends React.Component {
   constructor(props) {
@@ -14,6 +16,12 @@ class MasterForm extends React.Component {
       stage: '',
       lifeStage: '',
       isLoggedIn: false,
+      contactSource: '',
+      timeZone: '',
+      vbbemail: '',
+      status: '',
+      phone: '',
+      
     }
   }
 
@@ -58,6 +66,18 @@ class MasterForm extends React.Component {
            How involved: ${howInvolved} \n
            City: $${city} \n 
            Password: ${password}`)
+    this.props.onAuth(
+      this.state.firstname,
+      this.state.lastname,
+      this.state.timeZone, 
+      this.state.email, 
+      this.state.vbbemail,
+      this.state.phone,
+      this.state.status,
+      this.state.affiliation,
+      this.state.contactSource,
+      this.state.howInvolved
+    )
   }
 
   _next = () => {
@@ -981,6 +1001,17 @@ function Step5(props) {
       <button className="btn btn-success btn-block">Sign up</button>
     </React.Fragment>
   );
+  
 }
+
+
+const mapDispatchToProps = dispatch => {
+  return {
+      onAuth: (firstname, lastname, timeZone, email, phone, status, affiliation, contact, howInvolved) => 
+            dispatch(actions.authSignup(firstname, lastname, timeZone, email, phone, status, affiliation, contact, howInvolved)) 
+  }
+}
+
+
 ReactDOM.render(<MasterForm />, document.getElementById('root'))
-export default MasterForm;
+export default connect(null, mapDispatchToProps)(MasterForm);

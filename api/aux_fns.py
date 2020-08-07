@@ -42,5 +42,22 @@ def hsm_to_12hr(hsm):
         return "12pm"
     elif am_pm_time == 0:
         return "12am"
-    else:
-        return str(am_pm_time) + "am"
+    return str(am_pm_time) + "am"
+
+def date_combine_time(start_date, hsm, min="00", sec="00"):
+    """Converts start_date format to timestamp 
+    with date, hours, min, sec
+    input start_date in "2020-07-31" format
+    output  "2020-07-30T23:00:00" """
+    # hours since day has started
+    print('start_date passed in: ', start_date)
+    start_date = str(start_date)[:10] # get first 10 characters
+    day_hrs = hsm % 24
+    # convert day hours to 2 length string ie. 07
+    str_hrs = str(day_hrs)
+    if day_hrs < 10: # adding a 0 to beginning 
+        str_hrs = "0" + str_hrs
+    # concatenate date with time 
+    result = start_date + "T" + str_hrs + ":" + min + ":" + sec
+    print('result: ', result)
+    return result

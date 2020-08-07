@@ -13,6 +13,9 @@ class Library(models.Model):
     time_zone = models.CharField(
         verbose_name="time zone", max_length=40, null=True, blank=True
     )
+    calendar_id = models.CharField(
+        verbose_name="calendar id", max_length=60, null=True, blank=True
+    )
 
     class Meta:
         verbose_name_plural = "Libraries"
@@ -29,9 +32,15 @@ class Language(models.Model):
 
 
 class MentorProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="mentor")
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="mentor", null=True, blank=True)
     time_zone = models.CharField(
         verbose_name="time zone", max_length=40, null=True, blank=True
+    )
+    first_name = models.CharField(
+        verbose_name="first name", max_length=60, null=True, blank=True
+    )
+    last_name = models.CharField(
+        verbose_name="last name", max_length=60, null=True, blank=True
     )
     personal_email = models.EmailField(
         verbose_name="personal email", max_length=60, null=True, blank=True
@@ -55,8 +64,8 @@ class MentorProfile(models.Model):
         verbose_name="involvement", max_length=200, null=True, blank=True
     )
 
-    def __str__(self):
-        return self.user.first_name + " " + self.user.last_name
+    # def __str__(self):
+    #     return self.user.first_name + " " + self.user.last_name
 
 
 class MenteeProfile(models.Model):
@@ -142,9 +151,6 @@ class Appointment(models.Model):
     )
     start_date = models.DateField(verbose_name="start date", null=True, blank=True)
     end_date = models.DateField(verbose_name="end date", null=True, blank=True)
-    calendar_id = models.CharField(
-        verbose_name="calendar id", max_length=60, null=True, blank=True
-    )
     event_id = models.CharField(
         verbose_name="event id", max_length=60, null=True, blank=True
     )

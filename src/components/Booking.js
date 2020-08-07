@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
-// import moment from 'moment';
-import moment from "moment-timezone";
+import moment from "moment";
+import "moment-timezone";
 import { connect } from "react-redux";
 
 class Booking extends React.Component {
