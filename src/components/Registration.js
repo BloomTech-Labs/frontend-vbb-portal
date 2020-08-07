@@ -1,5 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {
+  Form,
+  Input,
+} from 'antd';
+
 
 class MasterForm extends React.Component {
   constructor(props) {
@@ -96,7 +101,7 @@ class MasterForm extends React.Component {
 
   nextButton() {
     let currentStep = this.state.currentStep;
-    if (currentStep < 5) {
+    if (currentStep < 5 ) {
       return (
         <button
           className="btn btn-primary float-right"
@@ -165,6 +170,7 @@ class MasterForm extends React.Component {
 
           
           {this.previousButton()}
+
           {this.nextButton()}
 
 
@@ -220,12 +226,36 @@ function Step1(props) {
   return (
     <div className="form-group">
       
+      {/* <Form.Item
+        name="name"
+        id="name"
+        label="Username"
+        value={props.firstname}
+        onChange={props.handleChange}
+        rules={[
+          {
+            type: '',
+            message: 'If none, leave blank',
+          },
+          {
+            required: true,
+            message: 'Please enter your fist and last name!',
+          },
+        ]}
+      >
+        <Input placeholder="If none, leave blank" />
+
+      </Form.Item> */}
+
+
+
       <label htmlFor="firstname">First Name</label>
       
-      <input
+      <input 
         className="form-control"
         id="firstname"
         name="firstname"
+        required
         type="text"
         placeholder="Enter first name"
         value={props.firstname}
@@ -233,10 +263,11 @@ function Step1(props) {
       />
       
       <label htmlFor="lastname">Last Name</label>
-      <input
+      <input required
         className="form-control"
         id="lastname"
         name="lastname"
+        required
         type="text"
         placeholder="Enter last name"
         value={props.firstname}
@@ -248,6 +279,7 @@ function Step1(props) {
         className="form-control"
         id="email"
         name="email"
+        required
         type="text"
         placeholder="Enter email"
         value={props.email}
@@ -259,17 +291,31 @@ function Step1(props) {
         className="form-control"
         id="password"
         name="password"
+        required
         type="password"
         placeholder="Enter password"
         value={props.password}
         onChange={props.handleChange}
         /> 
 
+      <label htmlFor="password">Confirm Password</label>
+      <input
+        className="form-control"
+        id="password2"
+        name="password2"
+        required
+        type="password"
+        placeholder="Confirm password"
+        value={props.password}
+        onChange={props.handleChange}
+        /> 
+
+       
     </div>
   );
 }
 
-/*Step 1*/
+/*Step 2*/
 var lifeStage = '';
 
 function RetiredQuestion(props) {
@@ -495,7 +541,7 @@ function Step2(props) {
     </div>
   );
 }
-/*Step 2 */
+/*Step 3 */
 
 function Step3(props) {
   if (props.currentStep !== 3) {
@@ -912,38 +958,38 @@ function Step5(props) {
         </div>
 
         <div>
+        <label>Would you like to get more involved?</label>
           <select name="moreInvolved" id="moreInvolved" value={props.moreInvolved}
             onChange={props.handleChange}>
-            <label>Would you like to get more involved?</label>
+            
             <option value="yes">Yes</option>
             <option value="no">No</option>
           </select>
         </div>
 
         <div>
+
+        <label>How would you like to get more
+           involved (Select all that apply)?</label>
           <select name="howInvolved" id="howInvolved" value={props.howInvolved}
             onChange={props.handleChange}>
-            <label>How would you like to get more
-           involved (Select all that apply)?</label>
+            
+          <option value="fundraiser" for="howInvolved"> Run or help with a fundraiser</option>
 
-          <input type="checkbox" id="checkbox" name="howInvolved" value="fundraiser"></input>
-          <label for="howInvolved"> Run or help with a fundraiser</label>
+          <option value="ambassador" for="howInvolved"> Be a social media advocate or an ambassador</option>
 
-          <input type="checkbox" id="checkbox" name="howInvolved" value="social media"></input>
-          <label for="howInvolved"> Be a social media advocate or an ambassador</label>
+          
+          <option value="startChapter" for="howInvolved"> Start/Join a VBB Village Mentors Chapter at your school
+          or company (A club of fellow mentors)</option>
 
-          <input type="checkbox" id="checkbox" name="vhowInvolved" value="vbb mentor chapter"></input>
-          <label for="howInvolved"> Start/Join a VBB Village Mentors Chapter at your school
-          or company (A club of fellow mentors)</label>
+          
+          <option value="JoinClub" for="howInvolved"> Start/Join a Book Club</option>
 
-          <input type="checkbox" id="checkbox" name="howInvolved" value="book club"></input>
-          <label for="howInvolved"> Start/Join a Book Club</label>
+          
+          <option value="research" for="howInvolved"> Research</option>
 
-          <input type="checkbox" id="checkbox" name="howInvolved" value="research"></input>
-          <label for="howInvolved"> Research</label>
-
-          <input type="checkbox" id="checkbox" name="howInvolved" value="other"></input>
-          <label for="howInvolved"> Other</label>
+          
+          <option value="other" for="howInvolved"> Other</option>
         </select>
         </div>
 
@@ -952,6 +998,7 @@ function Step5(props) {
         className="form-control"
         id="city"
         name="city"
+        required
         type="text"
         placeholder="Philadelphia, PA"
         value={props.city}
