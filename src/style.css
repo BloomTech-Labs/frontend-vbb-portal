@@ -84,7 +84,7 @@ a {
 
 .book-btn,
 .gcal-btn {
-  width: 260px;
+  width: 265px;
 }
 
 .donate-btn {
@@ -98,6 +98,25 @@ a {
 .signin-btn,
 .book-btn {
   background-color: #6ac66b;
+}
+
+.goback-btn {
+  background-color: gray;
+  margin: 10px;
+}
+
+.goback-btn:hover {
+  background-color: #4c4c49;
+}
+
+.requestappt-btn {
+  background-color: #6ac66b;
+  margin: 10px;
+}
+
+.requestappt-btn:hover {
+  background-color: #549bea;
+  color: #fff;
 }
 
 hr {
@@ -181,6 +200,30 @@ footer {
   display: none;
 }
 
+/* BOOKING */
+
+.booking-fields {
+  max-width: 450px;
+  padding: 10px;
+}
+
+select {
+  float: right;
+  width: 220px;
+}
+
+label {
+  font-size: large;
+  font-weight: bold;
+  max-width: 90%;
+}
+
+#mentor,
+#commitment {
+  float: right;
+  margin-top: 10px;
+}
+
 /* DESKTOP ADJUSTMENTS */
 
 @media all and (min-width: 990px) {
@@ -200,6 +243,7 @@ footer {
 
   #booking-header {
     font-size: 40px;
+    padding-top: 30px;
   }
 
   .btns {
@@ -254,5 +298,9 @@ footer {
   #bar-header {
     margin-top: -20px;
     font-size: 5px;
+  }
+
+  select {
+    width: 120px;
   }
 }
