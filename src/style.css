@@ -214,7 +214,7 @@ select {
 
 label {
   font-size: large;
-  font-weight: bold;
+  font-weight: 500;
   max-width: 90%;
 }
 
