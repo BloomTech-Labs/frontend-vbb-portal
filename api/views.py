@@ -101,12 +101,12 @@ def first_time_signup(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(["POST"])
+@api_view(["GET"])
 def check_signin(request):
     """
     When a user logs in, check if they have a mentor profile before allowing them to proceed
     """
-    if "villagementors.org" not in request.user.email:
+    if "villagementors.org" not in request.user.email and "villagebookbuilders.org" not in request.user.email:
         return Response(
             {
                 "success": "false",
@@ -114,14 +114,14 @@ def check_signin(request):
             }
         )
     mps = MentorProfile.objects.filter(vbb_email=request.user.email)
-    if mps is None:
+    if mps is None or len(mps) <1:
         return Response(
             {
                 "success": "false",
                 "message": "Sorry, there is no signin data associated with this account. Please sign up to be a mentor using the register link above or contact our mentor advisors at mentor@villagebookbuilders.org for assistance.",
             }
         )
-    if length(mps) > 1:
+    if len(mps) > 1:
         return Response(
             {
                 "success": "false",

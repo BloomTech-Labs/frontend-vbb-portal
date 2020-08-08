@@ -17,7 +17,7 @@ export const authSuccess = (token) => {
 export const authFail = (error) => {
   return {
     type: actionTypes.AUTH_FAIL,
-    error: error,
+    error: error.message,
   };
 };
 
@@ -37,28 +37,6 @@ export const checkAuthTimeout = (expirationTime) => {
   };
 };
 
-export const authLogin = (username, password) => {
-  return (dispatch) => {
-    dispatch(authStart());
-    axios
-      .post("http://127.0.0.1:8000/rest-auth/login/", {
-        username: username,
-        password: password,
-      })
-      .then((res) => {
-        const token = res.data.key;
-        const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
-        localStorage.setItem("token", token);
-        localStorage.setItem("expirationDate", expirationDate);
-        dispatch(authSuccess(token));
-        dispatch(checkAuthTimeout(3600));
-      })
-      .catch((err) => {
-        dispatch(authFail(err));
-      });
-  };
-};
-
 export const gAuth = (googleToken) => {
   return (dispatch) => {
     dispatch(authStart());
@@ -68,11 +46,7 @@ export const gAuth = (googleToken) => {
       })
       .then((res) => {
         const token = res.data.key;
-        const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
-        localStorage.setItem("token", token);
-        localStorage.setItem("expirationDate", expirationDate);
-        dispatch(authSuccess(token));
-        dispatch(checkAuthTimeout(3600));
+        checkSignIn(token, dispatch);
       })
       .catch((err) => {
         dispatch(authFail(err));
@@ -80,11 +54,38 @@ export const gAuth = (googleToken) => {
   };
 };
 
+const checkSignIn = (token, dispatch) => {
+  axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+  axios.defaults.xsrfCookieName = "csrftoken";
+  axios.defaults.headers = {
+    "Content-Type": "application/json",
+    Authorization: `Token ${token}`,
+  };
+  axios
+    .get("http://127.0.0.1:8000/api/checksignin/")
+    .then((res) => {
+      if(res.data.success==="true"){
+        const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
+        localStorage.setItem("token", token);
+        localStorage.setItem("expirationDate", expirationDate);
+        dispatch(authSuccess(token));
+        dispatch(checkAuthTimeout(3600));
+      }
+      else {
+        dispatch(authFail(res.data));
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch(authFail(err));
+    });
+};
+
 export const authSignup = (first_name, last_name, time_zone, personal_email, vbb_email, phone_number, occupation, organization, contact_source, involvement) => {
   return (dispatch) => {
     dispatch(authStart());
     axios
-      .post("http://127.0.0.1:8000/api/sign-up/", {
+      .post("http://127.0.0.1:8000/api/creatementorprofile/", {
         first_name: first_name,
         last_name: last_name,
         time_zone: time_zone,
