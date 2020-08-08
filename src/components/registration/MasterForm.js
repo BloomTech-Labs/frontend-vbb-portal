@@ -1,46 +1,60 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import * as actions from '../store/actions/auth';
+import * as actions from '../../store/actions/auth';
+import moment from 'moment';
+import Step1 from './Step1';
 
 class MasterForm extends React.Component {
   constructor(props) {
     super(props);
-    this.selectChange = this.selectChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.state = {
-      currentStep: 1,
-      email: '',
+      currentStep: 1, 
       firstname: '',
       lastname: '',
-      password: '',
-      stage: '',
-      lifeStage: '',
+      email: '',
+      vbbemail: '',
+      age: '',
+      occupation: '',
+      vbb_chapter: '',
       isLoggedIn: false,
       contactSource: '',
-      timeZone: '',
-      vbbemail: '',
+      timeZone: moment.tz.guess(),
+
       status: '',
       phone: '',
+
       
     }
   }
 
-  selectChange(event) {
-    let testVal = event.target.value
-    this.setState(() =>({lifeStage: testVal}))
+  hasProblems =() => {
+    var base = "Please fix it\n"
+    var problems = ""
+     
+    if (this.state.firstname === "") problems += "firstname"
+    if (this.state.lastname === "") problems += "lastname"
+    if (problems === "") return false
+    return base + problems
   }
+
+  // handleChange(event) {
+  //   let testVal = event.target.value
+  //   this.setState(() =>({occupation: testVal}))
+  // }
 
 
   handleChange = event => {
     const { name, value } = event.target
     this.setState({
       [name]: value
-    })
+    }, ()=> {console.log(this.state)})
   }
 
   handleSubmit = event => {
     event.preventDefault()
-    const { email, firstname, lastname, password, stage, phone, age, affiliation,
+    const { email, firstname, lastname, password, occupation, phone, age, affiliation,
     opportunity, language, timeZone, availability, newsletter, termsCond, 
     molestation, mentor4months, acceptCommitment, moreInvolved, howInvolved, city,
     } = this.state
@@ -48,10 +62,10 @@ class MasterForm extends React.Component {
            Email: ${email} \n 
            First name: ${firstname} \n
            Last name: ${lastname} \n
-           Stage: ${stage} \n
+           
            phone: ${phone} \n
            age: ${age} \n
-           Status: ${lifeStage} \n
+           Status: ${occupation} \n
            Affiliation: ${affiliation} \n
            Opportunity: ${opportunity} \n
            Language: ${language} \n
@@ -140,47 +154,44 @@ class MasterForm extends React.Component {
           <Step1
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
-            email={this.state.email}
-            firsname={this.state.firstname}
-            lastname={this.state.lastname}
-            password={this.state.password}
+            // email={this.state.email}
+            // firsname={this.state.firstname}
+            // lastname={this.state.lastname}
+            // password={this.state.password}
             
             // handleMultiChange={this.handleMultiChange}//never used
             setState={this.setState}
             state={this.state}
-            selectChange={this.selectChange}
+            
 
           />
 
           <Step2
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
-            // handleMultiChange={this.handleMultiChange}//never used?
             setState={this.setState}
             state={this.state}
-            selectChange={this.selectChange}
-            phone={this.state.phone}
           />
 
           <Step3
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
             state={this.state}
-            selectChange={this.selectChange}
+            
           />
 
           <Step4
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
             state={this.state}
-            selectChange={this.selectChange}
+          
           />
 
           <Step5
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
             state={this.state}
-            selectChange={this.selectChange}
+            hasProblems={this.hasProblems}
           />  
 
           
@@ -224,122 +235,27 @@ class MasterForm extends React.Component {
 }
 
 //never used?
-// function handleMultiChange(value, lifeStage) {
-//   if (lifeStage == "lifeStage") {
-//     lifeStage = value;
+// function handleMultiChange(value, occupation) {
+//   if (occupation == "occupation") {
+//     occupation = value;
 //   }
-//   return lifeStage;
+//   return occupation;
 // }
 
-/*Step 1*/
 
-function Step1(props) {
-
-  if (props.currentStep !== 1) {
-    return null
-  }
-  return (
-    <div className="form-group">
-      
-      {/* <Form.Item
-        name="name"
-        id="name"
-        label="Username"
-        value={props.firstname}
-        onChange={props.handleChange}
-        rules={[
-          {
-            type: '',
-            message: 'If none, leave blank',
-          },
-          {
-            required: true,
-            message: 'Please enter your fist and last name!',
-          },
-        ]}
-      >
-        <Input placeholder="If none, leave blank" />
-
-      </Form.Item> */}
-
-
-
-      <label htmlFor="firstname">First Name</label>
-      
-      <input 
-        className="form-control"
-        id="firstname"
-        name="firstname"
-        required
-        type="text"
-        placeholder="Enter first name"
-        value={props.firstname}
-        onChange={props.handleChange}
-      />
-      
-      <label htmlFor="lastname">Last Name</label>
-      <input required
-        className="form-control"
-        id="lastname"
-        name="lastname"
-        
-        type="text"
-        placeholder="Enter last name"
-        value={props.firstname}
-        onChange={props.handleChange}
-      />
-
-      <label htmlFor="email">Email adress</label>
-      <input
-        className="form-control"
-        id="email"
-        name="email"
-        required
-        type="text"
-        placeholder="Enter email"
-        value={props.email}
-        onChange={props.handleChange}
-      />
-
-      <label htmlFor="password">Password</label>
-      <input
-        className="form-control"
-        id="password"
-        name="password"
-        required
-        type="password"
-        placeholder="Enter password"
-        value={props.password}
-        onChange={props.handleChange}
-        /> 
-
-      <label htmlFor="password">Confirm Password</label>
-      <input
-        className="form-control"
-        id="password2"
-        name="password2"
-        required
-        type="password"
-        placeholder="Confirm password"
-        value={props.password}
-        onChange={props.handleChange}
-        /> 
-
-       
-    </div>
-  );
-}
 
 /*Step 2*/
-var lifeStage = '';
+// var occupation = '';
 
-function RetiredQuestion(props) {
-  if (props.lifeStage === "Retired") {
-    return <h1>This fool's retired</h1>
-  } else {
-    return <h1>Retirement is so close I can taste it</h1>
-  }
-}
+// function RetiredQuestion(props) {
+//   if (props.occupation === "Retired") {
+//     return <h1>This fool's retired</h1>
+//   } else {
+//     return <h1>Retirement is so close I can taste it</h1>
+//   }
+// }
+
+
 
 function Step2(props) {
 
@@ -349,21 +265,11 @@ function Step2(props) {
   return (
     <div className="form-group">
 
-      <label htmlFor="phone">Phone Number</label>
-      <input
-        className="form-control"
-        id="phone"
-        name="phone"
-        type="phone"
-        placeholder="Enter phone number"
-        value={props.phone}
-        onChange={props.handleChange}
-        
-        /> 
+       
 
       <div>
         <p>Are you 18 years or older?</p>
-        <select name="age" id="age" value={props.age}
+        <select name="age" id="age" value={props.state.age}
         onChange={props.handleChange}>
           <option value="Yes">Yes</option>
           <option value="No">No</option>
@@ -372,35 +278,35 @@ function Step2(props) {
 
 
       <div>
-        <p>Which of the following best describes you?</p>
-        <select name="describes" id="describes" onChange={props.selectChange}
-        value={props.lifeStage}>
-          {console.log(lifeStage)}
+        <label>Which of the following best describes you?</label>
+        <select name="occupation" id="occupation" onChange={props.handleChange}
+        value={props.state.occupation}>
+          
 
           <option value="Homemaker">Homemaker</option>
           <option value="Retired">Retired</option>
           <option value="Working Professional">Working Professional</option>
-          {/* <option value="Homemaker" onChange={this.App()}>Homemaker</option> */}
+          
 
           <option value="College_Student">College Student</option>
           <option value="HS_Student">High School Student</option>
           <option value="Other">Other</option>
         </select>
-        <RetiredQuestion 
-        lifeStage={props.state.lifeStage}
-        />
+        {/* <RetiredQuestion 
+        occupation={props.state.occupation}
+        /> */}
       </div>
 
-      {
-        props.lifeStage === "Retired" && (
-
+      {props.state.occupation === "College_Student" && 
           <div>
-            <p>This fool's retired!</p>
-            {console.log("I'm here")}
-          </div>)
-      }
-
-
+            <label>Are you part of VBB Village Mentors Chapter/Club</label>
+        <select name="vbb_chapter" id="vbb_chapter" value={props.state.vbb_chapter}
+        onChange={props.handleChange}>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+        </div>
+        }
 
  {/*this is to delete */}
 
@@ -498,7 +404,7 @@ function Step2(props) {
         <Input placeholder="MTC, CST, ET" />
       </Form.Item> */}
 
-      <label htmlFor="timeZone">What is your time zone? (ex MST, CST)</label>
+      {/* <label htmlFor="timeZone">What is your time zone? (ex MST, CST)</label>
       <input
         className="form-control"
         id="timeZone"
@@ -508,7 +414,18 @@ function Step2(props) {
         value={props.timeZone}
         onChange={props.handleChange}
         
-        />  
+        />   */}
+
+        <div>
+          <label htmlFor="timeZone">Your Timezone:</label>&nbsp;
+          <select name="timeZone" id="timeZone" onChange={ props.handleChange } value={props.state.timeZone}>
+          {
+            moment.tz.names().map(tz => {
+              return <option key={tz} value={tz}>{tz}</option>;
+          })}
+          </select>
+
+        </div>
 
 
       {/* <Form.Item
@@ -544,13 +461,7 @@ function Step2(props) {
         
         />    
       
-      <label htmlFor="newsletter">Sign up for newsletter?</label>
-      <input className="form-control"
-      id="newsletter"
-      type="checkbox"
-      value={props.newsletter}
-      onChange={props.handleChange} 
-      /> 
+      
 
 
     </div>
@@ -565,7 +476,7 @@ function Step3(props) {
   return (
     <div className="form-group">
       <h1>Terms and Conditions</h1>
-      <p className="useragreement">WHEREAS, Non-Profit own and operates
+      <p className="useragreement" style={{overflow: "auto", height: "200px"}}>WHEREAS, Non-Profit own and operates
       a not for profit organization which arranges for tutoring of school children by volunteer independent contractors;  and
 
       WHEREAS, Independent Contractor desires to provide tutoring services as
@@ -958,6 +869,8 @@ function Step4(props) {
 
 //Step 5
 
+
+
 function Step5(props) {
   if (props.currentStep !== 5) {
     return null
@@ -976,37 +889,38 @@ function Step5(props) {
         <label>Would you like to get more involved?</label>
           <select name="moreInvolved" id="moreInvolved" value={props.moreInvolved}
             onChange={props.handleChange}>
-            
+            <option value="">-</option>
             <option value="yes">Yes</option>
             <option value="no">No</option>
           </select>
+          
         </div>
+        {/* <InvolvedQuestion 
+        moreInvolved={props.state.moreInvolved} handleChange = {props.handleChange}
+        /> */}
+      {
+        props.state.moreInvolved === "yes" && (
+          <div>
+            <label>How would you like to get more
+                involved (Select all that apply)?</label>
+              <select name="howInvolved" id="howInvolved" value={props.howInvolved}
+                onChange={props.handleChange}>  
+              <option value="fundraiser"> Run or help with a fundraiser</option>
+              <option value="ambassador"> Be a social media advocate or an ambassador</option>
+              <option value="startChapter"> Start/Join a VBB Village Mentors Chapter at your school
+              or company (A club of fellow mentors)</option>
+              <option value="JoinClub"> Start/Join a Book Club</option>
+              <option value="research"> Research</option>
+              <option value="other"> Other</option>
+            </select>
+            </div>
+          )
 
-        <div>
-
-        <label>How would you like to get more
-           involved (Select all that apply)?</label>
-          <select name="howInvolved" id="howInvolved" value={props.howInvolved}
-            onChange={props.handleChange}>
-            
-          <option value="fundraiser" for="howInvolved"> Run or help with a fundraiser</option>
-
-          <option value="ambassador" for="howInvolved"> Be a social media advocate or an ambassador</option>
-
+      }
           
-          <option value="startChapter" for="howInvolved"> Start/Join a VBB Village Mentors Chapter at your school
-          or company (A club of fellow mentors)</option>
-
-          
-          <option value="JoinClub" for="howInvolved"> Start/Join a Book Club</option>
-
-          
-          <option value="research" for="howInvolved"> Research</option>
-
-          
-          <option value="other" for="howInvolved"> Other</option>
-        </select>
-        </div>
+      
+      
+        
 
         <label htmlFor="city">What city and state/province do you live in?</label>
         <input
@@ -1020,27 +934,12 @@ function Step5(props) {
         onChange={props.handleChange}
         
         /> 
-        {/* <div>
-          <Form.Item
-            name=""
-            label="What city and state/province do you live in?"
-            rules={[
-              {
-                type: 'string',
-                message: 'Please enter city and state/province',
-              },
-              {
-                required: true,
-                message: 'Please enter your availability',
-              },
-            ]}
-          >
-            <Input placeholder="Philadelphia, PA" />
-          </Form.Item>
-        </div> */}
+        
+        {props.hasProblems() && props.hasProblems()}
+
 
       </div>
-      <button className="btn btn-success btn-block">Sign up</button>
+      <button className="btn btn-success btn-block" disabled={props.hasProblems()}>Sign up</button>
     </React.Fragment>
   );
   

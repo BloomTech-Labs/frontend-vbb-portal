@@ -5,7 +5,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Booking from "./components/Booking";
 import Dashboard from "./components/Dashboard";
 import SigninGoogle from "./components/SigninGoogle";
-import MasterForm from "./components/Registration";
+import MasterForm from "./components/registration/MasterForm";
 
 function Routes() {
   return (
