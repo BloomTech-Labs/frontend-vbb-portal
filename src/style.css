@@ -181,36 +181,7 @@ footer {
   display: none;
 }
 
-@media all and (max-width: 600px) {
-  #full-logo {
-    display: none;
-  }
-
-  #mini-logo {
-    display: block;
-  }
-
-  .badge {
-    font-size: small;
-  }
-
-  footer {
-    font-size: 13px;
-  }
-
-  p {
-    font-size: 16px;
-  }
-
-  #appt-change-note {
-    text-indent: 0px;
-    margin-left: -20px;
-  }
-
-  h1 {
-    font-size: 35px;
-  }
-}
+/* DESKTOP ADJUSTMENTS */
 
 @media all and (min-width: 990px) {
   #bar-header {
@@ -230,7 +201,13 @@ footer {
   #booking-header {
     font-size: 40px;
   }
+
+  .btns {
+    padding-left: 40px;
+  }
 }
+
+/* TABLET AND MOBILE ADJUSTMENTS */
 
 @media (max-width: 990px) {
   #bar-header {
@@ -240,9 +217,40 @@ footer {
   #booking-header {
     font-size: 30px;
   }
+
+  .badge {
+    font-size: small;
+  }
 }
 
+/* MOBILE ADJUSTMENTS */
+
 @media (max-width: 600px) {
+  #full-logo {
+    display: none;
+  }
+
+  #mini-logo {
+    display: block;
+  }
+
+  footer {
+    font-size: 13px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  #appt-change-note {
+    text-indent: 0px;
+    margin-left: -20px;
+  }
+
+  h1 {
+    font-size: 35px;
+  }
+
   #bar-header {
     margin-top: -20px;
     font-size: 5px;

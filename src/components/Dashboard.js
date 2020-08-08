@@ -49,23 +49,26 @@ class Dashboard extends React.Component {
                 );
               })}
           </h3>
-          <br />
-          <a href="/booking/" className="btn btn-light book-btn">
-            + Book a new appointment
-          </a>
-          <br />
-          <a
-            className="btn btn-light gcal-btn"
-            href="https://calendar.google.com/calendar/r"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ position: "relative", top: "5px", bottom: "5px" }}
-          >
-            View My Google Calendar
-          </a>
-          <br />
-          <br />
-          <p id="appt-change-note">
+          <div className="btns">
+            <a
+              href="/booking/"
+              className="btn btn-light book-btn"
+              style={{ marginTop: "20px" }}
+            >
+              + Book a new appointment
+            </a>
+            <br />
+            <a
+              className="btn btn-light gcal-btn"
+              href="https://calendar.google.com/calendar/r"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ marginTop: "5px", marginBottom: "30px" }}
+            >
+              View My Google Calendar
+            </a>
+          </div>
+          <p style={{ padding: "20px", paddingLeft: "40px" }}>
             If you would like to change an appointment or have another question,
             please
             <a href="mailto:mentor@villagebookbuilders.org">
@@ -78,7 +81,13 @@ class Dashboard extends React.Component {
         </div>
         <div className="column rightcol" id="mentoring-resources-box">
           <h2 style={{ color: "#4C4C49" }}>Mentoring Resources:</h2>
-          <div style={{ paddingLeft: "50px", fontSize: "18px" }}>
+          <div
+            style={{
+              paddingLeft: "50px",
+              fontSize: "18px",
+              paddingTop: "20px",
+            }}
+          >
             <a
               href="https://360.articulate.com/review/content/73bf3afe-47f9-4f9f-aa4d-70bf27fbe8d5/review"
               target="_blank"
