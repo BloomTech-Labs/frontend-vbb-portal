@@ -94,7 +94,7 @@ def first_time_signup(request):
     if request.data["vbb_email"] == None or request.data["vbb_email"] == '':
         request.data["vbb_email"] = gapi.account_create(request.data["first_name"], request.data["last_name"], request.data["personal_email"])
         print('new vbb email: ', request.data["vbb_email"])
-        gapi.email_send(request.data["personal_email"], "test-subject", "test-text")
+        gapi.email_send(request.data["personal_email"], "test-subject", "api\emails\welcome.html")
     serializer = MentorProfileSerializer(data = request.data)
     if serializer.is_valid():
         serializer.save()
