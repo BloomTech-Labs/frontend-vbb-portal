@@ -63,7 +63,7 @@ export const gAuth = (googleToken) => {
   return (dispatch) => {
     dispatch(authStart());
     axios
-      .post("http://127.0.0.1:8000/googlelogin/", {
+      .post("http://127.0.0.1:8000/api/googlelogin/", {
         access_token: googleToken,
       })
       .then((res) => {
