@@ -124,6 +124,11 @@ footer {
   margin: 5vw;
 }
 
+.loading-spinner {
+  margin-top: 10%;
+  margin-left: 45%;
+}
+
 /* MOBILE ADJUSTMENTS */
 @media screen and (max-width: 600px) {
   footer {
