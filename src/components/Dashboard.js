@@ -24,7 +24,7 @@ class Dashboard extends React.Component {
       })
       .catch((err) => {
         console.log(err);
-        alert("There was an error in retrieving your appointments", err);
+        // alert("There was an error in retrieving your appointments", err);
       });
   };
 
@@ -35,7 +35,7 @@ class Dashboard extends React.Component {
   render() {
     return (
       <div className="twocol-container">
-        <div className="leftcol">
+        <div className="column leftcol" id="mentoring-session-box">
           <h2 style={{ color: "#4C4C49" }}>My Weekly Mentoring Session:</h2>
           <h3 style={{ color: "#6AC66B", textIndent: "25px" }}>
             {this.state.appointments &&
@@ -76,7 +76,7 @@ class Dashboard extends React.Component {
           </p>
           {/* <MentorProfile /> */}
         </div>
-        <div className="rightcol">
+        <div className="column rightcol" id="mentoring-resources-box">
           <h2 style={{ color: "#4C4C49" }}>Mentoring Resources:</h2>
           <div style={{ paddingLeft: "50px", fontSize: "18px" }}>
             <a

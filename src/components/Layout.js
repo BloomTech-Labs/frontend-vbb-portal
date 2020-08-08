@@ -8,7 +8,7 @@ import miniLogo from "../vbb-picture-logo.png";
 class Layout extends React.Component {
   render() {
     return (
-      <div className="layout">
+      <div>
         <nav
           className="navbar sticky-top  navbar-expand-lg navbar-light"
           id="vbb-full-bar"
@@ -19,7 +19,11 @@ class Layout extends React.Component {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src={fullLogo} alt="Logo" style={{ width: "200px" }} />
+            <img
+              src={fullLogo}
+              alt="Logo"
+              style={{ width: "200px", marginLeft: "30px" }}
+            />
           </a>
           <a
             id="mini-logo"
@@ -27,11 +31,7 @@ class Layout extends React.Component {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img
-              src={miniLogo}
-              alt="Logo"
-              style={{ width: "45px", marginLeft: "-10px" }}
-            />
+            <img src={miniLogo} alt="Logo" style={{ width: "45px" }} />
           </a>
           <a href="/" id="bar-header-link">
             <h1
@@ -39,6 +39,7 @@ class Layout extends React.Component {
               style={{ marginBottom: "-25px", fontSize: "40px" }}
             >
               VBB Portal
+              <span class="badge badge-secondary">NEW</span>
             </h1>
           </a>
           <button
