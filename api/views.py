@@ -106,16 +106,37 @@ def check_signin(request):
     """
     When a user logs in, check if they have a mentor profile before allowing them to proceed
     """
-    gapi = google_apis()
-    if request.data["vbb_email"] == None or request.data["vbb_email"] == '':
-        request.data["vbb_email"] = gapi.account_create(request.data["first_name"], request.data["last_name"], request.data["personal_email"])
-        print('new vbb email: ', request.data["vbb_email"])
-        gapi.email_send(request.data["personal_email"], "test-subject", "test-text")
-    serializer = MentorProfileSerializer(data = request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    if "villagementors.org" not in request.user.email:
+        return Response(
+            {
+                "success": "false",
+                "message": "Sorry, you need to use a villagementors.org Gsuite account to log in to this website. If you do not have a village mentors account, please sign up for one using the register link above.",
+            }
+        )
+    mps = MentorProfile.objects.filter(vbb_email=request.user.email)
+    if mps is None:
+        return Response(
+            {
+                "success": "false",
+                "message": "Sorry, there is no signin data associated with this account. Please sign up to be a mentor using the register link above or contact our mentor advisors at mentor@villagebookbuilders.org for assistance.",
+            }
+        )
+    if length(mps) > 1:
+        return Response(
+            {
+                "success": "false",
+                "message": "Sorry, there appears to be multiple mentors associated with this account. Please contact our mentor advisors at mentor@villagebookbuilders.org for assistance.",
+            }
+        )
+    if mps[0].user is None:
+        mps[0].user = request.user
+        mps[0].save()
+    return Response(
+        {
+            "success": "true",
+            "message": ("Welcome, "+request.user.username +"!"),
+        }
+    )
 
 @api_view(["POST"])
 def book_appointment(request):
