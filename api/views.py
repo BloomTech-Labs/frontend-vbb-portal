@@ -83,7 +83,6 @@ class AvailableAppointmentTimeList(ListAPIView):
 
         return Response(appts)
 
-# FIXME - change to post (I think)
 @api_view(["POST"])
 def first_time_signup(request):
     """
@@ -102,9 +101,23 @@ def first_time_signup(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(["POST"])
+def check_signin(request):
+    """
+    When a user logs in, check if they have a mentor profile before allowing them to proceed
+    """
+    gapi = google_apis()
+    if request.data["vbb_email"] == None or request.data["vbb_email"] == '':
+        request.data["vbb_email"] = gapi.account_create(request.data["first_name"], request.data["last_name"], request.data["personal_email"])
+        print('new vbb email: ', request.data["vbb_email"])
+        gapi.email_send(request.data["personal_email"], "test-subject", "test-text")
+    serializer = MentorProfileSerializer(data = request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# FIXME - Change to POST once stable
-@api_view(["GET"])
+@api_view(["POST"])
 def book_appointment(request):
     """
     Gets an appointment list at a given time based on preferences then randomly picks one appointment and populates it with the mentor's name (queries specific fields by primary key).
@@ -133,9 +146,6 @@ def book_appointment(request):
             }
         )
     myappt = random.choice(appts)
-    # FIXME - Once you can login to api-auth/ and stay logged in for calls, comment out the next line (assigning a random mentor to the appointment) and uncomment the one after (assigning the authenticated user to the appointment).
-    myappt.mentor = random.choice(User.objects.all())
-    myappt.mentor = User.objects.get(username="shwetha")
     myappt.mentor = request.user
     myappt.start_date = datetime.today() + timedelta(
         days=(aux_fns.diff_today_dsm(myappt.hsm) + 7)
@@ -150,8 +160,7 @@ def book_appointment(request):
         {"success": "true", "user": str(myappt.mentor), "appointment": str(myappt),}
     )
 
-# FIXME - Change to POST once stable
-@api_view(["GET"])
+@api_view(["POST"])
 def generate_appointments(request):
     """
     Generates appointments from opentime to closetime on days from startday to endday
