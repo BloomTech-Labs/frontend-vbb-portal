@@ -33,12 +33,14 @@ class Layout extends React.Component {
               style={{ width: "45px", marginLeft: "-10px" }}
             />
           </a>
-          <h1
-            id="bar-header"
-            style={{ marginBottom: "-25px", fontSize: "40px" }}
-          >
-            VBB Portal
-          </h1>
+          <a href="/" id="bar-header-link">
+            <h1
+              id="bar-header"
+              style={{ marginBottom: "-25px", fontSize: "40px" }}
+            >
+              VBB Portal
+            </h1>
+          </a>
           <button
             className="navbar-toggler"
             type="button"

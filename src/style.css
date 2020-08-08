@@ -100,6 +100,10 @@ footer {
   padding-top: 15px;
 }
 
+#bar-header-link:hover {
+  color: #549bea;
+}
+
 .twocol-container {
   display: flex;
   flex-wrap: wrap;
@@ -170,7 +174,8 @@ footer {
 
 @media all and (min-width: 990px) {
   #bar-header {
-    margin-left: 20%;
+    margin-left: 170px;
+    width: 200px;
   }
 
   #signup-btn {
