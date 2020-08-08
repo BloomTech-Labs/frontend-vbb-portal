@@ -129,15 +129,19 @@ class Booking extends React.Component {
     newState[e.target.name] = e.target.value; 
     this.setState(newState, () => {this.fetchTimes();});
   }
-
   submitRequest = () => {
+    this.handleCommitChange();
+    this.postRequest();
+  }
+
+  postRequest = () => {
     axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.headers = {
       "Content-Type": "application/json",
       Authorization: `Token ${this.props.token}`,
     };
-    axios.get("http://127.0.0.1:8000/api/booking/", {
+    axios.post("http://127.0.0.1:8000/api/book/", null, {
       params: {
         library: this.state.library,
         language: this.state.language,

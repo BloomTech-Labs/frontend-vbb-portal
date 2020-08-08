@@ -178,12 +178,13 @@ class Appointment(models.Model):
 
     def display(self):
         today = datetime.datetime.now()
-        tz1, tz2 = timezone("US/Eastern"), timezone(self.mentor.mentor.time_zone)
+        tz2, tz1 = timezone("US/Eastern"), timezone(self.mentor.mentor.time_zone)
         diff = (tz1.localize(today) - tz2.localize(today).astimezone(tz1)).seconds//3600
+        newhsm = (self.hsm - diff+168)%168
         return (
-            aux_fns.hsm_to_day_name(self.hsm + diff)
+            aux_fns.hsm_to_day_name(newhsm)
             + "s @ "
-            + aux_fns.hsm_to_12hr(self.hsm + diff)
+            + aux_fns.hsm_to_12hr(newhsm)
             + " until "
             + str(self.end_date.strftime("%x"))
         )

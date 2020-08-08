@@ -8,7 +8,7 @@ urlpatterns = [
     path("language/", LanguageListView.as_view()),
     path("available/", AvailableAppointmentTimeList.as_view()),
     path("myappointments/", MyAppointmentListView.as_view()),
-    path("booking/", book_appointment),
+    path("book/", book_appointment),
     path("generate/", generate_appointments),
     path("testing/", testing),
 ]
