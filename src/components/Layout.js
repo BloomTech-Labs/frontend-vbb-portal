@@ -39,7 +39,7 @@ class Layout extends React.Component {
               style={{ marginBottom: "-25px", fontSize: "40px" }}
             >
               VBB Portal
-              <span class="badge badge-secondary">NEW</span>
+              <span className="badge badge-secondary">NEW</span>
             </h1>
           </a>
           <button
