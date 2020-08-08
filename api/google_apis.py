@@ -84,12 +84,11 @@ class google_apis:
     return primaryEmail
 
 
-  def calendar_event(self, menteeEmail, mentorEmail, start_time, duration=1):
+  def calendar_event(self, menteeEmail, mentorEmail, personalEmail, start_time, calendar_id, duration=1):
       calendar_service = build('calendar', 'v3', credentials=self.__webdev_cred)
       timezone = 'America/New_York'
       start_date_time_obj = datetime.strptime(start_time, '%Y-%m-%dT%H:%M:%S')
       end_time = start_date_time_obj + timedelta(hours=duration)
-      print('emails: ',mentorEmail, menteeEmail)
       event = {
           'summary': 'Village Book Builders Mentoring Meeting',
           'start': {
@@ -105,7 +104,8 @@ class google_apis:
           ],
           'attendees': [
               {'email': menteeEmail},
-              {'email': mentorEmail}
+              {'email': mentorEmail},
+              {'email': personalEmail}
           ],
           'reminders': {
               'useDefault': False,
@@ -114,8 +114,10 @@ class google_apis:
               {'method': 'popup', 'minutes': 10}, # pop up reminder, 10 min before event
               ],
           },
+          'sendUpdates': ['all']
       }
-      return calendar_service.events().insert(calendarId='primary', body=event).execute()
+      event_obj = calendar_service.events().insert(calendarId=calendar_id, body=event).execute()
+      return(event_obj['id']) 
 
   def email_send(self, to, subject, message_text):
     http = _auth.authorized_http(self.__mentor_cred)
@@ -168,7 +170,7 @@ class google_apis:
 # FOR TESTING PURPOSES -- REMOVE LATER
 # def testFunction():
 #   g = google_apis()
-  # g.calendar_event("sohan.kalva.test2@villagementors.org", "shwetha.test1@villagebookbuilders.org", "2020-07-30T23:00:00")
+#   g.calendar_event("sohan.kalva.test2@villagementors.org", "shwetha.test1@villagebookbuilders.org", "sshinju@andrew.cmu.edu", "2020-08-08T13:00:00", "sohan.kalva.test2@villagementors.org")
   # g.email_send('shwetha.shinju2@gmail.com', 'testagain', 'testtextagain')
   # print(g.account_create('test','test', 'shwetha.shinju2@gmail.com'))
-  
+# testFunction()

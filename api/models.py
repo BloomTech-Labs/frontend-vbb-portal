@@ -14,7 +14,7 @@ class Library(models.Model):
         verbose_name="time zone", max_length=40, null=True, blank=True
     )
     calendar_id = models.CharField(
-        verbose_name="calendar id", max_length=60, null=True, blank=True
+        verbose_name="calendar id", max_length=120, null=True, blank=True
     )
 
     class Meta:
