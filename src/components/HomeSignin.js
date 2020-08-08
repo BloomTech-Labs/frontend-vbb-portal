@@ -4,7 +4,7 @@ import { GoogleLogin } from "react-google-login";
 import hope_books from "../vbb_in_action.png";
 import * as actions from "../store/actions/auth";
 
-export class SigninGoogle extends Component {
+export class HomeSignin extends Component {
   responseGoogle = (response) => {
     console.log("failure response", response);
     alert("google authorization failed: ", response);
@@ -75,4 +75,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SigninGoogle);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeSignin);
