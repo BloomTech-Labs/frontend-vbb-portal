@@ -16,41 +16,46 @@ export class SigninGoogle extends Component {
 
   render() {
     return (
-      <div style={{ textAlign: "center" }}>
-        <br />
-        <img
-          src={hope_books}
-          alt="Pic"
-          style={{ width: "40%", float: "right", marginRight: "50px" }}
-        />
-
-        <div
-          className="SigninBox"
-          style={{ minWidth: "70%", paddingTop: "30px" }}
-        >
-          <h3>
-            Please use your villagementors.org account
-            <br />
-            to sign in below:
-          </h3>
+      <div className="twocol-container" style={{}}>
+        <div className="column leftcol" id="signin-box">
+          <h1 id="welcome-header">Welcome to the new VBB Portal !</h1>
+          <h4 id="portal-purpose">
+            Now, giving hope through books is only a few clicks away.
+          </h4>
           <br />
-          <GoogleLogin
-            style={{ width: "50%" }}
-            clientId="711431548719-lpoc2lbr4bmruqo7d9emua5huvpsvqgk.apps.googleusercontent.com"
-            buttonText="Sign in with a villagementors.org Gsuite account"
-            onSuccess={this.validateGoogle}
-            onFailure={this.responseGoogle}
-            cookiePolicy={"single_host_origin"}
+          <div id="google-box">
+            <GoogleLogin
+              clientId="711431548719-lpoc2lbr4bmruqo7d9emua5huvpsvqgk.apps.googleusercontent.com"
+              buttonText="Sign in with VBB G Suite (@villagementors.org)"
+              onSuccess={this.validateGoogle}
+              onFailure={this.responseGoogle}
+              cookiePolicy={"single_host_origin"}
+              style={{ width: "100%" }}
+            />
+          </div>
+          <br />
+          <hr />
+          <br />
+          <div id="create-account-box">
+            <p style={{ paddingLeft: "0px", fontSize: "20px" }}>
+              Don't have an account with us yet?
+            </p>
+            <a
+              className="btn btn-light signup-btn"
+              type="button"
+              href="/signup/"
+            >
+              REGISTER
+            </a>
+          </div>
+        </div>
+        <div className="column rightcol" id="signin-picture-box">
+          <img
+            src={hope_books}
+            id="signin-picture"
+            alt="Pic"
+            style={{ width: "100%" }}
           />
-          <br />
-          <br />
-          <br />
-          <p style={{ paddingLeft: "0px" }}>
-            Don't have an account with us yet?
-          </p>
-          <h6>
-            <a href="/signup/">Click here</a> to sign up to be a mentor!
-          </h6>
         </div>
       </div>
     );
