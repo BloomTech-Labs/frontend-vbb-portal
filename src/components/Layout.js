@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../store/actions/auth";
 import logo from "../vbb-logo.png";
+import AlertDismissible from "./AlertDismissable";
 
 class Layout extends React.Component {
   render() {
@@ -64,7 +65,10 @@ class Layout extends React.Component {
         <br />
 
         <div className="content">{this.props.children}</div>
-
+        {
+          this.props.error &&
+          <AlertDismissible {...this.props}/>
+        }
         <footer style={{ textAlign: "center" }}>
           <br/>
           <br/>
