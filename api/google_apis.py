@@ -12,6 +12,7 @@ import requests_oauth2
 from requests_oauth2 import OAuth2BearerToken
 
 from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 class google_apis:
   ''''
   FUNCTIONS:
@@ -119,23 +120,27 @@ class google_apis:
       event_obj = calendar_service.events().insert(calendarId=calendar_id, body=event).execute()
       return(event_obj['id']) 
 
-  def email_send(self, to, subject, message_text):
+  def email_send(self, to, subject, filePath):
     http = _auth.authorized_http(self.__mentor_cred)
     email_service = build('gmail', 'v1', http=http)
-    def create_message(to, subject, message_text):
+    def create_message(to, subject, filePath):
       """Create a message for an email.
 
       Args:
         sender: Email address of the sender.
         to: Email address of the receiver.
         subject: The subject of the email message.
+        filePath: File path to email in html file.
         message_text: The text of the email message.
 
       Returns:
         An object containing a base64url encoded email object.
       """
+      f = open(filePath, 'r')
+      message_text = f.read() 
       sender = self.__mentor_cred._subject
-      message = MIMEText(message_text)
+      message = MIMEText(message_text, 'html')
+      # message = MIMEMultipart('alternative')
       message['to'] = to
       message['from'] = sender
       message['subject'] = subject
@@ -164,13 +169,12 @@ class google_apis:
       except errors.HttpError as error:
         print('An error occurred: %s' % error)
 
-    msg = create_message(to, subject, message_text)
+    msg = create_message(to, subject, filePath)
     send_message(email_service, "me", msg)
 
 # FOR TESTING PURPOSES -- REMOVE LATER
-# def testFunction():
-#   g = google_apis()
-#   g.calendar_event("sohan.kalva.test2@villagementors.org", "shwetha.test1@villagebookbuilders.org", "sshinju@andrew.cmu.edu", "2020-08-08T13:00:00", "sohan.kalva.test2@villagementors.org")
-  # g.email_send('shwetha.shinju2@gmail.com', 'testagain', 'testtextagain')
-  # print(g.account_create('test','test', 'shwetha.shinju2@gmail.com'))
+def testFunction():
+  g = google_apis()
+  g.email_send('shwetha.shinju@gmail.com', 'testSubject', 'api\emails\welcome.html')
+  
 # testFunction()
