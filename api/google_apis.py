@@ -131,7 +131,6 @@ class google_apis:
         to: Email address of the receiver.
         subject: The subject of the email message.
         filePath: File path to email in html file.
-        message_text: The text of the email message.
 
       Returns:
         An object containing a base64url encoded email object.
@@ -140,13 +139,12 @@ class google_apis:
       message_text = f.read() 
       sender = self.__mentor_cred._subject
       message = MIMEText(message_text, 'html')
-      # message = MIMEMultipart('alternative')
       message['to'] = to
       message['from'] = sender
       message['subject'] = subject
       message_as_bytes = message.as_bytes() # the message should converted from string to bytes.
       message_as_base64 = base64.urlsafe_b64encode(message_as_bytes) #encode in base64 (printable letters coding)
-      raw = message_as_base64.decode()  # need to JSON serializable (no idea what does it means)
+      raw = message_as_base64.decode()  # need to JSON serializable
       return {'raw': raw} 
 
     def send_message(service, user_id, message):
