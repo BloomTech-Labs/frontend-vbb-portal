@@ -24,7 +24,7 @@ class Dashboard extends React.Component {
       })
       .catch((err) => {
         console.log(err);
-        // alert("There was an error in retrieving your appointments", err);
+        alert("There was an error in retrieving your appointments", err);
       });
   };
 
