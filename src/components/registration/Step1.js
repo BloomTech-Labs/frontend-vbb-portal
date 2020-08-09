@@ -72,19 +72,12 @@ function Step1(props) {
           /> 
   
          <br/>
-        {/* <label htmlFor="newsletter">Sign up for newsletter?</label>
-        <input className="form-control"
-        id="newsletter"
-        type="checkbox"
-        value={props.newsletter}
-        onChange={props.handleChange} 
-        />  */}
+       
         <div>
           <label>Sign up for newsletter? &nbsp;</label>
           <select name="newsletter" id="newsletter" value={props.state.newsletter}
           onChange={props.handleChange}>
-  
-            <option value="">-</option>
+            <option value="No choice">-</option>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
           </select>
