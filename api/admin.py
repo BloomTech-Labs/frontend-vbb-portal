@@ -7,9 +7,33 @@ admin.site.site_title = "VBB Portal"
 
 
 class LibraryAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "time_zone","calendar_id")
+    list_display = (
+        "id",
+        "name",
+        "time_zone",
+        "calendar_id",
+        "calendar_name",
+        "whatsapp_group",
+        "program_director_name",
+        "program_director_phone",
+        "program_director_email",
+        "library_gmail_group",
+        "library_classroom",
+    )
     readonly_fields = ("id",)
-    search_fields = ("id", "name", "time_zone","calendar_id")
+    search_fields = (
+        "id",
+        "name",
+        "time_zone",
+        "calendar_id",
+        "calendar_name",
+        "whatsapp_group",
+        "program_director_name",
+        "program_director_phone",
+        "program_director_email",
+        "library_gmail_group",
+        "library_classroom",
+    )
 
 
 class LanguageAdmin(admin.ModelAdmin):
@@ -60,6 +84,7 @@ class ComputerAdmin(admin.ModelAdmin):
         "language",
         "computer_num",
         "computer_email",
+        "room_id",
     )
     readonly_fields = ("id",)
     search_fields = (
@@ -68,6 +93,7 @@ class ComputerAdmin(admin.ModelAdmin):
         "language",
         "computer_num",
         "computer_email",
+        "room_id",
     )
 
 
