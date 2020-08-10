@@ -95,6 +95,7 @@ class MasterForm extends React.Component {
   }
 
   _next = () => {
+    window.scrollTo(0, 0)
     let currentStep = this.state.currentStep
     currentStep = currentStep >= 4 ? 5 : currentStep + 1
     this.setState({
@@ -142,11 +143,8 @@ class MasterForm extends React.Component {
     return (
 
       <React.Fragment>
-        <h1>Mentor Registration</h1>
-        <p>Step {this.state.currentStep} of 5</p>
-
+        <h5>Mentor Registration: Step {this.state.currentStep} of 5</h5>
         <form onSubmit={this.handleSubmit}>
-
           <Step1
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
@@ -180,15 +178,9 @@ class MasterForm extends React.Component {
             hasProblems={this.hasProblems}
           />  
 
-          
           {this.previousButton()}
-
           {this.nextButton()}
-
-
-
         </form>
-
       </React.Fragment>
     );
   }
