@@ -9,25 +9,19 @@ function Step2(props) {
     }
     return (
       <div className="form-group">
-  
-         
-  
         <div>
           <label>Are you 18 years or older?</label>
           <select name="age" id="age" value={props.state.age}
-          onChange={props.handleChange}>
+            onChange={props.handleChange}>
             <option value="No choice">-</option>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
           </select>
         </div>
-  
-  
         <div>
           <label>Which of the following best describes you?</label>
           <select name="occupation" id="occupation" onChange={props.handleChange}
-          value={props.state.occupation}>
-            
+            value={props.state.occupation}>
             <option value="No choice">-</option>
             <option value="Homemaker">Homemaker</option>
             <option value="Retired">Retired</option>
@@ -37,19 +31,18 @@ function Step2(props) {
             <option value="Other">Other</option>
           </select>
         </div>
-  
-        {props.state.occupation === "College_Student" && 
-            <div>
-              <label>Are you part of VBB Village Mentors Chapter/Club</label>
-          <select name="vbb_chapter" id="vbb_chapter" value={props.state.vbb_chapter}
-          onChange={props.handleChange}>
-            <option value="No choice">-</option>  
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-          </select>
+        {
+          props.state.occupation === "College_Student" && 
+          <div>
+            <label>Are you part of VBB Village Mentors Chapter/Club</label>
+            <select name="vbb_chapter" id="vbb_chapter" value={props.state.vbb_chapter}
+            onChange={props.handleChange}>
+              <option value="No choice">-</option>  
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
           </div>
-          }
-  
+        }
         <label htmlFor="affiliation">What organization or school are you affiliated with?</label>
         <input
           className="form-control"
@@ -59,9 +52,7 @@ function Step2(props) {
           placeholder="If none, leave blank"
           value={props.affiliation}
           onChange={props.handleChange}
-          
-          /> 
-  
+        />
         <label htmlFor="opportunity">How did you hear about this opportunity?</label>  
         <select name="opportunity" id="opportunity" type="opportunity"
          value={props.opportunity}
@@ -78,7 +69,6 @@ function Step2(props) {
           <option value="Other">Other</option>
         </select>
   
-  
         <label htmlFor="languague">What languages can you speak comfortably?</label>
         <input
           className="form-control"
@@ -88,19 +78,17 @@ function Step2(props) {
           placeholder="English, Spanish, Portuguese, Italian, etc"
           value={props.language}
           onChange={props.handleChange}
-          
-          />     
+        />     
   
-  
-          <div>
-            <label htmlFor="timeZone">Your Timezone:</label>&nbsp;
-            <select name="timeZone" id="timeZone" onChange={ props.handleChange } value={props.state.timeZone}>
-            {
-              moment.tz.names().map(tz => {
-                return <option key={tz} value={tz}>{tz}</option>;
-            })}
-            </select>
-          </div>
+        <div>
+          <label htmlFor="timeZone">What Timezone are you in?</label>&nbsp;
+          <select name="timeZone" id="timeZone" onChange={ props.handleChange } value={props.state.timeZone}>
+          {
+            moment.tz.names().map(tz => {
+              return <option key={tz} value={tz}>{tz}</option>;
+          })}
+          </select>
+        </div>
       </div>
     );
   }
