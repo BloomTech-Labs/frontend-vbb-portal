@@ -150,6 +150,11 @@ class Booking extends React.Component {
   };
 
   submitRequest = () => {
+    this.handleCommitChange();
+    this.postRequest();
+  }
+
+  postRequest = () => {
     axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.headers = {
