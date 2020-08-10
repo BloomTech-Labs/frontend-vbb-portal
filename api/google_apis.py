@@ -13,6 +13,10 @@ from requests_oauth2 import OAuth2BearerToken
 
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from bs4 import BeautifulSoup
+import re
+import random
+# from dateutil.relativedelta import relativedelta
 class google_apis:
   ''''
   FUNCTIONS:
@@ -65,6 +69,8 @@ class google_apis:
     while(userExists(primaryEmail)):
       addedID+=1
       primaryEmail = firstName + '.' + lastName + str(addedID) + '@villagementors.org'
+    pwd = 'VBB' + str(random.randint(0, 1000)) + random.choice(['!','@','#','$','%','&'])
+
     data = ''' 
     {
       "primaryEmail": "%s",
@@ -72,17 +78,16 @@ class google_apis:
         "familyName": "%s",
         "givenName": "%s"
       },
-      "password": "villageBookBuilders",
+      "password": "%s",
       "changePasswordAtNextLogin": "true",
       "recoveryEmail": "%s",
     }
-    '''% (primaryEmail, lastName, firstName, personalEmail)
+    '''% (primaryEmail, lastName, firstName, pwd, personalEmail)
 
     with requests.Session() as s:
       s.auth = OAuth2BearerToken(self.__webdev_cred.token)
       r = s.post(url, headers=headers, data=data)
-      print('in while loop', data)
-    return primaryEmail
+    return (primaryEmail, pwd)
 
 
   def calendar_event(self, menteeEmail, mentorEmail, personalEmail, start_time, calendar_id, duration=1):
@@ -115,27 +120,48 @@ class google_apis:
               {'method': 'popup', 'minutes': 10}, # pop up reminder, 10 min before event
               ],
           },
-          'sendUpdates': ['all']
       }
       event_obj = calendar_service.events().insert(calendarId=calendar_id, body=event).execute()
       return(event_obj['id']) 
 
-  def email_send(self, to, subject, filePath):
+  def email_send(self, to, subject, templatePath, personalizedPath, extraData=None):
     http = _auth.authorized_http(self.__mentor_cred)
     email_service = build('gmail', 'v1', http=http)
-    def create_message(to, subject, filePath):
+
+    def updatePersonalizedHTML(templatePath, personalizedPath, extraData):
+      """ Get HTML with the extraData filled in where specified. 
+      - Use Beautiful soup to find and replace the placeholder values with the proper user
+        specific info 
+      - use 'with' to write the beautifulSoup string into a newFile - the personalized version of the 
+        original templatePath. This personalized version will be sent out in the email and will be 
+        rewritten everytime the function is called.
+      """
+      f = open(templatePath, 'r')
+      template = f.read()
+      soup = BeautifulSoup(template)
+      if extraData != None:
+        for key in extraData:
+          target = soup.find_all(text=re.compile(r'%s'%key))
+          for v in target:
+            v.replace_with(v.replace('%s'%key, extraData[key]))
+        # now soup string has the proper values
+        with open(personalizedPath, "w") as file:
+          file.write(str(soup))
+
+    def create_message(to, subject, personalizedPath):
       """Create a message for an email.
 
       Args:
         sender: Email address of the sender.
         to: Email address of the receiver.
         subject: The subject of the email message.
-        filePath: File path to email in html file.
+        personalizedPath: File path to email in html file with variable replaced
+                  with proper values.
 
       Returns:
         An object containing a base64url encoded email object.
       """
-      f = open(filePath, 'r')
+      f = open(personalizedPath, 'r')
       message_text = f.read() 
       sender = self.__mentor_cred._subject
       message = MIMEText(message_text, 'html')
@@ -167,12 +193,13 @@ class google_apis:
       except errors.HttpError as error:
         print('An error occurred: %s' % error)
 
-    msg = create_message(to, subject, filePath)
+    updatePersonalizedHTML(templatePath, personalizedPath, extraData)
+    msg = create_message(to, subject, personalizedPath)
     send_message(email_service, "me", msg)
 
 # FOR TESTING PURPOSES -- REMOVE LATER
 def testFunction():
   g = google_apis()
-  g.email_send('shwetha.shinju@gmail.com', 'testSubject', 'api\emails\welcome.html')
+  g.email_send("shwetha.shinju@gmail.com", "personalized", "api\emails\\test\\test-template.html", "api\emails\\test\\test.html", {'__first_name': "Shwetha"})
   
 # testFunction()
