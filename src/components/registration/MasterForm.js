@@ -45,27 +45,25 @@ class MasterForm extends React.Component {
   }
 
   hasProblems =() => {
-    var base = "Please fix:\n"
+    var base = "Please fix the following fields before submitting your application:\n"
     var problems = ""
-    
-     
-      if (this.state.firstname === "") problems += "first name\n" 
-      if (this.state.lastname === "") problems += "last name\n"
-      if (this.state.email === "") problems+= "email\n";
-      if (this.state.phone === "") problems+= "phone\n";
-      if (this.state.newsletter === "") problems+= "newsletter\n";
-      if (this.state.age === "") problems+= "age\n";
-      if (this.state.occupation === "") problems+= "occupation\n";
-      if (this.state.opportunity === "") problems+= "opportunity\n";
-      if (this.state.language === "") problems+= "language\n";
-      if (this.state.timeZone === "") problems+= "time zone\n";
-      if (this.state.availability === "") problems+= "availability\n";
-      if (this.state.termsCond === "") problems+= "Terms and Conditions\n";
-      if (this.state.molestation === "") problems+= "arrested\n";
-      if (this.state.mentor4Months === "") problems+= "mentor for 4 months\n";
-      if (this.state.acceptCommitment === "") problems+= "initials\n";
-      if (this.state.moreInvolved === "") problems+= "get more involved?\n";
-      if (this.state.city === "") problems+= "city\n";
+      if (this.state.firstname === "") problems += " - first name\n" 
+      if (this.state.lastname === "") problems += " - last name\n"
+      if (this.state.email === "") problems+= " - email\n";
+      if (this.state.phone === "") problems+= " - phone\n";
+      if (this.state.newsletter === "") problems+= " - newsletter\n";
+      if (this.state.age === "") problems+= " - age\n";
+      if (this.state.occupation === "") problems+= " - occupation\n";
+      if (this.state.opportunity === "") problems+= " - opportunity\n";
+      if (this.state.language === "") problems+= " - language\n";
+      if (this.state.timeZone === "") problems+= " - time zone\n";
+      if (this.state.availability === "") problems+= " - availability\n";
+      if (this.state.termsCond === "") problems+= " - Terms and Conditions\n";
+      if (this.state.molestation === "") problems+= " - arrested\n";
+      if (this.state.mentor4Months === "" || this.state.mentor4Months ==="No") problems+= " - mentor for 4 months\n";
+      if (this.state.acceptCommitment === "") problems+= " - initials\n";
+      if (this.state.moreInvolved === "") problems+= " - get more involved?\n";
+      if (this.state.city === "") problems+= " - city\n";
       if (problems === "") return false
       return base + problems 
   }
