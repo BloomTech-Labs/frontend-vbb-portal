@@ -65,7 +65,9 @@ function Step5(props) {
   
         </div>
 
-        {props.hasProblems() && props.hasProblems()}
+        <div style={{"white-space": "pre-wrap", color: "red"}}>
+            {props.hasProblems() && props.hasProblems()}
+        </div>
 
         <button className="btn btn-success btn-block" disabled={props.hasProblems()}>Sign up</button>
       </React.Fragment>

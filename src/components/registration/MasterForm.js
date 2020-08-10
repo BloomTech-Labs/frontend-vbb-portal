@@ -18,22 +18,35 @@ class MasterForm extends React.Component {
       firstname: '',
       lastname: '',
       email: '',
+      phone: '',
       vbbemail: '',
+      newsletter: '',
       age: '',
       occupation: '',
+      affiliation: '',
+      opportunity: '',
+      language: '',
+      timeZone: '',
+      availability: '',
+      termsCond: '',
+      molestation: '',
+      mentor4Months: '',
+      acceptCommitment: '',
+      moreInvolved: '',
+      city: '',
       vbb_chapter: '',
       isLoggedIn: false,
       contactSource: '',
       timeZone: moment.tz.guess(),
       status: '',
-      phone: '',
+      
 
       
     }
   }
 
   hasProblems =() => {
-    var base = "Please fix:"
+    var base = "Please fix:\n"
     var problems = ""
     
      
@@ -44,14 +57,13 @@ class MasterForm extends React.Component {
       if (this.state.newsletter === "") problems+= "newsletter\n";
       if (this.state.age === "") problems+= "age\n";
       if (this.state.occupation === "") problems+= "occupation\n";
-      if (this.state.affiliation === "") problems+= "affiliation\n";
       if (this.state.opportunity === "") problems+= "opportunity\n";
       if (this.state.language === "") problems+= "language\n";
       if (this.state.timeZone === "") problems+= "time zone\n";
       if (this.state.availability === "") problems+= "availability\n";
       if (this.state.termsCond === "") problems+= "Terms and Conditions\n";
       if (this.state.molestation === "") problems+= "arrested\n";
-      if (this.state.mentor4months === "") problems+= "mentor 4 months\n";
+      if (this.state.mentor4Months === "") problems+= "mentor for 4 months\n";
       if (this.state.acceptCommitment === "") problems+= "initials\n";
       if (this.state.moreInvolved === "") problems+= "get more involved?\n";
       if (this.state.city === "") problems+= "city\n";
@@ -72,26 +84,7 @@ class MasterForm extends React.Component {
     opportunity, language, timeZone, availability, newsletter, termsCond, 
     molestation, mentor4months, acceptCommitment, moreInvolved, howInvolved, city,
     } = this.state
-    alert(`Your registration detail: \n 
-           Email: ${email} \n 
-           First name: ${firstname} \n
-           Last name: ${lastname} \n
-           phone: ${phone} \n
-           age: ${age} \n
-           Status: ${occupation} \n
-           Affiliation: ${affiliation} \n
-           Opportunity: ${opportunity} \n
-           Language: ${language} \n
-           Time zone: ${timeZone} \n
-           Availability: ${availability} \n
-           Newsletter: ${newsletter} \n
-           Terms and Conditions: ${termsCond} \n
-           molestation: ${molestation} \n
-           mentor for 4 months: ${mentor4months} \n
-           Accept the commitment: ${acceptCommitment} \n
-           More Involved: ${moreInvolved} \n
-           How involved: ${howInvolved} \n
-           City: $${city}`)
+    
     this.props.onAuth(
       this.state.firstname,
       this.state.lastname,
