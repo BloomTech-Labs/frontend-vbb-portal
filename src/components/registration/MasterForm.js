@@ -26,7 +26,6 @@ class MasterForm extends React.Component {
       affiliation: '',
       opportunity: '',
       language: '',
-      timeZone: '',
       availability: '',
       termsCond: '',
       molestation: '',
@@ -80,10 +79,7 @@ class MasterForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    const { email, firstname, lastname, occupation, phone, age, affiliation,
-    opportunity, language, timeZone, availability, newsletter, termsCond, 
-    molestation, mentor4months, acceptCommitment, moreInvolved, howInvolved, city,
-    } = this.state
+    
     
     this.props.onAuth(
       this.state.firstname,
