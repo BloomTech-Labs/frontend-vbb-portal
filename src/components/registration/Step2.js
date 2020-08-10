@@ -100,23 +100,7 @@ function Step2(props) {
                 return <option key={tz} value={tz}>{tz}</option>;
             })}
             </select>
-  
           </div>
-  
-  
-        <label htmlFor="availability">Please list out three times you would 
-          be available weekly for your 30 minutes time 
-          slot with your mentee (ex Monday 7pm to 9pm CST)</label>
-        <input
-          className="form-control"
-          id="availability"
-          name="availability"
-          type="availability"
-          placeholder=""
-          value={props.availability}
-          onChange={props.handleChange}
-          
-          />    
       </div>
     );
   }
