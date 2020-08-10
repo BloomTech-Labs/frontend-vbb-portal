@@ -1,11 +1,10 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import PrivateRoute from "./components/PrivateRoute";
-
-import Booking from "./components/Booking";
-import Dashboard from "./components/Dashboard";
-import MasterForm from "./components/registration/MasterForm";
-import HomeSignin from "./components/HomeSignin";
+import PrivateRoute from "./PrivateRoute";
+import Booking from "./Booking";
+import Dashboard from "./Dashboard";
+import MasterForm from "./registration/MasterForm";
+import HomeSignin from "./HomeSignin";
 
 
 function Routes() {
