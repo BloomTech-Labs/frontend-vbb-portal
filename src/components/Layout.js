@@ -2,13 +2,8 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../store/actions/auth";
-<<<<<<< HEAD
-import logo from "../vbb-logo.png";
-import AlertDismissible from "./AlertDismissable";
-=======
 import fullLogo from "../vbb-full-logo.png";
 import miniLogo from "../vbb-picture-logo.png";
->>>>>>> 3e220418168a8f158da10f1ef269a3a7702d96fc
 
 class Layout extends React.Component {
   render() {
@@ -104,20 +99,8 @@ class Layout extends React.Component {
         </nav>
 
         <div className="content">{this.props.children}</div>
-<<<<<<< HEAD
-        {
-          this.props.error &&
-          <AlertDismissible {...this.props}/>
-        }
-        <footer style={{ textAlign: "center" }}>
-          <br/>
-          <br/>
-          &copy; Village Book Builders | All Rights Reserved
-        </footer>
-=======
 
         <footer>&copy; Village Book Builders | All Rights Reserved</footer>
->>>>>>> 3e220418168a8f158da10f1ef269a3a7702d96fc
       </div>
     );
   }

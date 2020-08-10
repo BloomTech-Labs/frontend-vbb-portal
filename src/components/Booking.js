@@ -143,18 +143,12 @@ class Booking extends React.Component {
   handleDropDownChange = (e) => {
     var newState = {};
     //newState["time"] = false; //FIXME make sure the time drop down is unselected so the user isn't confused.
-<<<<<<< HEAD
-    newState[e.target.name] = e.target.value; 
-    this.setState(newState, () => {this.fetchTimes();});
-  }
-=======
     newState[e.target.name] = e.target.value;
     this.setState(newState, () => {
       this.fetchTimes();
     });
   };
 
->>>>>>> 3e220418168a8f158da10f1ef269a3a7702d96fc
   submitRequest = () => {
     this.handleCommitChange();
     this.postRequest();
@@ -167,22 +161,6 @@ class Booking extends React.Component {
       "Content-Type": "application/json",
       Authorization: `Token ${this.props.token}`,
     };
-<<<<<<< HEAD
-    axios.post("http://127.0.0.1:8000/api/book/", null, {
-      params: {
-        library: this.state.library,
-        language: this.state.language,
-        hsm: this.state.time,
-      }
-    }).then(res => {
-      console.log("Success: ", res.success);
-      alert("Success:", res.success);
-      this.props.history.push("/");
-    }).catch(err => {
-      console.log(err);
-    });
-  }
-=======
     axios
       .get("http://127.0.0.1:8000/api/booking/", {
         params: {
@@ -200,7 +178,6 @@ class Booking extends React.Component {
         console.log(err);
       });
   };
->>>>>>> 3e220418168a8f158da10f1ef269a3a7702d96fc
 
   render() {
     return (
