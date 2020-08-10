@@ -104,8 +104,8 @@ function Step2(props) {
           </div>
   
   
-        <label htmlFor="availability">Please list our three times you would 
-          be Available weekly for your 30 minutes time 
+        <label htmlFor="availability">Please list out three times you would 
+          be available weekly for your 30 minutes time 
           slot with your mentee (ex Monday 7pm to 9pm CST)</label>
         <input
           className="form-control"

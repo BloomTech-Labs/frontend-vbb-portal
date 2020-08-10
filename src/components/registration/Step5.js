@@ -60,10 +60,13 @@ function Step5(props) {
           
           /> 
           
-          {props.hasProblems() && props.hasProblems()}
+          
   
   
         </div>
+
+        {props.hasProblems() && props.hasProblems()}
+
         <button className="btn btn-success btn-block" disabled={props.hasProblems()}>Sign up</button>
       </React.Fragment>
     );
