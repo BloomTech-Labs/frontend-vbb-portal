@@ -148,8 +148,10 @@ class MasterForm extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
-        <h5>Mentor Registration: Step {this.state.currentStep} of 5</h5>
+      <div className="signup-form">
+        <h1 id="signup-header">
+          Mentor Registration: Step {this.state.currentStep} of 5
+        </h1>
         <form onSubmit={this.handleSubmit}>
           <Step1
             currentStep={this.state.currentStep}
@@ -187,7 +189,7 @@ class MasterForm extends React.Component {
           {this.previousButton()}
           {this.nextButton()}
         </form>
-      </React.Fragment>
+      </div>
     );
   }
 }
