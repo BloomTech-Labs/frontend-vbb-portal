@@ -126,7 +126,7 @@ class Computer(models.Model):
         verbose_name="computer email", max_length=70, null=True, blank=True
     )
     room_id = models.CharField(
-        verbose_name="room id", max_length=30, null=True, blank=True
+        verbose_name="room id", max_length=100, null=True, blank=True
     )
 
     def __str__(self):
