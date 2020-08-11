@@ -203,13 +203,13 @@ function Step3(props) {
       </div>
 
       <div>
-        <label htmlFor="mentor4Months">
+        <label htmlFor="commit">
           Can you commit to being a mentor for a minimun of 4 months?
         </label>
         <select
-          name="mentor4Months"
-          id="mentor4Months"
-          value={props.state.metor4Months}
+          name="commit"
+          id="commit"
+          value={props.state.commit}
           onChange={props.handleChange}
         >
           <option value="No choice">-</option>
@@ -218,18 +218,18 @@ function Step3(props) {
         </select>
       </div>
 
-      <label htmlFor="acceptCommitment">
+      <label htmlFor="initials">
         Do you agree to the above terms and conditions, and to 4-month
         commitment to your mentoring session?
       </label>
       <p>Sign by putting your initials.</p>
       <input
         className="form-control"
-        id="acceptCommitment"
-        name="acceptCommitment"
+        id="initials"
+        name="initials"
         type="text"
         placeholder="Initials"
-        value={props.state.acceptCommitment}
+        value={props.state.initials}
         onChange={props.handleChange}
       />
     </div>
