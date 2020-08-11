@@ -17,7 +17,7 @@ export class HomeSignin extends Component {
   render() {
     return (
       <div className="twocol-container">
-        <div className="column leftcol" id="signin-box">
+        <div className="column" id="signin-box">
           <h1 id="welcome-header">Welcome to VBB Portal!</h1>
           <h4 id="portal-purpose">
             Let's give hope to children through mentoring.
