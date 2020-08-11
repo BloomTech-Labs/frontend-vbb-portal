@@ -323,11 +323,11 @@ class Booking extends React.Component {
           </a>
           <button
             className="btn btn-light"
-            id="requestappt-btn"
+            id="requestsession-btn"
             disabled={!this.state.isCommitted || this.state.time === false}
             onClick={this.submitRequest}
           >
-            REQUEST APPOINTMENT
+            REQUEST SESSION
           </button>
           <br />
         </div>
