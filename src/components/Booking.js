@@ -185,7 +185,7 @@ class Booking extends React.Component {
     return (
       <div className="twocol-container">
         <div className="column" id="booking-box">
-          <h1 id="booking-header">Book Your Mentoring Appointment Below!</h1>
+          <h1 id="booking-header">Book Your Weekly Mentoring Session Below!</h1>
           <p>
             Select a day and time that you have available each week.
             <br />
@@ -236,9 +236,9 @@ class Booking extends React.Component {
               onChange={this.handleMentorChange}
             />
             <label htmlFor="mentor">Are you a returning mentor?</label>
-            <p style={{ fontSize: "medium" }}>
-              (Check to rebook an existing appointment)
-            </p>
+            {/* <p style={{ fontSize: "medium" }}>
+              (Check to rebook your current session)
+            </p> */}
             {this.state.isReturning && (
               <div>
                 <label htmlFor="library" style={{ paddingLeft: "50px" }}>
@@ -263,10 +263,10 @@ class Booking extends React.Component {
                 </select>
                 <br />
                 <br />
-                <br />
-                <br />
               </div>
             )}
+            <br />
+            <br />
             <label htmlFor="weekday">Day of the Week:&nbsp;</label>
             <select
               name="weekday"
@@ -306,7 +306,7 @@ class Booking extends React.Component {
                   name="commitment"
                   checked={this.state.isCommitted}
                   onChange={this.handleCommitChange}
-                ></input>
+                />
                 <label htmlFor="commitment">
                   Can you commit to mentor weekly (every{" "}
                   {this.display_day(this.state.weekday)} at{" "}
@@ -323,11 +323,11 @@ class Booking extends React.Component {
           </a>
           <button
             className="btn btn-light"
-            id="requestappt-btn"
+            id="requestsession-btn"
             disabled={!this.state.isCommitted || this.state.time === false}
             onClick={this.submitRequest}
           >
-            REQUEST APPOINTMENT
+            REQUEST SESSION
           </button>
           <br />
         </div>

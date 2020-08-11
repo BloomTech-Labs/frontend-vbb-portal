@@ -11,7 +11,7 @@ function Routes() {
   return (
     <div>
       <PrivateRoute exact path="/" component={Dashboard} />
-      <Route exact path="/booking/" component={Booking} />
+      <PrivateRoute exact path="/booking/" component={Booking} />
       <Route exact path="/signin/" component={HomeSignin} />
       <Route exact path="/signup/" component={MasterForm} />
       {/* <Route exact path="/donate/" component={Donation} /> */}

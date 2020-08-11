@@ -113,10 +113,6 @@ a {
   padding-top: 5px;
 }
 
-#appt-change-note {
-  text-indent: -40px;
-}
-
 /* BUTTONS */
 
 .btn {
@@ -147,7 +143,7 @@ a {
 }
 
 .signin-btn,
-#requestappt-btn,
+#requestsession-btn,
 .book-btn,
 .l3-btn,
 .l8-btn {
@@ -158,7 +154,8 @@ a {
 .gcal-btn,
 .signup-btn,
 .l1-btn,
-.l6-btn {
+.l6-btn,
+.next-btn {
   background-color: #549bea;
 }
 
@@ -177,12 +174,13 @@ a {
   margin-right: 20px;
 }
 
-.goback-btn {
+.goback-btn,
+.prev-btn {
   background-color: gray;
   margin: 10px;
 }
 
-#requestappt-btn {
+#requestsession-btn {
   margin: 10px;
 }
 
@@ -308,7 +306,7 @@ label {
   }
 
   .btns {
-    padding-left: 40px;
+    /* padding-left: 40px; */
   }
 
   #signin-box {
@@ -372,11 +370,6 @@ label {
 
   p {
     font-size: 16px;
-  }
-
-  #appt-change-note {
-    text-indent: 0px;
-    margin-left: -20px;
   }
 
   h1 {
