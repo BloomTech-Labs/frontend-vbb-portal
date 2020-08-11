@@ -34,7 +34,7 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <div className="twocol-container">
+      <div className="twocol-container" id="dashboard">
         <div className="column leftcol" id="mentoring-session-box">
           <h2 style={{ color: "#4C4C49" }}>My Weekly Mentoring Session:</h2>
           <h3 style={{ color: "#6AC66B", textIndent: "25px" }}>
