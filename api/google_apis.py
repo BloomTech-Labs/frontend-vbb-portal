@@ -90,7 +90,7 @@ class google_apis:
     return (primaryEmail, pwd)
 
 
-  def calendar_event(self, menteeEmail, mentorEmail, personalEmail, start_time, calendar_id, duration=1):
+  def calendar_event(self, menteeEmail, mentorEmail, personalEmail, start_time, calendar_id, duration=.5):
       calendar_service = build('calendar', 'v3', credentials=self.__webdev_cred)
       timezone = 'America/New_York'
       start_date_time_obj = datetime.strptime(start_time, '%Y-%m-%dT%H:%M:%S')
@@ -200,6 +200,7 @@ class google_apis:
 # FOR TESTING PURPOSES -- REMOVE LATER
 def testFunction():
   g = google_apis()
-  g.email_send("shwetha.shinju@gmail.com", "personalized", "api\emails\\test\\test-template.html", "api\emails\\test\\test.html", {'__first_name': "Shwetha"})
+  # g.email_send("shwetha.shinju@gmail.com", "personalized", "api\emails\\test\\test-template.html", "api\emails\\test\\test.html", {'__first_name': "Shwetha"})
+  g.calendar_event("shwetha.test1@villagebookbuilders.org", "sohan.kalva.test2@villagementors.org", "shwetha.shinju@gmail.com", "2020-08-10T22:00:00", "shwetha.test1@villagebookbuilders.org")
   
-# testFunction()
+testFunction()
