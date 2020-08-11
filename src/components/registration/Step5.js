@@ -49,8 +49,8 @@ function Step5(props) {
               </option>
               <option value="startChapter">
                 {" "}
-                Start/Join a VBB Village Mentors Chapter at your school or
-                company (A club of fellow mentors)
+                Start/join a VBB Village Mentors Chapter at your school or
+                company (a club of fellow mentors)
               </option>
               <option value="JoinClub"> Start/Join a Book Club</option>
               <option value="research"> Research</option>
