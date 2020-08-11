@@ -49,12 +49,12 @@ function Step2(props) {
           name="affiliation"
           type="affiliation"
           placeholder="If none, leave blank"
-          value={props.affiliation}
+          value={props.state.affiliation}
           onChange={props.handleChange}
         />
-        <label htmlFor="opportunity">How did you hear about this opportunity?</label>  
-        <select name="opportunity" id="opportunity" type="opportunity"
-         value={props.opportunity}
+        <label htmlFor="referral_source">How did you hear about this opportunity?</label>  
+        <select name="referral_source" id="referral_source" type="text"
+         value={props.state.referral_source}
           onChange={props.handleChange} >
           <option value="No choice">-</option>    
           <option value="Friend">Friend</option>
@@ -75,7 +75,7 @@ function Step2(props) {
           name="language"
           type="language"
           placeholder="English, Spanish, Portuguese, Italian, etc"
-          value={props.language}
+          value={props.state.language}
           onChange={props.handleChange}
         />     
   

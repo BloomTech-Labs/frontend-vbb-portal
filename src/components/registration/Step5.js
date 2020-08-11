@@ -6,6 +6,7 @@ function Step5(props) {
     if (props.currentStep !== 5) {
       return null
     }
+    console.log(props.hasProblems());
     return (
       <React.Fragment>
         <div className="form-group">
@@ -18,7 +19,7 @@ function Step5(props) {
   
           <div>
           <label>Would you like to get more involved?</label>
-            <select name="moreInvolved" id="moreInvolved" value={props.moreInvolved}
+            <select name="moreInvolved" id="moreInvolved" value={props.state.moreInvolved}
               onChange={props.handleChange}>
               <option value="">-</option>
               <option value="yes">Yes</option>
@@ -32,7 +33,7 @@ function Step5(props) {
             <div>
               <label>How would you like to get more
                   involved (Select all that apply)?</label>
-                <select name="howInvolved" id="howInvolved" value={props.howInvolved}
+                <select name="howInvolved" id="howInvolved" value={props.state.howInvolved}
                   onChange={props.handleChange}>  
                 <option value="fundraiser"> Run or help with a fundraiser</option>
                 <option value="ambassador"> Be a social media advocate or an ambassador</option>
@@ -55,7 +56,7 @@ function Step5(props) {
           required
           type="text"
           placeholder="Philadelphia, PA"
-          value={props.city}
+          value={props.state.city}
           onChange={props.handleChange}
           
           /> 
@@ -65,11 +66,12 @@ function Step5(props) {
   
         </div>
 
-        <div style={{"white-space": "pre-wrap", color: "red"}}>
-            {props.hasProblems() && props.hasProblems()}
+        <div style={{whiteSpace: "pre-wrap", color: "red"}}>
+            {props.hasProblems() && <div>Problems:
+              hi{props.hasProblems()}hi</div>}
         </div>
 
-        <button className="btn btn-success btn-block" disabled={props.hasProblems()}>Sign up</button>
+        <button onChangeCapture className="btn btn-success btn-block" disabled={props.hasProblems()}>Sign up</button>
       </React.Fragment>
     );
     

@@ -15,29 +15,26 @@ class MasterForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.state = {
       currentStep: 1,
-      firstname: "",
-      lastname: "",
-      email: "",
-      phone: "",
-      vbbemail: "",
-      newsletter: "",
-      age: "",
-      occupation: "",
-      affiliation: "",
-      opportunity: "",
-      language: "",
-      availability: "",
-      termsCond: "",
-      molestation: "",
-      mentor4Months: "",
-      acceptCommitment: "",
-      moreInvolved: "",
-      city: "",
-      vbb_chapter: "",
-      isLoggedIn: false,
-      contactSource: "",
+      firstname: "ed",
+      lastname: "ringger",
+      email: "edringger@gmail.com",
+      phone: "8012287860",
+      vbbemail: "ed.test1@villagebookbuilders.org",
+      newsletter: "Yes",
+      age: "Yes",
+      occupation: "College_Student",
+      affiliation: "BYU",
+      referral_source: "Other",
+      language: "English, German",
+      termsCond: "Yes",
+      charges: "No",
+      mentor4Months: "Yes",
+      acceptCommitment: "KER",
+      moreInvolved: "Develop your website for you",
+      city: "Seattle",
+      vbb_chapter: "No",
+      contactSource: "?",
       timeZone: moment.tz.guess(),
-      status: "",
     };
   }
 
@@ -52,14 +49,13 @@ class MasterForm extends React.Component {
     if (this.state.newsletter === "") problems += " - newsletter\n";
     if (this.state.age === "") problems += " - age\n";
     if (this.state.occupation === "") problems += " - occupation\n";
-    if (this.state.opportunity === "") problems += " - opportunity\n";
+    if (this.state.referral_source === "") problems += " - referral source\n";
     if (this.state.language === "") problems += " - language\n";
     if (this.state.timeZone === "") problems += " - time zone\n";
-    if (this.state.availability === "") problems += " - availability\n";
-    if (this.state.termsCond === "") problems += " - Terms and Conditions\n";
-    if (this.state.molestation === "") problems += " - arrested\n";
+    if (this.state.termsCond === ""|| this.state.mentor4Months === "No") problems += " - accept Terms and Conditions\n";
+    if (this.state.charges === "") problems += " - charged or \n";
     if (this.state.mentor4Months === "" || this.state.mentor4Months === "No")
-      problems += " - mentor for 4 months\n";
+      problems += " - mentoring commitment\n";
     if (this.state.acceptCommitment === "") problems += " - initials\n";
     if (this.state.moreInvolved === "") problems += " - get more involved?\n";
     if (this.state.city === "") problems += " - city\n";
@@ -81,6 +77,8 @@ class MasterForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    alert("sumbit");
+    console.log("submit");
 
     this.props.onAuth(
       this.state.firstname,
@@ -90,7 +88,7 @@ class MasterForm extends React.Component {
       this.state.vbbemail,
       this.state.phone,
       this.state.newsletter,
-      this.state.status,
+      this.state.occupation,
       this.state.affiliation,
       this.state.contactSource,
       this.state.howInvolved
@@ -200,7 +198,7 @@ const mapDispatchToProps = (dispatch) => {
       timeZone,
       email,
       phone,
-      status,
+      occupation,
       affiliation,
       contact,
       howInvolved
@@ -212,7 +210,7 @@ const mapDispatchToProps = (dispatch) => {
           timeZone,
           email,
           phone,
-          status,
+          occupation,
           affiliation,
           contact,
           howInvolved

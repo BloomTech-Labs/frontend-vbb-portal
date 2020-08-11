@@ -184,7 +184,7 @@ function Step3(props) {
         <div>
           <label htmlFor="termsCond">Do you agree to the Terms and 
           Conditions as explained above?</label>
-          <select name="termsCond" id="termsCond" value={props.termsCond}
+          <select name="termsCond" id="termsCond" value={props.state.termsCond}
           onChange={props.handleChange}>
             <option value="No choice">-</option>
             <option value="Yes">Yes</option>
@@ -193,9 +193,9 @@ function Step3(props) {
         </div>      
         
         <div>
-          <label htmlFor="molestation">Have you ever been arrested, charged,
-          or convicted of child abuse or molestation of any form?</label>
-          <select name="molestation" id="molestation" value={props.molestation}
+          <label htmlFor="charges">Have you ever been arrested, charged,
+          or convicted of child abuse of any form?</label>
+          <select name="charges" id="charges" value={props.state.charges}
           onChange={props.handleChange}>
             <option value="No choice">-</option>
             <option value="Yes">Yes</option>
@@ -206,7 +206,7 @@ function Step3(props) {
         <div>
           <label htmlFor="mentor4Months">Can you commit to being a mentor 
           for a minimun of 4 months?</label>
-          <select name="mentor4Months" id="mentor4Months" value={props.metor4Months}
+          <select name="mentor4Months" id="mentor4Months" value={props.state.metor4Months}
           onChange={props.handleChange}>
             <option value="No choice">-</option>
             <option value="Yes">Yes</option>
@@ -222,7 +222,7 @@ function Step3(props) {
           name="acceptCommitment"
           type="text"
           placeholder="Initials"
-          value={props.acceptCommitment}
+          value={props.state.acceptCommitment}
           onChange={props.handleChange}
           
           /> 
