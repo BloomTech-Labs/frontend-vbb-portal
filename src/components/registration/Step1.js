@@ -1,7 +1,7 @@
 import React from "react";
 
 function Step1(props) {
-  if (props.currentStep !== 1) {
+  if (props.state.currentStep !== 1) {
     return null;
   }
   return (
