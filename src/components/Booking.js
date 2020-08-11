@@ -218,15 +218,15 @@ class Booking extends React.Component {
               onChange={this.handleDropDownChange}
               value={this.state.timezone}
             >
-              {this.state.languages &&
-                this.state.languages.length > 0 &&
-                moment.tz.names().map((tz) => {
-                  return (
-                    <option key={tz} value={tz}>
-                      {tz}
-                    </option>
-                  );
-                })}
+            {
+              moment.tz.names().map((tz) => {
+                return (
+                  <option key={tz} value={tz}>
+                    {tz}
+                  </option>
+                );
+              })
+            }
             </select>
             <br />
             <br />

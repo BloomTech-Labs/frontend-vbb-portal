@@ -89,12 +89,15 @@ def first_time_signup(request):
     When a user signs up, create a mentor profile. If they are new mentors, create a vbb email and send a
     welcome email.
     """
-    print('request.data', request.data)
+    fname = request.data.get("first_name")
+    lname = request.data.get("last_name")
+    pemail = request.data.get("personal_email")
+    vemail = request.data.get("vbb_email")
     gapi = google_apis()
-    if request.data["vbb_email"] == None or request.data["vbb_email"] == '':
-        request.data["vbb_email"], pwd = gapi.account_create(request.data["first_name"], request.data["last_name"], request.data["personal_email"])
-        print('new vbb email: ', request.data["vbb_email"])
-        print('password: ', pwd)
+    if vemail == None or vemail == '':
+        request.data["vbb_email"], pwd = gapi.account_create(fname, lname, pmail)
+        print('new vbb email: \n', request.data["vbb_email"])
+        print('password: \n', pwd)
         gapi.email_send(request.data["personal_email"], "Welcome to VBB", "api\emails\\test\\test-template.html", "api\emails\\test\\test.html", {'__first_name': request.data["first_name"]})
     serializer = MentorProfileSerializer(data = request.data)
     if serializer.is_valid():
