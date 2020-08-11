@@ -93,20 +93,11 @@ class Layout extends React.Component {
           </div>
         </nav>
 
-        <div className="content">{this.props.children}</div>
-        <div
-          style={{
-            position: "fixed",
-            margin: "10px",
-            bottom: "0",
-            width: "95%",
-          }}
-        >
-          <AlertDismissable
-            {...this.props}
-            style={{ position: "relative", width: "80%" }}
-          />
+        <div className="content" style={{ zIndex: "1" }}>
+          <AlertDismissable {...this.props} />
+          {this.props.children}
         </div>
+
         <footer>&copy; Village Book Builders | All Rights Reserved</footer>
       </div>
     );

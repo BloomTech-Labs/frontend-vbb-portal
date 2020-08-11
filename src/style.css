@@ -426,6 +426,7 @@ input {
 
   #booking-box {
     width: 350px;
+    padding: 10px;
   }
 
   .signup-form {
