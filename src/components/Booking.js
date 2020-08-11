@@ -150,6 +150,12 @@ class Booking extends React.Component {
   };
 
   submitRequest = () => {
+    this.handleCommitChange();
+    this.postRequest();
+  }
+
+  postRequest = () => {
+    alert("please wait while we submit your booking request");
     axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.headers = {
@@ -157,7 +163,7 @@ class Booking extends React.Component {
       Authorization: `Token ${this.props.token}`,
     };
     axios
-      .get("http://127.0.0.1:8000/api/booking/", {
+      .post("http://127.0.0.1:8000/api/book/", null, {
         params: {
           library: this.state.library,
           language: this.state.language,

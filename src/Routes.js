@@ -4,8 +4,9 @@ import PrivateRoute from "./components/PrivateRoute";
 
 import Booking from "./components/Booking";
 import Dashboard from "./components/Dashboard";
+import MasterForm from "./components/registration/MasterForm";
 import HomeSignin from "./components/HomeSignin";
-import MasterForm from "./components/Registration";
+
 
 function Routes() {
   return (
