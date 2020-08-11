@@ -246,4 +246,4 @@ def testFunction():
   )
   #g.calendar_event("shwetha.test1@villagebookbuilders.org", "sohan.kalva.test2@villagementors.org", "shwetha.shinju@gmail.com", "2020-08-10T22:00:00", "2020-09-10T22:00:00", "shwetha.test1@villagebookbuilders.org")
   
-testFunction()
+# testFunction()
