@@ -319,7 +319,7 @@ class Booking extends React.Component {
             )}
           </div>
           <a href="/" type="button" className="btn goback-btn">
-            Go Back
+            GO BACK
           </a>
           <button
             className="btn btn-light"
@@ -327,7 +327,7 @@ class Booking extends React.Component {
             disabled={!this.state.isCommitted || this.state.time === false}
             onClick={this.submitRequest}
           >
-            Submit Appointment Request!
+            REQUEST APPOINTMENT
           </button>
           <br />
         </div>
