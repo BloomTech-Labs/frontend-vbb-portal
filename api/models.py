@@ -204,6 +204,9 @@ class Appointment(models.Model):
 
     def display(self):
         today = datetime.datetime.now()
+        tz2, tz1 = timezone("US/Eastern"), timezone(self.mentor.mentor.time_zone)
+        diff = (tz1.localize(today) - tz2.localize(today).astimezone(tz1)).seconds//3600
+        newhsm = (self.hsm - diff+168)%168
         tz1, tz2 = timezone("US/Eastern"), timezone(self.mentor.mentor.time_zone)
         diff = (
             tz1.localize(today) - tz2.localize(today).astimezone(tz1)
