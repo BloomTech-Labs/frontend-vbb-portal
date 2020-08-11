@@ -213,7 +213,8 @@ hr {
 
 #signin-box {
   text-align: center;
-  margin-top: 10vh;
+  position: relative;
+  bottom: 65px;
 }
 
 #google-box {
@@ -339,6 +340,10 @@ label {
 
   .vbb-header {
     font-size: 2.5em;
+  }
+
+  #signin-box {
+    top: 10px;
   }
 }
 
