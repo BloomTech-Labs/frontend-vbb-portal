@@ -28,8 +28,8 @@ class MasterForm extends React.Component {
       language: "English, German",
       termsCond: "Yes",
       charges: "No",
-      mentor4Months: "Yes",
-      acceptCommitment: "KER",
+      commit: "Yes",
+      initials: "KER",
       moreInvolved: "Develop your website for you",
       city: "Seattle",
       vbb_chapter: "No",
@@ -54,9 +54,9 @@ class MasterForm extends React.Component {
     if (this.state.timeZone === "") problems += " - time zone\n";
     if (this.state.termsCond === ""|| this.state.mentor4Months === "No") problems += " - accept Terms and Conditions\n";
     if (this.state.charges === "") problems += " - charged or \n";
-    if (this.state.mentor4Months === "" || this.state.mentor4Months === "No")
+    if (this.state.commit === "" || this.state.commit === "No")
       problems += " - mentoring commitment\n";
-    if (this.state.acceptCommitment === "") problems += " - initials\n";
+    if (this.state.initials === "") problems += " - initials\n";
     if (this.state.moreInvolved === "") problems += " - get more involved?\n";
     if (this.state.city === "") problems += " - city\n";
     if (problems === "") return false;
