@@ -70,7 +70,7 @@ class Dashboard extends React.Component {
             <a
               href="/booking/"
               className="btn btn-light book-btn dashboard-btn"
-              style={{ marginTop: "20px", fontSize: "18px", fontSize: "22px" }}
+              style={{ marginTop: "20px", fontSize: "20px" }}
             >
               + Book Mentoring Session
             </a>
