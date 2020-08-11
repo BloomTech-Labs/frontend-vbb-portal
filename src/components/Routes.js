@@ -10,7 +10,7 @@ import HomeSignin from "./HomeSignin";
 function Routes() {
   return (
     <div>
-      <Route exact path="/" component={Dashboard} />
+      <PrivateRoute exact path="/" component={Dashboard} />
       <Route exact path="/booking/" component={Booking} />
       <Route exact path="/signin/" component={HomeSignin} />
       <Route exact path="/signup/" component={MasterForm} />
