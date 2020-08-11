@@ -42,19 +42,19 @@ function Step5(props) {
               value={props.state.howInvolved}
               onChange={props.handleChange}
             >
-              <option value="fundraiser"> Run or help with a fundraiser</option>
-              <option value="ambassador">
+              <option value="Fundraiser"> Run or help with a fundraiser</option>
+              <option value="Ambassador">
                 {" "}
                 Be a social media advocate or an ambassador
               </option>
-              <option value="startChapter">
+              <option value="StartChapter">
                 {" "}
                 Start/join a VBB Village Mentors Chapter at your school or
                 company (a club of fellow mentors)
               </option>
               <option value="JoinClub"> Start/Join a Book Club</option>
-              <option value="research"> Research</option>
-              <option value="other"> Other</option>
+              <option value="Research"> Research</option>
+              <option value="Other"> Other</option>
             </select>
             <br />
             <br />
