@@ -154,7 +154,8 @@ a {
 .gcal-btn,
 .signup-btn,
 .l1-btn,
-.l6-btn {
+.l6-btn,
+.next-btn {
   background-color: #549bea;
 }
 
@@ -173,7 +174,8 @@ a {
   margin-right: 20px;
 }
 
-.goback-btn {
+.goback-btn,
+.prev-btn {
   background-color: gray;
   margin: 10px;
 }
