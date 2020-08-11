@@ -64,6 +64,13 @@ h3 {
   padding-left: 25px;
 }
 
+h5 {
+  font-family: "Caveat", cursive;
+  font-weight: bold;
+  font-size: 40px;
+  padding-top: 30px;
+}
+
 p {
   font-family: "Nunito", sans-serif;
   font-size: 18px;
