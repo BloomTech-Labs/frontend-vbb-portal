@@ -26,12 +26,12 @@ function Step5(props) {
             onChange={props.handleChange}
           >
             <option value="">-</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
           </select>
         </div>
 
-        {props.state.moreInvolved === "yes" && (
+        {props.state.moreInvolved === "Yes" && (
           <div>
             <label>
               How would you like to get more involved (Select all that apply)?
@@ -83,7 +83,7 @@ function Step5(props) {
         disabled={props.hasProblems()}
         style={{ marginBottom: "20px", marginTop: "20px" }}
       >
-        SIGN UP
+        Sign up
       </button>
     </React.Fragment>
   );

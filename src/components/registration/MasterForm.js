@@ -30,10 +30,10 @@ class MasterForm extends React.Component {
       charges: "No",
       commit: "Yes",
       initials: "KER",
-      moreInvolved: "Develop your website for you",
+      moreInvolved:"Yes",
+      howInvolved: "Other",
       city: "Seattle",
       vbb_chapter: "No",
-      contactSource: "?",
       timeZone: moment.tz.guess(),
     };
   }
@@ -57,7 +57,7 @@ class MasterForm extends React.Component {
     if (this.state.commit === "" || this.state.commit === "No")
       problems += " - mentoring commitment\n";
     if (this.state.initials === "") problems += " - initials\n";
-    if (this.state.moreInvolved === "") problems += " - get more involved?\n";
+    if (this.state.howInvolved === "") problems += " - get more involved?\n";
     if (this.state.city === "") problems += " - city\n";
     if (problems === "") return false;
     return base + problems;
@@ -90,7 +90,7 @@ class MasterForm extends React.Component {
       this.state.newsletter,
       this.state.occupation,
       this.state.affiliation,
-      this.state.contactSource,
+      this.state.referral_source,
       this.state.howInvolved
     );
   };
