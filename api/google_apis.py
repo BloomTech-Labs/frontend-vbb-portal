@@ -204,7 +204,8 @@ class google_apis:
 # FOR TESTING PURPOSES -- REMOVE LATER
 def testFunction():
   g = google_apis()
-  # g.email_send("shwetha.shinju@gmail.com", "personalized", "api\emails\\test\\test-template.html", "api\emails\\test\\test.html", {'__first_name': "Shwetha"})
+  # "personalized is the subject of the emails", mento
+  g.email_send("varun.raja@villagebookbuilders.org", "Welcome to the VBB Family!", "api\emails\\templates\\welcomeLetter.html", "api\emails\\templates\\test.html", {'__first_name': "Shwetha", '__email': "varunvraja@gmail.com", '__password': "vbb"})
   g.calendar_event("shwetha.test1@villagebookbuilders.org", "sohan.kalva.test2@villagementors.org", "shwetha.shinju@gmail.com", "2020-08-10T22:00:00", "2020-09-10T22:00:00", "shwetha.test1@villagebookbuilders.org")
   
-# testFunction()
+testFunction()
