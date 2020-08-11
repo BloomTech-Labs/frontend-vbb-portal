@@ -34,7 +34,7 @@ export class HomeSignin extends Component {
             />
           </div>
           <br />
-          <hr />
+          <hr id="sep-bar" />
           <br />
           <div id="create-account-box">
             <p
