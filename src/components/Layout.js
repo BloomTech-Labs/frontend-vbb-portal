@@ -93,7 +93,7 @@ class Layout extends React.Component {
           </div>
         </nav>
 
-        <div className="content" style={{ zIndex: "1" }}>
+        <div className="content">
           <AlertDismissable {...this.props} />
           {this.props.children}
         </div>
