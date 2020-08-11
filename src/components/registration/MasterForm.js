@@ -8,6 +8,7 @@ import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
 import Step5 from "./Step5";
+import SuccessStep from "./SuccessStep";
 
 class MasterForm extends React.Component {
   constructor(props) {
@@ -77,7 +78,9 @@ class MasterForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    alert("sumbit");
+    this.setState({
+      currentStep: 6
+    })
     console.log("submit");
 
     this.props.onAuth(
@@ -114,7 +117,7 @@ class MasterForm extends React.Component {
 
   previousButton() {
     let currentStep = this.state.currentStep;
-    if (currentStep !== 1) {
+    if (currentStep !== 1&&currentStep!==6) {
       return (
         <button
           className="btn btn-secondary prev-btn"
@@ -147,9 +150,16 @@ class MasterForm extends React.Component {
   render() {
     return (
       <div className="signup-form">
-        <h1 id="signup-header">
-          Mentor Registration: Step {this.state.currentStep} of 5
-        </h1>
+        {
+          this.state.currentStep < 6 ?
+          <h1 id="signup-header">
+            Mentor Registration: Step {this.state.currentStep} of 5
+          </h1>
+          :
+          <h1 id="signup-header">
+            Form Submitted!
+          </h1>
+        }
         <form onSubmit={this.handleSubmit}>
           <Step1
             currentStep={this.state.currentStep}
@@ -182,6 +192,11 @@ class MasterForm extends React.Component {
             handleChange={this.handleChange}
             state={this.state}
             hasProblems={this.hasProblems}
+          />
+
+          <SuccessStep
+            currentStep={this.state.currentStep}
+            state={this.state}
           />
 
           {this.previousButton()}
