@@ -184,13 +184,14 @@ class Booking extends React.Component {
   render() {
     return (
       <div className="twocol-container">
-        <div className="column" id="booking-box">
+        <div id="booking-box">
           <h1 id="booking-header">Book Your Weekly Mentoring Session Below!</h1>
           <p>
             Select a day and time that you have available each week.
             <br />
             We'll match you with a child who needs you as their mentor.
           </p>
+          <br />
           <div className="booking-fields">
             <label htmlFor="language">Mentoring Language:&nbsp;</label>
             <select
@@ -329,7 +330,6 @@ class Booking extends React.Component {
           >
             REQUEST SESSION
           </button>
-          <br />
         </div>
         <img
           src={menteeComputer}
