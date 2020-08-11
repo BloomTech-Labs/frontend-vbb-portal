@@ -22,11 +22,12 @@ function Step4(props) {
         href="https://www.villagebookbuilders.org/giftabook/"
         target="_blank"
         rel="noopener noreferrer"
-        style={{ marginLeft: "100px" }}
+        style={{ marginLeft: "50px" }}
       >
         DONATE
       </a>
-
+      <br />
+      <br />
       {/* <div>
           <Donation/>
         </div>

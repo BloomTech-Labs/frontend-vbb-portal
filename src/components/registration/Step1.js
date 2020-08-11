@@ -83,6 +83,8 @@ function Step1(props) {
           <option value="No">No</option>
         </select>
       </div>
+      <br />
+      <br />
     </div>
   );
 }

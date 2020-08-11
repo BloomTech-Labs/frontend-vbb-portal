@@ -118,6 +118,8 @@ function Step2(props) {
           })}
         </select>
       </div>
+      <br />
+      <br />
     </div>
   );
 }
