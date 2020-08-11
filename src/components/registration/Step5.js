@@ -56,6 +56,9 @@ function Step5(props) {
               <option value="research"> Research</option>
               <option value="other"> Other</option>
             </select>
+            <br />
+            <br />
+            <br />
           </div>
         )}
 
