@@ -3,7 +3,7 @@ import React from "react";
 /*Step 3 */
 
 function Step3(props) {
-  if (props.currentStep !== 3) {
+  if (props.state.currentStep !== 3) {
     return null;
   }
   return (
@@ -176,7 +176,7 @@ function Step3(props) {
         <select
           name="termsCond"
           id="termsCond"
-          value={props.termsCond}
+          value={props.state.termsCond}
           onChange={props.handleChange}
         >
           <option value="No choice">-</option>
@@ -186,14 +186,14 @@ function Step3(props) {
       </div>
 
       <div>
-        <label htmlFor="molestation">
+        <label htmlFor="charges">
           Have you ever been arrested, charged, or convicted of child abuse or
           molestation of any form?
         </label>
         <select
-          name="molestation"
-          id="molestation"
-          value={props.molestation}
+          name="charges"
+          id="charges"
+          value={props.state.charges}
           onChange={props.handleChange}
         >
           <option value="No choice">-</option>
@@ -209,7 +209,7 @@ function Step3(props) {
         <select
           name="mentor4Months"
           id="mentor4Months"
-          value={props.metor4Months}
+          value={props.state.metor4Months}
           onChange={props.handleChange}
         >
           <option value="No choice">-</option>
@@ -229,7 +229,7 @@ function Step3(props) {
         name="acceptCommitment"
         type="text"
         placeholder="Initials"
-        value={props.acceptCommitment}
+        value={props.state.acceptCommitment}
         onChange={props.handleChange}
       />
     </div>

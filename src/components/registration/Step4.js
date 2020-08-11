@@ -2,7 +2,7 @@ import React from "react";
 // import Donation from './Donation'
 
 function Step4(props) {
-  if (props.currentStep !== 4) {
+  if (props.state.currentStep !== 4) {
     return null;
   }
   return (

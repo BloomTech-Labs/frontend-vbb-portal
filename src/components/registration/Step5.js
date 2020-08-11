@@ -3,7 +3,7 @@ import React from "react";
 //Step 5
 
 function Step5(props) {
-  if (props.currentStep !== 5) {
+  if (props.state.currentStep !== 5) {
     return null;
   }
   return (
@@ -22,7 +22,7 @@ function Step5(props) {
           <select
             name="moreInvolved"
             id="moreInvolved"
-            value={props.moreInvolved}
+            value={props.state.moreInvolved}
             onChange={props.handleChange}
           >
             <option value="">-</option>
@@ -39,7 +39,7 @@ function Step5(props) {
             <select
               name="howInvolved"
               id="howInvolved"
-              value={props.howInvolved}
+              value={props.state.howInvolved}
               onChange={props.handleChange}
             >
               <option value="fundraiser"> Run or help with a fundraiser</option>
@@ -69,7 +69,7 @@ function Step5(props) {
           required
           type="text"
           placeholder="Philadelphia, PA"
-          value={props.city}
+          value={props.state.city}
           onChange={props.handleChange}
         />
       </div>
