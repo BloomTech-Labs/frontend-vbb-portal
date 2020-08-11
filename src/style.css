@@ -244,6 +244,7 @@ hr {
 
 .col-card {
   background-color: #fffff6;
+  min-height: 650px;
 }
 
 .loading-spinner {
@@ -314,10 +315,6 @@ label {
     min-width: 400px;
     margin-top: 150px;
   }
-
-  .col-card {
-    min-height: 650px;
-  }
 }
 
 /* TABLET AND MOBILE ADJUSTMENTS */
@@ -342,6 +339,10 @@ label {
   }
 
   #signin-picture {
+    display: none;
+  }
+
+  #booking-picture {
     display: none;
   }
 
