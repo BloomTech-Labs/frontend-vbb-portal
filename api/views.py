@@ -168,6 +168,7 @@ def book_appointment(request):
             }
         )
     myappt = random.choice(appts)
+    print("apt", myappt)
     myappt.mentor = request.user
     myappt.start_date = datetime.today() + timedelta(
         days=(aux_fns.diff_today_dsm(myappt.hsm) + 7)
