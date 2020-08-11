@@ -5,7 +5,7 @@ import Booking from "./Booking";
 import Dashboard from "./Dashboard";
 import MasterForm from "./registration/MasterForm";
 import HomeSignin from "./HomeSignin";
-import Donation from "./registration/Donation"
+// import Donation from "./registration/Donation"
 
 
 function Routes() {
