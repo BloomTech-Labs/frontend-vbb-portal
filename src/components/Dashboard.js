@@ -51,14 +51,16 @@ class Dashboard extends React.Component {
               <>
                 <h4
                   style={{
-                    paddingLeft: "0px",
+                    fontSize: "22px",
+                    fontWeight: "400",
+                    fontStyle: "italic",
                     textIndent: "0px",
                     color: "#ff914d",
                   }}
                 >
-                  Uh oh! You have yet to book a mentoring session.
+                  Uh oh! You don't have any mentoring sessions booked yet.
                 </h4>
-                <h4 style={{ textIndent: "0px" }}>
+                <h4 style={{ textIndent: "0px", fontStyle: "italic" }}>
                   Press the green button below to make your first booking!
                 </h4>
               </>
@@ -68,7 +70,7 @@ class Dashboard extends React.Component {
             <a
               href="/booking/"
               className="btn btn-light book-btn dashboard-btn"
-              style={{ marginTop: "20px", fontSize: "18px" }}
+              style={{ marginTop: "20px", fontSize: "18px", fontSize: "22px" }}
             >
               + Book Mentoring Session
             </a>
