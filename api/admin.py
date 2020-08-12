@@ -65,7 +65,7 @@ class MentorProfileAdmin(admin.ModelAdmin):
         "vbb_email",
         "phone_number",
         "organization",
-        "contact_source",
+        "referral_source",
         "involvement",
     )
 

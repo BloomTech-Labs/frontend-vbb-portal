@@ -82,11 +82,11 @@ const checkSignIn = (token, dispatch) => {
     });
 };
 
-export const authSignup = (first_name, last_name, time_zone, personal_email, vbb_email, phone_number, occupation, organization, contact_source, involvement) => {
+export const authSignup = (first_name, last_name, time_zone, personal_email, vbb_email, phone_number, occupation, organization, referral_source, involvement) => {
   return (dispatch) => {
     dispatch(authStart());
     axios
-      .post("http://127.0.0.1:8000/api/creatementorprofile/", {
+      .post("http://127.0.0.1:8000/api/signup/", {
         first_name: first_name,
         last_name: last_name,
         time_zone: time_zone,
@@ -95,7 +95,7 @@ export const authSignup = (first_name, last_name, time_zone, personal_email, vbb
         phone_number: phone_number,
         occupation: occupation,
         organization: organization,
-        contact_source: contact_source,
+        referral_source: referral_source,
         involvement: involvement,
       })
       .then((res) => {

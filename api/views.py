@@ -18,11 +18,6 @@ from api.models import *
 from api.serializers import *
 from api.google_apis import *
 
-
-class GoogleLogin(SocialLoginView):
-    adapter_class = GoogleOAuth2Adapter
-    client_class = OAuth2Client
-
 @api_view(["POST"])
 def first_time_signup(request):
     """
@@ -72,6 +67,10 @@ def first_time_signup(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     print("\nserializer errors\n", serializer.errors)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class GoogleLogin(SocialLoginView):
+    adapter_class = GoogleOAuth2Adapter
+    client_class = OAuth2Client
 
 @api_view(["GET"])
 def check_signin(request):

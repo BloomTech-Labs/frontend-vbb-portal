@@ -217,7 +217,7 @@ const mapDispatchToProps = (dispatch) => {
       phone,
       occupation,
       affiliation,
-      contact,
+      referral_source,
       howInvolved
     ) =>
       dispatch(
@@ -229,7 +229,7 @@ const mapDispatchToProps = (dispatch) => {
           phone,
           occupation,
           affiliation,
-          contact,
+          referral_source,
           howInvolved
         )
       ),
