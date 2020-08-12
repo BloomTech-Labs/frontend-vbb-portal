@@ -106,8 +106,6 @@ class SessionSlot(models.Model):
     mentor_notes = models.TextField(max_length=500, null=True, blank=True)
 
     def __str__(self):
-        if self.hsm is None:
-            return "** Add time **"
         newhsm = int(self.hsm)
         if self.end_date is None:
             return (
@@ -124,20 +122,8 @@ class SessionSlot(models.Model):
         )
 
     def display(self):
-        today = datetime.datetime.now()
-        tz2, tz1 = timezone("US/Eastern"), timezone(self.mentor.mp.time_zone)
-        diff = (
-            tz1.localize(today) - tz2.localize(today).astimezone(tz1)
-        ).seconds // 3600
-        newhsm = (self.hsm - diff + 168) % 168
-        tz1, tz2 = timezone("US/Eastern"), timezone(self.mentor.mp.time_zone)
-        diff = (
-            tz1.localize(today) - tz2.localize(today).astimezone(tz1)
-        ).seconds // 3600
-        return (
-            aux_fns.hsm_to_day_name(newhsm)
-            + "s @ "
-            + aux_fns.hsm_to_12hr(newhsm)
-            + " until "
-            + str(self.end_date.strftime("%x"))
+        return aux_fns.display_day(
+            self.mentor.mp.time_zone,
+            self.hsm,
+            self.end_date
         )

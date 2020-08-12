@@ -61,3 +61,27 @@ def date_combine_time(start_date, hsm, min="00", sec="00"):
     result = start_date + "T" + str_hrs + ":" + min + ":" + sec
     print('result: ', result)
     return result
+
+def display_day(tzname, hsm, end_date=None):
+    today = datetime.datetime.now()
+    tz2, tz1 = timezone("US/Eastern"), timezone(tzname)
+    diff = (
+        tz1.localize(today) - tz2.localize(today).astimezone(tz1)
+    ).seconds // 3600
+    newhsm = int((hsm - diff + 168) % 168)
+    if end_date is None:
+        return (
+            hsm_to_day_name(newhsm)
+            + "s @ "
+            + hsm_to_12hr(newhsm)
+        )
+    return (
+        hsm_to_day_name(newhsm)
+        + "s @ "
+        + hsm_to_12hr(newhsm)
+        + "("
+        + self.mentor.mp.time_zone
+        + " time)"
+        + " until "
+        + str(end_date.strftime("%x"))
+    )
