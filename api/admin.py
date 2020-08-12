@@ -67,7 +67,7 @@ class MentorProfileAdmin(admin.ModelAdmin):
         "desired_involvement",
     )
 
-class ComputerAdmin(admin.ModelAdmin):
+class MenteeComputerAdmin(admin.ModelAdmin):
     list_display = (
         "id",
         "__str__",
@@ -117,5 +117,5 @@ class SessionSlotAdmin(admin.ModelAdmin):
 admin.site.register(Library, LibraryAdmin)
 admin.site.register(Language, LanguageAdmin)
 admin.site.register(MentorProfile, MentorProfileAdmin)
-admin.site.register(Computer, ComputerAdmin)
+admin.site.register(MenteeComputer, MenteeComputerAdmin)
 admin.site.register(SessionSlot, SessionSlotAdmin)

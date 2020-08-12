@@ -51,7 +51,7 @@ class MentorProfile(models.Model):
     def __str__(self):
         return self.first_name + " " + self.last_name
 
-class Computer(models.Model):
+class MenteeComputer(models.Model):
     library = models.ForeignKey(
         Library,
         on_delete=models.SET_NULL,
@@ -89,7 +89,7 @@ class SessionSlot(models.Model):
         blank=True,
     )
     mentee_computer = models.ForeignKey(
-        Computer,
+        MenteeComputer,
         on_delete=models.SET_NULL,
         related_name="sessionslots",
         null=True,

@@ -114,7 +114,7 @@ def generate_sessionslots(request):
     opentime_params = int(request.query_params.get("opentime"))
     closetime_params = int(request.query_params.get("closetime"))
 
-    computer = Computer.objects.get(pk=computer_params)
+    computer = MenteeComputer.objects.get(pk=computer_params)
     if language_params is None:
         lang = computer.language
     else:
