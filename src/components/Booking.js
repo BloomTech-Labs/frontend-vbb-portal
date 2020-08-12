@@ -10,7 +10,7 @@ class Booking extends React.Component {
     libraries: [],
     languages: {},
     times: [],
-    timezone: moment.tz.guess(),
+    time_zone: moment.tz.guess(),
     language: 1,
     weekday: 0,
     displayDay: "",
@@ -108,14 +108,14 @@ class Booking extends React.Component {
 
   shift_time = (hsm, isEastern) => {
     var now = moment();
-    now.tz(this.state.timezone);
+    now.tz(this.state.time_zone);
     var localOffset = now.utcOffset();
     //eastern time zone is the server standard as of 8/1/2020
     now.tz("America/New_York");
     var easternOffset = now.utcOffset();
     var diffInMinutes = localOffset - easternOffset;
     var diffInHours = diffInMinutes / 60;
-    //isEastern designates whether the given hsm is in Eastern or the local timezone
+    //isEastern designates whether the given hsm is in Eastern or the local time_zone
     if (isEastern) return (hsm + diffInHours + 168) % 168;
     return (hsm - diffInHours + 168) % 168;
   };
@@ -211,12 +211,12 @@ class Booking extends React.Component {
             </select>
             <br />
             <br />
-            <label htmlFor="timezone">Your Timezone:</label>&nbsp;
+            <label htmlFor="time_zone">Your Timezone:</label>&nbsp;
             <select
-              name="timezone"
-              id="timezone"
+              name="time_zone"
+              id="time_zone"
               onChange={this.handleDropDownChange}
-              value={this.state.timezone}
+              value={this.state.time_zone}
             >
             {
               moment.tz.names().map((tz) => {

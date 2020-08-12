@@ -20,9 +20,9 @@ function Step5(props) {
         <div>
           <label>Would you like to get more involved?</label>
           <select
-            name="moreInvolved"
-            id="moreInvolved"
-            value={props.state.moreInvolved}
+            name="more_involved"
+            id="more_involved"
+            value={props.state.more_involved}
             onChange={props.handleChange}
           >
             <option value="">-</option>
@@ -31,7 +31,7 @@ function Step5(props) {
           </select>
         </div>
 
-        {props.state.moreInvolved === "Yes" && (
+        {props.state.more_involved === "Yes" && (
           <div>
             <label>
               How would you like to get more involved (Select all that apply)?
