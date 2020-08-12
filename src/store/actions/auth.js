@@ -82,7 +82,7 @@ const checkSignIn = (token, dispatch) => {
     });
 };
 
-export const authSignup = (first_name, last_name, time_zone, personal_email, vbb_email, phone_number, occupation, organization, referral_source, desired_involvement) => {
+export const authSignup = (first_name, last_name, time_zone, personal_email, vbb_email, phone_number, occupation, affiliation, referral_source, desired_involvement) => {
   return (dispatch) => {
     dispatch(authStart());
     axios
@@ -94,7 +94,7 @@ export const authSignup = (first_name, last_name, time_zone, personal_email, vbb
         vbb_email: vbb_email,
         phone_number: phone_number,
         occupation: occupation,
-        organization: organization,
+        affiliation: affiliation,
         referral_source: referral_source,
         desired_involvement: desired_involvement,
       })

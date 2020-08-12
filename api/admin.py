@@ -52,7 +52,7 @@ class MentorProfileAdmin(admin.ModelAdmin):
         "vbb_email",
         "phone_number",
         "occupation",
-        "organization",
+        "affiliation",
         "referral_source",
         "desired_involvement",
     )
@@ -64,7 +64,7 @@ class MentorProfileAdmin(admin.ModelAdmin):
         "personal_email",
         "vbb_email",
         "phone_number",
-        "organization",
+        "affiliation",
         "referral_source",
         "desired_involvement",
     )

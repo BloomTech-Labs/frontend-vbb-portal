@@ -77,8 +77,8 @@ class MentorProfile(models.Model):
     occupation = models.CharField(
         verbose_name="occupation", max_length=70, null=True, blank=True
     )
-    organization = models.CharField(
-        verbose_name="organization", max_length=70, null=True, blank=True
+    affiliation = models.CharField(
+        verbose_name="affiliation", max_length=70, null=True, blank=True
     )
     referral_source = models.TextField(
         verbose_name="referral source", max_length=200, null=True, blank=True
