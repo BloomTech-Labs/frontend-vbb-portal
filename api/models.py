@@ -86,7 +86,7 @@ class MentorProfile(models.Model):
     desired_involvement = models.TextField(
         verbose_name="desired involvement", max_length=200, null=True, blank=True
     )
-    initials = models.TextField(max_length=6)
+    initials = models.TextField(max_length=6, null=True)
 
     def __str__(self):
         return self.first_name + " " + self.last_name
