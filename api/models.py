@@ -83,8 +83,8 @@ class MentorProfile(models.Model):
     referral_source = models.TextField(
         verbose_name="referral source", max_length=200, null=True, blank=True
     )
-    involvement = models.TextField(
-        verbose_name="additional involvement", max_length=200, null=True, blank=True
+    desired_involvement = models.TextField(
+        verbose_name="desired involvement", max_length=200, null=True, blank=True
     )
 
     def __str__(self):

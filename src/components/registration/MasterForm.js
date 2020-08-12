@@ -32,7 +32,7 @@ class MasterForm extends React.Component {
       commit: "",
       initials: "",
       moreInvolved:"",
-      howInvolved: "",
+      desired_involvement: "",
       city: "",
       vbb_chapter: "",
       timeZone: moment.tz.guess(),
@@ -94,7 +94,7 @@ class MasterForm extends React.Component {
       this.state.occupation,
       this.state.affiliation,
       this.state.referral_source,
-      this.state.howInvolved
+      this.state.desired_involvement
     );
   };
 
@@ -218,7 +218,7 @@ const mapDispatchToProps = (dispatch) => {
       occupation,
       affiliation,
       referral_source,
-      howInvolved
+      desired_involvement
     ) =>
       dispatch(
         actions.authSignup(
@@ -230,7 +230,7 @@ const mapDispatchToProps = (dispatch) => {
           occupation,
           affiliation,
           referral_source,
-          howInvolved
+          desired_involvement
         )
       ),
   };

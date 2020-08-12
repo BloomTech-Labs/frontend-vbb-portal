@@ -54,7 +54,7 @@ class MentorProfileAdmin(admin.ModelAdmin):
         "occupation",
         "organization",
         "referral_source",
-        "involvement",
+        "desired_involvement",
     )
     readonly_fields = ("id",)
     search_fields = (
@@ -66,7 +66,7 @@ class MentorProfileAdmin(admin.ModelAdmin):
         "phone_number",
         "organization",
         "referral_source",
-        "involvement",
+        "desired_involvement",
     )
 
 class ComputerAdmin(admin.ModelAdmin):

@@ -37,9 +37,9 @@ function Step5(props) {
               How would you like to get more involved (Select all that apply)?
             </label>
             <select
-              name="howInvolved"
-              id="howInvolved"
-              value={props.state.howInvolved}
+              name="desired_involvement"
+              id="desired_involvement"
+              value={props.state.desired_involvement}
               onChange={props.handleChange}
             >
               <option value="Fundraiser"> Run or help with a fundraiser</option>
