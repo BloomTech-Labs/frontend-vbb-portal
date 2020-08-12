@@ -1,5 +1,4 @@
 import datetime
-from pytz import timezone
 
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -106,24 +105,16 @@ class SessionSlot(models.Model):
     mentor_notes = models.TextField(max_length=500, null=True, blank=True)
 
     def __str__(self):
-        newhsm = int(self.hsm)
-        if self.end_date is None:
-            return (
-                aux_fns.hsm_to_day_name(newhsm)
-                + "s @ "
-                + aux_fns.hsm_to_12hr(newhsm)
-            )
-        return (
-            aux_fns.hsm_to_day_name(newhsm)
-            + "s @ "
-            + aux_fns.hsm_to_12hr(newhsm)
-            + " until "
-            + str(self.end_date.strftime("%x"))
+        return aux_fns.display_day(
+            "US/Eastern",
+            self.hsm,
+            self.end_date,
         )
 
     def display(self):
         return aux_fns.display_day(
             self.mentor.mp.time_zone,
             self.hsm,
-            self.end_date
+            self.end_date,
+            True
         )

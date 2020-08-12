@@ -1,5 +1,5 @@
 import datetime
-
+from pytz import timezone
 
 def diff_today_dsm(hsm):
     """Calculates the difference in the number of days between today and the selected day of the week.
@@ -62,26 +62,28 @@ def date_combine_time(start_date, hsm, min="00", sec="00"):
     print('result: ', result)
     return result
 
-def display_day(tzname, hsm, end_date=None):
+def display_day(tzname, hsm, end_date=None, show_tz=False):
+    print("entering display")
     today = datetime.datetime.now()
     tz2, tz1 = timezone("US/Eastern"), timezone(tzname)
     diff = (
         tz1.localize(today) - tz2.localize(today).astimezone(tz1)
     ).seconds // 3600
+    print("getting newsm")
     newhsm = int((hsm - diff + 168) % 168)
+    tz_disp = " (" + tzname + " time)" if show_tz else ""
     if end_date is None:
         return (
             hsm_to_day_name(newhsm)
             + "s @ "
             + hsm_to_12hr(newhsm)
+            + tz_disp
         )
     return (
         hsm_to_day_name(newhsm)
         + "s @ "
         + hsm_to_12hr(newhsm)
-        + "("
-        + self.mentor.mp.time_zone
-        + " time)"
+        + tz_disp
         + " until "
         + str(end_date.strftime("%x"))
     )

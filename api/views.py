@@ -223,48 +223,48 @@ def book_sessionslot(request):
     )
     myappt.end_date = myappt.start_date + timedelta(weeks=17)
     gapi = google_apis()
-    start_time = aux_fns.date_combine_time(str(myappt.start_date), myappt.hsm)
-    end_date = aux_fns.date_combine_time(str(myappt.end_date), myappt.hsm)
-    event_id = gapi.calendar_event(
-        myappt.mentee_computer.computer_email,
-        myappt.mentor.mp.vbb_email,
-        myappt.mentor.mp.personal_email,
-        start_time,
-        end_date,
-        myappt.mentee_computer.library.calendar_id,
-    )
+    start_time = aux_fns.date_combine_time(str(myappt.start_date), int(myappt.hsm))
+    end_date = aux_fns.date_combine_time(str(myappt.end_date), int(myappt.hsm))
+    # event_id = gapi.calendar_event(
+    #     myappt.mentee_computer.computer_email,
+    #     myappt.mentor.mp.vbb_email,
+    #     myappt.mentor.mp.personal_email,
+    #     start_time,
+    #     end_date,
+    #     myappt.mentee_computer.library.calendar_id,
+    # )
     myappt.event_id = event_id
-    myappt.save()
+    # myappt.save()
 
     g = google_apis()
-    library_time = aux_fns.display_date(
+    library_time = aux_fns.display_day(
         myappt.mentee_computer__library.time_zone,
         myappt.hsm,
         myappt.end_date)
     newMentorNotice_mail = os.path.join("api","emails","templates", "newMentorNotice.html")
     sessionConfirm_mail = os.path.join("api","emails","templates", "sessionConfirm.html")
-    g.email_send(
-        myappt.mentee_computer__library.program_director_email,
-        "New Mentoring Session Booked for "+ library_time,
-        newMentorNotice_mail,
-        {
-            '__directorname': myappt.mentee_computer__library.program_director_name,
-            '__sessionslot': library_time,
-            '__mentorname': myappt.mentor.first_name +" "+ myappt.mentor.last_name,
-        } 
-    )
-    g.email_send(
-        myappt.mentor.mp.vbb_email,
-        "New Mentoring Session Booked for "+ myappt.disp(),
-        sessionConfirm_mail,
-        {
-            '__mentorname' : myappt.mentor.first_name +" "+ myappt.mentor.last_name,
-            '__sessionslot': myappt.disp(),
-            '__programname': myappt.mentee_computer__library.name
-            '__directorname': myappt.mentee_computer__library.program_director_name,
-        },
-        [myappt.mentor.mp.personal_email]
-    )
+    # g.email_send(
+    #     myappt.mentee_computer__library.program_director_email,
+    #     "New Mentoring Session Booked for "+ library_time,
+    #     newMentorNotice_mail,
+    #     {
+    #         '__directorname': myappt.mentee_computer__library.program_director_name,
+    #         '__sessionslot': library_time,
+    #         '__mentorname': myappt.mentor.first_name +" "+ myappt.mentor.last_name,
+    #     } 
+    # )
+    # g.email_send(
+    #     myappt.mentor.mp.vbb_email,
+    #     "New Mentoring Session Booked for "+ myappt.disp(),
+    #     sessionConfirm_mail,
+    #     {
+    #         '__mentorname' : myappt.mentor.first_name +" "+ myappt.mentor.last_name,
+    #         '__sessionslot': myappt.disp(),
+    #         '__programname': myappt.mentee_computer__library.name,
+    #         '__directorname': myappt.mentee_computer__library.program_director_name
+    #     },
+    #     [myappt.mentor.mp.personal_email]
+    # )
     # FIXME - Add try/except/finally blocks for error checking (not logged in, sessionslot got taken before they refreshed)
     return Response(
         {"success": "true", "user": str(myappt.mentor), "sessionslot": str(myappt),}
