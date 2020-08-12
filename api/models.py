@@ -106,19 +106,19 @@ class Appointment(models.Model):
     mentor_notes = models.TextField(max_length=500, null=True, blank=True)
 
     def __str__(self):
-
         if self.hsm is None:
             return "** Add time **"
+        newhsm = int(self.hsm)
         if self.end_date is None:
             return (
-                aux_fns.hsm_to_day_name(self.hsm)
+                aux_fns.hsm_to_day_name(newhsm)
                 + "s @ "
-                + aux_fns.hsm_to_12hr(self.hsm)
+                + aux_fns.hsm_to_12hr(newhsm)
             )
         return (
-            aux_fns.hsm_to_day_name(self.hsm)
+            aux_fns.hsm_to_day_name(newhsm)
             + "s @ "
-            + aux_fns.hsm_to_12hr(self.hsm)
+            + aux_fns.hsm_to_12hr(newhsm)
             + " until "
             + str(self.end_date.strftime("%x"))
         )
