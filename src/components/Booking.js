@@ -50,6 +50,7 @@ class Booking extends React.Component {
   }
 
   fetchTimes = () => {
+
     axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.headers = {
@@ -62,7 +63,7 @@ class Booking extends React.Component {
           library: this.state.library,
           language: this.state.language,
           min_msm: this.shift_time(parseInt(this.state.weekday), false),
-          max_msm: this.shift_time(parseInt(this.state.weekday), false) + 24,
+          max_msm: this.shift_time(parseInt(this.state.weekday), false) + 1440,
         },
       })
       .then((res) => {
@@ -80,17 +81,17 @@ class Booking extends React.Component {
     switch (day) {
       case 0:
         return "Monday";
-      case 24:
+      case 1440:
         return "Tuesday";
-      case 48:
+      case 2880:
         return "Wednesday";
-      case 72:
+      case 4320:
         return "Thursday";
-      case 96:
+      case 5760:
         return "Friday";
-      case 120:
+      case 7200:
         return "Saturday";
-      case 168:
+      case 8640:
         return "Sunday";
       default:
         return "--";
@@ -99,11 +100,13 @@ class Booking extends React.Component {
 
   display_time = (msm) => {
     var tzmsm = this.shift_time(msm, true);
-    let mins = (msm%60===0) ? ":00" : ":"+(msm%60)
+    let mins = ":"+(msm%60)
+    if(msm%60===0) mins = ""
+    else if(msm%60<10) mins = ":0"+(msm%60)
     var time24 = parseInt(tzmsm/60) % 24;
     var time12 = parseInt(tzmsm/60) % 12;
     if (time24 === 0) return "12"+mins+"am";
-    if (time24 === 12) return "12 pm";
+    if (time24 === 12) return "12"+mins+"pm";
     if (time24 === time12) return time12+mins+"am";
     return time12 + mins+"pm";
   };
@@ -276,12 +279,12 @@ class Booking extends React.Component {
               onChange={this.handleDropDownChange}
             >
               <option value={0}>Monday</option>
-              <option value={24}>Tuesday</option>
-              <option value={48}>Wednesday</option>
-              <option value={72}>Thursday</option>
-              <option value={96}>Friday</option>
-              <option value={120}>Saturday</option>
-              <option value={144}>Sunday</option>
+              <option value={1440}>Tuesday</option>
+              <option value={2880}>Wednesday</option>
+              <option value={4320}>Thursday</option>
+              <option value={5760}>Friday</option>
+              <option value={7200}>Saturday</option>
+              <option value={8640}>Sunday</option>
             </select>
             <br />
             <br />

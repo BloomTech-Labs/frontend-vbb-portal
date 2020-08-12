@@ -225,15 +225,15 @@ def book_sessionslot(request):
     gapi = google_apis()
     start_time = aux_fns.date_combine_time(str(myappt.start_date), int(myappt.msm))
     end_date = aux_fns.date_combine_time(str(myappt.end_date), int(myappt.msm))
-    # event_id = gapi.calendar_event(
-    #     myappt.mentee_computer.computer_email,
-    #     myappt.mentor.mp.vbb_email,
-    #     myappt.mentor.mp.personal_email,
-    #     start_time,
-    #     end_date,
-    #     myappt.mentee_computer.library.calendar_id,
-    # )
-    # myappt.event_id = event_id
+    event_id = gapi.calendar_event(
+        myappt.mentee_computer.computer_email,
+        myappt.mentor.mp.vbb_email,
+        myappt.mentor.mp.personal_email,
+        start_time,
+        end_date,
+        myappt.mentee_computer.library.calendar_id,
+    )
+    myappt.event_id = event_id
     myappt.save()
     print("mentee computer", myappt.mentee_computer)
     print("library", myappt.mentee_computer.library)
