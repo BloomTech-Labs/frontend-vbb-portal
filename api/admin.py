@@ -69,13 +69,6 @@ class MentorProfileAdmin(admin.ModelAdmin):
         "involvement",
     )
 
-
-# class MenteeProfileAdmin(admin.ModelAdmin):
-#     list_display = ("id", "__str__", "user", "library", "time_zone")
-#     readonly_fields = ("id",)
-#     search_fields = ("id", "user", "library", "time_zone")
-
-
 class ComputerAdmin(admin.ModelAdmin):
     list_display = (
         "id",
@@ -102,7 +95,6 @@ class AppointmentAdmin(admin.ModelAdmin):
         "id",
         "__str__",
         "mentor",
-        # "mentee", #removed to avoid confusion. 
         "mentee_computer",
         "language",
         "hsm",
@@ -115,7 +107,6 @@ class AppointmentAdmin(admin.ModelAdmin):
     search_fields = (
         "id",
         "mentor",
-        "mentee",
         "mentee_computer",
         "language",
         "hsm",
@@ -128,6 +119,5 @@ class AppointmentAdmin(admin.ModelAdmin):
 admin.site.register(Library, LibraryAdmin)
 admin.site.register(Language, LanguageAdmin)
 admin.site.register(MentorProfile, MentorProfileAdmin)
-# admin.site.register(MenteeProfile, MenteeProfileAdmin)
 admin.site.register(Computer, ComputerAdmin)
 admin.site.register(Appointment, AppointmentAdmin)

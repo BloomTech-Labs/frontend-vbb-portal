@@ -188,7 +188,6 @@ class AvailableAppointmentTimeList(ListAPIView):
 
         return Response(appts)
 
-
 @api_view(["POST"])
 def book_appointment(request):
     """

@@ -90,20 +90,6 @@ class MentorProfile(models.Model):
     def __str__(self):
         return self.first_name + " " + self.last_name
 
-
-class MenteeProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="mentee")
-    library = models.ForeignKey(
-        Library, on_delete=models.SET_NULL, related_name="mentee", null=True, blank=True
-    )
-    time_zone = models.CharField(
-        verbose_name="time zone", max_length=40, null=True, blank=True
-    )
-
-    def __str__(self):
-        return self.user.first_name + " " + self.user.last_name
-
-
 class Computer(models.Model):
     library = models.ForeignKey(
         Library,
@@ -145,13 +131,6 @@ class Appointment(models.Model):
         User,
         on_delete=models.SET_NULL,
         related_name="mentor_appointments",
-        null=True,
-        blank=True,
-    )
-    mentee = models.ForeignKey(
-        User,
-        on_delete=models.SET_NULL,
-        related_name="mentee_appointments",
         null=True,
         blank=True,
     )

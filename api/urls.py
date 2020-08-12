@@ -11,5 +11,4 @@ urlpatterns = [
     path("myappointments/", MyAppointmentListView.as_view()),
     path("book/", book_appointment),
     path("generate/", generate_appointments),
-    path("testing/", testing),
 ]
