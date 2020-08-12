@@ -34,7 +34,7 @@ class Language(models.Model):
 
 
 class MentorProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="mp", null=True, blank=True)
+    user = models.OneToOneField(User, on_delete=models.SET_NULL, related_name="mp", null=True, blank=True)
     time_zone = models.CharField(max_length=40, null=True)
     first_name = models.CharField(max_length=60, null=True)
     last_name = models.CharField(max_length=60, null=True)
