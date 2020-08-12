@@ -27,7 +27,7 @@ class Library(models.Model):
 
 
 class Language(models.Model):
-    name = models.CharField(max_length=40, null=True)
+    name = models.CharField(max_length=40, null=True, unique=True)
 
     def __str__(self):
         return self.name
@@ -38,8 +38,8 @@ class MentorProfile(models.Model):
     time_zone = models.CharField(max_length=40, null=True)
     first_name = models.CharField(max_length=60, null=True)
     last_name = models.CharField(max_length=60, null=True)
-    personal_email = models.EmailField(max_length=60, null=True)
-    vbb_email = models.EmailField(max_length=60, null=True)
+    personal_email = models.EmailField(max_length=60, null=True, unique=True)
+    vbb_email = models.EmailField(max_length=60, null=True, unique=True)
     phone_number = models.CharField(max_length=12, null=True, blank=True)
     occupation = models.CharField(max_length=70, null=True, blank=True)
     affiliation = models.CharField(max_length=70, null=True, blank=True)
