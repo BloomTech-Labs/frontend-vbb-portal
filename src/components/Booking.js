@@ -76,6 +76,7 @@ class Booking extends React.Component {
   };
 
   display_day = (day) => {
+    day = parseInt(day)
     switch (day) {
       case 0:
         return "Monday";

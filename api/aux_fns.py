@@ -50,7 +50,6 @@ def date_combine_time(start_date, hsm, min="00", sec="00"):
     input start_date in "2020-07-31" format
     output  "2020-07-30T23:00:00" """
     # hours since day has started
-    print('start_date passed in: ', start_date)
     start_date = str(start_date)[:10] # get first 10 characters
     day_hrs = hsm % 24
     # convert day hours to 2 length string ie. 07
@@ -59,17 +58,13 @@ def date_combine_time(start_date, hsm, min="00", sec="00"):
         str_hrs = "0" + str_hrs
     # concatenate date with time 
     result = start_date + "T" + str_hrs + ":" + min + ":" + sec
-    print('result: ', result)
     return result
 
 def display_day(tzname, hsm, end_date=None, show_tz=False):
-    print("entering display")
     today = datetime.datetime.now()
-    tz2, tz1 = timezone("US/Eastern"), timezone(tzname)
-    diff = (
-        tz1.localize(today) - tz2.localize(today).astimezone(tz1)
-    ).seconds // 3600
-    print("getting newsm")
+    tz1, tz2= timezone("US/Eastern"), timezone(tzname)
+    delta = (tz2.localize(today) - tz1.localize(today).astimezone(tz2))
+    diff = 24*delta.days + round(delta.seconds / 3600)
     newhsm = int((hsm - diff + 168) % 168)
     tz_disp = " (" + tzname + " time)" if show_tz else ""
     if end_date is None:

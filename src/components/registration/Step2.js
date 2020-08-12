@@ -110,6 +110,7 @@ function Step2(props) {
           value={props.state.time_zone}
         >
           {moment.tz.names().map((tz) => {
+            if(tz.includes("Etc/GMT")) return null;
             return (
               <option key={tz} value={tz}>
                 {tz}

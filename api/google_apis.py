@@ -200,12 +200,10 @@ class google_apis:
       try:
         message = (email_service.users().messages().send(userId=user_id, body=message)
                   .execute())
-        print('Message Id: %s' % message['id'])
+        # print('Message Id: %s' % message['id'])
         return message
       except errors.HttpError as error:
         print('An error occurred: %s' % error)
-    print("templatePath", templatePath)
-    print("templatePath", personalizedPath)
     updatePersonalizedHTML(templatePath, personalizedPath, extraData)
     msg = create_message(to, subject, personalizedPath, cc)
     send_message(email_service, "me", msg)
