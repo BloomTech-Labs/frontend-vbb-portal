@@ -117,7 +117,7 @@ class MasterForm extends React.Component {
 
   previousButton() {
     let currentStep = this.state.currentStep;
-    if (currentStep !== 1&&currentStep!==6) {
+    if (currentStep !== 1) {
       return (
         <button
           className="btn btn-secondary prev-btn"

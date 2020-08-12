@@ -15,6 +15,13 @@ function SuccessStep(props) {
         </a>
         &nbsp;for more assistance
       </p>
+      <a
+        className="btn btn-light signin-btn"
+        type="button"
+        href="/signin/"
+      >
+        SIGN IN
+      </a>
     </div>
   );
 }
