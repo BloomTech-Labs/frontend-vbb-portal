@@ -91,7 +91,8 @@ class MasterForm extends React.Component {
       this.state.occupation,
       this.state.affiliation,
       this.state.referral_source,
-      this.state.desired_involvement
+      this.state.desired_involvement,
+      this.state.initials
     );
   };
 
@@ -215,7 +216,8 @@ const mapDispatchToProps = (dispatch) => {
       occupation,
       affiliation,
       referral_source,
-      desired_involvement
+      desired_involvement,
+      initials
     ) =>
       dispatch(
         actions.authSignup(
@@ -227,7 +229,8 @@ const mapDispatchToProps = (dispatch) => {
           occupation,
           affiliation,
           referral_source,
-          desired_involvement
+          desired_involvement,
+          initials
         )
       ),
   };
