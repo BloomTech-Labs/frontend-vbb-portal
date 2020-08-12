@@ -86,7 +86,7 @@ function Step5(props) {
         disabled={props.hasProblems()}
         style={{ marginBottom: "20px", marginTop: "20px" }}
       >
-        Sign up
+        SIGN UP
       </button>
     </React.Fragment>
   );
