@@ -61,8 +61,8 @@ class Booking extends React.Component {
         params: {
           library: this.state.library,
           language: this.state.language,
-          min_hsm: this.shift_time(parseInt(this.state.weekday), false),
-          max_hsm: this.shift_time(parseInt(this.state.weekday), false) + 24,
+          min_msm: this.shift_time(parseInt(this.state.weekday), false),
+          max_msm: this.shift_time(parseInt(this.state.weekday), false) + 24,
         },
       })
       .then((res) => {
@@ -97,28 +97,28 @@ class Booking extends React.Component {
     }
   };
 
-  display_time = (hsm) => {
-    var tzhsm = this.shift_time(hsm, true);
-    var time24 = tzhsm % 24;
-    var time12 = tzhsm % 12;
-    if (time24 === 0) return "12 am";
+  display_time = (msm) => {
+    var tzmsm = this.shift_time(msm, true);
+    let mins = (msm%60===0) ? ":00" : ":"+(msm%60)
+    var time24 = parseInt(tzmsm/60) % 24;
+    var time12 = parseInt(tzmsm/60) % 12;
+    if (time24 === 0) return "12"+mins+"am";
     if (time24 === 12) return "12 pm";
-    if (time24 === time12) return time12 + " am";
-    return time12 + " pm";
+    if (time24 === time12) return time12+mins+"am";
+    return time12 + mins+"pm";
   };
 
-  shift_time = (hsm, isEastern) => {
+  shift_time = (msm, isEastern) => {
     var now = moment();
     now.tz(this.state.time_zone);
     var localOffset = now.utcOffset();
     //eastern time zone is the server standard as of 8/1/2020
-    now.tz("America/New_York");
+    now.tz("US/Eastern");
     var easternOffset = now.utcOffset();
     var diffInMinutes = localOffset - easternOffset;
-    var diffInHours = diffInMinutes / 60;
-    //isEastern designates whether the given hsm is in Eastern or the local time_zone
-    if (isEastern) return (hsm + diffInHours + 168) % 168;
-    return (hsm - diffInHours + 168) % 168;
+    //isEastern designates whether the given msm is in Eastern or the local time_zone
+    if (isEastern) return (msm + diffInMinutes + 10080) % 10080;
+    return (msm - diffInMinutes + 10080) % 10080;
   };
 
   handleMentorChange = () => {
@@ -169,7 +169,7 @@ class Booking extends React.Component {
         params: {
           library: this.state.library,
           language: this.state.language,
-          hsm: this.state.time,
+          msm: this.state.time,
         },
       })
       .then((res) => {
@@ -292,8 +292,8 @@ class Booking extends React.Component {
                 this.state.times.length > 0 &&
                 this.state.times.map((time) => {
                   return (
-                    <option key={time.hsm} value={time.hsm}>
-                      {this.display_time(time.hsm)}
+                    <option key={time.msm} value={time.msm}>
+                      {this.display_time(time.msm)}
                     </option>
                   );
                 })}

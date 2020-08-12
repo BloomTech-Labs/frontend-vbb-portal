@@ -120,7 +120,7 @@ def generate_sessionslots(request):
             apt = SessionSlot()
             apt.mentee_computer = computer
             apt.language = lang
-            apt.hsm = i + (j * 24)
+            apt.msm = (i + (j * 24))*60
             apt.save()
 
     return Response({"success": "true"})
@@ -148,14 +148,14 @@ class AvailableSessionSlotList(ListAPIView):
         appts = SessionSlot.objects.all()
         library_params = self.request.query_params.get("library")
         language_params = self.request.query_params.get("language")
-        min_hsm_params = int(self.request.query_params.get("min_hsm"))
-        max_hsm_params = int(self.request.query_params.get("max_hsm"))
+        min_msm_params = int(self.request.query_params.get("min_msm"))
+        max_msm_params = int(self.request.query_params.get("max_msm"))
 
         # library and mentor filtering
         if library_params is None or library_params == "0":
             appts = (
                 appts.filter(mentor=None, language=language_params,)
-                .values("hsm")
+                .values("msm")
                 .distinct()
             )
         else:
@@ -165,21 +165,21 @@ class AvailableSessionSlotList(ListAPIView):
                     mentee_computer__library=library_params,
                     language=language_params,
                 )
-                .values("hsm")
+                .values("msm")
                 .distinct()
             )
 
-        # hsm filtering
-        if min_hsm_params < 0:
+        # msm filtering
+        if min_msm_params < 0:
             appts = appts.filter(
-                Q(hsm__lt=max_hsm_params) | Q(hsm__gte=168 + min_hsm_params)
+                Q(msm__lt=max_msm_params) | Q(msm__gte=10080 + min_msm_params)
             )
-        elif max_hsm_params >= 168:
+        elif max_msm_params >= 10080:
             appts = appts.filter(
-                Q(hsm__lt=max_hsm_params - 168) | Q(hsm__gte=min_hsm_params)
+                Q(msm__lt=max_msm_params - 10080) | Q(msm__gte=min_msm_params)
             )
         else:
-            appts = appts.filter(hsm__gte=min_hsm_params, hsm__lte=max_hsm_params)
+            appts = appts.filter(msm__gte=min_msm_params, msm__lte=max_msm_params)
 
         return Response(appts)
 
@@ -187,21 +187,21 @@ class AvailableSessionSlotList(ListAPIView):
 def book_sessionslot(request):
     """
     Gets an sessionslot list at a given time based on preferences then randomly picks one sessionslot and populates it with the mentor's name (queries specific fields by primary key).
-    URL example:  api/book/?library=1&language=1&hsm=1
+    URL example:  api/book/?library=1&language=1&msm=1
     """
     appts = SessionSlot.objects.all()
     library_params = request.query_params.get("library")
     language_params = request.query_params.get("language")
-    hsm_params = request.query_params.get("hsm")
+    msm_params = request.query_params.get("msm")
 
     if library_params is None or library_params == "0":
-        appts = appts.filter(mentor=None, language=language_params, hsm=hsm_params,)
+        appts = appts.filter(mentor=None, language=language_params, msm=msm_params,)
     else:
         appts = appts.filter(
             mentor=None,
             mentee_computer__library=library_params,
             language=language_params,
-            hsm=hsm_params,
+            msm=msm_params,
         )
     # Check if there are no sessionslots that match the request.
     if not appts:
@@ -216,15 +216,15 @@ def book_sessionslot(request):
     myappt.mentor = request.user
     # FIXME CHANGE START DATE CALCULATION BACK TO THE CODE BELOW ONCE PHASE 1 CURRENT MENTORING TEST IS THROUGH
     # myappt.start_date = datetime.today() + timedelta(
-    #     days=(aux_fns.diff_today_dsm(myappt.hsm) + 7)
+    #     days=(aux_fns.diff_today_dsm(myappt.msm) + 7)
     # )
     myappt.start_date = datetime.today() + timedelta(
-        days=(aux_fns.diff_today_dsm(myappt.hsm))
+        days=(aux_fns.diff_today_dsm(myappt.msm))
     )
     myappt.end_date = myappt.start_date + timedelta(weeks=17)
     gapi = google_apis()
-    start_time = aux_fns.date_combine_time(str(myappt.start_date), int(myappt.hsm))
-    end_date = aux_fns.date_combine_time(str(myappt.end_date), int(myappt.hsm))
+    start_time = aux_fns.date_combine_time(str(myappt.start_date), int(myappt.msm))
+    end_date = aux_fns.date_combine_time(str(myappt.end_date), int(myappt.msm))
     # event_id = gapi.calendar_event(
     #     myappt.mentee_computer.computer_email,
     #     myappt.mentor.mp.vbb_email,
@@ -242,7 +242,7 @@ def book_sessionslot(request):
     g = google_apis()
     library_time = aux_fns.display_day(
         myappt.mentee_computer.library.time_zone,
-        myappt.hsm,
+        myappt.msm,
         myappt.end_date)
     newMentorNotice_mail = os.path.join("api","emails","templates", "newMentorNotice.html")
     sessionConfirm_mail = os.path.join("api","emails","templates", "sessionConfirm.html")

@@ -94,11 +94,8 @@ class SessionSlot(models.Model):
         null=True,
     )
     language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True)
-    hsm = models.FloatField(
-        verbose_name="hours since monday at 12am (eastern time)",
-        null=True,
-        validators=[MinValueValidator(0.0), MaxValueValidator(167.999)],
-    )
+    msm = models.PositiveIntegerField(null=True, 
+        validators=[MinValueValidator(0), MaxValueValidator(10079)])
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     event_id = models.CharField(max_length=60, null=True, blank=True)
@@ -107,14 +104,14 @@ class SessionSlot(models.Model):
     def __str__(self):
         return aux_fns.display_day(
             "US/Eastern",
-            self.hsm,
+            self.msm,
             self.end_date,
         )
 
     def display(self):
         return aux_fns.display_day(
             self.mentor.mp.time_zone,
-            self.hsm,
+            self.msm,
             self.end_date,
             True
         )
