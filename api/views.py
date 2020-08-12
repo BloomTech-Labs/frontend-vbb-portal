@@ -231,8 +231,8 @@ def book_appointment(request):
     end_date = aux_fns.date_combine_time(str(myappt.end_date), myappt.hsm)
     event_id = gapi.calendar_event(
         myappt.mentee_computer.computer_email,
-        myappt.mentor.mentor.vbb_email,
-        myappt.mentor.mentor.personal_email,
+        myappt.mentor.mp.vbb_email,
+        myappt.mentor.mp.personal_email,
         start_time,
         end_date,
         myappt.mentee_computer.library.calendar_id,
@@ -254,4 +254,4 @@ class MyAppointmentListView(ListAPIView):
     serializer_class = MyAppointmentListSerializer
 
     def get_queryset(self):
-        return self.request.user.mentor_appointments.all()
+        return self.request.user.appointments.all()

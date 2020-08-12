@@ -12,7 +12,6 @@ class LibraryAdmin(admin.ModelAdmin):
         "name",
         "time_zone",
         "calendar_id",
-        "calendar_name",
         "whatsapp_group",
         "program_director_name",
         "program_director_phone",
@@ -26,7 +25,6 @@ class LibraryAdmin(admin.ModelAdmin):
         "name",
         "time_zone",
         "calendar_id",
-        "calendar_name",
         "whatsapp_group",
         "program_director_name",
         "program_director_phone",
@@ -75,7 +73,7 @@ class ComputerAdmin(admin.ModelAdmin):
         "__str__",
         "library",
         "language",
-        "computer_num",
+        "computer_number",
         "computer_email",
         "room_id",
     )
@@ -84,7 +82,7 @@ class ComputerAdmin(admin.ModelAdmin):
         "id",
         "library",
         "language",
-        "computer_num",
+        "computer_number",
         "computer_email",
         "room_id",
     )
@@ -101,7 +99,7 @@ class AppointmentAdmin(admin.ModelAdmin):
         "start_date",
         "end_date",
         "event_id",
-        "notes",
+        "mentor_notes",
     )
     readonly_fields = ("id",)
     search_fields = (
