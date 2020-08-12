@@ -88,7 +88,7 @@ class ComputerAdmin(admin.ModelAdmin):
     )
 
 
-class AppointmentAdmin(admin.ModelAdmin):
+class SessionSlotAdmin(admin.ModelAdmin):
     list_display = (
         "id",
         "__str__",
@@ -118,4 +118,4 @@ admin.site.register(Library, LibraryAdmin)
 admin.site.register(Language, LanguageAdmin)
 admin.site.register(MentorProfile, MentorProfileAdmin)
 admin.site.register(Computer, ComputerAdmin)
-admin.site.register(Appointment, AppointmentAdmin)
+admin.site.register(SessionSlot, SessionSlotAdmin)

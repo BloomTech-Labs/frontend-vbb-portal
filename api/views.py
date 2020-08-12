@@ -102,9 +102,9 @@ def check_signin(request):
     })
 
 @api_view(["POST"])
-def generate_appointments(request):
+def generate_sessionslots(request):
     """
-    Generates appointments from opentime to closetime on days from startday to endday
+    Generates session slots from opentime to closetime on days from startday to endday
     URL example:  api/generate/?computer=3&language=1&startday=0&endday=4&opentime=5&closetime=6
     """
     computer_params = request.query_params.get("computer")
@@ -121,7 +121,7 @@ def generate_appointments(request):
         lang = Language.objects.get(pk=language_params)
     for i in range(opentime_params, closetime_params):
         for j in range(startday_params, endday_params + 1):
-            apt = Appointment()
+            apt = SessionSlot()
             apt.mentee_computer = computer
             apt.language = lang
             apt.hsm = i + (j * 24)
@@ -139,17 +139,17 @@ class LanguageListView(ListAPIView):
     serializer_class = LanguageSerializer
     permission_classes = (AllowAny,)
 
-class AvailableAppointmentTimeList(ListAPIView):
+class AvailableSessionSlotList(ListAPIView):
     """
-    Returns a list of available appointment times based on a mentor's preference (queries specific fields by primary key).
+    Returns a list of available sessionslot times based on a mentor's preference (queries specific fields by primary key).
     URL example:  api/available/?library=1&language=1&min=1&max=24
     """
 
-    queryset = Appointment.objects.all()
+    queryset = SessionSlot.objects.all()
     permission_classes = (AllowAny,)
 
     def get(self, request):
-        appts = Appointment.objects.all()
+        appts = SessionSlot.objects.all()
         library_params = self.request.query_params.get("library")
         language_params = self.request.query_params.get("language")
         min_hsm_params = int(self.request.query_params.get("min_hsm"))
@@ -188,12 +188,12 @@ class AvailableAppointmentTimeList(ListAPIView):
         return Response(appts)
 
 @api_view(["POST"])
-def book_appointment(request):
+def book_sessionslot(request):
     """
-    Gets an appointment list at a given time based on preferences then randomly picks one appointment and populates it with the mentor's name (queries specific fields by primary key).
+    Gets an sessionslot list at a given time based on preferences then randomly picks one sessionslot and populates it with the mentor's name (queries specific fields by primary key).
     URL example:  api/book/?library=1&language=1&hsm=1
     """
-    appts = Appointment.objects.all()
+    appts = SessionSlot.objects.all()
     library_params = request.query_params.get("library")
     language_params = request.query_params.get("language")
     hsm_params = request.query_params.get("hsm")
@@ -207,12 +207,12 @@ def book_appointment(request):
             language=language_params,
             hsm=hsm_params,
         )
-    # Check if there are no appointments that match the request.
+    # Check if there are no sessionslots that match the request.
     if not appts:
         return Response(
             {
                 "success": "false",
-                "message": "No available appointments exist with those specifications.",
+                "message": "No available sessionslots exist with those specifications.",
             }
         )
     myappt = random.choice(appts)
@@ -239,19 +239,19 @@ def book_appointment(request):
     )
     myappt.event_id = event_id
     myappt.save()
-    # FIXME book appointment email
-    # FIXME - Add try/except/finally blocks for error checking (not logged in, appointment got taken before they refreshed)
+    # FIXME book sessionslot email
+    # FIXME - Add try/except/finally blocks for error checking (not logged in, sessionslot got taken before they refreshed)
     return Response(
-        {"success": "true", "user": str(myappt.mentor), "appointment": str(myappt),}
+        {"success": "true", "user": str(myappt.mentor), "sessionslot": str(myappt),}
     )
 
-class MyAppointmentListView(ListAPIView):
+class MySessionSlotListView(ListAPIView):
     """
-    Returns a list of the mentor's booked appointments.
+    Returns a list of the mentor's booked sessionslots.
     """
 
     permission_classes = (IsAuthenticated,)
-    serializer_class = MyAppointmentListSerializer
+    serializer_class = MySessionSlotListSerializer
 
     def get_queryset(self):
-        return self.request.user.appointments.all()
+        return self.request.user.sessionslots.all()

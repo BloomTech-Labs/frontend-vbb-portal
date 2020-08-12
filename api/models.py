@@ -80,18 +80,18 @@ class Computer(models.Model):
         )
 
 
-class Appointment(models.Model):
+class SessionSlot(models.Model):
     mentor = models.ForeignKey(
         User,
         on_delete=models.SET_NULL,
-        related_name="appointments",
+        related_name="sessionslots",
         null=True,
         blank=True,
     )
     mentee_computer = models.ForeignKey(
         Computer,
         on_delete=models.SET_NULL,
-        related_name="appointments",
+        related_name="sessionslots",
         null=True,
     )
     language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True)
