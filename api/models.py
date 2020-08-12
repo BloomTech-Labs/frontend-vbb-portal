@@ -95,10 +95,10 @@ class Appointment(models.Model):
         null=True,
     )
     language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True)
-    hsm = models.PositiveIntegerField(
+    hsm = models.FloatField(
         verbose_name="hours since monday at 12am (eastern time)",
         null=True,
-        validators=[MinValueValidator(0), MaxValueValidator(167)],
+        validators=[MinValueValidator(0.0), MaxValueValidator(167.999)],
     )
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
