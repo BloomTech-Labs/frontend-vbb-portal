@@ -50,7 +50,6 @@ class Booking extends React.Component {
   }
 
   fetchTimes = () => {
-
     axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.headers = {
@@ -77,7 +76,7 @@ class Booking extends React.Component {
   };
 
   display_day = (day) => {
-    day = parseInt(day)
+    day = parseInt(day);
     switch (day) {
       case 0:
         return "Monday";
@@ -100,15 +99,15 @@ class Booking extends React.Component {
 
   display_time = (msm) => {
     var tzmsm = this.shift_time(msm, true);
-    let mins = ":"+(msm%60)
-    if(msm%60===0) mins = ""
-    else if(msm%60<10) mins = ":0"+(msm%60)
-    var time24 = parseInt(tzmsm/60) % 24;
-    var time12 = parseInt(tzmsm/60) % 12;
-    if (time24 === 0) return "12"+mins+"am";
-    if (time24 === 12) return "12"+mins+"pm";
-    if (time24 === time12) return time12+mins+"am";
-    return time12 + mins+"pm";
+    let mins = ":" + (msm % 60);
+    if (msm % 60 === 0) mins = "";
+    else if (msm % 60 < 10) mins = ":0" + (msm % 60);
+    var time24 = parseInt(tzmsm / 60) % 24;
+    var time12 = parseInt(tzmsm / 60) % 12;
+    if (time24 === 0) return "12" + mins + "am";
+    if (time24 === 12) return "12" + mins + "pm";
+    if (time24 === time12) return time12 + mins + "am";
+    return time12 + mins + "pm";
   };
 
   shift_time = (msm, isEastern) => {
@@ -222,18 +221,17 @@ class Booking extends React.Component {
               onChange={this.handleDropDownChange}
               value={this.state.time_zone}
             >
-            {
-              moment.tz.names().map((tz) => {
+              {moment.tz.names().map((tz) => {
                 return (
                   <option key={tz} value={tz}>
                     {tz}
                   </option>
                 );
-              })
-            }
+              })}
             </select>
             <br />
             <br />
+            {/* <br style={{ paddingBottom: "-10px" }} /> */}
             <input
               type="checkbox"
               id="mentor"
@@ -267,12 +265,12 @@ class Booking extends React.Component {
                     })}
                 </select>
                 <br />
-                <br />
               </div>
             )}
             <br />
-            <br />
-            <label htmlFor="weekday">Day of the Week:&nbsp;</label>
+            <label htmlFor="weekday" style={{ marginBottom: "-30px" }}>
+              Day of the Week:&nbsp;
+            </label>
             <select
               name="weekday"
               id="weekday"
@@ -323,6 +321,8 @@ class Booking extends React.Component {
               </div>
             )}
           </div>
+          <br />
+          <br />
           <a href="/" type="button" className="btn goback-btn">
             GO BACK
           </a>

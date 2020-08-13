@@ -37,35 +37,43 @@ class Dashboard extends React.Component {
       <div className="twocol-container" id="dashboard">
         <div className="column col-card" id="mentoring-session-box">
           <h1 className="vbb-header">My Weekly Mentoring Session</h1>
-          <h3 style={{ color: "#6AC66B", textIndent: "25px" }}>
-            {this.state.sessionslots && this.state.sessionslots.length > 0 ? (
-              this.state.sessionslots.map((apt) => {
+
+          {this.state.sessionslots && this.state.sessionslots.length > 0 ? (
+            <h3 style={{ color: "#6AC66B", textIndent: "25px" }}>
+              {this.state.sessionslots.map((apt) => {
                 return (
                   <li key={apt.event_id} value={apt.event_id}>
                     {apt.display}
                     <br />
                   </li>
                 );
-              })
-            ) : (
-              <>
-                <h4
-                  style={{
-                    fontSize: "22px",
-                    fontWeight: "400",
-                    fontStyle: "italic",
-                    textIndent: "0px",
-                    color: "#ff914d",
-                  }}
-                >
-                  Uh oh! You don't have any mentoring sessions booked yet.
-                </h4>
-                <h4 style={{ textIndent: "0px", fontStyle: "italic" }}>
-                  Press the green button below to make your first booking!
-                </h4>
-              </>
-            )}
-          </h3>
+              })}
+            </h3>
+          ) : (
+            <>
+              <h4
+                style={{
+                  fontSize: "22px",
+                  fontWeight: "400",
+                  fontStyle: "italic",
+                  textIndent: "0px",
+                  color: "#ff914d",
+                }}
+              >
+                Uh oh! You don't have any mentoring sessions booked yet.
+              </h4>
+              <h4
+                style={{
+                  textIndent: "0px",
+                  fontStyle: "italic",
+                  color: "#6ac66b",
+                }}
+              >
+                Press the green button below to make your first booking!
+              </h4>
+            </>
+          )}
+
           <div className="btns">
             <a
               href="/booking/"
@@ -98,9 +106,9 @@ class Dashboard extends React.Component {
           </p>
           {/* <MentorProfile /> */}
         </div>
-        <div className="column col-card">
+        <div className="column col-card" id="mentoring-resources-box">
           <h1 className="vbb-header">Mentoring Resources</h1>
-          <div className="twocol-container" id="mentoring-resources-box">
+          <div className="twocol-container" id="mentoring-resources-fields">
             <a
               className="btn btn-light dashboard-btn l1-btn"
               href="https://360.articulate.com/review/content/73bf3afe-47f9-4f9f-aa4d-70bf27fbe8d5/review"

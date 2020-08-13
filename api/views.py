@@ -175,9 +175,9 @@ class AvailableSessionSlotList(ListAPIView):
                 Q(msm__lt=max_msm_params - 10080) | Q(msm__gte=min_msm_params)
             )
         else:
-            appts = appts.filter(msm__gte=min_msm_params, msm__lte=max_msm_params)
+            appts = appts.filter(msm__gte=min_msm_params, msm__lt=max_msm_params)
 
-        return Response(appts)
+        return Response(appts.order_by("msm"))
 
 @api_view(["POST"])
 def book_sessionslot(request):
@@ -228,6 +228,7 @@ def book_sessionslot(request):
         start_time,
         end_date,
         myappt.mentee_computer.library.calendar_id,
+        myappt.mentee_computer.room_id
     )
     myappt.event_id = event_id
     myappt.save()
