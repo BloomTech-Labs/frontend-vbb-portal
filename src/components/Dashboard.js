@@ -60,7 +60,7 @@ class Dashboard extends React.Component {
                   color: "#ff914d",
                 }}
               >
-                Uh oh! You don't have any mentoring sessions booked yet.
+                <b>Uh oh!</b> You don't have any mentoring sessions booked yet.
               </h4>
               <h4
                 style={{
