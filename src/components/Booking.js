@@ -265,11 +265,9 @@ class Booking extends React.Component {
                     })}
                 </select>
                 <br />
-                {/* <br /> */}
               </div>
             )}
             <br />
-            {/* <br /> */}
             <label htmlFor="weekday" style={{ marginBottom: "-30px" }}>
               Day of the Week:&nbsp;
             </label>
