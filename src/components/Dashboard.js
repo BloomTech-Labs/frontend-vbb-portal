@@ -90,20 +90,9 @@ class Dashboard extends React.Component {
               rel="noopener noreferrer"
               style={{ marginTop: "5px", marginBottom: "30px" }}
             >
-              View My Google Calendar
+              View My Sessions Calendar 
             </a>
           </div>
-          <p
-            style={{ padding: "20px", paddingLeft: "40px", maxWidth: "650px" }}
-          >
-            If you would like to change a mentoring session or have another
-            question, please
-            <a href="mailto:mentor@villagebookbuilders.org">
-              {" "}
-              contact your mentor advisor{" "}
-            </a>
-            at mentor@villagebookbuilders.org
-          </p>
           {/* <MentorProfile /> */}
         </div>
         <div className="column col-card" id="mentoring-resources-box">
@@ -115,10 +104,41 @@ class Dashboard extends React.Component {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Mentor Training
+              Mentor Training Module
+            </a>
+            <a
+              className="btn btn-light dashboard-btn l5-btn"
+              href="mailto:mentor@villagebookbuilders.org"
+            >
+              Contact your Mentor Advisor
+            </a>
+            {/*bold the contact*/}
+            <a
+              className="btn btn-light dashboard-btn l3-btn"
+              href="https://docs.google.com/document/d/e/2PACX-1vR5-WnzhSJ88pfh2yctr7JuRXglAD55q8eluMPnLA1fTIyeKxxrGvL4r7D7wZh8mvd6WTL9GJJ1tkdD/pub"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Mentoring Guide
+            </a>
+            <a
+              className="btn btn-light dashboard-btn l6-btn"
+              href="https://idroo.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Whiteboard
             </a>
             <a
               className="btn btn-light dashboard-btn l2-btn"
+              href="https://www.khanacademy.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Khan Academy
+            </a>
+            <a
+              className="btn btn-light dashboard-btn l4-btn"
               href="https://classroom.google.com/u/0/h"
               target="_blank"
               rel="noopener noreferrer"
@@ -127,33 +147,19 @@ class Dashboard extends React.Component {
             </a>
             <a
               className="btn btn-light dashboard-btn l3-btn"
-              href="https://apps.google.com/meet/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Google Meets
-            </a>
-            <a
-              className="btn btn-light dashboard-btn l4-btn"
-              href="https://www.khanacademy.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Khan Academy
-            </a>
-            <a
-              className="btn btn-light dashboard-btn l5-btn"
-              href="mailto:mentor@villagebookbuilders.org"
-            >
-              Contact your Mentor Advisor
-            </a>
-            <a
-              className="btn btn-light dashboard-btn l6-btn"
               href="https://www.facebook.com/groups/villagementors"
               target="_blank"
               rel="noopener noreferrer"
             >
               Village Mentors FB Group
+            </a>
+            <a
+              className="btn btn-light dashboard-btn l6-btn"
+              href="https://apps.google.com/meet/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Google Meets
             </a>
             <a
               className="btn btn-light dashboard-btn l7-btn"
@@ -172,7 +178,18 @@ class Dashboard extends React.Component {
               VBB Home Website
             </a>
           </div>
-        </div>
+          <p
+            style={{ padding: "20px", paddingLeft: "40px", maxWidth: "900px" }}
+          >
+            <b>If you would like to change a mentoring session, have questions about mentoring, or ANY QUESTIONS, 
+            please
+            <a href="mailto:mentor@villagebookbuilders.org">
+              {" "}
+              contact your mentor advisor{" "}
+            </a>
+            at mentor@villagebookbuilders.org! <br></br>
+            </b>
+          </p>        </div>
       </div>
     );
   }

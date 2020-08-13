@@ -321,6 +321,16 @@ class Booking extends React.Component {
               </div>
             )}
           </div>
+          <p>
+            If no avaliable times work with your weekly schedule,
+            <br />
+            <a href="mailto:mentor@villagebookbuilders.org">
+              {" "}
+              Contact the mentor advisors {" "}
+            </a>
+            at mentor@villagebookbuilders.org. <br />
+            Please include potential times available in the email! 
+          </p>
           <br />
           <br />
           <a href="/" type="button" className="btn goback-btn">
