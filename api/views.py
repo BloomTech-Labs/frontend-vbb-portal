@@ -177,7 +177,7 @@ class AvailableSessionSlotList(ListAPIView):
         else:
             appts = appts.filter(msm__gte=min_msm_params, msm__lt=max_msm_params)
 
-        return Response(appts.order_by("-msm"))
+        return Response(appts.order_by("msm"))
 
 @api_view(["POST"])
 def book_sessionslot(request):
