@@ -209,6 +209,61 @@ class google_apis:
     msg = create_message(to, subject, personalizedPath, cc)
     send_message(email_service, "me", msg)
 
+  
+  def group_subscribe(self, groupEmail, userEmail):
+    http = _auth.authorized_http(self.__webdev_cred)
+    self.__webdev_cred.refresh(http._request)
+    url = "https://www.googleapis.com/admin/directory/v1/groups/" + groupEmail + "/members"
+    headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+    data = ''' 
+    {
+      "email": "%s",
+      "role": "MEMBER",
+    }
+    '''% (userEmail)
+    with requests.Session() as s:
+      s.auth = OAuth2BearerToken(self.__webdev_cred.token)
+      r = s.post(url, headers=headers, data=data)
+
+  def classroom_invite(self, courseID, email, role="TEACHER"):
+    cred = self.__mentor_cred
+    http = _auth.authorized_http(cred)
+    cred.refresh(http._request)
+    url = "https://classroom.googleapis.com/v1/invitations"
+    headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+    data = ''' 
+    {
+      "userId": "%s",
+      "courseId": "%s",
+      "role": "%s",
+    }
+    '''% (email, courseID, role)
+    with requests.Session() as s:
+      s.auth = OAuth2BearerToken(cred.token)
+      r = s.post(url, headers=headers, data=data)
+
+  def course_list(self, teacherEmail):
+    cred = self.__mentor_cred
+    http = _auth.authorized_http(cred)
+    cred.refresh(http._request)
+    url = "https://classroom.googleapis.com/v1/courses?courseStates=ACTIVE&teacherId="+teacherEmail
+    headers = {
+      'Accept': 'application/json',
+    }
+    with requests.Session() as s:
+      s.auth = OAuth2BearerToken(cred.token)
+      r = s.get(url, headers=headers)
+      return r.text
+
+
+    
+    
 # # FOR TESTING PURPOSES -- REMOVE LATER
 def testFunction():
   g = google_apis()
