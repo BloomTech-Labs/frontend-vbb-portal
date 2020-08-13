@@ -160,7 +160,7 @@ class Booking extends React.Component {
   };
 
   postRequest = () => {
-    alert("please wait while we submit your booking request");
+    alert("Please wait while we submit your booking request");
     axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.headers = {
