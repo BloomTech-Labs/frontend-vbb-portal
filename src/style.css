@@ -270,6 +270,7 @@ hr {
 
 #booking-box {
   width: 550px;
+  margin: 50px;
   margin-top: 20px;
   margin-bottom: 100px;
 }
@@ -403,6 +404,11 @@ input {
   #mentoring-resources-box {
     margin: 20px;
   }
+
+  #booking-box {
+    padding: 10px;
+    margin-top: 40px;
+  }
 }
 
 /* MOBILE ADJUSTMENTS */
@@ -434,7 +440,7 @@ input {
   }
 
   select {
-    width: 140px;
+    width: 80%;
   }
 
   #welcome-header {
@@ -453,7 +459,6 @@ input {
 
   #booking-box {
     width: 350px;
-    padding: 10px;
   }
 
   .signup-form {
@@ -467,6 +472,10 @@ input {
 
   .dashboard-btn {
     font-size: 18px;
+  }
+
+  #time_zone {
+    margin-left: 90px;
   }
 }
 
