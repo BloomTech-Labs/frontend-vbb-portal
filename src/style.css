@@ -184,6 +184,11 @@ a {
   margin-right: 20px;
 }
 
+.signin-btn:hover,
+.signup-btn:hover {
+  background-color: #ff914d;
+}
+
 hr {
   border: 0.7px solid gainsboro;
 }
