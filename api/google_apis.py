@@ -23,9 +23,9 @@ class google_apis:
   FUNCTIONS:
   1) account_create(self, firstName, lastName, personalEmail)
     - creates a mentor account 
-  2) calendar_event(self, menteeEmail, mentorEmail, start_time, duration=1)
+  2) calendar_event(self, menteeEmail, mentorEmail, personalEmail, start_time, end_date, calendar_id, room, duration=.5)
     - creates a calendar event with a google meets link 
-  3) email_send(self, to, subject, message_text)
+  3) email_send(self, to, subject, templatePath, extraData=None, cc=None)
     - sends welcome email
   '''
   __webdev_cred=''
@@ -92,7 +92,7 @@ class google_apis:
 
 
   def calendar_event(self, menteeEmail, mentorEmail, personalEmail, start_time, end_date, calendar_id, room, duration=.5):
-      calendar_service = build('calendar', 'v3', credentials=self.__webdev_cred)
+      calendar_service = build('calendar', 'v3', credentials=self.__mentor_cred)
       timezone = 'America/New_York'
       start_date_time_obj = datetime.strptime(start_time, '%Y-%m-%dT%H:%M:%S')
       end_time = start_date_time_obj + timedelta(hours=duration)
@@ -237,6 +237,12 @@ def testFunction():
   #   cc=["edringger@gmail.com"]
   # )
 # def calendar_event(self, menteeEmail, mentorEmail, personalEmail, start_time, end_date, calendar_id, room, duration=.5)
-  g.calendar_event("sohan.kalva.test2@villagementors.org", "shwetha.test1@villagebookbuilders.org", "shwetha.shinju@gmail.com", "2020-08-12T23:00:00", "2020-09-10T22:00:00", "shwetha.test1@villagebookbuilders.org", "c_188apa1pg08nkg9pn621lmhbfc0f04gnepkmor31ctim4rrfddh7aqbcchin4spedtp6e@resource.calendar.google.com")
+  g.calendar_event(
+    "sohan.kalva.test2@villagementors.org", 
+    "shwetha.test1@villagebookbuilders.org",
+    "shwetha.shinju@gmail.com", 
+    "2020-08-12T23:30:00", "2020-09-10T22:00:00", 
+    "c_oha2uv7abp2vs6jlrl96aeoje8@group.calendar.google.com", 
+    "c_188apa1pg08nkg9pn621lmhbfc0f04gnepkmor31ctim4rrfddh7aqbcchin4spedtp6e@resource.calendar.google.com")
   
 # testFunction()
