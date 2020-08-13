@@ -26,18 +26,11 @@ def first_time_signup(request):
     """
     fname = request.data.get("first_name")
     lname = request.data.get("last_name")
-    pemail = request.data.get("personal_email")
-    vemail = request.data.get("vbb_email")
+    pemail = request.data.get("personal_email").lower()
+    request.data["vbb_email"] = request.data.get("vbb_email")
     gapi = google_apis()
-    mps = MentorProfile.objects.filter(vbb_email=vemail)
-    if len(mps) > 0 or mps == None:
-        return Response({
-            "success": "false", 
-            "message": "Sorry, this VBB email has already been used to create a mentor profile."},
-            status=status.HTTP_400_BAD_REQUEST
-        )
-    if vemail == None or vemail == '':
-        request.data["vbb_email"], pwd = gapi.account_create(fname, lname, pemail)
+    if request.data["vbb_email"] == None or request.data["vbb_email"] == '':
+        request.data["vbb_email"], pwd = gapi.account_create(fname.lower(), lname.lower(), pemail)
         welcome_mail = os.path.join("api", "emails", "templates", "welcomeLetter.html")
         gapi.email_send(
             pemail,  # personal email form form
@@ -50,13 +43,16 @@ def first_time_signup(request):
             }
             ,[request.data["vbb_email"]]
         )
-    training_mail = os.path.join("api", "emails", "templates", "training.html")
-    gapi.email_send(
-        request.data["vbb_email"],  # personal email form form
-        "VBB Mentor Training",
-        training_mail,
-        cc=[pemail]
-    )
+    request.data["vbb_email"] = request.data["vbb_email"].lower()
+    
+    mps = MentorProfile.objects.filter(vbb_email=request.data["vbb_email"])
+    if len(mps) > 0 or mps == None:
+        return Response({
+            "success": "false", 
+            "message": "Sorry, this VBB email has already been used to create a mentor profile."},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+        
     serializer = MentorProfileSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -232,6 +228,7 @@ def book_sessionslot(request):
         start_time,
         end_date,
         myappt.mentee_computer.library.calendar_id,
+        myappt.mentee_computer.room_id
     )
     myappt.event_id = event_id
     myappt.save()
@@ -269,6 +266,16 @@ def book_sessionslot(request):
             '__programdirector': myappt.mentee_computer.library.program_director_name
         },
         [myappt.mentor.mp.personal_email]
+    )
+    training_mail = os.path.join("api", "emails", "templates", "training.html")
+    gapi.email_send(
+        myappt.mentor.mp.vbb_email,
+        "VBB Mentor Training",
+        training_mail,
+        {
+            "__whatsapp_group": myappt.mentee_computer.library.whatsapp_group
+        },
+        cc=[myappt.mentor.mp.personal_email]
     )
     # FIXME - Add try/except/finally blocks for error checking (not logged in, sessionslot got taken before they refreshed)
     return Response(

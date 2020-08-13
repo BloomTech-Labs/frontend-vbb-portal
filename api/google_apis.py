@@ -91,7 +91,7 @@ class google_apis:
     return (primaryEmail, pwd)
 
 
-  def calendar_event(self, menteeEmail, mentorEmail, personalEmail, start_time, end_date, calendar_id, duration=.5):
+  def calendar_event(self, menteeEmail, mentorEmail, personalEmail, start_time, end_date, calendar_id, room, duration=.5):
       calendar_service = build('calendar', 'v3', credentials=self.__webdev_cred)
       timezone = 'America/New_York'
       start_date_time_obj = datetime.strptime(start_time, '%Y-%m-%dT%H:%M:%S')
@@ -116,7 +116,8 @@ class google_apis:
           'attendees': [
               {'email': menteeEmail},
               {'email': mentorEmail},
-              {'email': personalEmail}
+              {'email': personalEmail},
+              {'email': room, 'resource': "true"}
           ],
           'reminders': {
               'useDefault': False,
@@ -228,14 +229,14 @@ def testFunction():
   #  },
   #  ["ed.test1@villagebookbuilders.org", "ed.ringger0@villagementors.org"]
   # )
-  print ("bark!")
+
   # g.email_send(
   #   "ed.test1@villagebookbuilders.org",        # personal email form form
   #   "Training",                
   #   training_mail,
   #   cc=["edringger@gmail.com"]
   # )
-
-#   #g.calendar_event("shwetha.test1@villagebookbuilders.org", "sohan.kalva.test2@villagementors.org", "shwetha.shinju@gmail.com", "2020-08-10T22:00:00", "2020-09-10T22:00:00", "shwetha.test1@villagebookbuilders.org")
+# def calendar_event(self, menteeEmail, mentorEmail, personalEmail, start_time, end_date, calendar_id, room, duration=.5)
+  g.calendar_event("sohan.kalva.test2@villagementors.org", "shwetha.test1@villagebookbuilders.org", "shwetha.shinju@gmail.com", "2020-08-12T23:00:00", "2020-09-10T22:00:00", "shwetha.test1@villagebookbuilders.org", "c_188apa1pg08nkg9pn621lmhbfc0f04gnepkmor31ctim4rrfddh7aqbcchin4spedtp6e@resource.calendar.google.com")
   
 # testFunction()
