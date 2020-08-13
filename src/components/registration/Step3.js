@@ -1,7 +1,5 @@
 import React from "react";
 
-/*Step 3 */
-
 function Step3(props) {
   if (props.state.currentStep !== 3) {
     return null;

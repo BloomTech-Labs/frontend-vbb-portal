@@ -154,12 +154,13 @@ class Booking extends React.Component {
   };
 
   submitRequest = () => {
+    document.getElementById("requestsession-btn").disabled = true;
     this.handleCommitChange();
     this.postRequest();
   };
 
   postRequest = () => {
-    alert("please wait while we submit your booking request");
+    alert("Please wait while we submit your booking request");
     axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.headers = {
@@ -239,9 +240,7 @@ class Booking extends React.Component {
               onChange={this.handleMentorChange}
             />
             <label htmlFor="mentor">Are you a returning mentor?</label>
-            {/* <p style={{ fontSize: "medium" }}>
-              (Check to rebook your current session)
-            </p> */}
+            <div id="ex-space" />
             {this.state.isReturning && (
               <div>
                 <label htmlFor="library" style={{ paddingLeft: "50px" }}>
@@ -252,6 +251,7 @@ class Booking extends React.Component {
                   name="library"
                   id="library"
                   onChange={this.handleDropDownChange}
+                  style={{ marginTop: "0px" }}
                 >
                   <option value="0">Any</option>
                   {this.state.libraries &&
@@ -265,12 +265,11 @@ class Booking extends React.Component {
                     })}
                 </select>
                 <br />
+                <br />
               </div>
             )}
             <br />
-            <label htmlFor="weekday" style={{ marginBottom: "-30px" }}>
-              Day of the Week:&nbsp;
-            </label>
+            <label htmlFor="weekday">Day of the Week:&nbsp;</label>
             <select
               name="weekday"
               id="weekday"

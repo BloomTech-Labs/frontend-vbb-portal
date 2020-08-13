@@ -516,6 +516,10 @@ input {
   #time_zone {
     margin-left: 90px;
   }
+
+  #ex-space {
+    margin-bottom: -20px;
+  }
 }
 
 /* SUPER MOBILE ADJUSTMENTS */
