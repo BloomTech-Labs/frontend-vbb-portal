@@ -135,6 +135,7 @@ a {
 
 .dashboard-btn {
   width: 275px;
+  min-width: 260px;
   font-family: "Nunito", cursive;
   font-weight: bold;
   font-size: 20px;
@@ -199,20 +200,33 @@ hr {
   column-count: 2;
 }
 
-#mentoring-resources-box {
-  flex-direction: row;
-}
-
-.dashboard-btn {
-  margin: 20px;
-}
-
 .column {
   flex: 2;
   width: 100%;
   margin: 2vw;
   padding: 30px;
   border-radius: 30px;
+}
+
+.col-card {
+  background-color: #fffff6;
+  min-height: 650px;
+}
+
+#mentoring-session-box {
+  flex: 1;
+}
+
+#mentoring-resources-box {
+  max-width: 1000px;
+}
+
+#mentoring-resources-fields {
+  flex-direction: row;
+}
+
+.dashboard-btn {
+  margin: 20px;
 }
 
 #signin-box {
@@ -237,11 +251,6 @@ hr {
 #signin-picture-box {
   margin: 5vw;
   max-width: 800px;
-}
-
-.col-card {
-  background-color: #fffff6;
-  min-height: 650px;
 }
 
 .loading-spinner {
@@ -334,6 +343,23 @@ input {
     min-width: 400px;
     margin-top: 150px;
   }
+
+  #mentoring-session-box {
+    min-width: 450px;
+  }
+  #mentoring-resources-box {
+    min-width: 700px;
+  }
+}
+
+/* JUST TABLET ADJUSTMENTS */
+
+@media only screen and (min-width: 660px) and (max-width: 1270px) {
+  #mentoring-session-box,
+  #mentoring-resources-box {
+    min-width: 700px;
+    max-width: 1000px;
+  }
 }
 
 /* TABLET AND MOBILE ADJUSTMENTS */
@@ -371,6 +397,11 @@ input {
 
   #signin-box {
     top: 10px;
+  }
+
+  #mentoring-session-box,
+  #mentoring-resources-box {
+    margin: 20px;
   }
 }
 
@@ -428,6 +459,14 @@ input {
   .signup-form {
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  #mentoring-resources-box {
+    min-height: 850px;
+  }
+
+  .dashboard-btn {
+    font-size: 18px;
   }
 }
 

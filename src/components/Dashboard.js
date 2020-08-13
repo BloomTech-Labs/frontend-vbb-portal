@@ -98,9 +98,9 @@ class Dashboard extends React.Component {
           </p>
           {/* <MentorProfile /> */}
         </div>
-        <div className="column col-card">
+        <div className="column col-card" id="mentoring-resources-box">
           <h1 className="vbb-header">Mentoring Resources</h1>
-          <div className="twocol-container" id="mentoring-resources-box">
+          <div className="twocol-container" id="mentoring-resources-fields">
             <a
               className="btn btn-light dashboard-btn l1-btn"
               href="https://360.articulate.com/review/content/73bf3afe-47f9-4f9f-aa4d-70bf27fbe8d5/review"
