@@ -228,6 +228,7 @@ def book_sessionslot(request):
         start_time,
         end_date,
         myappt.mentee_computer.library.calendar_id,
+        myappt.mentee_computer.room_id
     )
     myappt.event_id = event_id
     myappt.save()
