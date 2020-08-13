@@ -154,6 +154,8 @@ class Booking extends React.Component {
   };
 
   submitRequest = () => {
+    // disable 'REQUEST SESSION' button after click
+    document.getElementById("requestsession-btn").disabled = true;
     this.handleCommitChange();
     this.postRequest();
   };
