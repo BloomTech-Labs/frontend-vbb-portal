@@ -175,7 +175,7 @@ class AvailableSessionSlotList(ListAPIView):
                 Q(msm__lt=max_msm_params - 10080) | Q(msm__gte=min_msm_params)
             )
         else:
-            appts = appts.filter(msm__gte=min_msm_params, msm__lte=max_msm_params)
+            appts = appts.filter(msm__gte=min_msm_params, msm__lt=max_msm_params)
 
         return Response(appts)
 
