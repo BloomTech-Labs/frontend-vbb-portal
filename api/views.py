@@ -52,7 +52,7 @@ def first_time_signup(request):
             "message": "Sorry, this VBB email has already been used to create a mentor profile."},
             status=status.HTTP_400_BAD_REQUEST
         )
-        
+
     serializer = MentorProfileSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -208,7 +208,7 @@ def book_sessionslot(request):
             }
         )
     myappt = random.choice(appts)
-    print("apt", myappt)
+    #print("apt", myappt) #debuggin statementing
     myappt.mentor = request.user
     # FIXME CHANGE START DATE CALCULATION BACK TO THE CODE BELOW ONCE PHASE 1 CURRENT MENTORING TEST IS THROUGH
     # myappt.start_date = datetime.today() + timedelta(
@@ -231,8 +231,8 @@ def book_sessionslot(request):
     )
     myappt.event_id = event_id
     myappt.save()
-    print("mentee computer", myappt.mentee_computer)
-    print("library", myappt.mentee_computer.library)
+    #print("mentee computer", myappt.mentee_computer) #debug statement
+    #print("library", myappt.mentee_computer.library) #debug statement
 
 
     g = google_apis()
@@ -242,8 +242,8 @@ def book_sessionslot(request):
         myappt.end_date)
     newMentorNotice_mail = os.path.join("api","emails","templates", "newMentorNotice.html")
     sessionConfirm_mail = os.path.join("api","emails","templates", "sessionConfirm.html")
-    print("library time", library_time)
-    print("director email", myappt.mentee_computer.library.program_director_email)
+    #print("library time", library_time) #debugging
+    #print("director email", myappt.mentee_computer.library.program_director_email) #debugging
     g.email_send(
         myappt.mentee_computer.library.program_director_email,
         "New Mentoring Session Booked for "+ library_time,
