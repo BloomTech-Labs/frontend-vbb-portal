@@ -29,6 +29,17 @@ def first_time_signup(request):
     pemail = request.data.get("personal_email").lower()
     request.data["vbb_email"] = request.data.get("vbb_email")
     gapi = google_apis()
+
+    #TODO test this functionality
+    if request.data["vbb_email"] is not None and request.data["vbb_email"] != '':
+        mps = MentorProfile.objects.filter(vbb_email=request.data["vbb_email"])
+        if len(mps) > 0 or mps == None:
+            return Response({
+                "success": "false", 
+                "message": "Sorry, this VBB email has already been used to create a mentor profile."}#,
+                # status=status.HTTP_400_BAD_REQUEST #FIXME include status
+            )
+
     if request.data["vbb_email"] == None or request.data["vbb_email"] == '':
         request.data["vbb_email"], pwd = gapi.account_create(fname.lower(), lname.lower(), pemail)
         welcome_mail = os.path.join("api", "emails", "templates", "welcomeLetter.html")
@@ -44,14 +55,6 @@ def first_time_signup(request):
             ,[request.data["vbb_email"]]
         )
     request.data["vbb_email"] = request.data["vbb_email"].lower()
-    
-    mps = MentorProfile.objects.filter(vbb_email=request.data["vbb_email"])
-    if len(mps) > 0 or mps == None:
-        return Response({
-            "success": "false", 
-            "message": "Sorry, this VBB email has already been used to create a mentor profile."},
-            status=status.HTTP_400_BAD_REQUEST
-        )
 
     serializer = MentorProfileSerializer(data=request.data)
     if serializer.is_valid():
