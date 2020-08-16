@@ -94,7 +94,7 @@ class Layout extends React.Component {
         </nav>
 
         <div className="content">
-          <AlertDismissable {...this.props} />
+          <AlertDismissable close={this.props.logout} {...this.props} />
 
           {this.props.children}
         </div>

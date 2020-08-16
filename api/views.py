@@ -24,6 +24,7 @@ def first_time_signup(request):
     When a user signs up, create a mentor profile. If they are new mentors, create a vbb email and send a
     welcome email.
     """
+    #FIXME put the serializer here. if it is invalid, return an error
     fname = request.data.get("first_name")
     lname = request.data.get("last_name")
     pemail = request.data.get("personal_email").lower()
@@ -60,8 +61,11 @@ def first_time_signup(request):
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    print("\nserializer errors\n", serializer.errors)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    print("\nserializer errors\n", str(serializer.errors))
+    return Response({
+        'success': 'false',
+        'message': (str(serializer.errors)),
+    })#FIXME use proper protocol and add a status
 
 class GoogleLogin(SocialLoginView):
     adapter_class = GoogleOAuth2Adapter
