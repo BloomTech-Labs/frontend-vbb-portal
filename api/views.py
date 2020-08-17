@@ -229,6 +229,7 @@ def book_sessionslot(request):
     start_time = aux_fns.date_combine_time(str(myappt.start_date), int(myappt.msm))
     end_date = aux_fns.date_combine_time(str(myappt.end_date), int(myappt.msm))
     event_id = gapi.calendar_event(
+        myappt.mentor.first_name,
         myappt.mentee_computer.computer_email,
         myappt.mentor.mp.vbb_email,
         myappt.mentor.mp.personal_email,
