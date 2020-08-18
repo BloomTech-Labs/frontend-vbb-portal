@@ -24,14 +24,6 @@ def first_time_signup(request):
     When a user signs up, create a mentor profile. If they are new mentors, create a vbb email and send a
     welcome email.
     """
-    #check to see if the serializer works
-    serializer = MentorProfileSerializer(data=request.data)
-    if not (serializer.is_valid()):
-        return Response({
-            'success': 'false',
-            'message': (str(serializer.errors)),
-        })#FIXME use proper protocol and add a status
-
     fname = request.data.get("first_name")
     lname = request.data.get("last_name")
     pemail = request.data.get("personal_email").lower()
@@ -39,6 +31,13 @@ def first_time_signup(request):
 
     #TODO test this functionality more thoroughly
     if request.data["vbb_email"] is not None and request.data["vbb_email"] != '':
+        #check to see if the serializer works
+        serializer = MentorProfileSerializer(data=request.data)
+        if not (serializer.is_valid()):
+            return Response({
+                'success': 'false',
+                'message': (str(serializer.errors)),
+            })#FIXME use proper protocol and add a status
         request.data["vbb_email"] = request.data["vbb_email"].lower()
         mps = MentorProfile.objects.filter(vbb_email=request.data["vbb_email"])
         if len(mps) > 0 or mps is not None:
@@ -48,6 +47,14 @@ def first_time_signup(request):
                 # status=status.HTTP_400_BAD_REQUEST #FIXME include status
             )
     else:
+        #check to see if the serializer works
+        request.data["vbb_email"]="mentor@villagebookbuilders.org"
+        serializer = MentorProfileSerializer(data=request.data)
+        if not (serializer.is_valid()):
+            return Response({
+                'success': 'false',
+                'message': (str(serializer.errors)),
+            })#FIXME use proper protocol and add a status
         request.data["vbb_email"], pwd = gapi.account_create(fname.lower(), lname.lower(), pemail)
         welcome_mail = os.path.join("api", "emails", "templates", "welcomeLetter.html")
         gapi.email_send(
@@ -62,8 +69,13 @@ def first_time_signup(request):
             ,[request.data["vbb_email"]]
         )
     serializer = MentorProfileSerializer(data=request.data)
-    serializer.save()
-    return Response(serializer.data, status=status.HTTP_201_CREATED)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response({
+        'success': 'false',
+        'message': (str(serializer.errors)),
+    })#FIXME use proper protocol and add a status
 
 class GoogleLogin(SocialLoginView):
     adapter_class = GoogleOAuth2Adapter
