@@ -24,24 +24,30 @@ def first_time_signup(request):
     When a user signs up, create a mentor profile. If they are new mentors, create a vbb email and send a
     welcome email.
     """
-    #FIXME put the serializer here. if it is invalid, return an error
+    #check to see if the serializer works
+    serializer = MentorProfileSerializer(data=request.data)
+    if not (serializer.is_valid()):
+        return Response({
+            'success': 'false',
+            'message': (str(serializer.errors)),
+        })#FIXME use proper protocol and add a status
+
     fname = request.data.get("first_name")
     lname = request.data.get("last_name")
     pemail = request.data.get("personal_email").lower()
-    request.data["vbb_email"] = request.data.get("vbb_email")
     gapi = google_apis()
 
-    #TODO test this functionality
+    #TODO test this functionality more thoroughly
     if request.data["vbb_email"] is not None and request.data["vbb_email"] != '':
+        request.data["vbb_email"] = request.data["vbb_email"].lower()
         mps = MentorProfile.objects.filter(vbb_email=request.data["vbb_email"])
-        if len(mps) > 0 or mps == None:
+        if len(mps) > 0 or mps is not None:
             return Response({
                 "success": "false", 
                 "message": "Sorry, this VBB email has already been used to create a mentor profile."}#,
                 # status=status.HTTP_400_BAD_REQUEST #FIXME include status
             )
-
-    if request.data["vbb_email"] == None or request.data["vbb_email"] == '':
+    else:
         request.data["vbb_email"], pwd = gapi.account_create(fname.lower(), lname.lower(), pemail)
         welcome_mail = os.path.join("api", "emails", "templates", "welcomeLetter.html")
         gapi.email_send(
@@ -55,17 +61,9 @@ def first_time_signup(request):
             }
             ,[request.data["vbb_email"]]
         )
-    request.data["vbb_email"] = request.data["vbb_email"].lower()
-
     serializer = MentorProfileSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    print("\nserializer errors\n", str(serializer.errors))
-    return Response({
-        'success': 'false',
-        'message': (str(serializer.errors)),
-    })#FIXME use proper protocol and add a status
+    serializer.save()
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 class GoogleLogin(SocialLoginView):
     adapter_class = GoogleOAuth2Adapter
