@@ -307,11 +307,12 @@ class Booking extends React.Component {
             {this.state.time && (
               <div>
                 <label>Please confirm that the time and library 
-                  you have selected represent your current mentoring session time and library? </label>
+                  you have selected represent your current mentoring session time and library: </label>
                 <p>
-                  (
-                    if you wish to reschedule, please do that in 2 or 3 weeks once all mentors
-                    have completed the transition to this new system. Thank you.)
+                  (If you book a time that is not currently yours, you will displace another mentor 
+                  from their current mentoring session. 
+                  if you wish to reschedule, please do that in 2 or 3 weeks once all mentors 
+                  have completed the transition to this new system. Thank you!)
                 </p>
                 <select
                   name="sameAppointment"
@@ -320,7 +321,7 @@ class Booking extends React.Component {
                   value={this.state.sameAppointment}
                 >
                   <option value="no">No, or I am unsure</option>
-                  <option value="yes">Yes, I have double checked</option>
+                  <option value="yes">Yes, I am sure this slot is mine</option>
                 </select>
                 <br />
                 <br />
@@ -328,7 +329,7 @@ class Booking extends React.Component {
               </div>
             )}
 
-            {this.state.sameAppointment=="yes" && (
+            {this.state.sameAppointment==="yes" && (
               <div>
                 <input
                   type="checkbox"
