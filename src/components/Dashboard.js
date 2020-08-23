@@ -16,7 +16,7 @@ class Dashboard extends React.Component {
       Authorization: `Token ${this.props.token}`,
     };
     axios
-      .get("http://127.0.0.1:8000/api/mysessionslots/")
+      .get("http://127.0.0.1:8000/api/session/")
       .then((res) => {
         this.setState({
           sessionslots: res.data,
@@ -41,9 +41,10 @@ class Dashboard extends React.Component {
           {this.state.sessionslots && this.state.sessionslots.length > 0 ? (
             <h3 style={{ color: "#6AC66B", textIndent: "25px" }}>
               {this.state.sessionslots.map((apt) => {
+                console.log(apt);
                 return (
-                  <li key={apt.event_id} value={apt.event_id}>
-                    {apt.display}
+                  <li key={apt.id} value={apt.event_id}>
+                    <a href={`/sessiondetails/${apt.id}/`}>{apt.display}</a>
                     <br />
                   </li>
                 );
@@ -73,7 +74,6 @@ class Dashboard extends React.Component {
               </h4>
             </>
           )}
-
           <div className="btns">
             <a
               href="/booking/"
@@ -90,7 +90,7 @@ class Dashboard extends React.Component {
               rel="noopener noreferrer"
               style={{ marginTop: "5px", marginBottom: "30px" }}
             >
-              View My Sessions Calendar 
+              View My Sessions Calendar
             </a>
           </div>
           {/* <MentorProfile /> */}
@@ -181,15 +181,17 @@ class Dashboard extends React.Component {
           <p
             style={{ padding: "20px", paddingLeft: "40px", maxWidth: "900px" }}
           >
-            <b>If you would like to change a mentoring session, have questions about mentoring, or ANY QUESTIONS, 
-            please
-            <a href="mailto:mentor@villagebookbuilders.org">
-              {" "}
-              contact your mentor advisor{" "}
-            </a>
-            at mentor@villagebookbuilders.org! <br></br>
+            <b>
+              If you would like to change a mentoring session, have questions
+              about mentoring, or ANY QUESTIONS, please
+              <a href="mailto:mentor@villagebookbuilders.org">
+                {" "}
+                contact your mentor advisor{" "}
+              </a>
+              at mentor@villagebookbuilders.org! <br></br>
             </b>
-          </p>        </div>
+          </p>{" "}
+        </div>
       </div>
     );
   }
