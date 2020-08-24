@@ -226,7 +226,7 @@ function Step3(props) {
         id="initials"
         name="initials"
         type="text"
-        placeholder="Initials"
+        placeholder="Initials - ie 'JTD'"
         value={props.state.initials}
         onChange={props.handleChange}
       />
