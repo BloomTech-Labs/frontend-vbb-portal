@@ -14,7 +14,7 @@ class Booking extends React.Component {
     language: 1,
     weekday: 0,
     displayDay: "",
-    library: 1,//0
+    library: 0,
     time: false,
     displayTime: "",
     isReturning: true,
@@ -51,31 +51,29 @@ class Booking extends React.Component {
   }
 
   fetchTimes = () => {
-    if (this.state.library !== 0) {
-      axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-      axios.defaults.xsrfCookieName = "csrftoken";
-      axios.defaults.headers = {
-        "Content-Type": "application/json",
-        Authorization: `Token ${this.props.token}`,
-      };
-      axios
-        .get("http://127.0.0.1:8000/api/available/", {
-          params: {
-            library: this.state.library,
-            language: this.state.language,
-            min_msm: this.shift_time(parseInt(this.state.weekday), false),
-            max_msm: this.shift_time(parseInt(this.state.weekday), false) + 1440,
-          },
-        })
-        .then((res) => {
-          this.setState({
-            times: res.data,
-          });
-        })
-        .catch((err) => {
-          console.log(err);
+    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+    axios.defaults.xsrfCookieName = "csrftoken";
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${this.props.token}`,
+    };
+    axios
+      .get("http://127.0.0.1:8000/api/available/", {
+        params: {
+          library: this.state.library,
+          language: this.state.language,
+          min_msm: this.shift_time(parseInt(this.state.weekday), false),
+          max_msm: this.shift_time(parseInt(this.state.weekday), false) + 1440,
+        },
+      })
+      .then((res) => {
+        this.setState({
+          times: res.data,
         });
-    }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   display_day = (day) => {
