@@ -79,8 +79,8 @@ def first_time_signup(request):
             }
             ,[request.data["vbb_email"]]
         )
-    gapi.group_subscribe("mentor.announcements@villagebookbuilders.org", request.data["vbb_email"])
     gapi.group_subscribe("mentor.announcements@villagebookbuilders.org", pemail)
+    gapi.group_subscribe("mentor.announcements@villagebookbuilders.org", request.data["vbb_email"])
     gapi.group_subscribe("mentor.collaboration@villagebookbuilders.org", request.data["vbb_email"])
     serializer = MentorProfileSerializer(data=request.data)
     if serializer.is_valid():
