@@ -228,8 +228,7 @@ class google_apis:
     with requests.Session() as s:
       s.auth = OAuth2BearerToken(self.__webdev_cred.token)
       r = s.post(url, headers=headers, data=data)
-      print(r)
-      print(r.text)
+      # print(r.text)
 
   def classroom_invite(self, courseID, email, role="TEACHER"):
     cred = self.__mentor_cred
