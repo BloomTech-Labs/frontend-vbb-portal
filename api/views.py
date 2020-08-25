@@ -311,7 +311,7 @@ def book_sessionslot(request):
     )
     gapi.group_subscribe(myappt.mentee_computer.library.announcements_group, myappt.mentor.mp.personal_email)
     gapi.group_subscribe(myappt.mentee_computer.library.announcements_group, myappt.mentor.mp.vbb_email)
-    gapi.group_subscribe(myappt.mentee_computer.library.collaboration.group, myappt.mentor.mp.vbb_email)
+    gapi.group_subscribe(myappt.mentee_computer.library.collaboration_group, myappt.mentor.mp.vbb_email)
     # FIXME - Add try/except/finally blocks for error checking (not logged in, sessionslot got taken before they refreshed)
     return Response(
         {"success": "true", "user": str(myappt.mentor), "sessionslot": str(myappt),}
