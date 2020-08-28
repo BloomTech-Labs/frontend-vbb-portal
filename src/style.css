@@ -165,7 +165,7 @@ a {
 
 .btn:hover {
   background-color: #4c4c49;
-  color: #fffff6;
+  color: #b5b5b5;
 }
 
 .dashboard-btn {
@@ -181,6 +181,7 @@ a {
 .signin-btn,
 #requestsession-btn,
 .book-btn,
+.applychanges-btn,
 .l3-btn,
 .l8-btn {
   background-color: #6ac66b;
@@ -197,7 +198,8 @@ a {
 
 .signout-btn,
 .l2-btn,
-.l5-btn {
+.l5-btn,
+.unbook-btn {
   background-color: #ff914d;
 }
 
@@ -222,6 +224,16 @@ a {
 .signin-btn:hover,
 .signup-btn:hover {
   background-color: #ff914d;
+}
+
+.applychanges-btn:disabled,
+.applychanges-btn:disabled:hover {
+  background-color: lightgray;
+}
+
+.applychanges-btn:hover,
+.unbook-btn:hover {
+  background-color: #549bea;
 }
 
 hr {
@@ -260,6 +272,10 @@ hr {
 .session-details-link {
   font-size: x-large;
   font-weight: 500;
+}
+
+.session-details-location {
+  color: #549bea;
 }
 
 .session-details-card {
