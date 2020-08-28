@@ -51,7 +51,7 @@ html {
   margin-right: -40px;
 }
 
-#dashboard {
+.cream-bg {
   background-color: #f2f2e9;
   min-height: 87vh;
   padding-bottom: 47px;
@@ -257,10 +257,13 @@ hr {
   flex: 1;
 }
 
-.session-details {
-  /* color: #6ac66b; */
+.session-details-link {
   font-size: x-large;
   font-weight: 500;
+}
+
+.session-details-card {
+  width: 50vw;
 }
 
 #mentoring-resources-box {
@@ -454,6 +457,10 @@ input {
   #booking-box {
     padding: 10px;
     margin-top: 40px;
+  }
+
+  .session-details-card {
+    width: 75vw;
   }
 }
 

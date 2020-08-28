@@ -34,7 +34,7 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <div className="twocol-container" id="dashboard">
+      <div className="twocol-container cream-bg">
         <div className="column col-card" id="mentoring-session-box">
           <h1 className="vbb-header">My Weekly Mentoring Session</h1>
 
@@ -45,7 +45,7 @@ class Dashboard extends React.Component {
                 return (
                   <li className="mb-2 mr-2" key={apt.id} value={apt.event_id}>
                     <a
-                      className="session-details"
+                      className="session-details-link"
                       href={`/sessiondetails/${apt.id}/`}
                     >
                       {apt.display}

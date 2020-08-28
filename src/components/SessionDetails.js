@@ -44,11 +44,16 @@ class SessionDetails extends React.Component {
 
   render() {
     return (
-      <div>
-        {this.state.id}
-        {this.state.display}
-        {this.state.endDate}
-        {this.state.mentorNotes}
+      <div className="cream-bg" style={{ paddingTop: "30px" }}>
+        <div
+          className="session-details-card col-card mx-auto p-4"
+          style={{ borderRadius: "30px" }}
+        >
+          {this.state.id}
+          {this.state.display}
+          {this.state.endDate}
+          {this.state.mentorNotes}
+        </div>
       </div>
     );
   }
