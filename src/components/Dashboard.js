@@ -39,17 +39,21 @@ class Dashboard extends React.Component {
           <h1 className="vbb-header">My Weekly Mentoring Session</h1>
 
           {this.state.sessionslots && this.state.sessionslots.length > 0 ? (
-            <h3 style={{ color: "#6AC66B", textIndent: "25px" }}>
+            <ul>
               {this.state.sessionslots.map((apt) => {
                 console.log(apt);
                 return (
-                  <li key={apt.id} value={apt.event_id}>
-                    <a href={`/sessiondetails/${apt.id}/`}>{apt.display}</a>
-                    <br />
+                  <li className="mb-2" key={apt.id} value={apt.event_id}>
+                    <a
+                      className="session-details"
+                      href={`/sessiondetails/${apt.id}/`}
+                    >
+                      {apt.display}
+                    </a>
                   </li>
                 );
               })}
-            </h3>
+            </ul>
           ) : (
             <>
               <h4

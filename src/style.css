@@ -257,6 +257,12 @@ hr {
   flex: 1;
 }
 
+.session-details {
+  /* color: #6ac66b; */
+  font-size: x-large;
+  font-weight: 500;
+}
+
 #mentoring-resources-box {
   max-width: 1000px;
 }
