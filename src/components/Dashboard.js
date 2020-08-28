@@ -43,7 +43,7 @@ class Dashboard extends React.Component {
               {this.state.sessionslots.map((apt) => {
                 console.log(apt);
                 return (
-                  <li className="mb-2" key={apt.id} value={apt.event_id}>
+                  <li className="mb-2 mr-2" key={apt.id} value={apt.event_id}>
                     <a
                       className="session-details"
                       href={`/sessiondetails/${apt.id}/`}
