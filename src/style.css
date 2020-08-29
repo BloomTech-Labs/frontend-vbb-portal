@@ -54,7 +54,8 @@ html {
 .cream-bg {
   background-color: #f2f2e9;
   min-height: 87vh;
-  padding-bottom: 47px;
+  padding-top: 1vw;
+  padding-bottom: 1vw;
   width: 100%;
 }
 
@@ -226,6 +227,10 @@ a {
   background-color: #ff914d;
 }
 
+.applychanges-btn {
+  float: right;
+}
+
 .applychanges-btn:disabled,
 .applychanges-btn:disabled:hover {
   background-color: lightgray;
@@ -276,10 +281,13 @@ hr {
 
 .session-details-location {
   color: #549bea;
+  padding-left: 5px;
 }
 
 .session-details-card {
   width: 50vw;
+  margin-top: 20px;
+  margin-bottom: 70px;
 }
 
 #mentoring-resources-box {
@@ -476,7 +484,7 @@ input {
   }
 
   .session-details-card {
-    width: 75vw;
+    width: 85vw;
   }
 }
 
@@ -526,6 +534,10 @@ input {
     margin-bottom: 20px;
   }
 
+  .dashboard-btn {
+    font-size: 18px;
+  }
+
   #booking-box {
     width: 350px;
   }
@@ -539,16 +551,17 @@ input {
     min-height: 850px;
   }
 
-  .dashboard-btn {
-    font-size: 18px;
-  }
-
   #time_zone {
     margin-left: 90px;
   }
 
   #ex-space {
     margin-bottom: -20px;
+  }
+
+  .unbook-btn,
+  .applychanges-btn {
+    float: left;
   }
 }
 
