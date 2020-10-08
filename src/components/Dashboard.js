@@ -84,7 +84,7 @@ class Dashboard extends React.Component {
               className="btn btn-light book-btn dashboard-btn"
               style={{ marginTop: "20px", fontSize: "20px" }}
             >
-              + Book A Mentoring Session
+              + Book Mentoring Session
             </a>
             <br />
             <a
