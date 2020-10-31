@@ -12,6 +12,8 @@ urlpatterns = [
     path("available/", AvailableSessionSlotList.as_view()),
     path("session/", SessionSlotListView.as_view()),
     path("session/<pk>", SessionDetailView.as_view()),
-    # path("<pk>/update/", SessionDetailView.as_view()),
+    path("update/<pk>", SessionDetailUpdateView.as_view()),
     path("book/", book_sessionslot),
+    # path("unbook/<pk>", SessionUnbookingView.as_view()),
+ #   path("updatecalendar/", updateGoogleCalendarEvent),
 ]

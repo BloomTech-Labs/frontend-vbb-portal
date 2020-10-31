@@ -7,7 +7,7 @@ from django.db.models import Q
 from django.shortcuts import render
 from rest_auth.registration.views import SocialLoginView
 from rest_framework.decorators import api_view
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import (ListAPIView, UpdateAPIView)
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
@@ -37,7 +37,7 @@ def first_time_signup(request):
         serializer = MentorProfileSerializer(data=request.data)
         if not (serializer.is_valid()):
             return Response(
-                {"success": "false", "message": (str(serializer.errors)),}
+                {"success": "false", "message": (str(serializer.errors)), }
             )  # FIXME use proper protocol and add a status
         request.data["vbb_email"] = request.data["vbb_email"].lower()
         mps = MentorProfile.objects.filter(vbb_email=request.data["vbb_email"])
@@ -54,7 +54,8 @@ def first_time_signup(request):
         )
         gapi.email_send(
             pemail,  # personal email form form
-            "Welcome to the New VBB Portal!",  # FIXME change back to welcome to the VBB family when we start registering new mentors
+            # FIXME change back to welcome to the VBB family when we start registering new mentors
+            "Welcome to the New VBB Portal!",
             welcome_mail,
             {
                 "__first_name": fname,  # first name from form
@@ -68,15 +69,17 @@ def first_time_signup(request):
         serializer = MentorProfileSerializer(data=request.data)
         if not (serializer.is_valid()):
             return Response(
-                {"success": "false", "message": (str(serializer.errors)),}
+                {"success": "false", "message": (str(serializer.errors)), }
             )  # FIXME use proper protocol and add a status
         request.data["vbb_email"], pwd = gapi.account_create(
             fname.lower(), lname.lower(), pemail
         )
-        welcome_mail = os.path.join("api", "emails", "templates", "welcomeLetter.html")
+        welcome_mail = os.path.join(
+            "api", "emails", "templates", "welcomeLetter.html")
         gapi.email_send(
             pemail,  # personal email form form
-            "Welcome to the New VBB Portal!",  # FIXME change back to welcome to the VBB family when we start registering new mentors
+            # FIXME change back to welcome to the VBB family when we start registering new mentors
+            "Welcome to the New VBB Portal!",
             welcome_mail,
             {
                 "__first_name": fname,  # first name from form
@@ -87,7 +90,8 @@ def first_time_signup(request):
             },
             [request.data["vbb_email"]],
         )
-    gapi.group_subscribe("mentor.announcements@villagebookbuilders.org", pemail)
+    gapi.group_subscribe(
+        "mentor.announcements@villagebookbuilders.org", pemail)
     gapi.group_subscribe(
         "mentor.announcements@villagebookbuilders.org", request.data["vbb_email"]
     )
@@ -99,7 +103,7 @@ def first_time_signup(request):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(
-        {"success": "false", "message": (str(serializer.errors)),}
+        {"success": "false", "message": (str(serializer.errors)), }
     )  # FIXME use proper protocol and add a status
 
 
@@ -142,7 +146,8 @@ def check_signin(request):
         mps[0].user = request.user
         mps[0].save()
     return Response(
-        {"success": "true", "message": ("Welcome, " + request.user.username + "!")}
+        {"success": "true", "message": (
+            "Welcome, " + request.user.username + "!")}
     )
 
 
@@ -218,7 +223,8 @@ class AvailableSessionSlotList(ListAPIView):
         # library and mentor filtering
         if library_params is None or library_params == "0":
             appts = (
-                appts.filter(mentor=None, language=language_params, msm__gte=1000000000)
+                appts.filter(mentor=None, language=language_params,
+                             msm__gte=1000000000)
                 .values("msm")
                 .distinct()
             )
@@ -243,7 +249,8 @@ class AvailableSessionSlotList(ListAPIView):
                 Q(msm__lt=max_msm_params - 10080) | Q(msm__gte=min_msm_params)
             )
         else:
-            appts = appts.filter(msm__gte=min_msm_params, msm__lt=max_msm_params)
+            appts = appts.filter(msm__gte=min_msm_params,
+                                 msm__lt=max_msm_params)
 
         return Response(appts.order_by("msm"))
 
@@ -260,7 +267,8 @@ def book_sessionslot(request):
     msm_params = request.query_params.get("msm")
 
     if library_params is None or library_params == "0":
-        appts = appts.filter(mentor=None, language=language_params, msm=msm_params,)
+        appts = appts.filter(
+            mentor=None, language=language_params, msm=msm_params,)
     else:
         appts = appts.filter(
             mentor=None,
@@ -288,7 +296,8 @@ def book_sessionslot(request):
     )
     myappt.end_date = myappt.start_date + timedelta(weeks=17)
     gapi = google_apis()
-    start_time = aux_fns.date_combine_time(str(myappt.start_date), int(myappt.msm))
+    start_time = aux_fns.date_combine_time(
+        str(myappt.start_date), int(myappt.msm))
     end_date = aux_fns.date_combine_time(str(myappt.end_date), int(myappt.msm))
     event_id = gapi.calendar_event(
         myappt.mentor.first_name,
@@ -354,7 +363,8 @@ def book_sessionslot(request):
     )
     # FIXME - Add try/except/finally blocks for error checking (not logged in, sessionslot got taken before they refreshed)
     return Response(
-        {"success": "true", "user": str(myappt.mentor), "sessionslot": str(myappt),}
+        {"success": "true", "user": str(
+            myappt.mentor), "sessionslot": str(myappt), }
     )
 
 
@@ -383,6 +393,10 @@ class SessionDetailView(APIView):
     def get(self, request, pk, format=None):
         sessionslot = self.get_object(pk)
         serializer = SessionSlotSerializer(sessionslot)
+        if request.user == sessionslot.mentor:
+            return Response(serializer.data)
+        else:
+            return Response({"Error": "Permission Denied"}, status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.data)
 
     def put(self, request, pk, format=None):
@@ -391,4 +405,42 @@ class SessionDetailView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
-        return Response(serializerr.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class SessionDetailUpdateView(UpdateAPIView):
+    permission_classes = (IsAuthenticated,)
+    serializer_class = SessionSlotSerializer
+
+    def get_object(self, pk):
+        try:
+            return SessionSlot.objects.get(pk=pk)
+        except SessionSlot.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        sessionslot = self.get_object(pk)
+        serializer = SessionSlotSerializer(sessionslot)
+
+        return Response(serializer.data)
+        
+    def patch(self, request, pk, format=None):
+        sessionslot = self.get_object(pk)
+        gapi = google_apis()
+        print("ENDDATEEEEEEE *****************" , request.data.get("end_date"))
+        end_date = request.data.get("end_date")
+        end_date = aux_fns.date_combine_time(str(end_date), int(sessionslot.msm))
+        calendar_id = sessionslot.mentee_computer.library.calendar_id
+        event_id = sessionslot.event_id
+      #  gapi.update_event(calendar_id, event_id, end_date)
+        newId = gapi.update_event(calendar_id, event_id, end_date)
+      #  print("SUCCESSFULLY ", newId, "ENDDATEEEEEEEE ", end_date)
+        sessionslot.save()
+        serializer = SessionSlotSerializer(
+            sessionslot, data=request.data, partial=True)
+  #      with open("log.txt", "a") as readfile:
+  #          readfile.write(str(request.data) + "\n")
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
