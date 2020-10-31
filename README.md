@@ -1,4 +1,4 @@
-This project is broken up into a seperate backend and frontend repository. The backend contains the Django project which uses the Django Rest Framework to host a simple API and can be found at [VBBPortal](https://github.com/VilllageBookBuilders/VBBPortal) (will update with new repo when available). The frontend uses React and queries data from the API.
+This project is broken up into a seperate backend and frontend repository. The backend contains the Django project which uses the Django Rest Framework to host a simple API and can be found at [backend-vbb-portal](https://github.com/VilllageBookBuilders/backend-vbb-portal). The frontend uses React and queries data from the API.
 
 Install node.js and get the backend server running beforehand!
 
