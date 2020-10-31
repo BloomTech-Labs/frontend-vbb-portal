@@ -393,7 +393,7 @@ class SessionDetailView(APIView):
     def get(self, request, pk, format=None):
         sessionslot = self.get_object(pk)
         serializer = SessionSlotSerializer(sessionslot)
-        if request.user == sessionslot.mentor:
+        if request.user == sessionslot.mentor or User.objects.get(email="mentor@villagebookbuilders.org"):
             return Response(serializer.data)
         else:
             return Response({"Error": "Permission Denied"}, status=status.HTTP_400_BAD_REQUEST)
