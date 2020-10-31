@@ -51,10 +51,11 @@ html {
   margin-right: -40px;
 }
 
-#dashboard {
+.cream-bg {
   background-color: #f2f2e9;
   min-height: 87vh;
-  padding-bottom: 47px;
+  padding-top: 1vw;
+  padding-bottom: 1vw;
   width: 100%;
 }
 
@@ -163,17 +164,9 @@ a {
   -webkit-appearance: none;
 }
 
-:disabled,
-btn[disabled]{
-  background-color: #4c4c49;
-  color: #fffff6;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
 .btn:hover {
   background-color: #4c4c49;
-  color: #fffff6;
+  color: #b5b5b5;
 }
 
 .dashboard-btn {
@@ -189,6 +182,7 @@ btn[disabled]{
 .signin-btn,
 #requestsession-btn,
 .book-btn,
+.applychanges-btn,
 .l3-btn,
 .l8-btn {
   background-color: #6ac66b;
@@ -205,7 +199,8 @@ btn[disabled]{
 
 .signout-btn,
 .l2-btn,
-.l5-btn {
+.l5-btn,
+.unbook-btn {
   background-color: #ff914d;
 }
 
@@ -230,6 +225,20 @@ btn[disabled]{
 .signin-btn:hover,
 .signup-btn:hover {
   background-color: #ff914d;
+}
+
+.applychanges-btn {
+  float: right;
+}
+
+.applychanges-btn:disabled,
+.applychanges-btn:disabled:hover {
+  background-color: lightgray;
+}
+
+.applychanges-btn:hover,
+.unbook-btn:hover {
+  background-color: #549bea;
 }
 
 hr {
@@ -258,11 +267,27 @@ hr {
 
 .col-card {
   background-color: #fffff6;
-  min-height: 650px;
+  min-height: 675px;
 }
 
 #mentoring-session-box {
   flex: 1;
+}
+
+.session-details-link {
+  font-size: x-large;
+  font-weight: 500;
+}
+
+.session-details-location {
+  color: #549bea;
+  padding-left: 5px;
+}
+
+.session-details-card {
+  width: 50vw;
+  margin-top: 20px;
+  margin-bottom: 70px;
 }
 
 #mentoring-resources-box {
@@ -457,6 +482,10 @@ input {
     padding: 10px;
     margin-top: 40px;
   }
+
+  .session-details-card {
+    width: 85vw;
+  }
 }
 
 /* MOBILE ADJUSTMENTS */
@@ -505,6 +534,10 @@ input {
     margin-bottom: 20px;
   }
 
+  .dashboard-btn {
+    font-size: 18px;
+  }
+
   #booking-box {
     width: 350px;
   }
@@ -528,6 +561,11 @@ input {
 
   #ex-space {
     margin-bottom: -20px;
+  }
+
+  .unbook-btn,
+  .applychanges-btn {
+    float: left;
   }
 }
 

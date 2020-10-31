@@ -16,7 +16,7 @@ class Dashboard extends React.Component {
       Authorization: `Token ${this.props.token}`,
     };
     axios
-      .get("http://127.0.0.1:8000/api/mysessionslots/")
+      .get("http://127.0.0.1:8000/api/session/")
       .then((res) => {
         this.setState({
           sessionslots: res.data,
@@ -34,21 +34,26 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <div className="twocol-container" id="dashboard">
+      <div className="twocol-container cream-bg">
         <div className="column col-card" id="mentoring-session-box">
           <h1 className="vbb-header">My Weekly Mentoring Session</h1>
 
           {this.state.sessionslots && this.state.sessionslots.length > 0 ? (
-            <h3 style={{ color: "#6AC66B", textIndent: "25px" }}>
+            <ul>
               {this.state.sessionslots.map((apt) => {
+                console.log(apt);
                 return (
-                  <li key={apt.event_id} value={apt.event_id}>
-                    {apt.display}
-                    <br />
+                  <li className="mb-2 mr-2" key={apt.id} value={apt.event_id}>
+                    <a
+                      className="session-details-link"
+                      href={`/sessiondetails/${apt.id}/`}
+                    >
+                      {apt.display}
+                    </a>
                   </li>
                 );
               })}
-            </h3>
+            </ul>
           ) : (
             <>
               <h4
@@ -73,7 +78,6 @@ class Dashboard extends React.Component {
               </h4>
             </>
           )}
-
           <div className="btns">
             <a
               href="/booking/"
@@ -83,12 +87,6 @@ class Dashboard extends React.Component {
               + Book Mentoring Session
             </a>
             <br />
-            <p>
-              Click the button below to view your google calendar. 
-              In order to access your villagementors.org calendar, 
-              you'll have to click the icon in the top right corner 
-              and switch to your villagementors.org account
-            </p>
             <a
               className="btn btn-light gcal-btn dashboard-btn"
               href="https://calendar.google.com/calendar/r"
@@ -96,7 +94,7 @@ class Dashboard extends React.Component {
               rel="noopener noreferrer"
               style={{ marginTop: "5px", marginBottom: "30px" }}
             >
-              View My Sessions Calendar 
+              View My Sessions Calendar
             </a>
           </div>
           {/* <MentorProfile /> */}
@@ -187,15 +185,17 @@ class Dashboard extends React.Component {
           <p
             style={{ padding: "20px", paddingLeft: "40px", maxWidth: "900px" }}
           >
-            <b>If you would like to change a mentoring session, have questions about mentoring, or ANY QUESTIONS, 
-            please
-            <a href="mailto:mentor@villagebookbuilders.org">
-              {" "}
-              contact your mentor advisor{" "}
-            </a>
-            at mentor@villagebookbuilders.org! <br></br>
+            <b>
+              If you would like to change a mentoring session, have questions
+              about mentoring, or ANY QUESTIONS, please
+              <a href="mailto:mentor@villagebookbuilders.org">
+                {" "}
+                contact your mentor advisor{" "}
+              </a>
+              at mentor@villagebookbuilders.org! <br></br>
             </b>
-          </p>        </div>
+          </p>{" "}
+        </div>
       </div>
     );
   }

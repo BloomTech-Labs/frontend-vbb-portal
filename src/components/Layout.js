@@ -86,7 +86,7 @@ class Layout extends React.Component {
                   type="button"
                   href="/signin/"
                 >
-                  HOME
+                  SIGN IN
                 </a>
               </div>
             )}
@@ -99,7 +99,7 @@ class Layout extends React.Component {
           {this.props.children}
         </div>
 
-        <footer>&copy; <a href="https://www.villagebookbuilders.org"> Village Book Builders</a> | All Rights Reserved</footer>
+        <footer>&copy; Village Book Builders | All Rights Reserved</footer>
       </div>
     );
   }

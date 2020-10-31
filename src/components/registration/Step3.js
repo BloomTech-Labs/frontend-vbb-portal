@@ -185,12 +185,13 @@ function Step3(props) {
 
       <div>
         <label htmlFor="charged">
-          Have you ever been arrested, charged, or convicted of any crime?
+          Have you ever been arrested, charged, or convicted of child abuse or
+          molestation of any form?
         </label>
         <select
-          name="was_charged"
-          id="was_charged"
-          value={props.state.was_charged}
+          name="charged"
+          id="charged"
+          value={props.state.charged}
           onChange={props.handleChange}
         >
           <option value="No choice">-</option>
@@ -198,21 +199,6 @@ function Step3(props) {
           <option value="No">No</option>
         </select>
       </div>
-      { props.state.was_charged==="Yes" && (
-        <div>
-          <label htmlFor="charged">
-            If yes, please briefly explain each case below:
-          </label>
-          <textarea
-            className="form-control"
-            id="charged"
-            name="charged"
-            placeholder=""
-            value={props.state.charged}
-            onChange={props.handleChange}
-          />
-        </div>
-      )}  
 
       <div>
         <label htmlFor="commit">
@@ -235,10 +221,10 @@ function Step3(props) {
         commitment to your mentoring session?
       </label>
       {
-        props.state.adult==="No" ?
-        <p>Please have a Parent or Guardian sign by putting their initials.</p>
-        :
+        props.adult==="No" ?
         <p>Sign by putting your initials.</p>
+        :
+        <p>Please have a Parent or Guardian sign by putting their initials.</p>
       }
      
       <input
