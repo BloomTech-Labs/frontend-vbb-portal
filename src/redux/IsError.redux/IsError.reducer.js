@@ -1,4 +1,4 @@
-const initialState = {
+const isErrorInitialState = {
   message: '',
   isError: false,
 };
@@ -10,7 +10,7 @@ const initialState = {
  * message: string
  * }
  */
-export const isError = (state = loadingInitialState, action) => {
+export const isError = (state = isErrorInitialState, action) => {
   switch (action.type) {
     case 'SET_IS_ERROR':
       return { isError: true, message: action.message ?? 'No error message returned' };
