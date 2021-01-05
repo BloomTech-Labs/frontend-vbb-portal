@@ -8,6 +8,6 @@ export const setLoading = () => {
 /**
  * Sets the Loading state of the app to false
  */
-export const setFinishLoading = () => {
+export const setLoadingFalse = () => {
   return { type: 'SET_LOADING_FALSE' };
 };
