@@ -11,7 +11,6 @@ export const setIsError = (text) => {
 
 /**
  * Action that sets isError to false and clears the error message
- * @param text: string that will be added to store
  */
 export const clearIsError = () => {
   return { type: 'CLEAR_IS_ERROR' };
