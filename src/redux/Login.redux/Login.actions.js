@@ -1,6 +1,6 @@
-import axios from 'axios'
+import axios from 'axios';
 
-import { setLoading, setLoadingFalse, setIsError } from '../actions'
+import { setLoading, setLoadingFalse, setIsError } from '../actions';
 
 /**
  * This handles all actions associated with logging in and dispatching async actions
@@ -33,8 +33,8 @@ export const checkAuthTimeout = (expirationTime) => {
     setTimeout(() => {
       dispatch(logout());
     }, expirationTime * 1000);
-  }
-}
+  };
+};
 
 // export const gAuth = (googleToken) => {
 //   return (dispatch) => {
@@ -54,50 +54,49 @@ export const checkAuthTimeout = (expirationTime) => {
 //   };
 // };
 
-export const gAuthV2 = async (googleToken) => (dispatch) => {
+export const gAuthV2 = (googleToken) => async (dispatch) => {
   //dispatch loading
   dispatch(setLoading());
   try {
-   //log into google
-    const googleResponse = await axios.post('http://127.0.0.1:8000/api/googlelogin/', { access_token: googleToken,});
-    const googleResponseToken = googleResponse.data.key
+    //log into google
+    const googleResponse = await axios.post('http://127.0.0.1:8000/api/googlelogin/', { access_token: googleToken });
+    const googleResponseToken = googleResponse.data.key;
     await checkSignIn(googleResponseToken, dispatch);
-
   } catch (err) {
     dispatch(setLoadingFalse());
     //replaces authFail
-    const errorMessage = err.message?? 'Error logging in'
+    const errorMessage = err.message ?? 'Error logging in';
     dispatch(setIsError(errorMessage));
   }
-}
+};
 
 /**
-  * Helper function to check Google sign in
-  * */
+ * Helper function to check Google sign in
+ * */
 const checkSignIn = async (token, dispatch) => {
-  axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-  axios.defaults.xsrfCookieName = "csrftoken";
+  axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN';
+  axios.defaults.xsrfCookieName = 'csrftoken';
   axios.defaults.headers = {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
     Authorization: `Token ${token}`,
-  }
+  };
   //try to confirm token
-  try{
-     const checkSignInResponse = await axios.get("http://127.0.0.1:8000/api/checksignin/")
+  try {
+    const checkSignInResponse = await axios.get('http://127.0.0.1:8000/api/checksignin/');
 
-     if(checkSignInResponse.data.success === "true"){
-       //adds one hour to the current time as an expirationDate
-       const expirationDate = new Date(new Date().getTime() + 3600 * 1000)
-       localStorage.setItem("token", token)
-       localStorage.setItem("expirationDate", expirationDate)
-        // dispatch(authSuccess(token));
-       dispatch(checkAuthTimeout(3600))
-     }else {
-       dispatch(setIsError(res.data));
-     }
-  } catch(err){
-    console.error(err)
-    dispatch(setIsError(err))
+    if (checkSignInResponse.data.success === 'true') {
+      //adds one hour to the current time as an expirationDate
+      const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
+      localStorage.setItem('token', token);
+      localStorage.setItem('expirationDate', expirationDate);
+      // dispatch(authSuccess(token));
+      dispatch(checkAuthTimeout(3600));
+    } else {
+      dispatch(setIsError(res.data));
+    }
+  } catch (err) {
+    console.error(err);
+    dispatch(setIsError(err));
   }
 };
 
