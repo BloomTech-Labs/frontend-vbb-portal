@@ -1,3 +1,5 @@
+import { SET_LOADING_FALSE, SET_LOADING_TRUE } from '../actions';
+
 const loadingInitialState = false;
 
 /*
@@ -9,9 +11,9 @@ const loadingInitialState = false;
  */
 export const loading = (state = loadingInitialState, action) => {
   switch (action.type) {
-    case 'SET_LOADING_TRUE':
+    case SET_LOADING_TRUE:
       return true;
-    case 'SET_LOADING_FALSE':
+    case SET_LOADING_FALSE:
       return false;
     default:
       return state;

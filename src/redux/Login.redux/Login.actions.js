@@ -1,16 +1,21 @@
 import axios from 'axios';
 
-import { setLoading, setLoadingFalse, setIsError } from '../actions';
+import { setLoading, setLoadingFalse, setIsError, logOut, setAuthToken } from '../actions';
 
 /**
- * This handles all actions associated with logging in and dispatching async actions
+ * This handles all actions associated with logging in
  *
  * */
 
+/**
+ * logIn.
+ * Handles log in for the app. Calls google as part of the loging action
+ */
 export const logIn = async () => (dispatch) => {
   //dispatch loading
   dispatch(setLoading());
   try {
+    dispatch(setLoadingFalse());
     //log into google
   } catch (err) {
     dispatch(setLoadingFalse());
@@ -28,10 +33,16 @@ export const logIn = async () => (dispatch) => {
 // };
 
 //************* Looks like an auto logout after 1 hour ( 3600 * 1000 )*****************//
+/**
+ * checkAuthTimeout.
+ *
+ * @param {} expirationTime
+ */
+//? needs to also return a logout id so that we don't leave multiple logout timers in the app
 export const checkAuthTimeout = (expirationTime) => {
   return (dispatch) => {
     setTimeout(() => {
-      dispatch(logout());
+      dispatch(logOut());
     }, expirationTime * 1000);
   };
 };
@@ -54,6 +65,11 @@ export const checkAuthTimeout = (expirationTime) => {
 //   };
 // };
 
+/**
+ * gAuthV2.
+ *
+ * @param {} googleToken
+ */
 export const gAuthV2 = (googleToken) => async (dispatch) => {
   //dispatch loading
   dispatch(setLoading());
@@ -89,10 +105,11 @@ const checkSignIn = async (token, dispatch) => {
       const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
       localStorage.setItem('token', token);
       localStorage.setItem('expirationDate', expirationDate);
-      // dispatch(authSuccess(token));
+      dispatch(setAuthToken(token));
       dispatch(checkAuthTimeout(3600));
     } else {
-      dispatch(setIsError(res.data));
+      console.warn('Error siginning in with google signin', { res: checkSignInResponse.data });
+      dispatch(setIsError(checkSignInResponse.data));
     }
   } catch (err) {
     console.error(err);
