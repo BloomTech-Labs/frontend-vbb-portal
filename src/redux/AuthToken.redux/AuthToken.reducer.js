@@ -1,6 +1,6 @@
 import { LOG_OUT, SET_AUTH_TOKEN } from '../actions';
 
-const authTokenInitialState = '';
+const authTokenInitialState = localStorage.getItem('token') ?? '';
 
 export const authToken = (state = authTokenInitialState, action) => {
   switch (action.type) {
