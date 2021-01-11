@@ -9,3 +9,11 @@ import { authToken } from './AuthToken.redux/AutToken.reducer';
 const rootReducer = combineReducers({ loading, isError, authToken });
 
 export default rootReducer;
+
+//original state before refactor
+// const initialState = {
+//     token: localStorage.getItem('token'),
+//     error: null,
+//     loading: false,
+//     message: null
+// }
