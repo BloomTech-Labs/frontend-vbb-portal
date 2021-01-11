@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function Step5(props) {
   if (props.state.currentStep !== 5) {
@@ -29,7 +29,7 @@ function Step5(props) {
           </select>
         </div>
 
-        {props.state.more_involved === "Yes" && (
+        {props.state.more_involved === 'Yes' && (
           <div>
             <label>
               How would you like to get more involved (Select all that apply)?
@@ -43,11 +43,11 @@ function Step5(props) {
               <option value="">--</option>
               <option value="Fundraiser"> Run or help with a fundraiser</option>
               <option value="Ambassador">
-                {" "}
+                {' '}
                 Be a social media advocate or an ambassador
               </option>
               <option value="StartChapter">
-                {" "}
+                {' '}
                 Start/join a VBB Village Mentors Chapter at your school or
                 company (a club of fellow mentors)
               </option>
@@ -76,14 +76,14 @@ function Step5(props) {
         />
       </div>
 
-      <div style={{ "whiteSpace": "pre-wrap", color: "red" }}>
+      <div style={{ whiteSpace: 'pre-wrap', color: 'red' }}>
         {props.hasProblems() && props.hasProblems()}
       </div>
 
       <button
         className="btn btn-success btn-block"
         disabled={props.hasProblems()}
-        style={{ marginBottom: "20px", marginTop: "20px" }}
+        style={{ marginBottom: '20px', marginTop: '20px' }}
       >
         SIGN UP
       </button>

@@ -45,7 +45,10 @@ class Dashboard extends React.Component {
                 console.log(apt);
                 return (
                   <li className="mb-2 mr-2" key={apt.id} value={apt.event_id}>
-                    <a className="session-details-link" href={`/sessiondetails/${apt.id}/`}>
+                    <a
+                      className="session-details-link"
+                      href={`/sessiondetails/${apt.id}/`}
+                    >
                       {apt.display}
                     </a>
                   </li>
@@ -108,7 +111,10 @@ class Dashboard extends React.Component {
             >
               Mentor Training Module
             </a>
-            <a className="btn btn-light dashboard-btn l5-btn" href="mailto:mentor@villagebookbuilders.org">
+            <a
+              className="btn btn-light dashboard-btn l5-btn"
+              href="mailto:mentor@villagebookbuilders.org"
+            >
               Contact your Mentor Advisor
             </a>
             {/*bold the contact*/}
@@ -177,10 +183,16 @@ class Dashboard extends React.Component {
               VBB Home Website
             </a>
           </div>
-          <p style={{ padding: '20px', paddingLeft: '40px', maxWidth: '900px' }}>
+          <p
+            style={{ padding: '20px', paddingLeft: '40px', maxWidth: '900px' }}
+          >
             <b>
-              If you would like to change a mentoring session, have questions about mentoring, or ANY QUESTIONS, please
-              <a href="mailto:mentor@villagebookbuilders.org"> contact your mentor advisor </a>
+              If you would like to change a mentoring session, have questions
+              about mentoring, or ANY QUESTIONS, please
+              <a href="mailto:mentor@villagebookbuilders.org">
+                {' '}
+                contact your mentor advisor{' '}
+              </a>
               at mentor@villagebookbuilders.org! <br></br>
             </b>
           </p>{' '}

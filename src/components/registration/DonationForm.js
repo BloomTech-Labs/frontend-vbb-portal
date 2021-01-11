@@ -1,5 +1,11 @@
 import React from 'react';
-import {Elements, loadStripe, CardElement, injectStripe, StripeProvider} from '@stripe/react-stripe-js';
+import {
+  Elements,
+  loadStripe,
+  CardElement,
+  injectStripe,
+  StripeProvider,
+} from '@stripe/react-stripe-js';
 import { Alert, Spinner } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
@@ -15,12 +21,12 @@ class CheckoutForm extends React.Component {
   handleSelectChange = (e, { name, value }) => {
     this.setState({ [name]: value });
   };
-  submit = ev => {
+  submit = (ev) => {
     ev.preventDefault();
-    var checkoutURL = "api/checkout/"
+    var checkoutURL = 'api/checkout/';
     this.setState({ loading: true });
     if (this.props.stripe) {
-      this.props.stripe.createToken().then(result => {
+      this.props.stripe.createToken().then((result) => {
         if (result.error) {
           this.setState({ error: result.error.message, loading: false });
         } else {
@@ -29,26 +35,21 @@ class CheckoutForm extends React.Component {
             .post(checkoutURL, {
               stripeToken: result.token.id,
             })
-            .then(res => {
+            .then((res) => {
               this.setState({ loading: false, success: true });
             })
-            .catch(err => {
+            .catch((err) => {
               this.setState({ loading: false, error: err });
             });
         }
       });
     } else {
-      console.log("Stripe is not loaded");
+      console.log('Stripe is not loaded');
     }
   };
 
   render() {
-    const {
-      data,
-      error,
-      loading,
-      success,
-    } = this.state;
+    const { data, error, loading, success } = this.state;
 
     return (
       <div>
@@ -61,7 +62,7 @@ class CheckoutForm extends React.Component {
         )}
         {loading && (
           <div>
-            <Spinner/>
+            <Spinner />
           </div>
         )}
         <React.Fragment>
@@ -77,7 +78,7 @@ class CheckoutForm extends React.Component {
             disabled={loading}
             primary
             onClick={this.submit}
-            style={{ marginTop: "10px" }}
+            style={{ marginTop: '10px' }}
           >
             Submit
           </button>
@@ -85,16 +86,14 @@ class CheckoutForm extends React.Component {
       </div>
     );
   }
-};
+}
 
 const WrappedForm = () => (
   <React.Fragment text>
     <StripeProvider apiKey="">
       <div>
         <h1>Complete your order</h1>
-        <Elements>
-          {injectStripe(CheckoutForm)}
-        </Elements>
+        <Elements>{injectStripe(CheckoutForm)}</Elements>
       </div>
     </StripeProvider>
   </React.Fragment>

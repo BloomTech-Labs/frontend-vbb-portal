@@ -1,15 +1,14 @@
-import React from "react"
+import React from 'react';
 
 function MentorProfile() {
-  return(
+  return (
     <div>
-      {
-        false && //FIXME: get mentor profile information to display here
+      {false && ( //FIXME: get mentor profile information to display here
         <div>
           <br />
           <hr />
-          <h2 style={{ color: "#4C4C49" }}>My Info</h2>
-          <h3 style={{ color: "#FF914D" }}>Account-Related</h3>
+          <h2 style={{ color: '#4C4C49' }}>My Info</h2>
+          <h3 style={{ color: '#FF914D' }}>Account-Related</h3>
           <p>
             Name (first and last)
             <br />
@@ -19,7 +18,7 @@ function MentorProfile() {
             <br />
             Change Password
           </p>
-          <h3 style={{ color: "#549BEA" }}>Mentor-Related</h3>
+          <h3 style={{ color: '#549BEA' }}>Mentor-Related</h3>
           <p>
             My Languages
             <br />
@@ -28,7 +27,7 @@ function MentorProfile() {
           <br />
           <br />
         </div>
-      }
+      )}
     </div>
   );
 }

@@ -162,7 +162,9 @@ class Booking extends React.Component {
   };
 
   postRequest = () => {
-    alert('Please wait while we submit your booking request, then refresh the page (this might take 10 or 20 seconds)');
+    alert(
+      'Please wait while we submit your booking request, then refresh the page (this might take 10 or 20 seconds)'
+    );
     axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN';
     axios.defaults.xsrfCookieName = 'csrftoken';
     axios.defaults.headers = {
@@ -205,7 +207,11 @@ class Booking extends React.Component {
           <br />
           <div className="booking-fields">
             <label htmlFor="language">Mentoring Language:&nbsp;</label>
-            <select name="language" id="language" onChange={this.handleDropDownChange}>
+            <select
+              name="language"
+              id="language"
+              onChange={this.handleDropDownChange}
+            >
               {this.state.languages &&
                 this.state.languages.length > 0 &&
                 this.state.languages.map((lang) => {
@@ -219,7 +225,12 @@ class Booking extends React.Component {
             <br />
             <br />
             <label htmlFor="time_zone">Your Timezone:</label>&nbsp;
-            <select name="time_zone" id="time_zone" onChange={this.handleDropDownChange} value={this.state.time_zone}>
+            <select
+              name="time_zone"
+              id="time_zone"
+              onChange={this.handleDropDownChange}
+              value={this.state.time_zone}
+            >
               {moment.tz.names().map((tz) => {
                 return (
                   <option key={tz} value={tz}>
@@ -245,7 +256,12 @@ class Booking extends React.Component {
                   {/* style={{ paddingLeft: "50px" }} */}
                   Your Library:&nbsp;
                 </label>
-                <select name="library" id="library" onChange={this.handleDropDownChange} style={{ marginTop: '0px' }}>
+                <select
+                  name="library"
+                  id="library"
+                  onChange={this.handleDropDownChange}
+                  style={{ marginTop: '0px' }}
+                >
                   <option value="0">Select from Available Libraries:</option>
                   {this.state.libraries &&
                     this.state.libraries.length > 0 &&
@@ -263,7 +279,11 @@ class Booking extends React.Component {
             )}
             {/* <br /> */}
             <label htmlFor="weekday">Day of the Week:&nbsp;</label>
-            <select name="weekday" id="weekday" onChange={this.handleDropDownChange}>
+            <select
+              name="weekday"
+              id="weekday"
+              onChange={this.handleDropDownChange}
+            >
               <option value={0}>Monday</option>
               <option value={1440}>Tuesday</option>
               <option value={2880}>Wednesday</option>
@@ -292,13 +312,15 @@ class Booking extends React.Component {
             {this.state.time && (
               <div>
                 <label>
-                  Please confirm that the time and library you have selected represent your current mentoring session
-                  time and library:{' '}
+                  Please confirm that the time and library you have selected
+                  represent your current mentoring session time and library:{' '}
                 </label>
                 <p>
-                  (If you book a time that is not currently yours, you will displace another mentor from their current
-                  mentoring session. if you wish to reschedule, please do that in 2 or 3 weeks once all mentors have
-                  completed the transition to this new system. Thank you!)
+                  (If you book a time that is not currently yours, you will
+                  displace another mentor from their current mentoring session.
+                  if you wish to reschedule, please do that in 2 or 3 weeks once
+                  all mentors have completed the transition to this new system.
+                  Thank you!)
                 </p>
                 <select
                   name="sameAppointment"
@@ -324,8 +346,10 @@ class Booking extends React.Component {
                   onChange={this.handleCommitChange}
                 />
                 <label htmlFor="commitment">
-                  Please double check that the time you have selected (every {this.display_day(this.state.weekday)} at{' '}
-                  {this.display_time(parseInt(this.state.time))}) is your current mentoring time
+                  Please double check that the time you have selected (every{' '}
+                  {this.display_day(this.state.weekday)} at{' '}
+                  {this.display_time(parseInt(this.state.time))}) is your
+                  current mentoring time
                 </label>
                 <br />
                 <br />
@@ -356,7 +380,12 @@ class Booking extends React.Component {
             REQUEST SESSION
           </button>
         </div>
-        <img src={menteeComputer} id="booking-picture" alt="Pic" style={{ width: '600px', margin: '5vw' }} />
+        <img
+          src={menteeComputer}
+          id="booking-picture"
+          alt="Pic"
+          style={{ width: '600px', margin: '5vw' }}
+        />
       </div>
     );
   }

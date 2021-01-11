@@ -1,5 +1,5 @@
-import React from "react";
-import moment from "moment";
+import React from 'react';
+import moment from 'moment';
 
 function Step2(props) {
   if (props.currentStep !== 2) {
@@ -37,7 +37,7 @@ function Step2(props) {
           <option value="Other">Other</option>
         </select>
       </div>
-      {props.state.occupation === "College_Student" && (
+      {props.state.occupation === 'College_Student' && (
         <div>
           <label>Are you part of VBB Village Mentors Chapter/Club</label>
           <select
@@ -111,7 +111,7 @@ function Step2(props) {
           value={props.state.time_zone}
         >
           {moment.tz.names().map((tz) => {
-            if(tz.includes("Etc/GMT")) return null;
+            if (tz.includes('Etc/GMT')) return null;
             return (
               <option key={tz} value={tz}>
                 {tz}

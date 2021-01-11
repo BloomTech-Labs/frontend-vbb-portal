@@ -1,17 +1,20 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { GoogleLogin } from "react-google-login";
-import vbbInAction from "../images/vbb-in-action.png";
-import * as actions from "../store/actions/auth";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { GoogleLogin } from 'react-google-login';
+import vbbInAction from '../images/vbb-in-action.png';
+import * as actions from '../store/actions/auth';
 
 export class HomeSignin extends Component {
   responseGoogle = (response) => {
-    console.log("failure response", response);
-    alert("Google authorization failed. Please Make sure Cookies are enabled on your browser! ... ", response);
+    console.log('failure response', response);
+    alert(
+      'Google authorization failed. Please Make sure Cookies are enabled on your browser! ... ',
+      response
+    );
   };
   validateGoogle = (response) => {
     this.props.onGauth(response.accessToken);
-    this.props.history.push("/");
+    this.props.history.push('/');
   };
 
   render() {
@@ -29,8 +32,8 @@ export class HomeSignin extends Component {
               buttonText="Click here to sign in!"
               onSuccess={this.validateGoogle}
               onFailure={this.responseGoogle}
-              cookiePolicy={"single_host_origin"}
-              style={{ width: "100%", paddingTop: "30px" }}
+              cookiePolicy={'single_host_origin'}
+              style={{ width: '100%', paddingTop: '30px' }}
             />
           </div>
           <br />
@@ -39,10 +42,10 @@ export class HomeSignin extends Component {
           <div id="create-account-box">
             <p
               style={{
-                paddingLeft: "0px",
-                fontSize: "20px",
-                color: "#ff914d",
-                fontWeight: "bolder",
+                paddingLeft: '0px',
+                fontSize: '20px',
+                color: '#ff914d',
+                fontWeight: 'bolder',
               }}
             >
               Don't have an account with us yet?
@@ -60,7 +63,7 @@ export class HomeSignin extends Component {
           src={vbbInAction}
           id="signin-picture"
           alt="Pic"
-          style={{ width: "600px", margin: "5vw" }}
+          style={{ width: '600px', margin: '5vw' }}
         />
       </div>
     );
