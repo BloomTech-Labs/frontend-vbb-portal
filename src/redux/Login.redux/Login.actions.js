@@ -154,23 +154,31 @@ const checkSignIn = async (token, dispatch) => {
 //   };
 // };
 
-// export const authCheckState = () => {
-//   return (dispatch) => {
-//     const token = localStorage.getItem("token");
-//     if (token === undefined) {
-//       dispatch(logout());
-//     } else {
-//       const expirationDate = new Date(localStorage.getItem("expirationDate"));
-//       if (expirationDate <= new Date()) {
-//         dispatch(logout());
-//       } else {
-//         dispatch(authSuccess(token));
-//         dispatch(
-//           checkAuthTimeout(
-//             (expirationDate.getTime() - new Date().getTime()) / 1000
-//           )
-//         );
-//       }
-//     }
-//   };
-// }
+/**
+ * authCheckState.
+ * gets token from local storage
+ * logs out if no token
+ * looks at the expirationDate in local storage and compares to now
+ * if it's before now, it dispatches log out
+ * else
+ * adds the token to the state
+ * sets the check auth time to be the difference in time in minutes before checking out
+ */
+//@TODO-UPDATE
+//@TODO: Old function with a few updates to store actions, look at what this does and update
+export const authCheckState = () => {
+  return (dispatch) => {
+    const token = localStorage.getItem('token');
+    if (token === undefined) {
+      dispatch(logOut());
+    } else {
+      const expirationDate = new Date(localStorage.getItem('expirationDate'));
+      if (expirationDate <= new Date()) {
+        dispatch(logOut());
+      } else {
+        dispatch(setAuthToken(token));
+        dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000));
+      }
+    }
+  };
+};
