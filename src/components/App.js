@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { BrowserRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import * as actions from "../store/actions/auth";
+import React, { Component } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import Layout from "./Layout";
-import Routes from "./Routes";
-import "../style.css";
+import '../style.css';
+import * as actions from '../redux/actions';
+import Layout from './Layout';
+import Routes from './Routes';
 
 class App extends Component {
   componentDidMount() {
-    this.props.onTryAutoSignup();
+    this.props.authCheckState();
   }
 
   render() {
@@ -29,15 +29,9 @@ const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.token !== null,
     isLoading: state.loading,
-    error: state.error,
-    message: state.message,
+    error: state.isError.isError,
+    message: state.isError.message,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onTryAutoSignup: () => dispatch(actions.authCheckState()),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, actions)(App);
