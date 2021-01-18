@@ -1,9 +1,12 @@
 import axios from 'axios';
 
+import { sleep } from '../../util/sleep';
 import {
+  BASE_URL,
   setLoading,
   setLoadingFalse,
   setIsError,
+  clearIsError,
   logOut,
   setAuthToken,
 } from '../actions';
@@ -11,32 +14,82 @@ import {
 /**
  * This handles all actions associated with logging in
  *
- * */
+ */
+
+// @TODO delete after backend endpoint is live
+// to use replace the call with the const resposne = fakeResponseForTesting
+// const fakeResponseForTesting = {
+//   status: 200,
+//   jwt_refresh_token: 'FAKE_JWT_REFRESH_TOKEN',
+//   jwt_credential_token: 'FAKE_JWT_CREDENTIAL_TOKEN',
+// };
+//     const response = fakeResponseForTesting;
+
+/**
+ * Manages failed google Login
+ * Sets an error state, sleeps for 2000ms and then clears error state
+ */
+export const manageFailedGoogleLogin = async () => {
+  setIsError('Google login has failed. Please try again');
+  await sleep(2000);
+  clearIsError();
+};
 
 /**
  * logIn.
  * Handles log in for the app. Calls google as part of the loging action
+ * Tokens received from the backend will expire in 10 minutes
+ * @param {string} googleToken: string from the successful response from google
+ * @param {history function} history: function from react-router-dom
  */
-export const logIn = async () => (dispatch) => {
-  //dispatch loading
+export const logIn = (googleToken, history) => async (dispatch) => {
   dispatch(setLoading());
   try {
+    //send google token to the backend
+    // previous endpoint   'http://127.0.0.1:8000/api/googlelogin/',
+    const response = await axios.post(BASE_URL + '/auth/token', {
+      google_access_token: googleToken,
+    });
+
+    const statusCode = response.status;
+
     dispatch(setLoadingFalse());
-    //log into google
+
+    //call was successful
+    if (statusCode === 200) {
+      console.log('Successful login');
+      const jwtRefreshToken = response.jwt_refresh_token;
+      const jwtCredentialToken = response.jwt_credential_token;
+      //save token on front
+      //@TODO Look at how we're using the expirationDate I believe this will need to live in a different action and piece of state
+      //adds one hour to the current time as an expirationDate
+      const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
+
+      //set token to localStorage
+      localStorage.setItem('token', jwtCredentialToken);
+      localStorage.setItem('expirationDate', expirationDate);
+
+      dispatch(setAuthToken(jwtRefreshToken));
+
+      //push user to dashboard
+      history.push('/');
+    } else {
+      console.log('Failed login');
+      dispatch(setIsError('Google login has failed. Please try again'));
+      await sleep(2000);
+      dispatch(clearIsError());
+    }
   } catch (err) {
+    console.log('Login Catch block failed login');
     dispatch(setLoadingFalse());
     //replaces authFail
     dispatch(setIsError(err.message));
+    await sleep(1500);
+    dispatch(clearIsError());
   }
 };
 
-// existing code
-// export const authSuccess = (token) => {
-//   return {
-//     type: actionTypes.AUTH_SUCCESS,
-//     token: token,
-//   };
-// };
+//************* All code below this line is legacy. The things that are currently being exported my be deleted if not moved above this line *****************//
 
 //************* Looks like an auto logout after 1 hour ( 3600 * 1000 )*****************//
 /**
