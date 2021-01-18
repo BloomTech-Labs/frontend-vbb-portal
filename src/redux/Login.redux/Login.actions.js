@@ -1,6 +1,12 @@
 import axios from 'axios';
 
-import { setLoading, setLoadingFalse, setIsError, logOut, setAuthToken } from '../actions';
+import {
+  setLoading,
+  setLoadingFalse,
+  setIsError,
+  logOut,
+  setAuthToken,
+} from '../actions';
 
 /**
  * This handles all actions associated with logging in
@@ -47,23 +53,26 @@ export const checkAuthTimeout = (expirationTime) => {
   };
 };
 
-// export const gAuth = (googleToken) => {
-//   return (dispatch) => {
-//     dispatch(authStart());
-//     axios
-//************* Why do this look like it points to local host? *****************//
-//       .post("http://127.0.0.1:8000/api/googlelogin/", {
-//         access_token: googleToken,
-//       })
-//       .then((res) => {
-//         const token = res.data.key;
-//         checkSignIn(token, dispatch);
-//       })
-//       .catch((err) => {
-//         dispatch(authFail(err));
-//       });
-//   };
-// };
+//old refactor
+export const gAuth = (googleToken) => {
+  return (dispatch) => {
+    dispatch(setLoading());
+    axios
+      // ************* Why do this look like it points to local host? *****************//
+      .post('http://127.0.0.1:8000/api/googlelogin/', {
+        access_token: googleToken,
+      })
+      .then((res) => {
+        dispatch(setLoadingFalse());
+        const token = res.data.key;
+        checkSignIn(token, dispatch);
+      })
+      .catch((err) => {
+        dispatch(setLoadingFalse());
+        dispatch(setIsError('Error with gauth'));
+      });
+  };
+};
 
 /**
  * gAuthV2.
@@ -75,7 +84,10 @@ export const gAuthV2 = (googleToken) => async (dispatch) => {
   dispatch(setLoading());
   try {
     //log into google
-    const googleResponse = await axios.post('http://127.0.0.1:8000/api/googlelogin/', { access_token: googleToken });
+    const googleResponse = await axios.post(
+      'http://127.0.0.1:8000/api/googlelogin/',
+      { access_token: googleToken }
+    );
     const googleResponseToken = googleResponse.data.key;
     await checkSignIn(googleResponseToken, dispatch);
   } catch (err) {
@@ -98,7 +110,9 @@ const checkSignIn = async (token, dispatch) => {
   };
   //try to confirm token
   try {
-    const checkSignInResponse = await axios.get('http://127.0.0.1:8000/api/checksignin/');
+    const checkSignInResponse = await axios.get(
+      'http://127.0.0.1:8000/api/checksignin/'
+    );
 
     if (checkSignInResponse.data.success === 'true') {
       //adds one hour to the current time as an expirationDate
@@ -108,7 +122,9 @@ const checkSignIn = async (token, dispatch) => {
       dispatch(setAuthToken(token));
       dispatch(checkAuthTimeout(3600));
     } else {
-      console.warn('Error siginning in with google signin', { res: checkSignInResponse.data });
+      console.warn('Error siginning in with google signin', {
+        res: checkSignInResponse.data,
+      });
       dispatch(setIsError(checkSignInResponse.data));
     }
   } catch (err) {
@@ -117,42 +133,57 @@ const checkSignIn = async (token, dispatch) => {
   }
 };
 
-// export const authSignup = (first_name, last_name,
-//   personal_email, vbb_email, phone, adult, occupation,
-//   vbb_chapter, affiliation, referral_source, languages,
-//   time_zone, charged, initials, desired_involvement, city) => {
-//   return (dispatch) => {
-//     dispatch(authStart());
-//     axios
-//       .post("http://127.0.0.1:8000/api/signup/", {
-//         first_name: first_name,
-//         last_name: last_name,
-//         personal_email: personal_email,
-//         vbb_email: vbb_email,
-//         phone: phone,
-//         adult: adult,
-//         occupation: occupation,
-//         vbb_chapter: vbb_chapter,
-//         affiliation: affiliation,
-//         referral_source: referral_source,
-//         languages: languages,
-//         time_zone: time_zone,
-//         charged: charged,
-//         initials: initials,
-//         desired_involvement: desired_involvement,
-//         city: city,
-//       })
-//       .then((res) => {
-//         if(res.success) dispatch(checkAuthTimeout(3600));
-//         else dispatch(authFail(res.data))
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//         alert(err)
-//         dispatch(authFail(err));
-//       });
-//   };
-// };
+//old function refactor
+export const authSignup = (
+  first_name,
+  last_name,
+  personal_email,
+  vbb_email,
+  phone,
+  adult,
+  occupation,
+  vbb_chapter,
+  affiliation,
+  referral_source,
+  languages,
+  time_zone,
+  charged,
+  initials,
+  desired_involvement,
+  city
+) => {
+  return (dispatch) => {
+    dispatch(setLoading());
+    axios
+      .post('http://127.0.0.1:8000/api/signup/', {
+        first_name: first_name,
+        last_name: last_name,
+        personal_email: personal_email,
+        vbb_email: vbb_email,
+        phone: phone,
+        adult: adult,
+        occupation: occupation,
+        vbb_chapter: vbb_chapter,
+        affiliation: affiliation,
+        referral_source: referral_source,
+        languages: languages,
+        time_zone: time_zone,
+        charged: charged,
+        initials: initials,
+        desired_involvement: desired_involvement,
+        city: city,
+      })
+      .then((res) => {
+        if (res.success) dispatch(checkAuthTimeout(3600));
+        else dispatch(setIsError('Error Logging in'));
+      })
+      .catch((err) => {
+        console.log(err);
+        alert(err);
+        dispatch(setIsError('Error Logging in'));
+      });
+  };
+};
 
 /**
  * authCheckState.
@@ -177,7 +208,11 @@ export const authCheckState = () => {
         dispatch(logOut());
       } else {
         dispatch(setAuthToken(token));
-        dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000));
+        dispatch(
+          checkAuthTimeout(
+            (expirationDate.getTime() - new Date().getTime()) / 1000
+          )
+        );
       }
     }
   };

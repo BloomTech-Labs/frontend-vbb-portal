@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import * as actions from '../../store/actions/auth';
+// import * as actions from '../../store/actions/auth';
+import * as actions from '../../redux/actions';
 import moment from 'moment';
 import Step1 from './Step1';
 import Step2 from './Step2';
@@ -212,48 +213,48 @@ class MasterForm extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onAuth: (
-      firstname,
-      lastname,
-      email,
-      vemail,
-      phone,
-      adult,
-      occupation,
-      vbb_chapter,
-      affiliation,
-      referral_source,
-      languages,
-      time_zone,
-      charged,
-      initials,
-      desired_involvement,
-      city
-    ) =>
-      dispatch(
-        actions.authSignup(
-          firstname,
-          lastname,
-          email,
-          vemail,
-          phone,
-          adult,
-          occupation,
-          vbb_chapter,
-          affiliation,
-          referral_source,
-          languages,
-          time_zone,
-          charged,
-          initials,
-          desired_involvement,
-          city
-        )
-      ),
-  };
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     onAuth: (
+//       firstname,
+//       lastname,
+//       email,
+//       vemail,
+//       phone,
+//       adult,
+//       occupation,
+//       vbb_chapter,
+//       affiliation,
+//       referral_source,
+//       languages,
+//       time_zone,
+//       charged,
+//       initials,
+//       desired_involvement,
+//       city
+//     ) =>
+//       dispatch(
+//         actions.authSignup(
+//           firstname,
+//           lastname,
+//           email,
+//           vemail,
+//           phone,
+//           adult,
+//           occupation,
+//           vbb_chapter,
+//           affiliation,
+//           referral_source,
+//           languages,
+//           time_zone,
+//           charged,
+//           initials,
+//           desired_involvement,
+//           city
+//         )
+//       ),
+//   };
+// };
 
 ReactDOM.render(<MasterForm />, document.getElementById('root'));
-export default connect(null, mapDispatchToProps)(MasterForm);
+export default connect(null, actions)(MasterForm);

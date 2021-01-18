@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
+
+// import * as actions from '../store/actions/auth';
+import * as actions from '../redux/actions';
 import vbbInAction from '../images/vbb-in-action.png';
-import * as actions from '../store/actions/auth';
 
 export class HomeSignin extends Component {
   responseGoogle = (response) => {
