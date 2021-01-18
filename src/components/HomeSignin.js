@@ -5,26 +5,14 @@ import { Link } from 'react-router-dom';
 import * as actions from '../redux/actions';
 import vbbInAction from '../images/vbb-in-action.png';
 
-// this needs  to hold the goolge sign in button
-// registration button should be a link to registration route from react-router-dom
-// this should all be moved to actions
-const responseGoogle = (response) => {
-  console.log('failure response', response);
-  alert(
-    'Google authorization failed. Please Make sure Cookies are enabled on your browser! ... ',
-    response
-  );
-};
-//   // responseGoogle = (response) => {
-//   //   console.log('failure response', response);
-//   //   alert(
-//   //     'Google authorization failed. Please Make sure Cookies are enabled on your browser! ... ',
-//   //     response
-//   //   );
-//   // };
-const validateGoogle = (response, history, onGauth) => {
-  onGauth(response.accessToken);
-  history.push('/');
+/**
+ * local inline style
+ */
+const paragraphStyle = {
+  paddingLeft: '0px',
+  fontSize: '20px',
+  color: '#ff914d',
+  fontWeight: 'bolder',
 };
 
 /**
@@ -33,9 +21,10 @@ const validateGoogle = (response, history, onGauth) => {
  * Displays Google Signin button and Register button
  *
  * @param { Type History } history from react router dom
- * @param {onGauth} current action from login import as a connected component
+ * @param {redux action} logIn current action from login import as a connected component
+ * @param {redux action} manageFailedGoogleLogin current action from login import as a connected component
  */
-const HomeSignin = ({ history, onGauth }) => {
+const HomeSignin = ({ history, logIn, manageFailedGoogleLogin }) => {
   return (
     <div className="twocol-container">
       <div className="column" id="signin-box">
@@ -48,8 +37,8 @@ const HomeSignin = ({ history, onGauth }) => {
           <GoogleLogin
             clientId="711431548719-lpoc2lbr4bmruqo7d9emua5huvpsvqgk.apps.googleusercontent.com"
             buttonText="Click here to sign in!"
-            onSuccess={(res) => validateGoogle(res, history, onGauth)}
-            onFailure={(res) => responseGoogle(res)}
+            onSuccess={(res) => logIn(res.accessToken, history)}
+            onFailure={(res) => manageFailedGoogleLogin()}
             cookiePolicy={'single_host_origin'}
             style={{ width: '100%', paddingTop: '30px' }}
           />
@@ -58,16 +47,7 @@ const HomeSignin = ({ history, onGauth }) => {
         <hr id="sep-bar" />
         <br />
         <div id="create-account-box">
-          <p
-            style={{
-              paddingLeft: '0px',
-              fontSize: '20px',
-              color: '#ff914d',
-              fontWeight: 'bolder',
-            }}
-          >
-            Don't have an account with us yet?
-          </p>
+          <p style={paragraphStyle}>Don't have an account with us yet?</p>
           <Link to="/signup/" className="btn btn-light signup-btn">
             REGISTER
           </Link>
@@ -89,17 +69,5 @@ const mapStateToProps = (state) => {
     error: state.error,
   };
 };
-
-// need to sort out google auth
-// this should make a call to goolge
-// get token back
-// send token to backend
-// receive cookie auth jwt that's stored and send as part of a header
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     onGauth: (googleToken) => dispatch(actions.gAuth(googleToken)),
-//   };
-// };
 
 export default connect(mapStateToProps, actions)(HomeSignin);
