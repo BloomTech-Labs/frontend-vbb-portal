@@ -1,7 +1,8 @@
-import React from "react";
+import React from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
+
 // import MentorProfile from "./MentorProfile";
-import axios from "axios";
-import { connect } from "react-redux";
 
 class Dashboard extends React.Component {
   state = {
@@ -9,14 +10,14 @@ class Dashboard extends React.Component {
   };
 
   fetchSessionSlotData = () => {
-    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-    axios.defaults.xsrfCookieName = "csrftoken";
+    axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN';
+    axios.defaults.xsrfCookieName = 'csrftoken';
     axios.defaults.headers = {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       Authorization: `Token ${this.props.token}`,
     };
     axios
-      .get("http://127.0.0.1:8000/api/session/")
+      .get('http://127.0.0.1:8000/api/session/')
       .then((res) => {
         this.setState({
           sessionslots: res.data,
@@ -24,7 +25,7 @@ class Dashboard extends React.Component {
       })
       .catch((err) => {
         console.log(err);
-        alert("There was an error in retrieving your mentoring sessions", err);
+        alert('There was an error in retrieving your mentoring sessions', err);
       });
   };
 
@@ -58,20 +59,20 @@ class Dashboard extends React.Component {
             <>
               <h4
                 style={{
-                  fontSize: "22px",
-                  fontWeight: "400",
-                  fontStyle: "italic",
-                  textIndent: "0px",
-                  color: "#ff914d",
+                  fontSize: '22px',
+                  fontWeight: '400',
+                  fontStyle: 'italic',
+                  textIndent: '0px',
+                  color: '#ff914d',
                 }}
               >
                 <b>Uh oh!</b> You don't have any mentoring sessions booked yet.
               </h4>
               <h4
                 style={{
-                  textIndent: "0px",
-                  fontStyle: "italic",
-                  color: "#6ac66b",
+                  textIndent: '0px',
+                  fontStyle: 'italic',
+                  color: '#6ac66b',
                 }}
               >
                 Press the green button below to make your first booking!
@@ -82,7 +83,7 @@ class Dashboard extends React.Component {
             <a
               href="/booking/"
               className="btn btn-light book-btn dashboard-btn"
-              style={{ marginTop: "20px", fontSize: "20px" }}
+              style={{ marginTop: '20px', fontSize: '20px' }}
             >
               + Book Mentoring Session
             </a>
@@ -92,7 +93,7 @@ class Dashboard extends React.Component {
               href="https://calendar.google.com/calendar/r"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ marginTop: "5px", marginBottom: "30px" }}
+              style={{ marginTop: '5px', marginBottom: '30px' }}
             >
               View My Sessions Calendar
             </a>
@@ -183,18 +184,18 @@ class Dashboard extends React.Component {
             </a>
           </div>
           <p
-            style={{ padding: "20px", paddingLeft: "40px", maxWidth: "900px" }}
+            style={{ padding: '20px', paddingLeft: '40px', maxWidth: '900px' }}
           >
             <b>
               If you would like to change a mentoring session, have questions
               about mentoring, or ANY QUESTIONS, please
               <a href="mailto:mentor@villagebookbuilders.org">
-                {" "}
-                contact your mentor advisor{" "}
+                {' '}
+                contact your mentor advisor{' '}
               </a>
               at mentor@villagebookbuilders.org! <br></br>
             </b>
-          </p>{" "}
+          </p>{' '}
         </div>
       </div>
     );
@@ -203,7 +204,7 @@ class Dashboard extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    token: state.token,
+    token: state.authToken,
   };
 };
 

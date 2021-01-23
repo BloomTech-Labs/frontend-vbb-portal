@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function Step1(props) {
   if (props.state.currentStep !== 1) {
@@ -7,7 +7,10 @@ function Step1(props) {
   return (
     <div className="form-group step-form">
       {/*delete this later*/}
-      <p>This is a new portal. If you experience any problems, please contact us at mentor@villagebookbuilders.org</p>
+      <p>
+        This is a new portal. If you experience any problems, please contact us
+        at mentor@villagebookbuilders.org
+      </p>
       <label htmlFor="firstname">First Name</label>
 
       <input

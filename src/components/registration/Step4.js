@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 // import Donation from './Donation'
 
 function Step4(props) {
@@ -22,7 +22,7 @@ function Step4(props) {
         href="https://www.villagebookbuilders.org/donate/"
         target="_blank"
         rel="noopener noreferrer"
-        style={{ marginLeft: "50px" }}
+        style={{ marginLeft: '50px' }}
       >
         DONATE
       </a>

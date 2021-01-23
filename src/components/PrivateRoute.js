@@ -1,7 +1,7 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import Spinner from "react-bootstrap/Spinner";
+import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import Spinner from 'react-bootstrap/Spinner';
 
 const PrivateRoute = ({
   component: Component,

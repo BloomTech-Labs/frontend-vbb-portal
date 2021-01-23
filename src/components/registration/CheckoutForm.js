@@ -1,5 +1,5 @@
 import React from 'react';
-import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
+import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 
 // import CardSection from './CardSection';
 
@@ -24,7 +24,7 @@ export default function CheckoutForm() {
         billing_details: {
           name: 'Jenny Rosen',
         },
-      }
+      },
     });
 
     if (result.error) {
@@ -44,7 +44,14 @@ export default function CheckoutForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div style={{padding: "10px", margin: "10px",border: "1px solid #ccc", "border-radius":"5px"}}>
+      <div
+        style={{
+          padding: '10px',
+          margin: '10px',
+          border: '1px solid #ccc',
+          'border-radius': '5px',
+        }}
+      >
         <CardElement />
       </div>
       <button type="submit" className="btn donate-btn" disabled={!stripe}>

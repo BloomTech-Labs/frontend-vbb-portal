@@ -1,10 +1,11 @@
-import React from "react";
-import AlertDismissable from "./AlertDismissable";
-import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import * as actions from "../store/actions/auth";
-import fullLogo from "../images/vbb-full-logo.png";
-import miniLogo from "../images/vbb-picture-logo.png";
+import React from 'react';
+import AlertDismissable from './AlertDismissable';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../redux/actions';
+// import * as actions from '../store/actions/auth';
+import fullLogo from '../images/vbb-full-logo.png';
+import miniLogo from '../images/vbb-picture-logo.png';
 
 class Layout extends React.Component {
   render() {
@@ -23,7 +24,7 @@ class Layout extends React.Component {
             <img
               src={fullLogo}
               alt="Logo"
-              style={{ width: "200px", marginLeft: "30px" }}
+              style={{ width: '200px', marginLeft: '30px' }}
             />
           </a>
           <a
@@ -32,10 +33,10 @@ class Layout extends React.Component {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src={miniLogo} alt="Logo" style={{ width: "45px" }} />
+            <img src={miniLogo} alt="Logo" style={{ width: '45px' }} />
           </a>
           <a href="/" id="bar-header-link">
-            <h1 id="bar-header" style={{ marginBottom: "-25px" }}>
+            <h1 id="bar-header" style={{ marginBottom: '-25px' }}>
               Vbb Portal
               <span className="badge badge-secondary">NEW</span>
             </h1>
@@ -58,7 +59,7 @@ class Layout extends React.Component {
                   href="https://www.villagebookbuilders.org/donate/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ marginRight: "20px" }}
+                  style={{ marginRight: '20px' }}
                 >
                   DONATE
                 </a>
@@ -77,7 +78,7 @@ class Layout extends React.Component {
                   className="btn btn-light signup-btn"
                   type="button"
                   href="/signup/"
-                  style={{ marginRight: "20px" }}
+                  style={{ marginRight: '20px' }}
                 >
                   REGISTER
                 </a>
@@ -105,10 +106,4 @@ class Layout extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    logout: () => dispatch(actions.logout()),
-  };
-};
-
-export default withRouter(connect(null, mapDispatchToProps)(Layout));
+export default withRouter(connect(null, actions)(Layout));

@@ -1,9 +1,10 @@
-import React from "react";
-import axios from "axios";
-import moment from "moment";
-import "moment-timezone";
-import { connect } from "react-redux";
-import menteeComputer from "../images/vbb-mentee-computer.png";
+import React from 'react';
+import { connect } from 'react-redux';
+import axios from 'axios';
+import moment from 'moment';
+import 'moment-timezone';
+
+import menteeComputer from '../images/vbb-mentee-computer.png';
 
 class Booking extends React.Component {
   state = {
@@ -13,18 +14,22 @@ class Booking extends React.Component {
     time_zone: moment.tz.guess(),
     language: 1,
     weekday: 0,
-    displayDay: "",
+    displayDay: '',
     library: 0,
     time: false,
-    displayTime: "",
+    displayTime: '',
     isReturning: true,
     isCommitted: false,
-    sameAppointment: "no",
+    sameAppointment: 'no',
   };
+
+  componentDidMount() {
+    this.fetchBookingData();
+  }
 
   fetchBookingData = () => {
     axios
-      .get("http://127.0.0.1:8000/api/library/")
+      .get('http://127.0.0.1:8000/api/library/')
       .then((res) => {
         this.setState({
           libraries: res.data,
@@ -34,7 +39,7 @@ class Booking extends React.Component {
         console.log(err);
       });
     axios
-      .get("http://127.0.0.1:8000/api/language/")
+      .get('http://127.0.0.1:8000/api/language/')
       .then((res) => {
         this.setState({
           languages: res.data,
@@ -46,19 +51,15 @@ class Booking extends React.Component {
     this.fetchTimes();
   };
 
-  componentDidMount() {
-    this.fetchBookingData();
-  }
-
   fetchTimes = () => {
-    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-    axios.defaults.xsrfCookieName = "csrftoken";
+    axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN';
+    axios.defaults.xsrfCookieName = 'csrftoken';
     axios.defaults.headers = {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       Authorization: `Token ${this.props.token}`,
     };
     axios
-      .get("http://127.0.0.1:8000/api/available/", {
+      .get('http://127.0.0.1:8000/api/available/', {
         params: {
           library: this.state.library,
           language: this.state.language,
@@ -80,35 +81,35 @@ class Booking extends React.Component {
     day = parseInt(day);
     switch (day) {
       case 0:
-        return "Monday";
+        return 'Monday';
       case 1440:
-        return "Tuesday";
+        return 'Tuesday';
       case 2880:
-        return "Wednesday";
+        return 'Wednesday';
       case 4320:
-        return "Thursday";
+        return 'Thursday';
       case 5760:
-        return "Friday";
+        return 'Friday';
       case 7200:
-        return "Saturday";
+        return 'Saturday';
       case 8640:
-        return "Sunday";
+        return 'Sunday';
       default:
-        return "--";
+        return '--';
     }
   };
 
   display_time = (msm) => {
     var tzmsm = this.shift_time(msm, true);
-    let mins = ":" + (msm % 60);
-    if (msm % 60 === 0) mins = "";
-    else if (msm % 60 < 10) mins = ":0" + (msm % 60);
+    let mins = ':' + (msm % 60);
+    if (msm % 60 === 0) mins = '';
+    else if (msm % 60 < 10) mins = ':0' + (msm % 60);
     var time24 = parseInt(tzmsm / 60) % 24;
     var time12 = parseInt(tzmsm / 60) % 12;
-    if (time24 === 0) return "12" + mins + "am";
-    if (time24 === 12) return "12" + mins + "pm";
-    if (time24 === time12) return time12 + mins + "am";
-    return time12 + mins + "pm";
+    if (time24 === 0) return '12' + mins + 'am';
+    if (time24 === 12) return '12' + mins + 'pm';
+    if (time24 === time12) return time12 + mins + 'am';
+    return time12 + mins + 'pm';
   };
 
   shift_time = (msm, isEastern) => {
@@ -116,7 +117,7 @@ class Booking extends React.Component {
     now.tz(this.state.time_zone);
     var localOffset = now.utcOffset();
     //eastern time zone is the server standard as of 8/1/2020
-    now.tz("US/Eastern");
+    now.tz('US/Eastern');
     var easternOffset = now.utcOffset();
     var diffInMinutes = localOffset - easternOffset;
     //isEastern designates whether the given msm is in Eastern or the local time_zone
@@ -161,15 +162,17 @@ class Booking extends React.Component {
   };
 
   postRequest = () => {
-    alert("Please wait while we submit your booking request, then refresh the page (this might take 10 or 20 seconds)");
-    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-    axios.defaults.xsrfCookieName = "csrftoken";
+    alert(
+      'Please wait while we submit your booking request, then refresh the page (this might take 10 or 20 seconds)'
+    );
+    axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN';
+    axios.defaults.xsrfCookieName = 'csrftoken';
     axios.defaults.headers = {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       Authorization: `Token ${this.props.token}`,
     };
     axios
-      .post("http://127.0.0.1:8000/api/book/", null, {
+      .post('http://127.0.0.1:8000/api/book/', null, {
         params: {
           library: this.state.library,
           language: this.state.language,
@@ -177,16 +180,18 @@ class Booking extends React.Component {
         },
       })
       .then((res) => {
-        console.log("Success: ", res.success);
-        alert("Success!");
-        this.props.history.push("/");
+        console.log('Success: ', res.success);
+        alert('Success!');
+        this.props.history.push('/');
         window.location.reload(false);
       })
       .catch((err) => {
-        alert("We're sorry! Something went wrong while booking your appointment. Please contact your mentor advisor to find out more.");
+        alert(
+          "We're sorry! Something went wrong while booking your appointment. Please contact your mentor advisor to find out more."
+        );
         console.log(err);
       });
-      this.props.history.push("/");
+    this.props.history.push('/');
   };
 
   render() {
@@ -247,15 +252,15 @@ class Booking extends React.Component {
             {/* <div id="ex-space" /> */}
             {this.state.isReturning && (
               <div>
-                <label htmlFor="library" > 
-                {/* style={{ paddingLeft: "50px" }} */}
+                <label htmlFor="library">
+                  {/* style={{ paddingLeft: "50px" }} */}
                   Your Library:&nbsp;
                 </label>
                 <select
                   name="library"
                   id="library"
                   onChange={this.handleDropDownChange}
-                  style={{ marginTop: "0px" }}
+                  style={{ marginTop: '0px' }}
                 >
                   <option value="0">Select from Available Libraries:</option>
                   {this.state.libraries &&
@@ -306,13 +311,16 @@ class Booking extends React.Component {
             <br />
             {this.state.time && (
               <div>
-                <label>Please confirm that the time and library 
-                  you have selected represent your current mentoring session time and library: </label>
+                <label>
+                  Please confirm that the time and library you have selected
+                  represent your current mentoring session time and library:{' '}
+                </label>
                 <p>
-                  (If you book a time that is not currently yours, you will displace another mentor 
-                  from their current mentoring session. 
-                  if you wish to reschedule, please do that in 2 or 3 weeks once all mentors 
-                  have completed the transition to this new system. Thank you!)
+                  (If you book a time that is not currently yours, you will
+                  displace another mentor from their current mentoring session.
+                  if you wish to reschedule, please do that in 2 or 3 weeks once
+                  all mentors have completed the transition to this new system.
+                  Thank you!)
                 </p>
                 <select
                   name="sameAppointment"
@@ -328,8 +336,7 @@ class Booking extends React.Component {
                 <br />
               </div>
             )}
-
-            {this.state.sameAppointment==="yes" && (
+            {this.state.sameAppointment === 'yes' && (
               <div>
                 <input
                   type="checkbox"
@@ -339,9 +346,10 @@ class Booking extends React.Component {
                   onChange={this.handleCommitChange}
                 />
                 <label htmlFor="commitment">
-                  Please double check that the time you have selected (every{" "}
-                  {this.display_day(this.state.weekday)} at{" "}
-                  {this.display_time(parseInt(this.state.time))}) is your current mentoring time
+                  Please double check that the time you have selected (every{' '}
+                  {this.display_day(this.state.weekday)} at{' '}
+                  {this.display_time(parseInt(this.state.time))}) is your
+                  current mentoring time
                 </label>
                 <br />
                 <br />
@@ -376,7 +384,7 @@ class Booking extends React.Component {
           src={menteeComputer}
           id="booking-picture"
           alt="Pic"
-          style={{ width: "600px", margin: "5vw" }}
+          style={{ width: '600px', margin: '5vw' }}
         />
       </div>
     );
@@ -385,7 +393,7 @@ class Booking extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    token: state.token,
+    token: state.authToken,
   };
 };
 
