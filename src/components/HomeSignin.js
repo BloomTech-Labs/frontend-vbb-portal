@@ -35,7 +35,7 @@ const HomeSignin = ({ history, logIn, manageFailedGoogleLogin }) => {
         <br />
         <div id="google-box">
           <GoogleLogin
-            clientId="711431548719-lpoc2lbr4bmruqo7d9emua5huvpsvqgk.apps.googleusercontent.com"
+            clientId={process.env.REACT_APP_.GOOGLE_CLIENT_ID}
             buttonText="Click here to sign in!"
             onSuccess={(res) => logIn(res.accessToken, history)}
             onFailure={(res) => manageFailedGoogleLogin()}
