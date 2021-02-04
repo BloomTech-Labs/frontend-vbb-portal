@@ -1,48 +1,33 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 
 import { getDateStr } from '../helpers';
+import * as actions from '../redux/actions';
 
-class SessionDetails extends React.Component {
+// values in store
+// id: responseData.id,
+// display: responseData.display,
+// endDate: responseData.end_date,
+// mentorNotes: responseData.mentor_notes,
+// mentor: responseData.mentor,
+
+/*
+ *Displays Session Details
+ *@props { getSessionInfo, setSessionEndDate, updateSessionInfo, history, match }
+ */
+class SessionDetails extends PureComponent {
   state = {
-    id: '',
-    display: '',
-    endDate: '',
-    mentorNotes: '',
     unbookConfirmation: false,
     readyToApplyChanges: false,
     didCommunicate: '',
     proceedToUnbook: '',
   };
 
-  fetchSessionSlotData = () => {
-    axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN';
-    axios.defaults.xsrfCookieName = 'csrftoken';
-    axios.defaults.headers = {
-      'Content-Type': 'application/json',
-      Authorization: `Token ${this.props.token}`,
-    };
+  componentDidMount() {
     const sessionid = this.props.match.params.sessionid;
-    axios
-      .get(`http://127.0.0.1:8000/api/session/${sessionid}`)
-      .then((res) => {
-        console.log('res : ', res);
-        console.log('rd: ', res.data.display);
-        this.setState({
-          //   sessionslot: res.data,
-          id: res.data.id,
-          display: res.data.display,
-          endDate: res.data.end_date,
-          mentorNotes: res.data.mentor_notes,
-          mentor: res.data.mentor,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        alert('There was an error in retrieving your mentoring sessions', err);
-      });
-  };
+    this.props.getSessionInfo(sessionid);
+  }
 
   onUnbookFirstClick = () => {
     this.setState({
@@ -50,50 +35,24 @@ class SessionDetails extends React.Component {
     });
   };
 
-  onApplyChanges = () => {
+  onApplyChanges = async () => {
     const sessionid = this.props.match.params.sessionid;
-    //  const endDate = this.state.endDate;
-    axios
-      .patch(`http://127.0.0.1:8000/api/update/${sessionid}`, {
-        end_date: this.state.endDate,
-        mentor_notes: this.state.mentorNotes,
-      })
-      .then((res) => {
-        console.log('apply', res.data.display);
-        alert(
-          'Your changes have successfully applied.\nYour session is now set for: ' +
-            res.data.display +
-            '.'
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-        alert('There was an error in applying changes.', err);
-      });
+    await this.props.updateSessionInfo(sessionid);
   };
 
-  onUnbookRequest = () => {
+  onUnbookRequest = async () => {
     const sessionid = this.props.match.params.sessionid;
-    const mentor = this.state.mentor;
-    console.log('Mentor', mentor);
-    axios
-      .patch(`http://127.0.0.1:8000/api/update/${sessionid}`, {
-        end_date: getDateStr(0),
-        mentor: null,
-      })
-      .then((res) => {
-        console.log('Success: ', res.success);
-        alert('Success!');
-        this.props.history.push('/');
-      });
+    await this.props.unbookSession(sessionid, this.props.history);
   };
-
-  componentDidMount() {
-    this.fetchSessionSlotData();
-    console.log('token: ', this.props.token);
-  }
 
   render() {
+    const {
+      id,
+      display,
+      endDate,
+      mentorNotes,
+      mentor,
+    } = this.props.sessionSlot;
     return (
       <div className="cream-bg">
         <div
@@ -103,9 +62,9 @@ class SessionDetails extends React.Component {
           {!this.state.unbookConfirmation ? (
             <>
               <div className="d-block px-4 mb-4">
-                <h5>Adjust Mentoring Session #{this.state.id}:</h5>
+                <h5>Adjust Mentoring Session #{id}:</h5>
                 <h4 className="session-details-link session-details-location px-5">
-                  {this.state.display}
+                  {display}
                 </h4>
               </div>
               <div className="d-block mb-2">
@@ -113,15 +72,16 @@ class SessionDetails extends React.Component {
                 <input
                   type="date"
                   className="mx-4"
-                  value={this.state.endDate}
+                  value={endDate}
                   min={getDateStr(14)} // min is 2 weeks out
                   max={getDateStr(365)} // max is 1 year out
                   onChange={(event) => {
-                    this.setState({
-                      endDate: event.target.value,
-                      readyToApplyChanges: true,
-                    });
-                    // console.log("newDate: ", this.state.endDate);
+                    this.props.setSessionEndDate(event.target.value);
+                    this.setState({ readyToApplyChanges: true });
+                    // this.setState({
+                    //   endDate: event.target.value,
+                    //   readyToApplyChanges: true,
+                    // });
                   }}
                 />
               </div>
@@ -135,6 +95,7 @@ class SessionDetails extends React.Component {
                   rows="3"
                   value={this.state.mentorNotes}
                   onChange={(event) =>
+                    //TODO UPDATE THIS
                     this.setState({
                       mentorNotes: event.target.value,
                       readyToApplyChanges: true,
@@ -249,8 +210,9 @@ class SessionDetails extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    token: state.token,
+    token: state.authToken,
+    sessionSlot: state.sessionSlot,
   };
 };
 
-export default connect(mapStateToProps)(SessionDetails);
+export default connect(mapStateToProps, actions)(SessionDetails);
