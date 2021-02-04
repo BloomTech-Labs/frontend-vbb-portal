@@ -10,3 +10,4 @@ export * from '../IsError.redux/IsError.actions';
 export * from '../Login.redux/Login.actions';
 export * from '../LogOut.redux/LogOut.actions';
 export * from '../AuthToken.redux/AuthToken.actions';
+export * from '../SessionSlot.redux/SessionSlot.actions';
