@@ -9,7 +9,7 @@ import HomeSignin from './HomeSignin';
 import SessionDetails from './SessionDetails';
 // import Donation from "./registration/Donation"
 
-function Routes() {
+const Routes = () => {
   return (
     <div>
       <PrivateRoute exact path="/" component={Dashboard} />
@@ -24,6 +24,6 @@ function Routes() {
       {/* <Route exact path="/donate/" component={Donation} /> */}
     </div>
   );
-}
+};
 
 export default Routes;
