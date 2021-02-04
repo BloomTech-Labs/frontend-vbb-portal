@@ -3,14 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Spinner from 'react-bootstrap/Spinner';
 
-const PrivateRoute = ({
-  component: Component,
-  token,
-  loading,
-  isLoading,
-  isAuthenticated,
-  ...rest
-}) => (
+const PrivateRoute = ({ component: Component, token, loading, ...rest }) => (
   <Route
     {...rest}
     render={(props) => {
@@ -32,7 +25,7 @@ const PrivateRoute = ({
 );
 
 const mapStateToProps = (state) => ({
-  token: state.token,
+  token: state.authToken,
   loading: state.loading,
 });
 
