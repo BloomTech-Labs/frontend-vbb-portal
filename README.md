@@ -21,3 +21,7 @@ For the Youtube tutorials associated with this code (and preparing it for produc
 *Note: to access, django admin, go to http://localhost:8000/admin/
 Username and Password: \$\$;
 Note: Discard any database changes on your local server (**DON'T PUSH**)
+
+## Docs and useful links
+
+* [Swagger docs for standalone python backend ](https://vbb-backend.herokuapp.com/swagger/)
