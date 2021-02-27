@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 
 import { getDateStr } from '../helpers';
@@ -36,11 +35,13 @@ class SessionDetails extends PureComponent {
   };
 
   onApplyChanges = async () => {
+    //gets the session ID from the URL
     const sessionid = this.props.match.params.sessionid;
     await this.props.updateSessionInfo(sessionid);
   };
 
   onUnbookRequest = async () => {
+    //gets the session ID from the URL
     const sessionid = this.props.match.params.sessionid;
     await this.props.unbookSession(sessionid, this.props.history);
   };
