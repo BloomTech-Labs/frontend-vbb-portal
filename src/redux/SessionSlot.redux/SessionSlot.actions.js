@@ -17,9 +17,12 @@ const fakeSessionResponseData = {
   mentor_notes: 'These are some fake notes',
   mentor: 'not sure what data type the mentor should be',
 };
+
+//Action Types
 export const SET_SESSION_INFO = 'SET_SESSION_INFO';
 export const SET_SESSION_END_DATE = 'SET_SESSION_END_DATE';
 
+// Basic Actions
 const setSessionInfo = (sessionInfo) => {
   return { type: SET_SESSION_INFO, payload: sessionInfo };
 };
@@ -28,6 +31,12 @@ export const setSessionEndDate = (endDate) => {
   return { type: SET_SESSION_END_DATE, payload: endDate };
 };
 
+// Thunk Actions
+/**
+ * getSessionInfo.
+ * Gets Session info from the python api given a sessionId from the URL
+ * @param {string} sessionId
+ */
 export const getSessionInfo = (sessionId) => async (dispatch, getState) => {
   dispatch(setLoading());
   try {
@@ -38,7 +47,7 @@ export const getSessionInfo = (sessionId) => async (dispatch, getState) => {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     };
-    const responseData = await axios.post({ url, headers }).data;
+    const responseData = await axios.get({ url, headers }).data;
 
     dispatch(setLoadingFalse());
 
@@ -66,6 +75,12 @@ export const getSessionInfo = (sessionId) => async (dispatch, getState) => {
   }
 };
 
+/**
+ * updateSessionInfo.
+ * Updates a session given the sessionId from the URL and pulls in
+ * the current session object from the state
+ * @param {string} sessionId
+ */
 export const updateSessionInfo = (sessionId) => async (dispatch, getState) => {
   dispatch(setLoading());
   try {
@@ -93,6 +108,13 @@ export const updateSessionInfo = (sessionId) => async (dispatch, getState) => {
   }
 };
 
+/**
+ * unbookSession.
+ * Unbooks a session using the session Id from the URL and pushes the user
+ * back to the root page on a successful unbooking
+ * @param {string} sessionId
+ * @param {History Obj React Router Dom} history
+ */
 export const unbookSession = (sessionId, history) => async (
   dispatch,
   getState
