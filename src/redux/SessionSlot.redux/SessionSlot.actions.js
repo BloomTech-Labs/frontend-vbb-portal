@@ -35,13 +35,14 @@ export const setSessionEndDate = (endDate) => {
 /**
  * getSessionInfo.
  * Gets Session info from the python api given a sessionId from the URL
+ * endpoint: /session/:id
  * @param {string} sessionId
  */
 export const getSessionInfo = (sessionId) => async (dispatch, getState) => {
   dispatch(setLoading());
   try {
     const token = getState().authToken;
-    const url = PYTHON_API + '/api/session/' + sessionId;
+    const url = PYTHON_API + '/session/' + sessionId;
 
     const headers = {
       'Content-Type': 'application/json',
@@ -79,6 +80,7 @@ export const getSessionInfo = (sessionId) => async (dispatch, getState) => {
  * updateSessionInfo.
  * Updates a session given the sessionId from the URL and pulls in
  * the current session object from the state
+ * endpoint: /update/:id
  * @param {string} sessionId
  */
 export const updateSessionInfo = (sessionId) => async (dispatch, getState) => {
@@ -90,7 +92,7 @@ export const updateSessionInfo = (sessionId) => async (dispatch, getState) => {
 
     const token = getState().authToken;
 
-    const url = PYTHON_API + '/api/update/' + sessionId;
+    const url = PYTHON_API + '/update/' + sessionId;
     const headers = {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
