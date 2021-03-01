@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 
 import App from './components/App';
+import MasterForm from './components/registration/MasterForm';
 
 const app = (
   <Provider store={store}>
