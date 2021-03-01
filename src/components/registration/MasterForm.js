@@ -34,7 +34,7 @@ const initialFormValues = {
   city: '',
 };
 
-export const MasterForm = () => {
+const MasterForm = () => {
   let [currentStep, setCurrentStep] = useState(1);
   const [formValues, setFormValues] = useState(initialFormValues);
 
