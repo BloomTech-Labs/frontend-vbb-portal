@@ -85,7 +85,7 @@ const tailFormItemLayout = {
 };
 
 export const Step1 = (props) => {
-  console.log({props})
+  console.log("props:", props)
   const [form] = Form.useForm();
 
   const onFinish = (values) => {

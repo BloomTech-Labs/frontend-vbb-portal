@@ -1,53 +1,29 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import PrivateRoute from './PrivateRoute';
-import Booking from './Booking';
-import Dashboard from './Dashboard';
-import MasterForm from './registration/MasterForm';
-import HomeSignin from './HomeSignin';
-import SessionDetails from './SessionDetails';
-import Donation from './registration/Donation';
+import React, { Component } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+
 import '../style.css';
 import * as actions from '../redux/actions';
 import Layout from './Layout';
+import Routes from './Routes';
 
-const App = () => {
-  return (
-    <div className="App">
-      <Switch>
+class App extends Component {
+  componentDidMount() {
+    // this.props.authCheckState();
+  }
 
-        <Layout />
-
-        <PrivateRoute exact path="/">
-          <Dashboard />
-        </PrivateRoute>
-
-        <PrivateRoute exact path="/booking/">
-          <Booking />
-        </PrivateRoute>
-
-        <Route exact path="/signin/" >
-          <HomeSignin />
-        </Route>
-
-        <Route exact path="/signup/">
-          <MasterForm />
-        </Route>
-
-        <Route
-          exact path="/sessiondetails/:sessionid/">
-          <SessionDetails />
-        </Route>
-
-        <Route exact path="/donate/">
-          <Donation />
-        </Route>
-
-      </Switch>
-    </div>
-  );
-};
+  render() {
+    return (
+      <div className="App">
+        <BrowserRouter {...this.props}>
+          <Layout {...this.props}>
+            <Routes />
+          </Layout>
+        </BrowserRouter>
+      </div>
+    );
+  }
+}
 
 const mapStateToProps = (state) => {
   return {
