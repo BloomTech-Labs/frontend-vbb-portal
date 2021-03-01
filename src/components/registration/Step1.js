@@ -77,16 +77,14 @@ function Step1(props) {
 
       <div>
         <label>Sign up for newsletter? &nbsp;</label>
-        <select
+        <input
           name="newsletter"
+          type="checkbox"
           id="newsletter"
           value={props.state.newsletter}
           onChange={props.handleChange}
         >
-          <option value="No choice">-</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
+        </input>
       </div>
       <br />
       <br />

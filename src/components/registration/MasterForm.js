@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
+import { Button } from 'antd';
 // import * as actions from '../../store/actions/auth';
 import * as actions from '../../redux/actions';
 import moment from 'moment';
@@ -144,13 +145,13 @@ class MasterForm extends React.Component {
     let currentStep = this.state.currentStep;
     if (currentStep < 5) {
       return (
-        <button
+        <Button
           className="btn btn-primary float-right next-btn"
           type="button"
           onClick={this._next}
         >
           NEXT
-        </button>
+        </Button>
       );
     }
     return null;

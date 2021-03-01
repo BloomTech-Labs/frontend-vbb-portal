@@ -8,9 +8,9 @@ import Layout from './Layout';
 import Routes from './Routes';
 
 class App extends Component {
-  componentDidMount() {
-    this.props.authCheckState();
-  }
+  // componentDidMount() {
+  //   this.props.authCheckState();
+  // }
 
   render() {
     return (
