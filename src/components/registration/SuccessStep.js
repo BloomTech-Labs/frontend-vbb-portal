@@ -1,7 +1,7 @@
 import React from 'react';
 
 function SuccessStep(props) {
-  if (props.state.currentStep !== 6) {
+  if (props.currentStep !== 6) {
     return null;
   }
   return (

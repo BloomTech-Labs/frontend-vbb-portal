@@ -70,7 +70,7 @@ export const Step1 = (props) => {
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+    console.log('Form values: ', values);
   };
 
   if (props.currentStep !== 1) {
