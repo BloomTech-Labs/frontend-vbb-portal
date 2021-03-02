@@ -1,8 +1,9 @@
 import React from 'react';
 // import 'antd/dist/antd.css';
-import { Layout, Breadcrumb, Button } from 'antd';
+import { Layout, Button } from 'antd';
 import { LoginOutlined, FormOutlined } from '@ant-design/icons';
-import fullLogo from '../images/vbb-full-logo.png';
+import ProgressBar from './registration/ProgressBar';
+// import fullLogo from '../images/vbb-full-logo.png';
 
 function AppWrapper(props) {
     const { Header, Footer, Content } = Layout;
@@ -28,13 +29,7 @@ function AppWrapper(props) {
                 <Content
                 className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}
                 >
-                    <Breadcrumb style={{ margin: '16px 0' }}>
-                        <Breadcrumb.Item>Step 1</Breadcrumb.Item>
-                        <Breadcrumb.Item>Step 2</Breadcrumb.Item>
-                        <Breadcrumb.Item>Step 3</Breadcrumb.Item>
-                        <Breadcrumb.Item>Step 4</Breadcrumb.Item>
-                        <Breadcrumb.Item>Step 5</Breadcrumb.Item>
-                    </Breadcrumb>
+                    <ProgressBar />
                     <div className="site-layout-background" style={{ padding: 24, minHeight: 380 }}>
                         {props.children}
                     </div>
