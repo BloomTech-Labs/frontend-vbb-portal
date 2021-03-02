@@ -1,6 +1,6 @@
 import React from 'react';
 // import 'antd/dist/antd.css';
-import { Layout, Button, PageHeader } from 'antd';
+import { Layout, Button, PageHeader, Breadcrumb } from 'antd';
 import { LoginOutlined, FormOutlined } from '@ant-design/icons';
 import fullLogo from '../images/vbb-full-logo.png';
 
@@ -11,7 +11,7 @@ function AppWrapper(props) {
         <div>
             <Layout>
                 <PageHeader
-                    style={{ position: 'fixed', zIndex: 1, width: '100%',backgroundColor: 'blue' }}
+                    style={{ position: 'fixed', zIndex: 1, width: '100%'}}
                     title='VBB Portal'
                     subTitle={<img
                         src={fullLogo}
@@ -24,8 +24,11 @@ function AppWrapper(props) {
                     ]}
                 >
                 </PageHeader>
-                <Content
-                className="site-layout" style={{ padding: '50px', marginTop: 64 }}>
+                <Content className="site-layout" style={{ padding: '50px', marginTop: 64 }}>
+                    <Breadcrumb style={{ margin: '16px 0' }}>
+                        <Breadcrumb.Item><a href='/'>VBB Portal</a></Breadcrumb.Item>
+                        <Breadcrumb.Item><a href='/signup'>Mentor Registration</a></Breadcrumb.Item>
+                    </Breadcrumb>
                     <div className="site-layout-background" style={{ padding: 24, minHeight: 380 }}>
                         {props.children}
                     </div>
