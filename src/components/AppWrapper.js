@@ -1,30 +1,29 @@
 import React from 'react';
 // import 'antd/dist/antd.css';
-import { Layout, Button } from 'antd';
+import { Layout, Button, PageHeader } from 'antd';
 import { LoginOutlined, FormOutlined } from '@ant-design/icons';
-// import fullLogo from '../images/vbb-full-logo.png';
+import fullLogo from '../images/vbb-full-logo.png';
 
 function AppWrapper(props) {
-    const { Header, Footer, Content } = Layout;
+    const { Footer, Content } = Layout;
 
     return (
         <div>
             <Layout>
-                <Header style={{ position: 'fixed', zIndex: 1, width: '100%', backgroundColor: 'blue' }}>
-                    {/* <img
+                <PageHeader
+                    style={{ position: 'fixed', zIndex: 1, width: '100%',backgroundColor: 'blue' }}
+                    title='VBB Portal'
+                    subTitle={<img
                         src={fullLogo}
                         alt="VBB logo"
                         width="100"
-                    ></img> */}
-                    <Button key="1" href='/signin'>
-                        Sign In
-                        <LoginOutlined />
-                    </Button>
-                    <Button key="2" type="primary" href='/signup'>
-                        Register
-                        <FormOutlined />
-                    </Button>
-                </Header>
+                    ></img>}
+                    extra={[
+                        <Button key="1" href='/signin'>Sign In<LoginOutlined /></Button>,
+                        <Button key="2" href='/signup' type='primary'>Register<FormOutlined /></Button>,
+                    ]}
+                >
+                </PageHeader>
                 <Content
                 className="site-layout" style={{ padding: '50px', marginTop: 64 }}>
                     <div className="site-layout-background" style={{ padding: 24, minHeight: 380 }}>
