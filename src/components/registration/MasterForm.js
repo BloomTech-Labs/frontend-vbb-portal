@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // import { connect } from 'react-redux';
-import { Button, Form } from 'antd';
+import { Button, Form, PageHeader } from 'antd';
 import { RightOutlined, LeftOutlined, CheckOutlined } from '@ant-design/icons';
 // import * as actions from '../../redux/actions';
 import Step1 from './Step1';
@@ -73,15 +73,21 @@ const MasterForm = () => {
   return (
     <div>
       {currentStep < 6 ? (
-        <div style={{ margin: '25px 0' }}>
-          <h1>Mentor Registration</h1>
+        <div style={{ margin: '0 0 25px 0' }}>
+          <PageHeader
+            className="site-page-header"
+            title="Mentor Registration"
+          />
           <ProgressBar
             currentStep={currentStep}
           />
       </div>
       ) : (
-        <div style={{ margin: '25px 0' }}>
-          <h1>Form Submitted!</h1>
+        <div style={{ margin: '0 0 25px 0' }}>
+          <PageHeader
+            className="site-page-header"
+            title="Success!"
+          />
           <ProgressBar
             currentStep={currentStep}
           />
