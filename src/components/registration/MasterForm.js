@@ -66,13 +66,13 @@ const MasterForm = () => {
   }
 
   return (
-    <div className="signup-form">
+    <div>
       {currentStep < 6 ? (
-        <h1 id="signup-header">
-          Mentor Registration: Step {currentStep} of 5
+        <h1>
+          Mentor Registration
         </h1>
       ) : (
-        <h1 id="signup-header">Form Submitted!</h1>
+        <h1>Form Submitted!</h1>
       )}
 
       <form>

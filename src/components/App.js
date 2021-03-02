@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import '../style.css';
 import * as actions from '../redux/actions';
-import Layout from './Layout';
+import AppWrapper from './AppWrapper';
 import Routes from './Routes';
 
 class App extends Component {
@@ -16,9 +16,9 @@ class App extends Component {
     return (
       <div className="App">
         <BrowserRouter {...this.props}>
-          <Layout {...this.props}>
+          <AppWrapper {...this.props}>
             <Routes />
-          </Layout>
+          </AppWrapper>
         </BrowserRouter>
       </div>
     );
