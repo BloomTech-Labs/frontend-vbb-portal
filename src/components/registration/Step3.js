@@ -152,8 +152,9 @@ export const Step3 = (props) => {
   
 // })
 
-// export default connect(mapStateToProps)(Step1)
+// export default connect(mapStateToProps)(Step3)
 export default Step3;
+
 // // function Step3(props) {
 // //   if (props.state.currentStep !== 3) {
 // //     return null;

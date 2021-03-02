@@ -195,7 +195,7 @@ export const Step2 = (props) => {
   
 // })
 
-// export default connect(mapStateToProps)(Step1)
+// export default connect(mapStateToProps)(Step2)
 export default Step2;
 
 // //       {props.state.occupation === 'College_Student' && (
