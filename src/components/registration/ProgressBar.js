@@ -1,22 +1,35 @@
 import React from 'react'
 // import { connect } from 'react-redux'
-import { Steps } from 'antd';
+import { Steps, Card } from 'antd';
 import { IdcardOutlined, InfoCircleOutlined, FormOutlined, GiftOutlined, TeamOutlined, CheckOutlined } from '@ant-design/icons';
 
 export const ProgressBar = (props) => {
     const { Step } = Steps;
 
+    console.log("Progress bar props:", props)
+
+    const progressBarStatus = () => {
+        if(props.currentStep > 0) {
+            return "process"
+        }
+
+        // = "finish"
+        // = "process"
+        // = "wait"
+
+    }
+
     return (
-        <div>
-            <Steps style={{ margin: '16px 0' }} >
-                <Step status="finish" title="Step 1" icon={<IdcardOutlined />} />
-                <Step status="finish" title="Step 2" icon={<InfoCircleOutlined />} />
-                <Step status="process" title="Step 3" icon={<FormOutlined />} />
-                <Step status="wait" title="Step 4" icon={<GiftOutlined />} />
-                <Step status="wait" title="Step 5" icon={<TeamOutlined />} />
-                <Step status="wait" title="Complete" icon={<CheckOutlined />} />
+        <Card>
+            <Steps responsive='true'>
+                <Step status="wait" title="Step 1" icon={<IdcardOutlined />} />
+                <Step status={progressBarStatus} title="Step 2" icon={<InfoCircleOutlined />} />
+                <Step status={progressBarStatus} title="Step 3" icon={<FormOutlined />} />
+                <Step status={progressBarStatus} title="Step 4" icon={<GiftOutlined />} />
+                <Step status={progressBarStatus} title="Step 5" icon={<TeamOutlined />} />
+                <Step status={progressBarStatus} title="Complete" icon={<CheckOutlined />} />
             </Steps>
-        </div>
+        </Card>
     )
 }
 

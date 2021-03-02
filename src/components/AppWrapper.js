@@ -2,7 +2,6 @@ import React from 'react';
 // import 'antd/dist/antd.css';
 import { Layout, Button } from 'antd';
 import { LoginOutlined, FormOutlined } from '@ant-design/icons';
-import ProgressBar from './registration/ProgressBar';
 // import fullLogo from '../images/vbb-full-logo.png';
 
 function AppWrapper(props) {
@@ -27,9 +26,7 @@ function AppWrapper(props) {
                     </Button>
                 </Header>
                 <Content
-                className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}
-                >
-                    <ProgressBar />
+                className="site-layout" style={{ padding: '50px', marginTop: 64 }}>
                     <div className="site-layout-background" style={{ padding: 24, minHeight: 380 }}>
                         {props.children}
                     </div>

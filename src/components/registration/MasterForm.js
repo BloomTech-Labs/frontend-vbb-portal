@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // import { connect } from 'react-redux';
-import { Button } from 'antd';
+import { Button, Form } from 'antd';
 import { RightOutlined, LeftOutlined, CheckOutlined } from '@ant-design/icons';
 // import * as actions from '../../redux/actions';
 import Step1 from './Step1';
@@ -9,6 +9,7 @@ import Step3 from './Step3';
 import Step4 from './Step4';
 import Step5 from './Step5';
 import SuccessStep from './SuccessStep';
+import ProgressBar from './ProgressBar'
 
 const MasterForm = () => {
   let [currentStep, setCurrentStep] = useState(1);
@@ -72,14 +73,22 @@ const MasterForm = () => {
   return (
     <div>
       {currentStep < 6 ? (
-        <h1>
-          Mentor Registration
-        </h1>
+        <div style={{ margin: '25px 0' }}>
+          <h1>Mentor Registration</h1>
+          <ProgressBar
+            currentStep={currentStep}
+          />
+      </div>
       ) : (
-        <h1>Form Submitted!</h1>
+        <div style={{ margin: '25px 0' }}>
+          <h1>Form Submitted!</h1>
+          <ProgressBar
+            currentStep={currentStep}
+          />
+        </div>
       )}
 
-      <form>
+      <Form>
         <Step1
           currentStep={currentStep}
         />
@@ -101,7 +110,7 @@ const MasterForm = () => {
         {backButton()}
         {nextButton()}
         {signupButton()}
-      </form>
+      </Form>
     </div>
   );
 };
