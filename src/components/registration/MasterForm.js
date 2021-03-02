@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 // import { connect } from 'react-redux';
 import { Button } from 'antd';
+import { RightOutlined } from '@ant-design/icons';
 // import * as actions from '../../redux/actions';
 import Step1 from './Step1';
 import Step2 from './Step2';
@@ -45,6 +46,7 @@ const MasterForm = () => {
           onClick={next}
         >
           Next
+          <RightOutlined />
         </Button>
       );
     }
