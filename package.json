@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^7.2.1",
     "antd": "^4.13.0",
     "axios": "^0.19.2",
+    "country-codes-list": "^1.6.8",
     "dot-prop": "^5.2.0",
     "install": "^0.13.0",
     "moment": "^2.27.0",
