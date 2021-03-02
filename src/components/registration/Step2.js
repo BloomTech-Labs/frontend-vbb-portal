@@ -49,7 +49,11 @@ export const Step2 = (props) => {
       name="register"
       onFinish={onFinish}
       initialValues={{
-        age: '',
+        adult: '',
+        occupation: '',
+        referral_source: '',
+        language: '',
+        time_zone: ''
       }}
       scrollToFirstError
     >
@@ -183,9 +187,6 @@ export const Step2 = (props) => {
           })}
       </Select>
       </Form.Item>
-
-
-
     </Form>
   );
 }

@@ -2,10 +2,12 @@ import React from 'react';
 // import { connect } from 'react-redux';
 import {
   Form,
+  Checkbox,
+  Select,
   Input,
-  Tooltip,
 } from 'antd';
-import { QuestionCircleOutlined } from '@ant-design/icons';
+
+const { Option } = Select;
 
 const formItemLayout = {
   labelCol: {
@@ -42,6 +44,10 @@ const tailFormItemLayout = {
 export const Step3 = (props) => {
   const [form] = Form.useForm();
 
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+  }
+
   const onFinish = (values) => {
     console.log('Form values: ', values);
   };
@@ -57,32 +63,87 @@ export const Step3 = (props) => {
       name="register"
       onFinish={onFinish}
       initialValues={{
-        firstname: '',
+        terms: '',
       }}
       scrollToFirstError
     >
 
       <Form.Item
-        name="firstname"
+        name="termsCond"
+        rules={[
+          {
+            validator: (_, value) =>
+              value ? Promise.resolve() : Promise.reject(),
+          },
+        ]}
+        {...tailFormItemLayout}
+      >
+        <Checkbox>
+          I agree to the terms and conditions.
+        </Checkbox>
+      </Form.Item>
+
+      <Form.Item
+        name="charged"
         label={
           <span>
-            First Name&nbsp;
-            <Tooltip title="i.e. John">
-              <QuestionCircleOutlined />
-            </Tooltip>
+            Have you ever been arrested, charged, or convicted of child abuse or molestation of any form?&nbsp;
           </span>
         }
         rules={[
           {
             required: true,
-            message: 'First name is required.',
+            message: 'This field is required.',
+            whitespace: true,
+          },
+        ]}
+      >
+        {/* Add if yes alert */}
+        <Select style={{ width: 120 }} onChange={handleChange}>
+          <Option value="yes">Yes</Option>
+          <Option value="no">No</Option>
+      </Select>
+      </Form.Item>
+      <Form.Item
+        name="commit"
+        label={
+          <span>
+            Can you commit to being a mentor for a minimum of 4 months?
+          </span>
+        }
+        rules={[
+          {
+            required: true,
+            message: 'This field is required.',
+            whitespace: true,
+          },
+        ]}
+      >
+        {/* Add if no alert */}
+        <Select style={{ width: 120 }} onChange={handleChange}>
+          <Option value="yes">Yes</Option>
+          <Option value="no">No</Option>
+      </Select>
+      </Form.Item>
+
+    <Form.Item
+        name="initials"
+        label={
+          <span>
+            Do you agree to the above terms and conditions, and to 4-month commitment to your mentoring session?
+&nbsp;
+          </span>
+        }
+        rules={[
+          {
+            required: true,
+            message: 'Initials are required.',
             whitespace: true,
           },
         ]}
       >
         <Input />
       </Form.Item>
-
     </Form>
   );
 }
@@ -299,54 +360,6 @@ export default Step3;
 // //         agreement.
 // //       </p>
 
-// //       <div>
-// //         <label htmlFor="termsCond">
-// //           Do you agree to the Terms and Conditions as explained above?
-// //         </label>
-// //         <select
-// //           name="termsCond"
-// //           id="termsCond"
-// //           value={props.state.termsCond}
-// //           onChange={props.handleChange}
-// //         >
-// //           <option value="No choice">-</option>
-// //           <option value="Yes">Yes</option>
-// //           <option value="No">No</option>
-// //         </select>
-// //       </div>
-
-// //       <div>
-// //         <label htmlFor="charged">
-// //           Have you ever been arrested, charged, or convicted of child abuse or
-// //           molestation of any form?
-// //         </label>
-// //         <select
-// //           name="charged"
-// //           id="charged"
-// //           value={props.state.charged}
-// //           onChange={props.handleChange}
-// //         >
-// //           <option value="No choice">-</option>
-// //           <option value="Yes">Yes</option>
-// //           <option value="No">No</option>
-// //         </select>
-// //       </div>
-
-// //       <div>
-// //         <label htmlFor="commit">
-// //           Can you commit to being a mentor for a minimum of 4 months?
-// //         </label>
-// //         <select
-// //           name="commit"
-// //           id="commit"
-// //           value={props.state.commit}
-// //           onChange={props.handleChange}
-// //         >
-// //           <option value="No choice">-</option>
-// //           <option value="Yes">Yes</option>
-// //           <option value="No">No</option>
-// //         </select>
-// //       </div>
 
 // //       <label htmlFor="initials">
 // //         Do you agree to the above terms and conditions, and to 4-month
@@ -357,18 +370,3 @@ export default Step3;
 // //       ) : (
 // //         <p>Please have a Parent or Guardian sign by putting their initials.</p>
 // //       )}
-
-// //       <input
-// //         className="form-control"
-// //         id="initials"
-// //         name="initials"
-// //         type="text"
-// //         placeholder="Initials - ie 'JTD'"
-// //         value={props.state.initials}
-// //         onChange={props.handleChange}
-// //       />
-// //     </div>
-// //   );
-// // }
-
-// // export default Step3;
