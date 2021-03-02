@@ -62,7 +62,6 @@ export const Step1 = (props) => {
 
       <Form.Item
         name="firstname"
-        style={{ width: 500 }}
         label={
           <span>
             First Name&nbsp;
@@ -84,7 +83,6 @@ export const Step1 = (props) => {
 
       <Form.Item
         name="lastname"
-        style={{ width: 500 }}
         label={
           <span>
             Last Name&nbsp;
@@ -106,7 +104,6 @@ export const Step1 = (props) => {
 
       <Form.Item
         name="phone"
-        style={{ width: 500 }}
         label="Phone Number"
         rules={[
           {
@@ -125,7 +122,6 @@ export const Step1 = (props) => {
 
       <Form.Item
         name="email"
-        style={{ width: 500 }}
         label="Email"
         rules={[
           {

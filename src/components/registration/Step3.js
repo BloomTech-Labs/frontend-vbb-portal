@@ -30,7 +30,10 @@ export const Step3 = (props) => {
       name="register"
       onFinish={onFinish}
       initialValues={{
-        terms: '',
+        termsCond: false,
+        charged: '',
+        commit: '',
+        initials: ''
       }}
       scrollToFirstError
     >
@@ -94,7 +97,6 @@ export const Step3 = (props) => {
 
     <Form.Item
         name="initials"
-        style={{ width: 500 }}
         label={
           <span>
             Type your initials here to agree to the above.&nbsp;

@@ -28,8 +28,6 @@ export const Step5 = (props) => {
 
   return (
     <div>
-    <h5>One last thing: How you can get more involved</h5>
-
     <Form
       form={form}
       name="register"
