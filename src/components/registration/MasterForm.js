@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 // import { connect } from 'react-redux';
 import { Button } from 'antd';
-// import timezone from 'moment-timezone';
 // import * as actions from '../../redux/actions';
 import Step1 from './Step1';
 import Step2 from './Step2';
@@ -52,10 +51,10 @@ const MasterForm = () => {
     return null;
   }
 
-  const handleSubmit = ((event) => {
-    event.preventDefault();
-    setCurrentStep(6);
-  });
+  // const handleSubmit = ((event) => {
+  //   event.preventDefault();
+  //   setCurrentStep(6);
+  // });
 
   return (
     <div className="signup-form">

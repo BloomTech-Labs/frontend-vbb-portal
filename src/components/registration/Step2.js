@@ -2,10 +2,11 @@ import React from 'react';
 // import { connect } from 'react-redux';
 import {
   Form,
-  Input,
-  Tooltip,
+  Select
 } from 'antd';
-import { QuestionCircleOutlined } from '@ant-design/icons';
+import moment from 'moment-timezone';
+
+const { Option } = Select;
 
 const formItemLayout = {
   labelCol: {
@@ -26,21 +27,12 @@ const formItemLayout = {
   },
 };
 
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0,
-    },
-    sm: {
-      span: 16,
-      offset: 8,
-    },
-  },
-};
-
 export const Step2 = (props) => {
   const [form] = Form.useForm();
+
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+  }
 
   const onFinish = (values) => {
     console.log('Form values: ', values);
@@ -57,31 +49,142 @@ export const Step2 = (props) => {
       name="register"
       onFinish={onFinish}
       initialValues={{
-        firstname: '',
+        age: '',
       }}
       scrollToFirstError
     >
 
       <Form.Item
-        name="firstname"
+        name="adult"
         label={
           <span>
-            First Name&nbsp;
-            <Tooltip title="i.e. John">
-              <QuestionCircleOutlined />
-            </Tooltip>
+            Are you 18 years of age or older?&nbsp;
           </span>
         }
         rules={[
           {
             required: true,
-            message: 'First name is required.',
+            message: 'Age is required.',
             whitespace: true,
           },
         ]}
       >
-        <Input />
+        <Select style={{ width: 120 }} onChange={handleChange}>
+          <Option value="yes">Yes</Option>
+          <Option value="no">No</Option>
+      </Select>
       </Form.Item>
+
+      <Form.Item
+        name="occupation"
+        label={
+          <span>
+            Which of the following best describes you?&nbsp;
+          </span>
+        }
+        rules={[
+          {
+            required: true,
+            message: 'Occupation is required.',
+            whitespace: true,
+          },
+        ]}
+      >
+        <Select style={{ width: 200 }} onChange={handleChange}>
+          {/* Need to add additional questions if college student is selected */}
+          <Option value="Homemaker">Homemaker</Option>
+          <Option value="Retired">Retired</Option>
+          <Option value="Working Professional">Working Professional</Option>
+          <Option value="College_Student">College Student</Option>
+          <Option value="HS_Student">High School Student</Option>
+          <Option value="Other">Other</Option>
+        </Select>
+      </Form.Item>
+
+      <Form.Item
+        name="referral_source"
+        label={
+          <span>
+            How did you hear about this opportunity?&nbsp;
+          </span>
+        }
+        rules={[
+          {
+            required: true,
+            message: 'Referral field is required.',
+            whitespace: true,
+          },
+        ]}
+      >
+        <Select style={{ width: 200 }} onChange={handleChange}>
+          <Option value="No choice">-</Option>
+          <Option value="Friend">Friend</Option>
+          <Option value="Google">Google</Option>
+          <Option value="FaceBook">FaceBook</Option>
+          <Option value="Instagram">Instagram</Option>
+          <Option value="LinkedIn">LinkedIn</Option>
+          <Option value="JustServe">JustServe</Option>
+          <Option value="VolunteerMatch">VolunteerMatch</Option>
+          <Option value="Through my organization/school">
+          Through my organization/school
+          </Option>
+          <Option value="Other">Other</Option>
+      </Select>
+      </Form.Item>
+
+      <Form.Item
+        name="language"
+        label={
+          <span>
+            Which languages can you speak comfortably?&nbsp;
+          </span>
+        }
+        rules={[
+          {
+            required: true,
+            message: 'Language is required.',
+            whitespace: true,
+          },
+        ]}
+      >
+        <Select style={{ width: 200 }} onChange={handleChange}>
+        {/* Need to update with languages in backend */}
+        <Option>English</Option>
+        <Option>Spanish</Option>
+        <Option>French</Option>
+        <Option>German</Option>
+      </Select>
+      </Form.Item>
+
+      <Form.Item
+        name="time_zone"
+        label={
+          <span>
+            What timezone are you in?&nbsp;
+          </span>
+        }
+        rules={[
+          {
+            required: true,
+            message: 'Timezone is required.',
+            whitespace: true,
+          },
+        ]}
+      >
+        <Select style={{ width: 200 }} onChange={handleChange}>
+        {/* Need to update timezone drop downs */}
+        {moment.tz.names().map((tz) => {
+            if (tz.includes('Etc/GMT')) return null;
+            return (
+              <Option key={tz} value={tz}>
+                {tz}
+              </Option>
+            );
+          })}
+      </Select>
+      </Form.Item>
+
+
 
     </Form>
   );
@@ -94,43 +197,6 @@ export const Step2 = (props) => {
 // export default connect(mapStateToProps)(Step1)
 export default Step2;
 
-
-// // function Step2(props) {
-// //   if (props.currentStep !== 2) {
-// //     return null;
-// //   }
-// //   return (
-// //     <div className="form-group step-form">
-// //       <div>
-// //         <label>Are you 18 years or older?</label>
-// //         <select
-// //           name="adult"
-// //           id="adult"
-// //           value={props.state.adult}
-// //           onChange={props.handleChange}
-// //         >
-// //           <option value="No choice">-</option>
-// //           <option value="Yes">Yes</option>
-// //           <option value="No">No</option>
-// //         </select>
-// //       </div>
-// //       <div>
-// //         <label>Which of the following best describes you?</label>
-// //         <select
-// //           name="occupation"
-// //           id="occupation"
-// //           onChange={props.handleChange}
-// //           value={props.state.occupation}
-// //         >
-// //           <option value="No choice">-</option>
-// //           <option value="Homemaker">Homemaker</option>
-// //           <option value="Retired">Retired</option>
-// //           <option value="Working Professional">Working Professional</option>
-// //           <option value="College_Student">College Student</option>
-// //           <option value="HS_Student">High School Student</option>
-// //           <option value="Other">Other</option>
-// //         </select>
-// //       </div>
 // //       {props.state.occupation === 'College_Student' && (
 // //         <div>
 // //           <label>Are you part of VBB Village Mentors Chapter/Club</label>
@@ -159,65 +225,3 @@ export default Step2;
 // //         value={props.state.affiliation}
 // //         onChange={props.handleChange}
 // //       />
-// //       <label htmlFor="referral_source">
-// //         How did you hear about this opportunity?
-// //       </label>
-// //       <select
-// //         name="referral_source"
-// //         id="referral_source"
-// //         type="referral_source"
-// //         value={props.state.referral_source}
-// //         onChange={props.handleChange}
-// //       >
-// //         <option value="No choice">-</option>
-// //         <option value="Friend">Friend</option>
-// //         <option value="Google">Google</option>
-// //         <option value="FaceBook">FaceBook</option>
-// //         <option value="Instagram">Instagram</option>
-// //         <option value="LinkedIn">LinkedIn</option>
-// //         <option value="JustServe">JustServe</option>
-// //         <option value="VolunteerMatch">VolunteerMatch</option>
-// //         <option value="Through my organization/school">
-// //           Through my organization/school
-// //         </option>
-// //         <option value="Other">Other</option>
-// //       </select>
-
-// //       <label htmlFor="languague">
-// //         What languages can you speak comfortably?
-// //       </label>
-// //       <input
-// //         className="form-control"
-// //         id="languages"
-// //         name="languages"
-// //         type="languages"
-// //         placeholder="ie 'Spanish, English, Some Portuguese'"
-// //         value={props.state.languages}
-// //         onChange={props.handleChange}
-// //       />
-
-// //       <div>
-// //         <label htmlFor="time_zone">What timezone are you in?</label>&nbsp;
-// //         <select
-// //           name="time_zone"
-// //           id="time_zone"
-// //           onChange={props.handleChange}
-// //           value={props.state.time_zone}
-// //         >
-// //           {moment.tz.names().map((tz) => {
-// //             if (tz.includes('Etc/GMT')) return null;
-// //             return (
-// //               <option key={tz} value={tz}>
-// //                 {tz}
-// //               </option>
-// //             );
-// //           })}
-// //         </select>
-// //       </div>
-// //       <br />
-// //       <br />
-// //     </div>
-// //   );
-// // }
-
-// // export default Step2;
