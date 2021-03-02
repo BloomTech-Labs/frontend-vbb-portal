@@ -2,7 +2,8 @@ import React from 'react';
 // import { connect } from 'react-redux';
 import {
   Form,
-  Select
+  Select,
+  Checkbox
 } from 'antd';
 import moment from 'moment-timezone';
 
@@ -18,6 +19,13 @@ export const Step2 = (props) => {
   const onFinish = (values) => {
     console.log('Form values: ', values);
   };
+
+    // For checkbox
+    let options = ['English', 'Spanish', 'French', 'German'];
+
+    function onCheckboxChange(checkedValues) {
+      console.log('checked = ', checkedValues);
+    }
 
   if (props.currentStep !== 2) {
     return null;
@@ -40,11 +48,7 @@ export const Step2 = (props) => {
 
       <Form.Item
         name="adult"
-        label={
-          <span>
-            Are you 18 years of age or older?&nbsp;
-          </span>
-        }
+        label='Are you 18 years of age or older'
         rules={[
           {
             required: true,
@@ -61,11 +65,7 @@ export const Step2 = (props) => {
 
       <Form.Item
         name="occupation"
-        label={
-          <span>
-            Which of the following best describes you?&nbsp;
-          </span>
-        }
+        label='Which of the following best describes you'
         rules={[
           {
             required: true,
@@ -87,11 +87,7 @@ export const Step2 = (props) => {
 
       <Form.Item
         name="referral_source"
-        label={
-          <span>
-            How did you hear about this opportunity?&nbsp;
-          </span>
-        }
+        label='How did you hear about this opportunity'
         rules={[
           {
             required: true,
@@ -118,11 +114,7 @@ export const Step2 = (props) => {
 
       <Form.Item
         name="language"
-        label={
-          <span>
-            Which languages can you speak comfortably?&nbsp;
-          </span>
-        }
+        label='Which languages can you speak comfortably (check all that apply)'
         rules={[
           {
             required: true,
@@ -131,22 +123,13 @@ export const Step2 = (props) => {
           },
         ]}
       >
-        <Select style={{ width: 200 }} onChange={handleChange}>
         {/* Need to update with languages in backend */}
-        <Option>English</Option>
-        <Option>Spanish</Option>
-        <Option>French</Option>
-        <Option>German</Option>
-      </Select>
+        <Checkbox.Group options={options} onCheckboxChange={onCheckboxChange} />
       </Form.Item>
 
       <Form.Item
         name="time_zone"
-        label={
-          <span>
-            What timezone are you in?&nbsp;
-          </span>
-        }
+        label='What timezone are you in'
         rules={[
           {
             required: true,

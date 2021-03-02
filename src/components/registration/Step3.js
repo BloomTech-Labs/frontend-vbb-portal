@@ -54,11 +54,7 @@ export const Step3 = (props) => {
 
       <Form.Item
         name="charged"
-        label={
-          <span>
-            Have you ever been arrested, charged, or convicted of child abuse or molestation of any form?&nbsp;
-          </span>
-        }
+        label='Have you ever been arrested, charged, or convicted of child abuse or molestation of any form'
         rules={[
           {
             required: true,
@@ -75,11 +71,7 @@ export const Step3 = (props) => {
       </Form.Item>
       <Form.Item
         name="commit"
-        label={
-          <span>
-            Can you commit to being a mentor for a minimum of 4 months?
-          </span>
-        }
+        label='Can you commit to being a mentor for a minimum of 4 months'
         rules={[
           {
             required: true,
@@ -97,11 +89,7 @@ export const Step3 = (props) => {
 
     <Form.Item
         name="initials"
-        label={
-          <span>
-            Type your initials here to agree to the above.&nbsp;
-          </span>
-        }
+        label='Type your initials here to agree to the above'
         rules={[
           {
             required: true,

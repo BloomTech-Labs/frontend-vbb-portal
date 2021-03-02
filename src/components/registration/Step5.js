@@ -5,7 +5,7 @@ import {
   Select,
   Input,
   Tooltip,
-  Button
+  Checkbox
 } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 
@@ -21,6 +21,13 @@ export const Step5 = (props) => {
   const onFinish = (values) => {
     console.log('Form values: ', values);
   };
+
+  // For checkbox
+  let options = ['Run or help with a fundraiser', ' Be a social media advocate or an ambassador', 'Start/join a VBB Village Mentors Chapter at your school or company (a club of fellow mentors)', 'Start/Join a Book Club', 'Research', 'Other'];
+
+  function onCheckboxChange(checkedValues) {
+    console.log('checked = ', checkedValues);
+  }
 
   if (props.currentStep !== 5) {
     return null;
@@ -63,38 +70,23 @@ export const Step5 = (props) => {
 
       <Form.Item
         name="desired_involvement"
-        label={
-          <span>
-            How would you like to get more involved (select all that apply)?
-          </span>
-        }
+        label='How would you like to get more involved (check all that apply)'
         rules={[
           {
             required: true,
-            message: 'Please select at least one box.',
+            // message: 'Please select at least one box.',
             whitespace: true,
           },
         ]}
       >
-        <Select style={{ width: 120 }} onChange={handleChange}>
-          <Option value="Fundraiser"> Run or help with a fundraiser</Option>
-          <Option value="Ambassador">
-          Be a social media advocate or an ambassador
-          </Option>
-          <Option value="StartChapter">
-          Start/join a VBB Village Mentors Chapter at your school or company (a club of fellow mentors)
-          </Option>
-          <Option value="JoinClub"> Start/Join a Book Club</Option>
-          <Option value="Research"> Research</Option>
-          <Option value="Other"> Other</Option>
-        </Select>
+        <Checkbox.Group options={options} onCheckboxChange={onCheckboxChange} />
       </Form.Item>
 
       <Form.Item
         name="city"
         label={
           <span>
-            What city and state/province do you live in?&nbsp;
+            What city and state/province do you live in&nbsp;
             <Tooltip title="i.e. New York, NY">
               <QuestionCircleOutlined />
             </Tooltip>
