@@ -17,10 +17,10 @@ function AppWrapper(props) {
                     ></img> */}
                     <Button key="1" href='/signin'>
                         Sign In
-                    </Button>,
+                    </Button>
                     <Button key="2" type="primary" href='/signup'>
                         Register
-                    </Button>,
+                    </Button>
                 </Header>
                 <Content
                 className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}

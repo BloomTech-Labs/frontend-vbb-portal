@@ -9,38 +9,6 @@ import {
 
 const { Option } = Select;
 
-const formItemLayout = {
-  labelCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 8,
-    },
-  },
-  wrapperCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 16,
-    },
-  },
-};
-
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0,
-    },
-    sm: {
-      span: 16,
-      offset: 8,
-    },
-  },
-};
-
 export const Step3 = (props) => {
   const [form] = Form.useForm();
 
@@ -58,7 +26,6 @@ export const Step3 = (props) => {
 
   return (
     <Form
-      {...formItemLayout}
       form={form}
       name="register"
       onFinish={onFinish}
@@ -76,7 +43,6 @@ export const Step3 = (props) => {
               value ? Promise.resolve() : Promise.reject(),
           },
         ]}
-        {...tailFormItemLayout}
       >
         <Checkbox>
           I agree to the terms and conditions.

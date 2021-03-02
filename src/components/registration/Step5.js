@@ -11,25 +11,6 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 
 const { Option } = Select;
 
-const formItemLayout = {
-  labelCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 8,
-    },
-  },
-  wrapperCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 16,
-    },
-  },
-};
-
 export const Step5 = (props) => {
   const [form] = Form.useForm();
 
@@ -50,7 +31,6 @@ export const Step5 = (props) => {
     <h5>One last thing: How you can get more involved</h5>
 
     <Form
-      {...formItemLayout}
       form={form}
       name="register"
       onFinish={onFinish}
