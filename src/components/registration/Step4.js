@@ -1,6 +1,7 @@
 import React from 'react';
 // import { connect } from 'react-redux';
 import { Button } from 'antd';
+import { DollarOutlined } from '@ant-design/icons';
 
 export const Step4 = (props) => {
 
@@ -19,7 +20,10 @@ export const Step4 = (props) => {
       to a computer, headphones, Wi-Fi connection, a safe learning
       environment, and Khan Academy's award-winning educational programs.
       </p>
-      <Button href='https://www.villagebookbuilders.org/donate/'>Donate</Button>
+      <Button href='https://www.villagebookbuilders.org/donate/'>
+        Donate
+        <DollarOutlined />
+      </Button>
     </div>
   );
 }
