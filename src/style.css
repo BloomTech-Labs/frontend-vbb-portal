@@ -6,17 +6,20 @@ html {
   background-color: #fffff6;
 }
 
+/* App Body Container */
 #page-container {
   position: relative;
   min-height: 100vh;
 }
 
+/* App Body */
 .content {
   background-color: #fffff6;
   width: 100%;
   min-height: 87vh;
 }
 
+/* Alerts */
 .alert-div-container {
   height: 100%;
   width: 100%;
@@ -59,6 +62,7 @@ html {
   width: 100%;
 }
 
+/* App Footer */
 footer {
   background-color: #fffff6;
   font-family: "Nunito";
@@ -70,6 +74,7 @@ footer {
   width: 100%;
 }
 
+/* Nav Bar */
 .navbar {
   border-bottom: 4px solid #ff914d;
   background-color: #fffff6;
@@ -80,6 +85,7 @@ footer {
   padding-top: 20px;
 }
 
+/* Headings */
 h1,
 .vbb-header {
   font-family: "Caveat Brush", cursive;
@@ -116,6 +122,7 @@ a {
   color: #549bea;
 }
 
+/* New Button Next to VBB Portal Header*/
 .badge {
   background-color: #6ac66b;
   margin-left: 20px;
