@@ -51,10 +51,19 @@ const MasterForm = () => {
     return null;
   }
 
-  // const handleSubmit = ((event) => {
-  //   event.preventDefault();
-  //   setCurrentStep(6);
-  // });
+  const signupButton = () => {
+    if (currentStep === 5) {
+      return (
+        <Button
+          type="button"
+          onClick={next}
+        >
+          Signup
+        </Button>
+      );
+    }
+    return null;
+  }
 
   return (
     <div className="signup-form">
@@ -87,6 +96,7 @@ const MasterForm = () => {
         />
         {backButton()}
         {nextButton()}
+        {signupButton()}
       </form>
     </div>
   );

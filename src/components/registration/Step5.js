@@ -2,10 +2,14 @@ import React from 'react';
 // import { connect } from 'react-redux';
 import {
   Form,
+  Select,
   Input,
   Tooltip,
+  Button
 } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
+
+const { Option } = Select;
 
 const formItemLayout = {
   labelCol: {
@@ -26,21 +30,12 @@ const formItemLayout = {
   },
 };
 
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0,
-    },
-    sm: {
-      span: 16,
-      offset: 8,
-    },
-  },
-};
-
 export const Step5 = (props) => {
   const [form] = Form.useForm();
+
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+  }
 
   const onFinish = (values) => {
     console.log('Form values: ', values);
@@ -51,23 +46,78 @@ export const Step5 = (props) => {
   }
 
   return (
+    <div>
+    <h5>One last thing: How you can get more involved</h5>
+
     <Form
       {...formItemLayout}
       form={form}
       name="register"
       onFinish={onFinish}
       initialValues={{
-        firstname: '',
+        more_involved: '',
+        desired_involvement: '',
+        city: ''
       }}
       scrollToFirstError
     >
 
       <Form.Item
-        name="firstname"
+        name="more_involved"
         label={
           <span>
-            First Name&nbsp;
-            <Tooltip title="i.e. John">
+            Our organization is built by volunteers like you, and we need your help to spread hope through books. Would you like to get more involved?
+          </span>
+        }
+        rules={[
+          {
+            required: true,
+            message: 'This field is required.',
+            whitespace: true,
+          },
+        ]}
+      >
+        <Select style={{ width: 120 }} onChange={handleChange}>
+          <Option value="yes">Yes</Option>
+          <Option value="no">No</Option>
+        </Select>
+      </Form.Item>
+
+      <Form.Item
+        name="desired_involvement"
+        label={
+          <span>
+            How would you like to get more involved (select all that apply)?
+          </span>
+        }
+        rules={[
+          {
+            required: true,
+            message: 'Please select at least one box.',
+            whitespace: true,
+          },
+        ]}
+      >
+        <Select style={{ width: 120 }} onChange={handleChange}>
+          <Option value="Fundraiser"> Run or help with a fundraiser</Option>
+          <Option value="Ambassador">
+          Be a social media advocate or an ambassador
+          </Option>
+          <Option value="StartChapter">
+          Start/join a VBB Village Mentors Chapter at your school or company (a club of fellow mentors)
+          </Option>
+          <Option value="JoinClub"> Start/Join a Book Club</Option>
+          <Option value="Research"> Research</Option>
+          <Option value="Other"> Other</Option>
+        </Select>
+      </Form.Item>
+
+      <Form.Item
+        name="city"
+        label={
+          <span>
+            What city and state/province do you live in?&nbsp;
+            <Tooltip title="i.e. New York, NY">
               <QuestionCircleOutlined />
             </Tooltip>
           </span>
@@ -75,7 +125,7 @@ export const Step5 = (props) => {
         rules={[
           {
             required: true,
-            message: 'First name is required.',
+            message: 'Location is required.',
             whitespace: true,
           },
         ]}
@@ -84,6 +134,7 @@ export const Step5 = (props) => {
       </Form.Item>
 
     </Form>
+    </div>
   );
 }
 
@@ -91,98 +142,5 @@ export const Step5 = (props) => {
   
 // })
 
-// export default connect(mapStateToProps)(Step1)
+// export default connect(mapStateToProps)(Step5)
 export default Step5;
-
-// // function Step5(props) {
-// //   if (props.state.currentStep !== 5) {
-// //     return null;
-// //   }
-// //   return (
-// //     <React.Fragment>
-// //       <div className="form-group step-form">
-// //         <div>
-// //           <h5>One last thing: How you can get more involved</h5>
-// //           <label>
-// //             Our organization is built by volunteers like you, and we need your
-// //             help to spread hope through books.
-// //           </label>
-// //         </div>
-
-// //         <div>
-// //           <label>Would you like to get more involved?</label>
-// //           <select
-// //             name="more_involved"
-// //             id="more_involved"
-// //             value={props.state.more_involved}
-// //             onChange={props.handleChange}
-// //           >
-// //             <option value="">-</option>
-// //             <option value="Yes">Yes</option>
-// //             <option value="No">No</option>
-// //           </select>
-// //         </div>
-
-// //         {props.state.more_involved === 'Yes' && (
-// //           <div>
-// //             <label>
-// //               How would you like to get more involved (Select all that apply)?
-// //             </label>
-// //             <select
-// //               name="desired_involvement"
-// //               id="desired_involvement"
-// //               value={props.state.desired_involvement}
-// //               onChange={props.handleChange}
-// //             >
-// //               <option value="">--</option>
-// //               <option value="Fundraiser"> Run or help with a fundraiser</option>
-// //               <option value="Ambassador">
-// //                 {' '}
-// //                 Be a social media advocate or an ambassador
-// //               </option>
-// //               <option value="StartChapter">
-// //                 {' '}
-// //                 Start/join a VBB Village Mentors Chapter at your school or
-// //                 company (a club of fellow mentors)
-// //               </option>
-// //               <option value="JoinClub"> Start/Join a Book Club</option>
-// //               <option value="Research"> Research</option>
-// //               <option value="Other"> Other</option>
-// //             </select>
-// //             <br />
-// //             <br />
-// //             <br />
-// //           </div>
-// //         )}
-
-// //         <label htmlFor="city">
-// //           What city and state/province do you live in?
-// //         </label>
-// //         <input
-// //           className="form-control"
-// //           id="city"
-// //           name="city"
-// //           required
-// //           type="text"
-// //           placeholder="ie 'Philadelphia, PA'"
-// //           value={props.state.city}
-// //           onChange={props.handleChange}
-// //         />
-// //       </div>
-
-// //       <div style={{ whiteSpace: 'pre-wrap', color: 'red' }}>
-// //         {props.hasProblems() && props.hasProblems()}
-// //       </div>
-
-// //       <button
-// //         className="btn btn-success btn-block"
-// //         disabled={props.hasProblems()}
-// //         style={{ marginBottom: '20px', marginTop: '20px' }}
-// //       >
-// //         SIGN UP
-// //       </button>
-// //     </React.Fragment>
-// //   );
-// // }
-
-// // export default Step5;
