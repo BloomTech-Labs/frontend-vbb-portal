@@ -31,6 +31,7 @@ export const Step3 = (props) => {
     <Form
       form={form}
       name="register"
+      layout="vertical"
       onFinish={onFinish}
       initialValues={{
         termsCond: false,

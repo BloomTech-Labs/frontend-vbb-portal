@@ -38,6 +38,7 @@ export const Step5 = (props) => {
     <Form
       form={form}
       name="register"
+      layout="vertical"
       onFinish={onFinish}
       initialValues={{
         more_involved: '',

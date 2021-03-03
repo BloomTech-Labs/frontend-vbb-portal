@@ -35,6 +35,7 @@ export const Step2 = (props) => {
     <Form
       form={form}
       name="register"
+      layout="vertical"
       onFinish={onFinish}
       initialValues={{
         adult: '',
