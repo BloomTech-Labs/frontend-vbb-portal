@@ -29,6 +29,7 @@ const MasterForm = () => {
     if (currentStep !== 1) {
       return (
         <Button
+          style={{ marginRight: '10px'}}
           type="button"
           onClick={back}
         >
@@ -44,6 +45,7 @@ const MasterForm = () => {
     if (currentStep < 5) {
       return (
         <Button
+          style={{ marginRight: '10px'}}
           type="button"
           onClick={next}
         >
