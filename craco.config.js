@@ -13,11 +13,10 @@ module.exports = {
                     '@border-radius-base': '15px',
                     '@body-background': '#fffff6', //cream
                     '@font-family': 'Nunito, sans-serif',
-                    '@icon-color': 'fade(#ff914d, 85%)', //light orange
+                    '@icon-color': '#549bea', //blue
                     '@font-size-base': '18px',
                     '@background-color-base': '#fffff6', //cream
-                    '@btn-primary-bg': 'fade(#ff914d, 85%)',
-                    // '#549bea', //blue
+                    '@btn-primary-bg': '#549bea', //blue
                 },
                 javascriptEnabled: true,
             },

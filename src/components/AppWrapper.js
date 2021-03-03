@@ -18,12 +18,12 @@ function AppWrapper(props) {
                         width="200"
                     ></img>}
                     extra={[
-                        <Button key="1" href='/signin' style={{marginTop: '15px'}}>Sign In<LoginOutlined /></Button>,
+                        <Button key="1" href='/signin' style={{ marginTop: '15px', color: '#549bea' }}>Sign In<LoginOutlined /></Button>,
                         <Button type='primary' key="2" href='/signup'>Register<FormOutlined style={{ color: 'white'}}/></Button>,
                     ]}
                 >
                 </PageHeader>
-                <Content className="site-layout" style={{ padding: '50px', marginTop: 64 }}>
+                <Content className="site-layout" style={{ padding: '50px', marginTop: 64, backgroundColor: '#fffff6' }}>
                     <Breadcrumb style={{ margin: '16px 0' }}>
                         <Breadcrumb.Item><a href='/'>VBB Portal</a></Breadcrumb.Item>
                         <Breadcrumb.Item><a href='/signup'>Mentor Registration</a></Breadcrumb.Item>
