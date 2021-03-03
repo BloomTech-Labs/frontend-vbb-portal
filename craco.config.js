@@ -9,14 +9,12 @@ module.exports = {
             lessOptions: {
                 // Ant Design vars here: https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
                 modifyVars: {
-                    '@primary-color': '#ff914d', //orange
-                    '@heading-color': '#fff', //white
-                    '@border-radius-base': '5px',
+                    '@primary-color': 'fade(#ff914d, 85%)', //light orange
+                    '@border-radius-base': '15px',
                     '@body-background': '#fffff6', //cream
-                    '@component-background': '#fff', //white
                     '@font-family': 'Nunito, sans-serif',
-                    '@icon-color': '#ff914d' //orange
-
+                    '@icon-color': 'fade(#ff914d, 85%)' //light orange
+                    // '#549bea', //blue
                 },
                 javascriptEnabled: true,
             },
