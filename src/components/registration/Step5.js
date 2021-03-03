@@ -5,7 +5,9 @@ import {
   Select,
   Input,
   Tooltip,
-  Checkbox
+  Checkbox,
+  Row,
+  Col
 } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 
@@ -23,8 +25,6 @@ export const Step5 = (props) => {
   };
 
   // For checkbox
-  let options = ['Run or help with a fundraiser', ' Be a social media advocate or an ambassador', 'Start/join a VBB Village Mentors Chapter at your school or company (a club of fellow mentors)', 'Start/Join a Book Club', 'Research', 'Other'];
-
   function onCheckboxChange(checkedValues) {
     console.log('checked = ', checkedValues);
   }
@@ -74,12 +74,33 @@ export const Step5 = (props) => {
         rules={[
           {
             required: true,
-            // message: 'Please select at least one box.',
+            message: 'Please select at least one box.',
             whitespace: true,
           },
         ]}
       >
-        <Checkbox.Group options={options} onCheckboxChange={onCheckboxChange} />
+        <Checkbox.Group style={{ width: '100%' }} onCheckboxChange={onCheckboxChange}>
+          <Row>
+            <Col span={16}>
+              <Checkbox value="A">Run or help with a fundraiser</Checkbox>
+            </Col>
+            <Col span={16}>
+              <Checkbox value="B">Be a social media advocate or an ambassador</Checkbox>
+            </Col>
+            <Col span={16}>
+              <Checkbox value="C">Start / join a VBB Village Mentors Chapter</Checkbox>
+            </Col>
+            <Col span={16}>
+              <Checkbox value="D">Start / Join a Book Club</Checkbox>
+            </Col>
+            <Col span={16}>
+              <Checkbox value="E">Research</Checkbox>
+            </Col>
+            <Col span={16}>
+              <Checkbox value="E">Other</Checkbox>
+            </Col>
+          </Row>
+        </Checkbox.Group>
       </Form.Item>
 
       <Form.Item
