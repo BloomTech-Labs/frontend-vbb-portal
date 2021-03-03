@@ -31,7 +31,7 @@ function AppWrapper(props) {
                         {props.children}
                     </div>
                 </Content>
-                <Footer style={{ textAlign: 'center', backgroundColor: '#ff914d', padding: '35px', color: 'white' }}>Village Book Builders ©2021 | All Rights Reserved</Footer>
+                <Footer style={{ textAlign: 'center', padding: '35px' }}>Village Book Builders ©2021 | All Rights Reserved</Footer>
             </Layout>
         </div>
     );

@@ -21,7 +21,8 @@ export const ProgressBar = (props) => {
 
     return (
         <Card>
-            <Steps responsive='true'>
+            <h1 style={{ padding: '10px 0'}}>Mentor Registration</h1>
+            <Steps style={{}} responsive='true'>
                 <Step status="wait" title="Step 1" icon={<IdcardOutlined />} />
                 <Step status={progressBarStatus} title="Step 2" icon={<InfoCircleOutlined />} />
                 <Step status={progressBarStatus} title="Step 3" icon={<FormOutlined />} />
