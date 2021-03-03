@@ -9,6 +9,15 @@ import moment from 'moment-timezone';
 
 const { Option } = Select;
 
+const layout = {
+  labelCol: {
+    span: 16,
+  },
+  wrapperCol: {
+    span: 16,
+  },
+};
+
 export const Step2 = (props) => {
   const [form] = Form.useForm();
 
@@ -33,6 +42,7 @@ export const Step2 = (props) => {
 
   return (
     <Form
+      {...layout}
       form={form}
       name="register"
       layout="vertical"

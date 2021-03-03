@@ -12,6 +12,15 @@ import countryCodes from 'country-codes-list';
 
 const { Option } = Select;
 
+const layout = {
+  labelCol: {
+    span: 16,
+  },
+  wrapperCol: {
+    span: 16,
+  },
+};
+
 //Phone number country code dropdown using country-code-list package
 const countryCodesObject = countryCodes.customList('countryCode', '+{countryCallingCode}');
 const countryCodesArray = Object.values(countryCodesObject)
@@ -46,114 +55,118 @@ export const Step1 = (props) => {
   }
 
   return (
-    <Form
-      form={form}
-      name="register"
-      layout="vertical"
-      onFinish={onFinish}
-      initialValues={{
-        firstname: '',
-        lastname: '',
-        phone: '',
-        email: '',
-        newsletter: true,
-      }}
-      scrollToFirstError
-    >
-
-      <Form.Item
-        name="firstname"
-        label={
-          <span>
-            First Name&nbsp;
-            <Tooltip title="i.e. John">
-              <QuestionCircleOutlined />
-            </Tooltip>
-          </span>
-        }
-        rules={[
-          {
-            required: true,
-            message: 'First name is required.',
-            whitespace: true,
-          },
-        ]}
+    <div>
+      <Form
+        {...layout}
+        form={form}
+        name="register"
+        layout="vertical"
+        onFinish={onFinish}
+        initialValues={{
+          firstname: '',
+          lastname: '',
+          phone: '',
+          email: '',
+          newsletter: true,
+        }}
+        scrollToFirstError
       >
-        <Input />
-      </Form.Item>
 
-      <Form.Item
-        name="lastname"
-        label={
-          <span>
-            Last Name&nbsp;
-            <Tooltip title="i.e. Doe">
-              <QuestionCircleOutlined />
-            </Tooltip>
-          </span>
-        }
-        rules={[
-          {
-            required: true,
-            message: 'First name is required.',
-            whitespace: true,
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
+        <Form.Item
+          name="firstname"
+          label={
+            <span>
+              First Name&nbsp;
+              <Tooltip title="i.e. John">
+                <QuestionCircleOutlined />
+              </Tooltip>
+            </span>
+          }
+          rules={[
+            {
+              required: true,
+              message: 'First name is required.',
+              whitespace: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
 
-      <Form.Item
-        name="phone"
-        label="Phone Number"
-        rules={[
-          {
-            required: true,
-            message: 'Phone number is required.',
-          },
-        ]}
-      >
-        <Input
-          addonBefore={prefixSelector}
-          style={{
-            width: '100%',
-          }}
-        />
-      </Form.Item>
+        <Form.Item
+          name="lastname"
+          label={
+            <span>
+              Last Name&nbsp;
+              <Tooltip title="i.e. Doe">
+                <QuestionCircleOutlined />
+              </Tooltip>
+            </span>
+          }
+          rules={[
+            {
+              required: true,
+              message: 'First name is required.',
+              whitespace: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
 
-      <Form.Item
-        name="email"
-        label="Email"
-        rules={[
-          {
-            type: 'email',
-            message: 'Please enter a valid email address.',
-          },
-          {
-            required: true,
-            message: 'Email is required.',
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
+        <Form.Item
+          name="phone"
+          label="Phone Number"
+          rules={[
+            {
+              required: true,
+              message: 'Phone number is required.',
+            },
+          ]}
+        >
+          <Input
+            addonBefore={prefixSelector}
+            style={{
+              width: '100%',
+            }}
+          />
+        </Form.Item>
 
-      <Form.Item
-        name="newsletter"
-        valuePropName="checked"
-        rules={[
-          {
-            validator: (_, value) =>
-              value ? Promise.resolve() : Promise.reject(),
-          },
-        ]}
-      >
-        <Checkbox>
-          I would like to receive the VBB newsletter.
-        </Checkbox>
-      </Form.Item>
+        <Form.Item
+          name="email"
+          label="Email"
+          rules={[
+            {
+              type: 'email',
+              message: 'Please enter a valid email address.',
+            },
+            {
+              required: true,
+              message: 'Email is required.',
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
 
-    </Form>
+        <Form.Item
+          name="newsletter"
+          valuePropName="checked"
+          rules={[
+            {
+              validator: (_, value) =>
+                value ? Promise.resolve() : Promise.reject(),
+            },
+          ]}
+        >
+          <Checkbox>
+            I would like to receive the VBB newsletter.
+          </Checkbox>
+        </Form.Item>
+
+      </Form>
+
+    </div>
   );
 }
 

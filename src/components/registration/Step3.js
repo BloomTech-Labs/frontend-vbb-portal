@@ -11,6 +11,15 @@ import {
 
 const { Option } = Select;
 
+const layout = {
+  labelCol: {
+    span: 16,
+  },
+  wrapperCol: {
+    span: 16,
+  },
+};
+
 export const Step3 = (props) => {
   const [form] = Form.useForm();
   const [visible, setVisible] = useState(false);
@@ -29,6 +38,7 @@ export const Step3 = (props) => {
 
   return (
     <Form
+      {...layout}
       form={form}
       name="register"
       layout="vertical"
