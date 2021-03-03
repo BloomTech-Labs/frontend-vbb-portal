@@ -44,98 +44,98 @@ export const Step5 = (props) => {
 
   return (
     <div>
-    <Form
-      {...layout}
-      form={form}
-      name="register"
-      layout="vertical"
-      onFinish={onFinish}
-      initialValues={{
-        more_involved: '',
-        desired_involvement: '',
-        city: ''
-      }}
-      scrollToFirstError
-    >
-
-      <Form.Item
-        name="more_involved"
-        label={
-          <span>
-            Our organization is built by volunteers like you, and we need your help to spread hope through books. Would you like to get more involved?
-          </span>
-        }
-        rules={[
-          {
-            required: true,
-            message: 'This field is required.',
-            whitespace: true,
-          },
-        ]}
+      <Form
+        {...layout}
+        form={form}
+        name="register"
+        layout="vertical"
+        onFinish={onFinish}
+        initialValues={{
+          more_involved: '',
+          desired_involvement: '',
+          city: ''
+        }}
+        scrollToFirstError
       >
-        <Select style={{ width: 120 }} onChange={handleChange}>
-          <Option value="yes">Yes</Option>
-          <Option value="no">No</Option>
-        </Select>
-      </Form.Item>
 
-      <Form.Item
-        name="desired_involvement"
-        label='How would you like to get more involved (check all that apply)'
-        rules={[
-          {
-            required: true,
-            message: 'Please select at least one box.',
-            whitespace: true,
-          },
-        ]}
-      >
-        <Checkbox.Group style={{ width: '100%' }} onCheckboxChange={onCheckboxChange}>
-          <Row>
-            <Col span={16}>
-              <Checkbox value="A">Run or help with a fundraiser</Checkbox>
-            </Col>
-            <Col span={16}>
-              <Checkbox value="B">Be a social media advocate or an ambassador</Checkbox>
-            </Col>
-            <Col span={16}>
-              <Checkbox value="C">Start / join a VBB Village Mentors Chapter</Checkbox>
-            </Col>
-            <Col span={16}>
-              <Checkbox value="D">Start / Join a Book Club</Checkbox>
-            </Col>
-            <Col span={16}>
-              <Checkbox value="E">Research</Checkbox>
-            </Col>
-            <Col span={16}>
-              <Checkbox value="E">Other</Checkbox>
-            </Col>
-          </Row>
-        </Checkbox.Group>
-      </Form.Item>
+        <Form.Item
+          name="more_involved"
+          label={
+            <span>
+              Our organization is built by volunteers like you, and we need your help to spread hope through books. Would you like to get more involved?
+            </span>
+          }
+          rules={[
+            {
+              required: true,
+              message: 'This field is required.',
+              whitespace: true,
+            },
+          ]}
+        >
+          <Select style={{ width: 120 }} onChange={handleChange}>
+            <Option value="yes">Yes</Option>
+            <Option value="no">No</Option>
+          </Select>
+        </Form.Item>
 
-      <Form.Item
-        name="city"
-        label={
-          <span>
-            What city and state/province do you live in&nbsp;
-            <Tooltip title="i.e. New York, NY">
-              <QuestionCircleOutlined />
-            </Tooltip>
-          </span>
-        }
-        rules={[
-          {
-            required: true,
-            message: 'Location is required.',
-            whitespace: true,
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
+        <Form.Item
+          name="desired_involvement"
+          label='How would you like to get more involved (check all that apply)'
+          rules={[
+            {
+              required: true,
+              message: 'Please select at least one box.',
+              whitespace: true,
+            },
+          ]}
+        >
+          <Checkbox.Group style={{ width: '100%' }} onCheckboxChange={onCheckboxChange}>
+            <Row>
+              <Col span={16}>
+                <Checkbox value="A">Run or help with a fundraiser</Checkbox>
+              </Col>
+              <Col span={16}>
+                <Checkbox value="B">Be a social media advocate or an ambassador</Checkbox>
+              </Col>
+              <Col span={16}>
+                <Checkbox value="C">Start / join a VBB Village Mentors Chapter</Checkbox>
+              </Col>
+              <Col span={16}>
+                <Checkbox value="D">Start / Join a Book Club</Checkbox>
+              </Col>
+              <Col span={16}>
+                <Checkbox value="E">Research</Checkbox>
+              </Col>
+              <Col span={16}>
+                <Checkbox value="E">Other</Checkbox>
+              </Col>
+            </Row>
+          </Checkbox.Group>
+        </Form.Item>
 
-    </Form>
+        <Form.Item
+          name="city"
+          label={
+            <span>
+              What city and state/province do you live in&nbsp;
+              <Tooltip title="i.e. New York, NY">
+                <QuestionCircleOutlined />
+              </Tooltip>
+            </span>
+          }
+          rules={[
+            {
+              required: true,
+              message: 'Location is required.',
+              whitespace: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+
+      </Form>
     </div>
   );
 }

@@ -8,15 +8,14 @@ export const ProgressBar = (props) => {
 
     console.log("Progress bar props:", props)
 
-    const progressBarStatus = () => {
-        if(props.currentStep > 0) {
-            return "process"
+    const progressBarStatus = (step) => {
+        if(props.currentStep > step) {
+            return "wait"
+        } else if (props.currentStep == step) {
+            return 'process';
+        } else {
+        return 'finish';
         }
-
-        // = "finish"
-        // = "process"
-        // = "wait"
-
     }
 
     return (
@@ -24,11 +23,11 @@ export const ProgressBar = (props) => {
             <h1 style={{ padding: '10px 0'}}>Mentor Registration</h1>
             <Steps style={{}} responsive='true'>
                 <Step status="wait" title="Step 1" icon={<IdcardOutlined />} />
-                <Step status={progressBarStatus} title="Step 2" icon={<InfoCircleOutlined />} />
-                <Step status={progressBarStatus} title="Step 3" icon={<FormOutlined />} />
-                <Step status={progressBarStatus} title="Step 4" icon={<GiftOutlined />} />
-                <Step status={progressBarStatus} title="Step 5" icon={<TeamOutlined />} />
-                <Step status={progressBarStatus} title="Complete" icon={<CheckOutlined />} />
+                <Step status={progressBarStatus(2)} title="Step 2" icon={<InfoCircleOutlined />} />
+                <Step status={progressBarStatus(3)} title="Step 3" icon={<FormOutlined />} />
+                <Step status={progressBarStatus(4)} title="Step 4" icon={<GiftOutlined />} />
+                <Step status={progressBarStatus(5)} title="Step 5" icon={<TeamOutlined />} />
+                <Step status={progressBarStatus(6)} title="Complete" icon={<CheckOutlined />} />
             </Steps>
         </Card>
     )
