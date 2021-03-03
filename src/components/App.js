@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import '../style.css';
+import '../style.less';
 import * as actions from '../redux/actions';
 import AppWrapper from './AppWrapper';
 import Routes from './Routes';
