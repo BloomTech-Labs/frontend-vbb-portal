@@ -11,14 +11,14 @@ function AppWrapper(props) {
         <div>
             <Layout>
                 <PageHeader
-                    style={{ position: 'fixed', zIndex: 1, width: '100%', backgroundColor: '#ff914d', padding: '25px' }}
+                    style={{ position: 'fixed', zIndex: 1, width: '100%', backgroundColor: '#ff914d' }}
                     title={<img
                         src={fullLogo}
                         alt="VBB logo"
-                        width="100"
+                        width="200"
                     ></img>}
                     extra={[
-                        <Button key="1" href='/signin'>Sign In<LoginOutlined /></Button>,
+                        <Button key="1" href='/signin' style={{marginTop: '15px'}}>Sign In<LoginOutlined /></Button>,
                         <Button key="2" href='/signup'>Register<FormOutlined /></Button>,
                     ]}
                 >
@@ -32,7 +32,7 @@ function AppWrapper(props) {
                         {props.children}
                     </div>
                 </Content>
-                <Footer style={{ textAlign: 'center', backgroundColor: '#ff914d', padding: '25px', color: 'white' }}>Village Book Builders ©2021 | All Rights Reserved</Footer>
+                <Footer style={{ textAlign: 'center', backgroundColor: '#ff914d', padding: '35px', color: 'white' }}>Village Book Builders ©2021 | All Rights Reserved</Footer>
             </Layout>
         </div>
     );
