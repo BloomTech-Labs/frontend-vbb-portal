@@ -19,7 +19,7 @@ function AppWrapper(props) {
                     ></img>}
                     extra={[
                         <Button key="1" href='/signin' style={{marginTop: '15px'}}>Sign In<LoginOutlined /></Button>,
-                        <Button key="2" href='/signup'>Register<FormOutlined /></Button>,
+                        <Button type='primary' key="2" href='/signup'>Register<FormOutlined style={{ color: 'white'}}/></Button>,
                     ]}
                 >
                 </PageHeader>
