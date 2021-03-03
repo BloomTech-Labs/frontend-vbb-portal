@@ -1,6 +1,6 @@
 import React from 'react';
 // import { connect } from 'react-redux';
-import { Button, List, Avatar } from 'antd';
+import { Button, List, Avatar, Alert, Space } from 'antd';
 import { DollarOutlined, SafetyOutlined, LaptopOutlined, WifiOutlined, SoundOutlined, BookOutlined } from '@ant-design/icons';
 
 export const Step4 = (props) => {
@@ -10,11 +10,12 @@ export const Step4 = (props) => {
   }
 
   return (
-    <div>
-      <h3>Support your mentee with a gift!</h3>
-      <div style={{ padding: '25px 0' }}>
-      <h5>Just $5/month will afford your mentee:</h5>
-      <List style={{ paddingBottom: '25px' }}>
+    <div style={{ paddingBottom: '25px' }}>
+      <Alert
+        message="Support your mentee with a gift! Just $5/month will afford your mentee:"
+        type="info"
+      />
+      <List style={{ padding: '25px 0' }}>
         <List.Item>
           <List.Item.Meta
             avatar={ <Avatar style={{backgroundColor: 'orange'}} icon={<SafetyOutlined />}/>}
@@ -46,11 +47,10 @@ export const Step4 = (props) => {
           />
         </List.Item>
       </List>
-      <Button type="primary" href='https://www.villagebookbuilders.org/donate/'>
+      <Button type="primary" href='https://www.villagebookbuilders.org/donate/' target="_blank">
         Donate
         <DollarOutlined />
       </Button>
-      </div>
     </div>
   );
 }
