@@ -1,7 +1,8 @@
 import React from 'react';
 // import { connect } from 'react-redux';
-import { Button, List, Avatar, Alert, Space } from 'antd';
+import { Button, List, Avatar, Alert, Space, Row, Col, Image } from 'antd';
 import { SafetyOutlined, LaptopOutlined, WifiOutlined, SoundOutlined, BookOutlined } from '@ant-design/icons';
+import ActionPicture from '../../images/vbb-in-action.png';
 
 export const Step4 = (props) => {
 
@@ -11,6 +12,8 @@ export const Step4 = (props) => {
 
   return (
     <div style={{ paddingBottom: '25px' }}>
+      <Row>
+      <Col span={12}>
       <Alert
         message="Support your mentee with a gift!"
         type="info"
@@ -51,6 +54,13 @@ export const Step4 = (props) => {
       <Button type="primary" href='https://www.villagebookbuilders.org/donate/' target="_blank">
         Donate
       </Button>
+      </Col>
+      <Col span={12}>
+        <div style={{ padding: '0 10px' }}>
+          <Image src={ActionPicture}></Image>
+        </div>
+      </Col>
+      </Row>
     </div>
   );
 }
