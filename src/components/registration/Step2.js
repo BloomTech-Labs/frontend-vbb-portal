@@ -63,7 +63,6 @@ export const Step2 = (props) => {
             }}
             scrollToFirstError
           >
-
             <Form.Item
               name="adult"
               label='Are you 18 years of age or older'
@@ -75,12 +74,11 @@ export const Step2 = (props) => {
                 },
               ]}
             >
-              <Select style={{ width: 120 }} onChange={handleChange}>
+              <Select onChange={handleChange}>
                 <Option value="yes">Yes</Option>
                 <Option value="no">No</Option>
             </Select>
             </Form.Item>
-
             <Form.Item
               name="occupation"
               label='Which of the following best describes you'
@@ -92,7 +90,7 @@ export const Step2 = (props) => {
                 },
               ]}
             >
-              <Select style={{ width: 200 }} onChange={handleChange}>
+              <Select onChange={handleChange}>
                 {/* Need to add additional questions if college student is selected */}
                 <Option value="Homemaker">Homemaker</Option>
                 <Option value="Retired">Retired</Option>
@@ -102,7 +100,6 @@ export const Step2 = (props) => {
                 <Option value="Other">Other</Option>
               </Select>
             </Form.Item>
-
             <Form.Item
               name="referral_source"
               label='How did you hear about this opportunity'
@@ -114,7 +111,7 @@ export const Step2 = (props) => {
                 },
               ]}
             >
-              <Select style={{ width: 200 }} onChange={handleChange}>
+              <Select onChange={handleChange}>
                 <Option value="No choice">-</Option>
                 <Option value="Friend">Friend</Option>
                 <Option value="Google">Google</Option>
@@ -129,10 +126,9 @@ export const Step2 = (props) => {
                 <Option value="Other">Other</Option>
             </Select>
             </Form.Item>
-
             <Form.Item
               name="language"
-              label='Which languages can you speak comfortably (check all that apply)'
+              label='Which languages can you speak comfortably'
               rules={[
                 {
                   required: true,
@@ -144,7 +140,6 @@ export const Step2 = (props) => {
               {/* Need to update with languages in backend */}
               <Checkbox.Group options={options} onCheckboxChange={onCheckboxChange} />
             </Form.Item>
-
             <Form.Item
               name="time_zone"
               label='What timezone are you in'
@@ -156,7 +151,7 @@ export const Step2 = (props) => {
                 },
               ]}
             >
-              <Select style={{ width: 200 }} onChange={handleChange}>
+              <Select  onChange={handleChange}>
               {/* Need to update timezone drop downs */}
               {moment.tz.names().map((tz) => {
                   if (tz.includes('Etc/GMT')) return null;

@@ -57,7 +57,6 @@ export const Step5 = (props) => {
         }}
         scrollToFirstError
       >
-
         <Form.Item
           name="more_involved"
           label={
@@ -73,12 +72,11 @@ export const Step5 = (props) => {
             },
           ]}
         >
-          <Select style={{ width: 120 }} onChange={handleChange}>
+          <Select onChange={handleChange}>
             <Option value="yes">Yes</Option>
             <Option value="no">No</Option>
           </Select>
         </Form.Item>
-
         <Form.Item
           name="desired_involvement"
           label='How would you like to get more involved (check all that apply)'
@@ -113,7 +111,6 @@ export const Step5 = (props) => {
             </Row>
           </Checkbox.Group>
         </Form.Item>
-
         <Form.Item
           name="city"
           label={
@@ -134,7 +131,6 @@ export const Step5 = (props) => {
         >
           <Input />
         </Form.Item>
-
       </Form>
     </div>
   );

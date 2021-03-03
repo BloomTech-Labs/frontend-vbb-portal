@@ -64,7 +64,7 @@ export const Step3 = (props) => {
         ]}
       >
         {/* Add if yes alert */}
-        <Select style={{ width: 120 }} onChange={handleChange}>
+        <Select onChange={handleChange}>
           <Option value="yes">Yes</Option>
           <Option value="no">No</Option>
       </Select>
@@ -81,12 +81,11 @@ export const Step3 = (props) => {
         ]}
       >
         {/* Add if no alert */}
-        <Select style={{ width: 120 }} onChange={handleChange}>
+        <Select onChange={handleChange}>
           <Option value="yes">Yes</Option>
           <Option value="no">No</Option>
       </Select>
       </Form.Item>
-
       <Form.Item
         name="initials"
         label='Type your initials here to agree to the above'
@@ -100,7 +99,6 @@ export const Step3 = (props) => {
       >
         <Input />
       </Form.Item>
-
       <Form.Item
         name="termsCond"
         rules={[
@@ -316,7 +314,6 @@ export const Step3 = (props) => {
             agreement.</li>
 
             </ol>
-
         </Modal>
         <Checkbox style={{ marginLeft: '25px'}}>
           I agree to the terms and conditions.
