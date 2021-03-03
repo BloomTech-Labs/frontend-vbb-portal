@@ -1,5 +1,4 @@
 import React from 'react';
-// import 'antd/dist/antd.css';
 import { Layout, Button, PageHeader, Breadcrumb } from 'antd';
 import { LoginOutlined, FormOutlined } from '@ant-design/icons';
 import fullLogo from '../images/vbb-full-logo.png';
@@ -28,7 +27,7 @@ function AppWrapper(props) {
                         <Breadcrumb.Item><a href='/'>VBB Portal</a></Breadcrumb.Item>
                         <Breadcrumb.Item><a href='/signup'>Mentor Registration</a></Breadcrumb.Item>
                     </Breadcrumb>
-                    <div className="site-layout-background" style={{ padding: 24, minHeight: 380 }}>
+                    <div style={{ padding: 24, minHeight: 380 }}>
                         {props.children}
                     </div>
                 </Content>

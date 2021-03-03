@@ -75,7 +75,6 @@ const MasterForm = () => {
       {currentStep < 6 ? (
         <div style={{ margin: '0 0 25px 0' }}>
           <PageHeader
-            className="site-page-header"
             title="Mentor Registration"
           />
           <ProgressBar
@@ -85,7 +84,6 @@ const MasterForm = () => {
       ) : (
         <div style={{ margin: '0 0 25px 0' }}>
           <PageHeader
-            className="site-page-header"
             title="Success!"
           />
           <ProgressBar
