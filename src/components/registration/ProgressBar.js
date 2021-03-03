@@ -20,7 +20,7 @@ export const ProgressBar = (props) => {
     }
 
     return (
-        <Card>
+        <Card style={{ marginBottom: '50px'}}>
             <h1 style={{ padding: '10px 0'}}>Mentor Registration</h1>
             <Steps style={{}} responsive='true'>
                 <Step status="wait" title="Step 1" icon={<IdcardOutlined />} />
