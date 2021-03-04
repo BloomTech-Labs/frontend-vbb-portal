@@ -1,20 +1,28 @@
-Village Portal is a open-sourced ``school-based mentoring managment platform``. Development is lead by Village Book Builders volunteers. Village Book Builders accelerates learners globally through virutal mentoring, learning libraries, and specialed educational community-wide interventions. Village Portal helps schedule hundreds of virtual volunteer mentors in global time zones. Other Features are in development. 
+Village Portal is a open-sourced `school-based mentoring managment platform`. Development is lead by Village Book Builders volunteers. Village Book Builders accelerates learners globally through virtual mentoring, learning libraries, and special educational community-wide interventions. Village Portal helps schedule hundreds of virtual volunteer mentors in global time zones. Other Features are in development.
 
-This project is broken up into a seperate backend and frontend repository. The backend contains the Django project which uses the Django Rest Framework to host a simple API and can be found at [backend-vbb-portal](https://github.com/VilllageBookBuilders/backend-vbb-portal). The frontend uses React and queries data from the API.
+This project is broken up into a separate backend and frontend repository. The backend contains the Django project which uses the Django Rest Framework to host a simple API and can be found at [backend-vbb-portal](https://github.com/VilllageBookBuilders/backend-vbb-portal). The frontend uses React and queries data from the API.
 
 Install node.js and get the backend server running beforehand!
 
 Run the following commands inside of the repository folder to get started:
+npm:
 
-```json
+```bash
 npm i
 npm start
 ```
 
+yarn:
+
+```bash
+yarn
+yarn start
+```
+
 These commands (respectively)
 
-1. npm i (install the node_js modules) (node js needs to be installed on your computer first)
-2. npm start (this will create a temporary local server which reloads on detecting newly-saved changes to the codebase)
+1. npm/yarn i (install the node_js modules) (node js needs to be installed on your computer first)
+2. npm/yarn start (this will create a temporary local server which reloads on detecting newly-saved changes to the codebase)
 3. ctrl + c (when pressed in the terminal window running the node server will close the server)
 
 For the Youtube tutorials associated with this code (and preparing it for production), click here https://youtu.be/uZgRbnIsgrA
@@ -26,4 +34,16 @@ Note: Discard any database changes on your local server (**DON'T PUSH**)
 
 ## Docs and useful links
 
-* [Swagger docs for standalone python backend ](https://vbb-backend.herokuapp.com/swagger/)
+- [Swagger docs for standalone python backend ](https://vbb-backend.herokuapp.com/swagger/)
+
+## Terminology
+
+- Users:
+
+  - Mentor
+  - Mentee
+  - Admin
+
+- Session: Represents the template of a slot ( think of this as the cookie cutter you make the cookies (slots) from )
+
+- Slot: Represents an individual meeting created from the session slot
