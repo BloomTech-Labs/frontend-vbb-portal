@@ -15,15 +15,6 @@ import MenteePicture from '../../images/vbb-mentee-computer.png';
 
 const { Option } = Select;
 
-const layout = {
-  labelCol: {
-    span: 16,
-  },
-  wrapperCol: {
-    span: 16,
-  },
-};
-
 export const Step3 = (props) => {
   const [form] = Form.useForm();
   const [visible, setVisible] = useState(false);
@@ -45,7 +36,6 @@ export const Step3 = (props) => {
       <Row>
         <Col span={12}>
           <Form
-            {...layout}
             form={form}
             name="register"
             layout="vertical"

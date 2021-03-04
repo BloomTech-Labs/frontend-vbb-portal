@@ -15,15 +15,6 @@ import MenteePicture from '../../images/vbb-mentee-computer.png';
 
 const { Option } = Select;
 
-const layout = {
-  labelCol: {
-    span: 16,
-  },
-  wrapperCol: {
-    span: 16,
-  },
-};
-
 export const Step5 = (props) => {
   const [form] = Form.useForm();
 
@@ -49,7 +40,6 @@ export const Step5 = (props) => {
       <Row>
         <Col span={12}>
           <Form
-            {...layout}
             form={form}
             name="register"
             layout="vertical"
@@ -83,7 +73,7 @@ export const Step5 = (props) => {
             </Form.Item>
             <Form.Item
               name="desired_involvement"
-              label='How would you like to get more involved (check all that apply)'
+              label='How would you like to get more involved'
               rules={[
                 {
                   required: true,
@@ -98,13 +88,13 @@ export const Step5 = (props) => {
                     <Checkbox value="A">Run or help with a fundraiser</Checkbox>
                   </Col>
                   <Col span={16}>
-                    <Checkbox value="B">Be a social media advocate or an ambassador</Checkbox>
+                    <Checkbox value="B">Be a social media advocate</Checkbox>
                   </Col>
                   <Col span={16}>
-                    <Checkbox value="C">Start / join a VBB Village Mentors Chapter</Checkbox>
+                    <Checkbox value="C">Start / join a mentors chapter</Checkbox>
                   </Col>
                   <Col span={16}>
-                    <Checkbox value="D">Start / Join a Book Club</Checkbox>
+                    <Checkbox value="D">Start / Join a book club</Checkbox>
                   </Col>
                   <Col span={16}>
                     <Checkbox value="E">Research</Checkbox>

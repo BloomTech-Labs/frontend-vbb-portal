@@ -13,15 +13,6 @@ import ActionPicture from '../../images/vbb-in-action.png';
 
 const { Option } = Select;
 
-const layout = {
-  labelCol: {
-    span: 16,
-  },
-  wrapperCol: {
-    span: 16,
-  },
-};
-
 export const Step2 = (props) => {
   const [form] = Form.useForm();
 
@@ -49,7 +40,6 @@ export const Step2 = (props) => {
       <Row>
         <Col span={12}>
           <Form
-            {...layout}
             form={form}
             name="register"
             layout="vertical"
