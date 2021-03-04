@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import '../style.css';
 import * as actions from '../redux/actions';
-import Layout from '../components/Layout';
+import Layout from './Layout';
 import Routes from './Routes';
 
 class App extends Component {
