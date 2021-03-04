@@ -1,5 +1,5 @@
 import React from 'react';
-import AlertDismissable from './AlertDismissable';
+import AlertDismissable from '../components/AlertDismissable';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../redux/actions';
