@@ -45,7 +45,7 @@ export const logIn = (googleToken, history) => async (dispatch) => {
   try {
     //send google token to the backend
     // previous endpoint   'http://127.0.0.1:8000/api/googlelogin/',
-    const response = await axios.post(PYTHON_API + '/auth/token', {
+    const response = await axios.post(PYTHON_API + '/auth/token/', {
       google_access_token: googleToken,
     });
     console.log('backendRes', response);
