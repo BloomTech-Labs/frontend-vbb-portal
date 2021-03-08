@@ -45,9 +45,16 @@ export const logIn = (googleToken, history) => async (dispatch) => {
   try {
     //send google token to the backend
     // previous endpoint   'http://127.0.0.1:8000/api/googlelogin/',
-    const response = await axios.post(PYTHON_API + '/auth/login', {
-      google_access_token: googleToken,
-    });
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+    const response = await axios.post(
+      PYTHON_API + 'v1/auth/login/',
+      {
+        google_access_token: googleToken,
+      },
+      headers
+    );
     console.log('backendRes', response);
 
     // @TODO remove once we have a functional backend repo
