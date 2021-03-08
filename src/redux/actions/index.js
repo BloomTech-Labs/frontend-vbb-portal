@@ -3,7 +3,7 @@
  */
 
 //@TODO temporary, this should be an ENV var
-export const PYTHON_API = process.env.REACT_APP_.PYTHON_API;
+export const PYTHON_API = process.env.REACT_APP_PYTHON_API;
 
 export * from '../Loading.redux/Loading.actions';
 export * from '../IsError.redux/IsError.actions';
