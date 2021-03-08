@@ -3,10 +3,9 @@ import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Spinner from 'react-bootstrap/Spinner';
 
-const PrivateRoute = ({ component: Component, token, loading, ...rest }) => (
+const PrivateRoute = ({ component: Component, token, loading }) => (
   <Route
-    {...rest}
-    render={(props) => {
+    render={() => {
       if (loading) {
         return (
           <Spinner
@@ -15,10 +14,10 @@ const PrivateRoute = ({ component: Component, token, loading, ...rest }) => (
             className="loading-spinner"
           />
         );
-      } else if (token === null) {
+      } else if (!token) {
         return <Redirect to="/signin" />;
       } else {
-        return <Component {...props} />;
+        return <Component />;
       }
     }}
   />
