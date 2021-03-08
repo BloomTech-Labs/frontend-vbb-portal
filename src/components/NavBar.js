@@ -12,15 +12,19 @@ export const NavBar = ({ logout, authToken }) => {
       className="navbar sticky-top  navbar-expand-lg navbar-light"
       id="vbb-full-bar"
     >
-      <Link to="/" id="full-logo">
+      <Link to="/" id="full-logo" type="button">
         <img
           src={fullLogo}
-          alt="Logo"
+          alt="Logo for Village Book Builders, small orange hut with Village Book Builders text"
           style={{ width: '200px', marginLeft: '30px' }}
         />
       </Link>
       <Link to="/" id="mini-logo">
-        <img src={miniLogo} alt="Logo" style={{ width: '45px' }} />
+        <img
+          src={miniLogo}
+          alt="Small logo for Village Book Builders, small orange hut with Village Book Builders text"
+          style={{ width: '45px' }}
+        />
       </Link>
       <Link to="/" id="bar-header-link">
         <h1 id="bar-header" style={{ marginBottom: '-25px' }}>
