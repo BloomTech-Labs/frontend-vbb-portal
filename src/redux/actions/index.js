@@ -2,8 +2,8 @@
  * base level export for all actions in the application
  */
 
-//@TODO temporary, this should be an ENV var
-export const PYTHON_API = process.env.REACT_APP_.PYTHON_API;
+export const PYTHON_API =
+  process.env.REACT_APP_.PYTHON_API || 'https://vbb-backend.herokuapp.com/api/';
 
 export * from '../Loading.redux/Loading.actions';
 export * from '../IsError.redux/IsError.actions';
