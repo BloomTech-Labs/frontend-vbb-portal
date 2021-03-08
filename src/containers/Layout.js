@@ -5,23 +5,20 @@ import * as actions from '../redux/actions';
 
 import NavBar from '../components/NavBar';
 import AlertDismissable from '../components/AlertDismissable';
+import Routes from './Routes';
+import Footer from '../components/Footer';
 
-class Layout extends React.Component {
-  render() {
-    return (
-      <div id="page-container">
-        <NavBar />
-
-        <div className="content">
-          <AlertDismissable close={this.props.logout} {...this.props} />
-
-          {this.props.children}
-        </div>
-
-        <footer>&copy; Village Book Builders | All Rights Reserved</footer>
+const Layout = ({ logout }) => {
+  return (
+    <div id="page-container">
+      <NavBar />
+      <div className="content">
+        <AlertDismissable close={logout} />
+        <Routes />
       </div>
-    );
-  }
-}
+      <Footer />
+    </div>
+  );
+};
 
 export default withRouter(connect(null, actions)(Layout));
