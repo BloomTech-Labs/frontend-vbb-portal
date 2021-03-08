@@ -45,12 +45,19 @@ export const logIn = (googleToken, history) => async (dispatch) => {
   try {
     //send google token to the backend
     // previous endpoint   'http://127.0.0.1:8000/api/googlelogin/',
-    const response = await axios.post(PYTHON_API + '/auth/token', {
-      google_access_token: googleToken,
-    });
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+    const response = await axios.post(
+      PYTHON_API + 'v1/auth/login/',
+      {
+        google_access_token: googleToken,
+      },
+      headers
+    );
+    console.log('backendRes', response);
 
     // @TODO remove once we have a functional backend repo
-    console.log('googleToken', googleToken);
     // const response = fakeResponseForTesting;
 
     const statusCode = response.status;
@@ -77,9 +84,10 @@ export const logIn = (googleToken, history) => async (dispatch) => {
     }
   } catch (err) {
     console.log('Login Catch block failed login');
+    console.log('Backend Login Error: ', err);
     dispatch(setLoadingFalse());
-    dispatch(setIsError(err.message));
-    await sleep(1500);
+    dispatch(setIsError(err.message ?? 'Connection to the API failed'));
+    await sleep(2000);
     dispatch(clearIsError());
   }
 };

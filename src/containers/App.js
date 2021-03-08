@@ -2,23 +2,23 @@ import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import '../style.css';
+import '../style.less';
 import * as actions from '../redux/actions';
-import Layout from './Layout';
+import AppWrapper from './AppWrapper';
 import Routes from './Routes';
 
 class App extends Component {
   componentDidMount() {
-    this.props.authCheckState();
+    // this.props.authCheckState();
   }
 
   render() {
     return (
       <div className="App">
         <BrowserRouter {...this.props}>
-          <Layout {...this.props}>
+          <AppWrapper {...this.props}>
             <Routes />
-          </Layout>
+          </AppWrapper>
         </BrowserRouter>
       </div>
     );
@@ -27,10 +27,10 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    isAuthenticated: state.token !== null,
-    isLoading: state.loading,
-    error: state.isError.isError,
-    message: state.isError.message,
+    // isAuthenticated: state.token !== null,
+    // isLoading: state.loading,
+    // error: state.isError.isError,
+    // message: state.isError.message,
   };
 };
 

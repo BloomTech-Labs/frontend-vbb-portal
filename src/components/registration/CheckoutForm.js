@@ -1,3 +1,5 @@
+//Todo: This file isn't currently rendering. Will need to refactor with new design.
+
 import React from 'react';
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 

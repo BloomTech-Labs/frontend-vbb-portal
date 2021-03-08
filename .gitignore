@@ -32,3 +32,4 @@ yarn-error.log*
 
 .vscode
 db.sqlite3
+NOTES.md
