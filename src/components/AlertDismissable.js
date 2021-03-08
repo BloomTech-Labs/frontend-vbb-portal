@@ -1,3 +1,5 @@
+//Todo: This component should ultimately be replaced by Ant D built-in form validation. Once we confirm, it is no longer in use, we should delete it.
+
 import React from 'react';
 import Alert from 'react-bootstrap/Alert';
 import { connect } from 'react-redux';

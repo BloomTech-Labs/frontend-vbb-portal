@@ -1,97 +1,174 @@
 import React from 'react';
+// import { connect } from 'react-redux';
+import {
+  Form,
+  Input,
+  Tooltip,
+  Checkbox,
+  Select,
+  Row,
+  Col,
+  Image,
+} from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';
+import countryCodes from 'country-codes-list';
+import MenteePicture from '../../images/vbb-mentee-computer.png';
 
-function Step1(props) {
-  if (props.state.currentStep !== 1) {
+const { Option } = Select;
+
+//Phone number country code dropdown using country-code-list package
+const countryCodesObject = countryCodes.customList('countryCode', '+{countryCallingCode}');
+const countryCodesArray = Object.values(countryCodesObject)
+const countryCodeList = countryCodesArray.map((countryCode) => {
+  return (
+    <Option value={countryCode}>{countryCode}</Option>
+  )
+})
+
+//Need to add autocomplete in place of country code prefix dropdown
+const prefixSelector = (
+  <Form.Item name="prefix" noStyle>
+    <Select
+      style={{
+        width: 100,
+      }}
+    >
+      { countryCodeList }
+    </Select>
+  </Form.Item>
+);
+
+export const Step1 = (props) => {
+  const [form] = Form.useForm();
+
+  const onFinish = (values) => {
+    console.log('Form values: ', values);
+  };
+
+  if (props.currentStep !== 1) {
     return null;
   }
+
   return (
-    <div className="form-group step-form">
-      {/*delete this later*/}
-      <p>
-        This is a new portal. If you experience any problems, please contact us
-        at mentor@villagebookbuilders.org
-      </p>
-      <label htmlFor="firstname">First Name</label>
-
-      <input
-        className="form-control"
-        id="firstname"
-        name="firstname"
-        required
-        type="text"
-        placeholder="Enter first name - ie 'John'"
-        value={props.state.firstname}
-        onChange={props.handleChange}
-      />
-
-      <label htmlFor="lastname">Last Name</label>
-      <input
-        required
-        className="form-control"
-        id="lastname"
-        name="lastname"
-        type="text"
-        placeholder="Enter last name - ie 'Doe'"
-        value={props.state.lastname}
-        onChange={props.handleChange}
-      />
-
-      <label htmlFor="email">Email Address</label>
-      <input
-        className="form-control"
-        id="email"
-        name="email"
-        required
-        type="mail"
-        placeholder="Enter email (please triple-check spelling!) - ie 'johndoe@gmail.com'"
-        value={props.state.email}
-        onChange={props.handleChange}
-      />
-
-      <label htmlFor="vbbemail">
-        @villagementors.org email (ONLY if you ALREADY have one)
-      </label>
-      <input
-        className="form-control"
-        id="vbbemail"
-        name="vbbemail"
-        required
-        type="mail"
-        placeholder="Enter your current/existing villagementors.org email - ie 'john.doe@villagementors.org'"
-        value={props.state.vbbemail}
-        onChange={props.handleChange}
-      />
-
-      <label htmlFor="phone">Phone Number</label>
-      <input
-        className="form-control"
-        id="phone"
-        name="phone"
-        type="tel"
-        placeholder="Enter phone number (digits only) ie '1234567890'"
-        value={props.state.phone}
-        onChange={props.handleChange}
-      />
-
-      <br />
-
-      <div>
-        <label>Sign up for newsletter? &nbsp;</label>
-        <select
-          name="newsletter"
-          id="newsletter"
-          value={props.state.newsletter}
-          onChange={props.handleChange}
-        >
-          <option value="No choice">-</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-      </div>
-      <br />
-      <br />
+    <div>
+      <Row>
+        <Col span={12}>
+          <Form
+            form={form}
+            name="register"
+            layout="vertical"
+            onFinish={onFinish}
+            initialValues={{
+              firstname: '',
+              lastname: '',
+              phone: '',
+              email: '',
+              newsletter: true,
+            }}
+            scrollToFirstError
+          >
+            <Form.Item
+              name="firstname"
+              label={
+                <span>
+                  First Name&nbsp;
+                  <Tooltip title="i.e. John">
+                    <QuestionCircleOutlined />
+                  </Tooltip>
+                </span>
+              }
+              rules={[
+                {
+                  required: true,
+                  message: 'First name is required.',
+                  whitespace: true,
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              name="lastname"
+              label={
+                <span>
+                  Last Name&nbsp;
+                  <Tooltip title="i.e. Doe">
+                    <QuestionCircleOutlined />
+                  </Tooltip>
+                </span>
+              }
+              rules={[
+                {
+                  required: true,
+                  message: 'First name is required.',
+                  whitespace: true,
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              name="phone"
+              label="Phone Number"
+              rules={[
+                {
+                  required: true,
+                  message: 'Phone number is required.',
+                },
+              ]}
+            >
+              <Input
+                addonBefore={prefixSelector}
+                style={{
+                  width: '100%',
+                }}
+              />
+            </Form.Item>
+            <Form.Item
+              name="email"
+              label="Email"
+              rules={[
+                {
+                  type: 'email',
+                  message: 'Please enter a valid email address.',
+                },
+                {
+                  required: true,
+                  message: 'Email is required.',
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              name="newsletter"
+              valuePropName="checked"
+              rules={[
+                {
+                  validator: (_, value) =>
+                    value ? Promise.resolve() : Promise.reject(),
+                },
+              ]}
+            >
+              <Checkbox>
+                I would like to receive the VBB newsletter.
+              </Checkbox>
+            </Form.Item>
+          </Form>
+        </Col>
+        <Col span={12}>
+          <div style={{ padding: '0 10px' }}>
+              <Image src={MenteePicture}></Image>
+          </div>
+        </Col>
+      </Row>
     </div>
   );
 }
 
+// const mapStateToProps = (state) => ({
+  
+// })
+
+// export default connect(mapStateToProps)(Step1)
 export default Step1;

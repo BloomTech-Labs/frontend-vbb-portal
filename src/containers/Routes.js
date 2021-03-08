@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import PrivateRoute from './PrivateRoute';
 import Booking from '../components/Booking';
@@ -11,17 +11,27 @@ import SessionDetails from '../components/SessionDetails';
 
 const Routes = () => {
   return (
-    <div>
-      <PrivateRoute exact path="/" component={Dashboard} />
-      <PrivateRoute exact path="/booking/" component={Booking} />
-      <Route exact path="/signin/" component={HomeSignin} />
-      <Route exact path="/signup/" component={MasterForm} />
-      <Route
-        exact
-        path="/sessiondetails/:sessionid/"
-        component={SessionDetails}
-      />
-      {/* <Route exact path="/donate/" component={Donation} /> */}
+    <div className="App">
+      <Switch>
+        <PrivateRoute exact path="/">
+          <Dashboard />
+        </PrivateRoute>
+        <PrivateRoute exact path="/booking/">
+          <Booking />
+        </PrivateRoute>
+        <Route exact path="/signin/" >
+          <HomeSignin />
+        </Route>
+        <Route exact path="/signup/">
+          <MasterForm />
+        </Route>
+        <Route exact path="/sessiondetails/:sessionid/">
+          <SessionDetails />
+        </Route>
+        {/* <Route exact path="/donate/">
+          <Donation />
+        </Route> */}
+      </Switch>
     </div>
   );
 };

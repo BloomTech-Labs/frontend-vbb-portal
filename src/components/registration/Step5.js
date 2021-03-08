@@ -1,94 +1,145 @@
 import React from 'react';
+// import { connect } from 'react-redux';
+import {
+  Form,
+  Select,
+  Input,
+  Tooltip,
+  Checkbox,
+  Row,
+  Col,
+  Image
+} from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';
+import MenteePicture from '../../images/vbb-mentee-computer.png';
 
-function Step5(props) {
-  if (props.state.currentStep !== 5) {
+const { Option } = Select;
+
+export const Step5 = (props) => {
+  const [form] = Form.useForm();
+
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+  }
+
+  const onFinish = (values) => {
+    console.log('Form values: ', values);
+  };
+
+  // For checkbox
+  function onCheckboxChange(checkedValues) {
+    console.log('checked = ', checkedValues);
+  }
+
+  if (props.currentStep !== 5) {
     return null;
   }
+
   return (
-    <React.Fragment>
-      <div className="form-group step-form">
-        <div>
-          <h5>One last thing: How you can get more involved</h5>
-          <label>
-            Our organization is built by volunteers like you, and we need your
-            help to spread hope through books.
-          </label>
-        </div>
-
-        <div>
-          <label>Would you like to get more involved?</label>
-          <select
-            name="more_involved"
-            id="more_involved"
-            value={props.state.more_involved}
-            onChange={props.handleChange}
+    <div>
+      <Row>
+        <Col span={12}>
+          <Form
+            form={form}
+            name="register"
+            layout="vertical"
+            onFinish={onFinish}
+            initialValues={{
+              more_involved: '',
+              desired_involvement: '',
+              city: ''
+            }}
+            scrollToFirstError
           >
-            <option value="">-</option>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-          </select>
-        </div>
-
-        {props.state.more_involved === 'Yes' && (
-          <div>
-            <label>
-              How would you like to get more involved (Select all that apply)?
-            </label>
-            <select
-              name="desired_involvement"
-              id="desired_involvement"
-              value={props.state.desired_involvement}
-              onChange={props.handleChange}
+            <Form.Item
+              name="more_involved"
+              label={
+                <span>
+                  Our organization is built by volunteers like you, and we need your help to spread hope through books. Would you like to get more involved?
+                </span>
+              }
+              rules={[
+                {
+                  required: true,
+                  message: 'This field is required.',
+                  whitespace: true,
+                },
+              ]}
             >
-              <option value="">--</option>
-              <option value="Fundraiser"> Run or help with a fundraiser</option>
-              <option value="Ambassador">
-                {' '}
-                Be a social media advocate or an ambassador
-              </option>
-              <option value="StartChapter">
-                {' '}
-                Start/join a VBB Village Mentors Chapter at your school or
-                company (a club of fellow mentors)
-              </option>
-              <option value="JoinClub"> Start/Join a Book Club</option>
-              <option value="Research"> Research</option>
-              <option value="Other"> Other</option>
-            </select>
-            <br />
-            <br />
-            <br />
+              <Select onChange={handleChange}>
+                <Option value="yes">Yes</Option>
+                <Option value="no">No</Option>
+              </Select>
+            </Form.Item>
+            <Form.Item
+              name="desired_involvement"
+              label='How would you like to get more involved'
+              rules={[
+                {
+                  required: true,
+                  message: 'Please select at least one box.',
+                  whitespace: true,
+                },
+              ]}
+            >
+              <Checkbox.Group style={{ width: '100%' }} onCheckboxChange={onCheckboxChange}>
+                <Row>
+                  <Col span={16}>
+                    <Checkbox value="A">Run or help with a fundraiser</Checkbox>
+                  </Col>
+                  <Col span={16}>
+                    <Checkbox value="B">Be a social media advocate</Checkbox>
+                  </Col>
+                  <Col span={16}>
+                    <Checkbox value="C">Start / join a mentors chapter</Checkbox>
+                  </Col>
+                  <Col span={16}>
+                    <Checkbox value="D">Start / Join a book club</Checkbox>
+                  </Col>
+                  <Col span={16}>
+                    <Checkbox value="E">Research</Checkbox>
+                  </Col>
+                  <Col span={16}>
+                    <Checkbox value="E">Other</Checkbox>
+                  </Col>
+                </Row>
+              </Checkbox.Group>
+            </Form.Item>
+            <Form.Item
+              name="city"
+              label={
+                <span>
+                  What city and state/province do you live in&nbsp;
+                  <Tooltip title="i.e. New York, NY">
+                    <QuestionCircleOutlined />
+                  </Tooltip>
+                </span>
+              }
+              rules={[
+                {
+                  required: true,
+                  message: 'Location is required.',
+                  whitespace: true,
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+          </Form>
+        </Col>
+        <Col span={12}>
+          <div style={{ padding: '0 10px' }}>
+            <Image src={MenteePicture}></Image>
           </div>
-        )}
-
-        <label htmlFor="city">
-          What city and state/province do you live in?
-        </label>
-        <input
-          className="form-control"
-          id="city"
-          name="city"
-          required
-          type="text"
-          placeholder="ie 'Philadelphia, PA'"
-          value={props.state.city}
-          onChange={props.handleChange}
-        />
-      </div>
-
-      <div style={{ whiteSpace: 'pre-wrap', color: 'red' }}>
-        {props.hasProblems() && props.hasProblems()}
-      </div>
-
-      <button
-        className="btn btn-success btn-block"
-        disabled={props.hasProblems()}
-        style={{ marginBottom: '20px', marginTop: '20px' }}
-      >
-        SIGN UP
-      </button>
-    </React.Fragment>
+        </Col>
+      </Row>
+    </div>
   );
 }
 
+// const mapStateToProps = (state) => ({
+  
+// })
+
+// export default connect(mapStateToProps)(Step5)
 export default Step5;

@@ -1,3 +1,4 @@
+//Todo: This file is being replaced by AppWrapper.js.We can delete after transition is complete.
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';

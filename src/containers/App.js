@@ -1,17 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import '../style.css';
+import { connect } from 'react-redux';
 
-import Layout from './Layout';
+import '../style.less';
+import * as actions from '../redux/actions';
+import AppWrapper from './AppWrapper';
+import Routes from './Routes';
 
-const App = () => {
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <Layout />
-      </BrowserRouter>
-    </div>
-  );
+class App extends Component {
+  componentDidMount() {
+    // this.props.authCheckState();
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <BrowserRouter {...this.props}>
+          <AppWrapper {...this.props}>
+            <Routes />
+          </AppWrapper>
+        </BrowserRouter>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    // isAuthenticated: state.token !== null,
+    // isLoading: state.loading,
+    // error: state.isError.isError,
+    // message: state.isError.message,
+  };
 };
 
-export default App;
+export default connect(mapStateToProps, actions)(App);
