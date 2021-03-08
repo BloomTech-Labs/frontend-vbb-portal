@@ -1,3 +1,5 @@
+//This component replaces Layout.js. We should delete Layout.js once we confirm it is no longer in use.
+
 import React from 'react';
 import { Layout, Button, PageHeader, Breadcrumb } from 'antd';
 import { LoginOutlined, FormOutlined } from '@ant-design/icons';
@@ -17,7 +19,7 @@ function AppWrapper(props) {
                         width="200"
                     ></img>}
                     extra={[
-                        <Button key="1" href='/signin' style={{ marginTop: '15px', color: '#549bea' }}>Sign In<LoginOutlined /></Button>,
+                        <Button key="1" href='/signin/' style={{ marginTop: '15px', color: '#549bea' }}>Sign In<LoginOutlined /></Button>,
                         <Button type='primary' key="2" href='/signup'>Register<FormOutlined style={{ color: 'white'}}/></Button>,
                     ]}
                 >

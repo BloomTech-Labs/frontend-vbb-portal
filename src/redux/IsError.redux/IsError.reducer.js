@@ -17,7 +17,10 @@ const isErrorInitialState = {
 export const isError = (state = isErrorInitialState, action) => {
   switch (action.type) {
     case SET_IS_ERROR:
-      return { isError: true, message: action.payload ?? 'No error message returned' };
+      return {
+        isError: true,
+        message: action.payload ?? 'No error message returned',
+      };
     case CLEAR_IS_ERROR:
       return isErrorInitialState;
     default:
