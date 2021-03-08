@@ -3,7 +3,7 @@
 //  */
 
 export const PYTHON_API =
-  process.env.REACT_APP_.PYTHON_API || 'https://vbb-backend.herokuapp.com/api/';
+  process.env.REACT_APP_PYTHON_API || 'https://vbb-backend.herokuapp.com/api/';
 
 export * from '../Loading.redux/Loading.actions';
 export * from '../IsError.redux/IsError.actions';
