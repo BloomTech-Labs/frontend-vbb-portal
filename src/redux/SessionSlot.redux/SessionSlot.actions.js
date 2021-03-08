@@ -42,7 +42,7 @@ export const getSessionInfo = (sessionId) => async (dispatch, getState) => {
   dispatch(setLoading());
   try {
     const token = getState().authToken;
-    const url = PYTHON_API + '/session/' + sessionId;
+    const url = PYTHON_API + 'v1/session/' + sessionId;
 
     const headers = {
       'Content-Type': 'application/json',
@@ -92,7 +92,7 @@ export const updateSessionInfo = (sessionId) => async (dispatch, getState) => {
 
     const token = getState().authToken;
 
-    const url = PYTHON_API + '/update/' + sessionId;
+    const url = PYTHON_API + 'v1/update/' + sessionId;
     const headers = {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
@@ -127,7 +127,7 @@ export const unbookSession = (sessionId, history) => async (
 
     const token = getState().authToken;
 
-    const url = PYTHON_API + '/api/update/' + sessionId;
+    const url = PYTHON_API + 'v1/update/' + sessionId;
     const headers = {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
