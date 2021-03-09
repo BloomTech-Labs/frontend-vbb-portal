@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'antd';
+import { Button, Form } from 'antd';
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 
 // import CardSection from './CardSection';
@@ -44,7 +44,7 @@ export default function CheckoutForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onFinish={handleSubmit}>
       <div
         style={{
           padding: '10px',
@@ -58,6 +58,6 @@ export default function CheckoutForm() {
       <Button type="primary" disabled={!stripe}>
         Pay
       </Button>
-    </form>
+    </Form>
   );
 }
