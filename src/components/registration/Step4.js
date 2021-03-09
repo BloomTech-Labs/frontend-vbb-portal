@@ -51,7 +51,7 @@ export const Step4 = (props) => {
               />
             </List.Item>
           </List>
-          <Button type="primary" href='https://www.villagebookbuilders.org/donate/' target="_blank">
+          <Button type="primary" href='/donate/'>
             Donate
           </Button>
         </Col>
