@@ -20,7 +20,7 @@ const AppWrapper = () => {
         >
           <Breadcrumb style={{ margin: '16px 0' }}>
             <Breadcrumb.Item>
-              <Link to="/">VBB Portal</Link>
+              <Link to="/">Village Portal</Link>
             </Breadcrumb.Item>
             <Breadcrumb.Item>
               <Link to="/signup">Mentor Registration</Link>
