@@ -26,11 +26,12 @@ export const Step2 = (props) => {
     console.log(`selected ${value}`);
   }
 
+  //Need to add POST request function once added to redux here
   const onFinish = (values) => {
     console.log('Form values: ', values);
   };
 
-    // For checkbox
+    // For checkbox - hope to pull this from the backend or confirm the list here if it is short
     let options = ['English', 'Spanish', 'French', 'German'];
 
     function onCheckboxChange(checkedValues) {
@@ -207,6 +208,80 @@ export const Step2 = (props) => {
                 {
                   required: true,
                   message: 'Initials are required.',
+                  whitespace: true,
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              name="more_involved"
+              label={
+                <span>
+                  Our organization is built by volunteers like you, and we need your help to spread hope through books. Would you like to get more involved?
+                </span>
+              }
+              rules={[
+                {
+                  required: true,
+                  message: 'This field is required.',
+                  whitespace: true,
+                },
+              ]}
+            >
+              <Select onChange={handleChange}>
+                <Option value="yes">Yes</Option>
+                <Option value="no">No</Option>
+              </Select>
+            </Form.Item>
+            <Form.Item
+              name="desired_involvement"
+              label='How would you like to get more involved'
+              rules={[
+                {
+                  required: true,
+                  message: 'Please select at least one box.',
+                  whitespace: true,
+                },
+              ]}
+            >
+              <Checkbox.Group style={{ width: '100%' }} onCheckboxChange={onCheckboxChange}>
+                <Row>
+                  <Col span={16}>
+                    <Checkbox value="A">Run or help with a fundraiser</Checkbox>
+                  </Col>
+                  <Col span={16}>
+                    <Checkbox value="B">Be a social media advocate</Checkbox>
+                  </Col>
+                  <Col span={16}>
+                    <Checkbox value="C">Start / join a mentors chapter</Checkbox>
+                  </Col>
+                  <Col span={16}>
+                    <Checkbox value="D">Start / Join a book club</Checkbox>
+                  </Col>
+                  <Col span={16}>
+                    <Checkbox value="E">Research</Checkbox>
+                  </Col>
+                  <Col span={16}>
+                    <Checkbox value="E">Other</Checkbox>
+                  </Col>
+                </Row>
+              </Checkbox.Group>
+            </Form.Item>
+            <Form.Item
+              name="city"
+              label={
+                <span>
+                  What city and state/province do you live in&nbsp;
+                  <Tooltip title="i.e. New York, NY">
+                    <QuestionCircleOutlined />
+                  </Tooltip>
+                </span>
+              }
+              rules={[
+                {
+                  required: true,
+                  message: 'Location is required.',
                   whitespace: true,
                 },
               ]}
@@ -406,80 +481,6 @@ export const Step2 = (props) => {
               <Checkbox style={{ marginLeft: '25px'}}>
                 I agree to the terms and conditions.
               </Checkbox>
-            </Form.Item>
-            <Form.Item
-              name="more_involved"
-              label={
-                <span>
-                  Our organization is built by volunteers like you, and we need your help to spread hope through books. Would you like to get more involved?
-                </span>
-              }
-              rules={[
-                {
-                  required: true,
-                  message: 'This field is required.',
-                  whitespace: true,
-                },
-              ]}
-            >
-              <Select onChange={handleChange}>
-                <Option value="yes">Yes</Option>
-                <Option value="no">No</Option>
-              </Select>
-            </Form.Item>
-            <Form.Item
-              name="desired_involvement"
-              label='How would you like to get more involved'
-              rules={[
-                {
-                  required: true,
-                  message: 'Please select at least one box.',
-                  whitespace: true,
-                },
-              ]}
-            >
-              <Checkbox.Group style={{ width: '100%' }} onCheckboxChange={onCheckboxChange}>
-                <Row>
-                  <Col span={16}>
-                    <Checkbox value="A">Run or help with a fundraiser</Checkbox>
-                  </Col>
-                  <Col span={16}>
-                    <Checkbox value="B">Be a social media advocate</Checkbox>
-                  </Col>
-                  <Col span={16}>
-                    <Checkbox value="C">Start / join a mentors chapter</Checkbox>
-                  </Col>
-                  <Col span={16}>
-                    <Checkbox value="D">Start / Join a book club</Checkbox>
-                  </Col>
-                  <Col span={16}>
-                    <Checkbox value="E">Research</Checkbox>
-                  </Col>
-                  <Col span={16}>
-                    <Checkbox value="E">Other</Checkbox>
-                  </Col>
-                </Row>
-              </Checkbox.Group>
-            </Form.Item>
-            <Form.Item
-              name="city"
-              label={
-                <span>
-                  What city and state/province do you live in&nbsp;
-                  <Tooltip title="i.e. New York, NY">
-                    <QuestionCircleOutlined />
-                  </Tooltip>
-                </span>
-              }
-              rules={[
-                {
-                  required: true,
-                  message: 'Location is required.',
-                  whitespace: true,
-                },
-              ]}
-            >
-              <Input />
             </Form.Item>
           </Form>
         </Col>
