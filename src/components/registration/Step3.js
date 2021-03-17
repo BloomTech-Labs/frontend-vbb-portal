@@ -16,7 +16,7 @@ export const Step3 = (props) => {
       <Row>
         <Col span={12}>
           <List style={{ padding: '25px 0' }}>
-            <List.Item>Just $5 / month will afford your mentee:</List.Item>
+            <h3 style={{padding: '0 0 25px 25px'}}>Just $5 / month will afford your mentee:</h3>
             <List.Item>
               <List.Item.Meta
                 avatar={ <Avatar style={{ backgroundColor: '#fffff6' }} icon={<SafetyOutlined />}/>}
