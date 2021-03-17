@@ -15,7 +15,7 @@ function Step4(props) {
         <a href="mailto:mentor@villagebookbuilders.org">
           contact our mentor advisors
         </a>
-        &nbsp;for more assistance
+        &nbsp;for more assistance.
       </p>
       <Button>
         Sign In

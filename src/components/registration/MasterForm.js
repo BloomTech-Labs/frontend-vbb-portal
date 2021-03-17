@@ -24,7 +24,7 @@ const MasterForm = () => {
   };
 
   const backButton = () => {
-    if (currentStep !== 1) {
+    if (currentStep == 2 || currentStep == 3) {
       return (
         <Button
           style={{ marginRight: '10px'}}
@@ -40,7 +40,7 @@ const MasterForm = () => {
   }
 
   const nextButton = () => {
-    if (currentStep < 4) {
+    if (currentStep == 1 || currentStep == 2) {
       return (
         <Button
           style={{ marginRight: '10px'}}
@@ -55,8 +55,8 @@ const MasterForm = () => {
     return null;
   }
 
-  const signupButton = () => {
-    if (currentStep === 4) {
+  const registerButton = () => {
+    if (currentStep === 3) {
       return (
         <Button
           style={{ marginRight: '10px'}}
@@ -98,7 +98,7 @@ const MasterForm = () => {
         />
         {backButton()}
         {nextButton()}
-        {signupButton()}
+        {registerButton()}
       </Form>
     </div>
   );
