@@ -25,7 +25,6 @@ const paragraphStyle = {
  * @param {redux action} manageFailedGoogleLogin current action from login import as a connected component
  */
 const HomeSignin = ({ history, logIn, manageFailedGoogleLogin }) => {
-  console.log('googleIDInComponent: ', process.env.REACT_APP_GOOGLE_CLIENT_ID);
   return (
     <div className="twocol-container">
       <div className="column" id="signin-box">
@@ -39,7 +38,7 @@ const HomeSignin = ({ history, logIn, manageFailedGoogleLogin }) => {
             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
             buttonText="Click here to sign in!"
             onSuccess={(res) => logIn(res.accessToken, history)}
-            onFailure={(res) => manageFailedGoogleLogin()}
+            onFailure={(res) => manageFailedGoogleLogin(res)}
             cookiePolicy={'single_host_origin'}
             style={{ width: '100%', paddingTop: '30px' }}
           />
@@ -64,11 +63,4 @@ const HomeSignin = ({ history, logIn, manageFailedGoogleLogin }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    loading: state.loading,
-    error: state.error,
-  };
-};
-
-export default connect(mapStateToProps, actions)(HomeSignin);
+export default connect(null, actions)(HomeSignin);

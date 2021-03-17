@@ -27,7 +27,8 @@ const fakeResponseForTesting = {
  * Manages failed google Login
  * Sets an error state, sleeps for 2000ms and then clears error state
  */
-export const manageFailedGoogleLogin = async () => {
+export const manageFailedGoogleLogin = async (res) => {
+  console.log('Error response from failed google login', res);
   setIsError('Google login has failed. Please try again');
   await sleep(2000);
   clearIsError();
