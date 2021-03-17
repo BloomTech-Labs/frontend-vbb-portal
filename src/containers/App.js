@@ -1,16 +1,19 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+import store from '../redux/store';
 import '../style.less';
-import AppWrapper from './AppWrapper';
+import MainLayout from './MainLayout';
 
 const App = () => {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <AppWrapper />
-      </BrowserRouter>
-    </div>
+    <Provider store={store}>
+      <Router>
+        <div className="App">
+          <MainLayout />
+        </div>
+      </Router>
+    </Provider>
   );
 };
 
