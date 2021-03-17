@@ -1,7 +1,6 @@
 // /**
 //  * base level export for all actions in the application
 //  */
-
 export const PYTHON_API =
   process.env.REACT_APP_PYTHON_API || 'https://vbb-backend.herokuapp.com/api/';
 

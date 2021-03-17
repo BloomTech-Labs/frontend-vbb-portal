@@ -7,9 +7,6 @@
     "@craco/craco": "^5.8.0",
     "@stripe/react-stripe-js": "^1.1.2",
     "@stripe/stripe-js": "^1.8.0",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
     "antd": "^4.13.0",
     "axios": "^0.19.2",
     "country-codes-list": "^1.6.8",
@@ -55,6 +52,9 @@
   },
   "devDependencies": {
     "eslint-config-prettier": "^7.1.0",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1"
   }
 }
