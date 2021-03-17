@@ -1,7 +1,7 @@
 import React from 'react'
 // import { connect } from 'react-redux'
 import { Steps, Card } from 'antd';
-import { IdcardOutlined, InfoCircleOutlined, FormOutlined, GiftOutlined, TeamOutlined, CheckOutlined } from '@ant-design/icons';
+import { IdcardOutlined, FormOutlined, GiftOutlined, CheckOutlined } from '@ant-design/icons';
 
 export const ProgressBar = (props) => {
     const { Step } = Steps;
@@ -23,11 +23,9 @@ export const ProgressBar = (props) => {
             <h1 style={{ padding: '10px 0'}}>Mentor Registration</h1>
             <Steps style={{}} responsive='true'>
                 <Step status="wait" title="Step 1" icon={<IdcardOutlined />} />
-                <Step status={progressBarStatus(2)} title="Step 2" icon={<InfoCircleOutlined />} />
-                <Step status={progressBarStatus(3)} title="Step 3" icon={<FormOutlined />} />
-                <Step status={progressBarStatus(4)} title="Step 4" icon={<GiftOutlined />} />
-                <Step status={progressBarStatus(5)} title="Step 5" icon={<TeamOutlined />} />
-                <Step status={progressBarStatus(6)} title="Complete" icon={<CheckOutlined />} />
+                <Step status={progressBarStatus(2)} title="Step 2" icon={<FormOutlined />} />
+                <Step status={progressBarStatus(3)} title="Step 3" icon={<GiftOutlined />} />
+                <Step status={progressBarStatus(4)} title="Complete" icon={<CheckOutlined />} />
             </Steps>
         </Card>
     )

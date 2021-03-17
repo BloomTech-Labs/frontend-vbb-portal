@@ -7,8 +7,6 @@ import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
 import Step4 from './Step4';
-import Step5 from './Step5';
-import SuccessStep from './SuccessStep';
 import ProgressBar from './ProgressBar';
 
 const MasterForm = () => {
@@ -16,7 +14,7 @@ const MasterForm = () => {
 
   const next = () => {
     window.scrollTo(0, 0);
-    currentStep = currentStep >= 4 ? 5 : currentStep + 1;
+    currentStep = currentStep === 4 ? 4 : currentStep + 1;
     setCurrentStep(currentStep);
   };
 
@@ -42,7 +40,7 @@ const MasterForm = () => {
   }
 
   const nextButton = () => {
-    if (currentStep < 5) {
+    if (currentStep < 4) {
       return (
         <Button
           style={{ marginRight: '10px'}}
@@ -58,7 +56,7 @@ const MasterForm = () => {
   }
 
   const signupButton = () => {
-    if (currentStep === 5) {
+    if (currentStep === 4) {
       return (
         <Button
           style={{ marginRight: '10px'}}
@@ -75,18 +73,14 @@ const MasterForm = () => {
 
   return (
     <div>
-      {currentStep < 6 ? (
+      {currentStep < 4 ? (
         <div style={{ margin: '0 0 25px 0' }}>
           <ProgressBar
             currentStep={currentStep}
           />
       </div>
       ) : (
-        <div style={{ margin: '0 0 25px 0' }}>
-          <ProgressBar
-            currentStep={currentStep}
-          />
-        </div>
+        <div></div>
       )}
 
       <Form>
@@ -100,12 +94,6 @@ const MasterForm = () => {
           currentStep={currentStep}
         />
         <Step4
-          currentStep={currentStep}
-        />
-        <Step5
-          currentStep={currentStep}
-        />
-        <SuccessStep
           currentStep={currentStep}
         />
         {backButton()}
