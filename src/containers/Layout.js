@@ -1,25 +1,37 @@
-//Todo: This file is being replaced by AppWrapper.js.We can delete after transition is complete.
 import React from 'react';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import * as actions from '../redux/actions';
+import { Link } from 'react-router-dom';
+import { Layout, Breadcrumb } from 'antd';
 
-import NavBar from '../components/NavBar';
-import AlertDismissable from '../components/AlertDismissable';
 import Routes from './Routes';
+import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 
-const Layout = ({ logout }) => {
+const AppWrapper = () => {
+  const { Content } = Layout;
+
   return (
-    <div id="page-container">
-      <NavBar />
-      <div className="content">
-        <AlertDismissable close={logout} />
-        <Routes />
-      </div>
-      <Footer />
+    <div>
+      <Layout>
+        <NavBar />
+        <Content
+          className="site-layout"
+          style={{ padding: '50px', marginTop: 64, backgroundColor: '#fffff6' }}
+        >
+          <Breadcrumb style={{ margin: '16px 0' }}>
+            <Breadcrumb.Item>
+              <Link to="/">Village Portal</Link>
+            </Breadcrumb.Item>
+            <Breadcrumb.Item>
+              <Link to="/signup">Mentor Registration</Link>
+            </Breadcrumb.Item>
+          </Breadcrumb>
+          <div style={{ padding: 24, minHeight: 380 }}>
+            <Routes />
+          </div>
+        </Content>
+        <Footer />
+      </Layout>
     </div>
   );
 };
-
-export default withRouter(connect(null, actions)(Layout));
+export default AppWrapper;

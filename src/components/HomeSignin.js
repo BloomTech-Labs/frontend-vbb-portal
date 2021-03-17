@@ -25,10 +25,11 @@ const paragraphStyle = {
  * @param {redux action} manageFailedGoogleLogin current action from login import as a connected component
  */
 const HomeSignin = ({ history, logIn, manageFailedGoogleLogin }) => {
+  console.log('googleIDInComponent: ', process.env.REACT_APP_GOOGLE_CLIENT_ID);
   return (
     <div className="twocol-container">
       <div className="column" id="signin-box">
-        <h1 id="welcome-header">Welcome to VBB Portal!</h1>
+        <h1 id="welcome-header">Welcome to Village Portal!</h1>
         <h4 id="portal-purpose">
           Let's give hope to children through mentoring.
         </h4>
