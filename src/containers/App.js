@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 import '../style.less';
-import AppWrapper from './AppWrapper';
+import AppWrapper from './Layout';
 
 const App = () => {
   return (

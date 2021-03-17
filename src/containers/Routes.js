@@ -7,7 +7,7 @@ import Dashboard from '../components/Dashboard';
 import MasterForm from '../components/registration/MasterForm';
 import HomeSignin from '../components/HomeSignin';
 import SessionDetails from '../components/SessionDetails';
-// import Donation from "./registration/Donation"
+import Donation from '../components/registration/Donation';
 
 const Routes = () => {
   return (
@@ -28,9 +28,9 @@ const Routes = () => {
         <Route exact path="/sessiondetails/:sessionid/">
           <SessionDetails />
         </Route>
-        {/* <Route exact path="/donate/">
+        <Route exact path="/donate/">
           <Donation />
-        </Route> */}
+        </Route>
       </Switch>
     </div>
   );

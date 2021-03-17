@@ -1,6 +1,5 @@
-//Todo: This file isn't currently rendering. Will need to refactor with new design.
-
 import React from 'react';
+import { Button, Form } from 'antd';
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 
 // import CardSection from './CardSection';
@@ -45,7 +44,7 @@ export default function CheckoutForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onFinish={handleSubmit}>
       <div
         style={{
           padding: '10px',
@@ -56,9 +55,9 @@ export default function CheckoutForm() {
       >
         <CardElement />
       </div>
-      <button type="submit" className="btn donate-btn" disabled={!stripe}>
+      <Button type="primary" disabled={!stripe}>
         Pay
-      </button>
-    </form>
+      </Button>
+    </Form>
   );
 }

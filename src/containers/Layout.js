@@ -1,4 +1,3 @@
-//This component replaces Layout.js. We should delete Layout.js once we confirm it is no longer in use.
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Layout, Breadcrumb } from 'antd';
