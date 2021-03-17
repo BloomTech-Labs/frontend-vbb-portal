@@ -18,10 +18,19 @@ export const ProgressBar = (props) => {
         }
     }
 
+    const pageTitle = () => {
+        if (props.currentStep === 3) {
+            <h1 style={{ padding: '10px 0'}}>Support Your Mentee with a Gift!</h1>
+        } else {
+            <h1 style={{ padding: '10px 0'}}>Mentor Registration</h1>
+        }
+    }
+
     return (
         <Card style={{ marginBottom: '50px'}}>
-            
-            <h1 style={{ padding: '10px 0'}}>Mentor Registration</h1>
+            <div>
+                pageTitle()
+            </div>
             <Steps style={{}} responsive='true'>
                 <Step status="wait" title="Step 1" icon={<IdcardOutlined />} />
                 <Step status={progressBarStatus(2)} title="Step 2" icon={<FormOutlined />} />

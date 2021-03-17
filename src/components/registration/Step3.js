@@ -1,6 +1,6 @@
 import React from 'react';
 // import { connect } from 'react-redux';
-import { Button, List, Avatar, Alert, Row, Col, Image } from 'antd';
+import { Button, List, Avatar, Row, Col, Image } from 'antd';
 import { SafetyOutlined, LaptopOutlined, WifiOutlined, SoundOutlined, BookOutlined } from '@ant-design/icons';
 import ActionPicture from '../../images/vbb-in-action.png';
 
@@ -14,10 +14,6 @@ export const Step3 = (props) => {
     <div style={{ paddingBottom: '25px' }}>
       <Row>
         <Col span={12}>
-          <Alert
-            message="Support your mentee with a gift!"
-            type="info"
-          />
           <List style={{ padding: '25px 0' }}>
             <List.Item>Just $5 / month will afford your mentee:</List.Item>
             <List.Item>
