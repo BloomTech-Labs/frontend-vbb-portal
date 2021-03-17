@@ -1,5 +1,6 @@
 import React from 'react';
 // import { connect } from 'react-redux';
+// import * as actions from '../../redux/actions';
 import { Button, List, Avatar, Row, Col, Image } from 'antd';
 import { SafetyOutlined, LaptopOutlined, WifiOutlined, SoundOutlined, BookOutlined } from '@ant-design/icons';
 import ActionPicture from '../../images/vbb-in-action.png';

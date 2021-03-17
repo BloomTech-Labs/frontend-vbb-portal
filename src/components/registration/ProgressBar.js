@@ -1,5 +1,4 @@
 import React from 'react'
-// import { connect } from 'react-redux'
 import { Steps, Card } from 'antd';
 import { IdcardOutlined, FormOutlined, GiftOutlined, CheckOutlined } from '@ant-design/icons';
 
