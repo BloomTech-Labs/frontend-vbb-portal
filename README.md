@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 # Village Book Builders Portal (VBB)
 
-Village Portal is a open-sourced `school-based mentoring managment platform`. Development is lead by Village Book Builders volunteers. Village Book Builders accelerates learners globally through virtual mentoring, learning libraries, and special educational community-wide interventions. Village Portal helps schedule hundreds of virtual volunteer mentors in global time zones. Other Features are in development.
-=======
-Village Portal is an open-sourced `facility-based mentoring management platform`. Village Book Builders accelerates learners globally through virtual mentoring, learning libraries, and community-directed educational solutions. Village Portal helps schedule hundreds of virtual mentors with mentees worldwide; this connection catalyzes further impact. Other features are in development. Village Portal's mission is to enable mentors to teach courageous learners and communities <strong><em>how to fish</em></strong>. By increasing literacy, research, and educational skills, we hope to enable innovation economies in villages globally. Village Portal is an essential step towards a better future. Are you interested in the cause? Reach out to us at hr@villagebookbuilders.org. Learn more @ www.villagebookbuilders.org.
->>>>>>> 2630b3d43c924f3b75af2dbb432afa56401ec2ba
+# Village Portal is a open-sourced `school-based mentoring managment platform`. Development is lead by Village Book Builders volunteers. Village Book Builders accelerates learners globally through virtual mentoring, learning libraries, and special educational community-wide interventions. Village Portal helps schedule hundreds of virtual volunteer mentors in global time zones. Other Features are in development.
 
 This project is broken up into a separate backend and frontend repository. The backend contains the Django project which uses the Django Rest Framework to host a simple API and can be found at [backend-vbb-portal](https://github.com/VilllageBookBuilders/backend-vbb-portal). The frontend uses React and queries data from the API.
 
@@ -14,20 +10,19 @@ Run the following commands inside of the repository folder to get started:
 npm:
 
 ```bash
-npm i
 npm start
 ```
 
 yarn:
 
 ```bash
-yarn
 yarn start
 ```
 
 These commands (respectively)
+( You will need to add an a `.env` file. An example of this file can be found in `/examples/exampleENV`)
 
-1. npm/yarn i (install the node_js modules) (node js needs to be installed on your computer first)
+1. yarn (install the node_js modules) (node js needs to be installed on your computer first)
 2. npm/yarn start (this will create a temporary local server which reloads on detecting newly-saved changes to the codebase)
 3. ctrl + c (when pressed in the terminal window running the node server will close the server)
 
@@ -53,3 +48,7 @@ Note: Discard any database changes on your local server (**DON'T PUSH**)
 - Session: Represents the template of a slot ( think of this as the cookie cutter you make the cookies (slots) from )
 
 - Slot: Represents an individual meeting created from the session slot
+
+## Coding
+
+Examples of component patterns can be found under examples as can redux folder structure.
