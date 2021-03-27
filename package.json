@@ -9,7 +9,6 @@
     "@stripe/stripe-js": "^1.8.0",
     "antd": "^4.13.0",
     "axios": "^0.19.2",
-    "country-codes-list": "^1.6.8",
     "craco-less": "^1.17.1",
     "dot-prop": "^5.2.0",
     "dotenv": "^8.2.0",
