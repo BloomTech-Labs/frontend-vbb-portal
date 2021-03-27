@@ -6,7 +6,7 @@ import Routes from './Routes';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 
-const AppWrapper = () => {
+const MainLayout = () => {
   const { Content } = Layout;
 
   return (
@@ -34,4 +34,4 @@ const AppWrapper = () => {
     </div>
   );
 };
-export default AppWrapper;
+export default MainLayout;
