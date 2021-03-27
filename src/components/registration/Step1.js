@@ -12,32 +12,9 @@ import {
   Image,
 } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
-import countryCodes from 'country-codes-list';
 import MenteePicture from '../../images/vbb-mentee-computer.png';
 
 const { Option } = Select;
-
-//Phone number country code dropdown using country-code-list package
-const countryCodesObject = countryCodes.customList('countryCode', '+{countryCallingCode}');
-const countryCodesArray = Object.values(countryCodesObject)
-const countryCodeList = countryCodesArray.map((countryCode) => {
-  return (
-    <Option value={countryCode}>{countryCode}</Option>
-  )
-})
-
-//Need to add autocomplete in place of country code prefix dropdown
-const prefixSelector = (
-  <Form.Item name="prefix" noStyle>
-    <Select
-      style={{
-        width: 100,
-      }}
-    >
-      { countryCodeList }
-    </Select>
-  </Form.Item>
-);
 
 export const Step1 = (props) => {
   const [form] = Form.useForm();
@@ -109,8 +86,15 @@ export const Step1 = (props) => {
               <Input />
             </Form.Item>
             <Form.Item
-              name="phone"
-              label="Phone Number"
+               name="phone"
+               label={
+                 <span>
+                   Phone&nbsp;
+                   <Tooltip title="USA & Canada country code is +1">
+                     <QuestionCircleOutlined />
+                   </Tooltip>
+                 </span>
+               }
               rules={[
                 {
                   required: true,
@@ -119,10 +103,10 @@ export const Step1 = (props) => {
               ]}
             >
               <Input
-                addonBefore={prefixSelector}
                 style={{
                   width: '100%',
                 }}
+                placeholder='+1 (123) 123-4567'
               />
             </Form.Item>
             <Form.Item
