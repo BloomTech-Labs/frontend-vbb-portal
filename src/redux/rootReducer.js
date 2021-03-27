@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 
+import { user } from './User.redux/User.reducer';
 import { loading } from './Loading.redux/Loading.reducer';
 import { isError } from './IsError.redux/IsError.reducer';
 import { authToken } from './AuthToken.redux/AuthToken.reducer';
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   isError,
   authToken,
   sessionSlot,
+  user
 });
 
 export default rootReducer;
