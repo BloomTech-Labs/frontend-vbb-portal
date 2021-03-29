@@ -1,9 +1,13 @@
 import React from 'react';
+import {
+  Button,
+  Row,
+  Col
+} from 'antd';
 import { connect } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
-import { Link } from 'react-router-dom';
 import * as actions from '../redux/actions';
-import vbbInAction from '../images/vbb-in-action.png';
+import Logo from '../images/vbb-small-logo-white.png'
 
 /**
  * local inline style
@@ -26,40 +30,33 @@ const paragraphStyle = {
  */
 const HomeSignin = ({ history, logIn, manageFailedGoogleLogin }) => {
   return (
-    <div className="twocol-container">
-      <div className="column" id="signin-box">
-        <h1 id="welcome-header">Welcome to Village Portal!</h1>
-        <h4 id="portal-purpose">
-          Let's give hope to children through mentoring.
-        </h4>
-        <br />
-        <div id="google-box">
+      <Row justify="center" align="middle">
+        <Col span={24} style={{ textAlign: 'center', color: 'white', backgroundColor: '#549bea', borderRadius: '15px', padding: '2rem 1rem' }}>
+          <img
+          src={Logo}
+          alt="VBB logo icon"
+          width="100"
+          height="75"
+          style={{ margin: '1rem' }}
+          ></img>
+          <h1 style={{ margin: '1rem 0', color: 'white' }}>Village Portal</h1>
+          <h4 style={{ margin: '1rem 0 2rem 0', color: 'white' }}>
+            Let's give hope to children through mentoring.
+          </h4>
           <GoogleLogin
             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-            buttonText="Click here to sign in!"
+            buttonText="Login with Google"
             onSuccess={(res) => logIn(res.accessToken, history)}
             onFailure={(res) => manageFailedGoogleLogin(res)}
             cookiePolicy={'single_host_origin'}
-            style={{ width: '100%', paddingTop: '30px' }}
           />
-        </div>
-        <br />
-        <hr id="sep-bar" />
-        <br />
-        <div id="create-account-box">
-          <p style={paragraphStyle}>Don't have an account with us yet?</p>
-          <Link to="/signup/" className="btn btn-light signup-btn">
-            REGISTER
-          </Link>
-        </div>
-      </div>
-      <img
-        src={vbbInAction}
-        id="signin-picture"
-        alt="Two mentors reading to two mentees on the steps of a Village Book Builders' library"
-        style={{ width: '600px', margin: '5vw' }}
-      />
-    </div>
+          <p style={{ margin: '1rem 0' }}>Don't have an account with us yet?
+            <Button style={{ fontWeight: 'bold', lineHeight: '.5' }} type='link' href="/signup/">
+              Register
+            </Button>
+          </p>
+          </Col>
+      </Row>
   );
 };
 
