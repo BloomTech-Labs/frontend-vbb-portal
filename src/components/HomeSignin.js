@@ -10,16 +10,6 @@ import * as actions from '../redux/actions';
 import Logo from '../images/vbb-small-logo-white.png'
 
 /**
- * local inline style
- */
-const paragraphStyle = {
-  paddingLeft: '0px',
-  fontSize: '20px',
-  color: '#ff914d',
-  fontWeight: 'bolder',
-};
-
-/**
  * HomeSignin.
  * Connected functional component
  * Displays Google Signin button and Register button
