@@ -50,7 +50,7 @@ export const Step1 = (props) => {
               label={
                 <span>
                   First Name&nbsp;
-                  <Tooltip title="i.e. John">
+                  <Tooltip title="i.e. Jane">
                     <QuestionCircleOutlined />
                   </Tooltip>
                 </span>
