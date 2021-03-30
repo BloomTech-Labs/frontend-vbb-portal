@@ -41,7 +41,7 @@ const HomeSignin = ({ history, logIn, manageFailedGoogleLogin }) => {
             cookiePolicy={'single_host_origin'}
           />
           <p style={{ margin: '1rem 0' }}>Don't have an account with us yet?
-            <Button style={{ fontWeight: 'bold', lineHeight: '.5' }} type='link' href="/signup/">
+            <Button style={{ fontWeight: 'bold', lineHeight: '.5', color: 'white' }} type='link' href="/signup/">
               Register
             </Button>
           </p>
