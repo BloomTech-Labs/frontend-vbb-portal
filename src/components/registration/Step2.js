@@ -44,7 +44,7 @@ export const Step2 = (props) => {
   return (
     <div>
       <Row>
-        <Col xs={0} sm={0} md={0} lg={16} xl={12}>
+        <Col xs={24} sm={24} md={24} lg={16} xl={12}>
           <Form
             form={form}
             name="register"
