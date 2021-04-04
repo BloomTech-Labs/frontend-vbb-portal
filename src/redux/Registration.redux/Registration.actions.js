@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { NEWSLETTER_SUBSCRIBER_TYPES } from '../../util/newsletterSubscriberTypes';
+import { formatPhoneNumber } from '../../util/formatPhoneNumber';
 import { sleep } from '../../util/sleep';
 import {
   clearIsError,
@@ -28,34 +28,18 @@ export const setRegistrationForm = (regForm) => {
  * @param {firstName: string, lastName: string, phone: string, email:string, newsletter:boolean} registrationFormStepOne
  * @returns null
  */
-export const subInitialUserRegistration = () => async (dispatch, getState) => {
+export const subUserRegistration = () => async (dispatch, getState) => {
   dispatch(setLoading);
   const regForm = getState().registrationForm;
+  const headers = {
+    'Content-Type': 'application/json',
+  };
   try {
-    //if they signup for the newsletter
-    if (regForm.subToNewsLetter) {
-      try {
-        const body = {
-          first_name: regForm.firstName,
-          last_name: regForm.lastName,
-          phone_number: regForm.phone,
-          email: regForm.email,
-          subscriber_type: NEWSLETTER_SUBSCRIBER_TYPES.VBB_NEWSLETTER,
-        };
-        const { status } = await axios.post(
-          PYTHON_API + 'v1/newsletter/',
-          body
-        );
-      } catch (err) {
-        //choice at present is to not fail the process if registering the user does not work
-        console.error('Registering user for newsletter failed', err);
-      }
-    }
-
     //registers the user with VBB
     const { data, status } = await axios.post(
       PYTHON_API + 'v1/mentor/',
-      transformRegistrationFormForSubmission()
+      transformRegistrationFormForSubmission(regForm),
+      headers
     );
     //
     if (status === 201) {
@@ -83,8 +67,11 @@ const transformRegistrationFormForSubmission = (regForm) => {
       first_name: regForm.firstName,
       last_name: regForm.lastName,
       personal_email: regForm.email,
-      phone: regForm.phone,
+      phone: formatPhoneNumber(regForm.phone),
+      time_zone: regForm.timeZone,
     },
+    address: regForm.address,
+    is_adult: regForm.is_adult,
   };
 };
 
