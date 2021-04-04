@@ -25,7 +25,7 @@ const MasterForm = ({ subInitialUserRegistration }) => {
   };
 
   const backButton = () => {
-    if (currentStep == 2 || currentStep == 3) {
+    if (currentStep === 2 || currentStep === 3) {
       return (
         <Button style={{ marginRight: '10px' }} type="button" onClick={back}>
           <LeftOutlined />
