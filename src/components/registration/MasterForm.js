@@ -10,7 +10,7 @@ import Step3 from './Step3';
 import Step4 from './Step4';
 import ProgressBar from './ProgressBar';
 
-const MasterForm = ({ registerForNewsletter }) => {
+const MasterForm = ({ registerForNewsletter, subUserRegistration }) => {
   let [currentStep, setCurrentStep] = useState(1);
 
   const next = () => {
@@ -69,7 +69,11 @@ const MasterForm = ({ registerForNewsletter }) => {
   const registerButton = () => {
     if (currentStep === 3) {
       return (
-        <Button style={{ marginRight: '10px' }} type="button" onClick={next}>
+        <Button
+          style={{ marginRight: '10px' }}
+          type="button"
+          onClick={subUserRegistration}
+        >
           Register
           <CheckOutlined />
         </Button>
