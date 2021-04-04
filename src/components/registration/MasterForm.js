@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { connect } from 'redux';
+import { connect } from 'react-redux';
 import * as actions from '../../redux/actions';
 import { Button, Form } from 'antd';
 import { RightOutlined, LeftOutlined, CheckOutlined } from '@ant-design/icons';
