@@ -10,7 +10,7 @@ import Step3 from './Step3';
 import Step4 from './Step4';
 import ProgressBar from './ProgressBar';
 
-const MasterForm = ({ subInitialUserRegistration }) => {
+const MasterForm = ({ registerForNewsletter }) => {
   let [currentStep, setCurrentStep] = useState(1);
 
   const next = () => {
@@ -45,7 +45,7 @@ const MasterForm = ({ subInitialUserRegistration }) => {
             type="button"
             onClick={() => {
               //@todo: how do we handle previously submitted user?
-              subInitialUserRegistration();
+              registerForNewsletter();
               next();
             }}
           >
