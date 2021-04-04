@@ -20,11 +20,7 @@ export const registerForNewsletter = () => async (dispatch, getState) => {
         email: regForm.email,
         subscriber_type: NEWSLETTER_SUBSCRIBER_TYPES.VBB_NEWSLETTER,
       };
-      await axios.post(
-        PYTHON_API + 'v1/newsletter/',
-        JSON.stringify(body),
-        headers
-      );
+      await axios.post(PYTHON_API + 'v1/newsletter/', body, headers);
     } catch (err) {
       //choice at present is to not fail the process if registering the user does not work
       console.error('Registering user for newsletter failed', err);
