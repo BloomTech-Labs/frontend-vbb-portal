@@ -1,44 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actions';
-import { Form, Input, Tooltip, Checkbox, Select, Row, Col, Image } from 'antd';
+import { Form, Input, Tooltip, Checkbox, Row, Col, Image } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 
 import MenteePicture from '../../images/vbb-mentee-computer.png';
 
-// const { Option } = Select;
-
-export const Step1 = (props) => {
-  const [form] = Form.useForm();
-
-  const onFinish = (values) => {
-    console.log('Form values: ', values);
-  };
-
-  if (props.currentStep !== 1) {
+export const Step1 = ({
+  currentStep,
+  registrationForm,
+  setRegistrationForm,
+}) => {
+  if (currentStep !== 1) {
     return null;
   }
-
   return (
     <div>
       <Row>
         <Col xs={24} sm={24} md={24} lg={16} xl={12}>
-          <Form
-            form={form}
-            name="register"
-            layout="vertical"
-            onFinish={onFinish}
-            initialValues={{
-              firstname: '',
-              lastname: '',
-              phone: '',
-              email: '',
-              newsletter: true,
-            }}
-            scrollToFirstError
-          >
+          <Form layout="vertical" scrollToFirstError>
             <Form.Item
-              name="firstname"
               label={
                 <span>
                   First Name&nbsp;
@@ -55,10 +36,19 @@ export const Step1 = (props) => {
                 },
               ]}
             >
-              <Input />
+              <Input
+                name="first name"
+                value={registrationForm.firstName}
+                onChange={(e) => {
+                  const updatedRegForm = {
+                    ...registrationForm,
+                    firstName: e.target.value,
+                  };
+                  setRegistrationForm(updatedRegForm);
+                }}
+              />
             </Form.Item>
             <Form.Item
-              name="lastname"
               label={
                 <span>
                   Last Name&nbsp;
@@ -75,10 +65,19 @@ export const Step1 = (props) => {
                 },
               ]}
             >
-              <Input />
+              <Input
+                name="last name"
+                value={registrationForm.lastName}
+                onChange={(e) => {
+                  const updatedRegForm = {
+                    ...registrationForm,
+                    lastName: e.target.value,
+                  };
+                  setRegistrationForm(updatedRegForm);
+                }}
+              />
             </Form.Item>
             <Form.Item
-              name="phone"
               label={
                 <span>
                   Phone&nbsp;
@@ -95,14 +94,22 @@ export const Step1 = (props) => {
               ]}
             >
               <Input
+                name="phone"
                 style={{
                   width: '100%',
                 }}
                 placeholder="+1 (123) 123-4567"
+                value={registrationForm.phone}
+                onChange={(e) => {
+                  const updatedRegForm = {
+                    ...registrationForm,
+                    phone: e.target.value,
+                  };
+                  setRegistrationForm(updatedRegForm);
+                }}
               />
             </Form.Item>
             <Form.Item
-              name="email"
               label="Email"
               rules={[
                 {
@@ -115,19 +122,31 @@ export const Step1 = (props) => {
                 },
               ]}
             >
-              <Input />
+              <Input
+                name="email"
+                value={registrationForm.email}
+                onChange={(e) => {
+                  const updatedRegForm = {
+                    ...registrationForm,
+                    email: e.target.value,
+                  };
+                  setRegistrationForm(updatedRegForm);
+                }}
+              />
             </Form.Item>
-            <Form.Item
-              name="newsletter"
-              valuePropName="checked"
-              rules={[
-                {
-                  validator: (_, value) =>
-                    value ? Promise.resolve() : Promise.reject(),
-                },
-              ]}
-            >
-              <Checkbox>I would like to receive the VBB newsletter.</Checkbox>
+            <Form.Item>
+              <Checkbox
+                checked={registrationForm.subToNewsLetter}
+                onChange={(e) => {
+                  const updatedRegForm = {
+                    ...registrationForm,
+                    subToNewsLetter: e.target.checked,
+                  };
+                  setRegistrationForm(updatedRegForm);
+                }}
+              >
+                I would like to receive the VBB newsletter.
+              </Checkbox>
             </Form.Item>
           </Form>
         </Col>
@@ -141,4 +160,8 @@ export const Step1 = (props) => {
   );
 };
 
-export default connect(null, actions)(Step1);
+const mapStateToProps = (state) => {
+  return { registrationForm: state.registrationForm };
+};
+
+export default connect(mapStateToProps, actions)(Step1);
