@@ -28,7 +28,7 @@ export const setRegistrationForm = (regForm) => {
  * @param {firstName: string, lastName: string, phone: string, email:string, newsletter:boolean} registrationFormStepOne
  * @returns null
  */
-export const subUserRegistration = () => async (dispatch, getState) => {
+export const subUserRegistration = (history) => async (dispatch, getState) => {
   dispatch(setLoading);
   const regForm = getState().registrationForm;
   const headers = {
@@ -41,9 +41,10 @@ export const subUserRegistration = () => async (dispatch, getState) => {
       transformRegistrationFormForSubmission(regForm),
       headers
     );
-    //
+
     if (status === 201) {
       dispatch(setUser(transformRegistrationFormResponse(data)));
+      history.push('/');
     } else {
       console.error('Failed Registration');
       dispatch(
@@ -57,7 +58,7 @@ export const subUserRegistration = () => async (dispatch, getState) => {
     }
     dispatch(setLoadingFalse);
   } catch (err) {
-    console.error('initial user registration error', err);
+    console.error('mentor registration error', err);
   }
 };
 
