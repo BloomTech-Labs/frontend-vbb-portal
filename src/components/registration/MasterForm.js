@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actions';
+import { withRouter } from 'react-router';
 import { Button, Form } from 'antd';
 import { RightOutlined, LeftOutlined, CheckOutlined } from '@ant-design/icons';
 
@@ -10,7 +11,11 @@ import Step3 from './Step3';
 import Step4 from './Step4';
 import ProgressBar from './ProgressBar';
 
-const MasterForm = ({ registerForNewsletter, subUserRegistration }) => {
+const MasterForm = ({
+  registerForNewsletter,
+  subUserRegistration,
+  history,
+}) => {
   let [currentStep, setCurrentStep] = useState(1);
 
   const next = () => {
@@ -72,7 +77,9 @@ const MasterForm = ({ registerForNewsletter, subUserRegistration }) => {
         <Button
           style={{ marginRight: '10px' }}
           type="button"
-          onClick={subUserRegistration}
+          onClick={() => {
+            subUserRegistration(history);
+          }}
         >
           Register
           <CheckOutlined />
@@ -105,4 +112,4 @@ const MasterForm = ({ registerForNewsletter, subUserRegistration }) => {
   );
 };
 
-export default connect(null, actions)(MasterForm);
+export default withRouter(connect(null, actions)(MasterForm));
