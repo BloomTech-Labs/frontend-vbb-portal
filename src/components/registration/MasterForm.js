@@ -99,7 +99,7 @@ const MasterForm = ({
         <div></div>
       )}
 
-      <Form>
+      <div>
         <Step1 currentStep={currentStep} />
         <Step2 currentStep={currentStep} />
         <Step3 currentStep={currentStep} />
@@ -107,7 +107,7 @@ const MasterForm = ({
         {backButton()}
         {nextButton()}
         {registerButton()}
-      </Form>
+      </div>
     </div>
   );
 };
