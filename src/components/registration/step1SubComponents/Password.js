@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../redux/actions';
 import { Form, Input } from 'antd';
+import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 
 const Password = ({ registrationForm, setRegistrationForm }) => {
     return (
@@ -19,9 +20,10 @@ const Password = ({ registrationForm, setRegistrationForm }) => {
           },
         ]}
       >
-        <Input
+        <Input.Password
           name="password"
           value={registrationForm.password}
+          iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
           onChange={(e) => {
             const updatedRegForm = {
               ...registrationForm,
