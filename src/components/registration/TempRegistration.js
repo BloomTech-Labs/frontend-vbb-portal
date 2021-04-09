@@ -4,7 +4,6 @@ import { Form, Row, Col } from 'antd';
 import Email from './step1SubComponents/Email';
 import FirstName from './step1SubComponents/FirstName';
 import LastName from './step1SubComponents/LastName';
-import Newsletter from './step1SubComponents/Newsletter';
 import Phone from './step1SubComponents/Phone';
 import TimeZone from './step2SubComponents/TimeZone';
 import Address from './step2SubComponents/Address';
