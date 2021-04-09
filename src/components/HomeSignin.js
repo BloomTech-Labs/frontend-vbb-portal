@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Input, Button, Checkbox, Row, Col } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { UserOutlined, LockOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
 import * as actions from '../redux/actions';
@@ -52,10 +52,11 @@ const HomeSignin = ({ history, logIn, manageFailedGoogleLogin }) => {
             name="password"
             rules={[{ required: true, message: 'Password is required.' }]}
           >
-            <Input
+            <Input.Password
               prefix={<LockOutlined />}
               type="password"
               name="password"
+              iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
             />
           </Form.Item>
         </div>
