@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actions';
-import { Form, Input, Tooltip, Checkbox, Row, Col, Image } from 'antd';
-import { QuestionCircleOutlined } from '@ant-design/icons';
+import { Form, Row, Col, Image } from 'antd';
 
 import MenteePicture from '../../images/vbb-mentee-computer.png';
 import FirstName from '../registration/step1SubComponents/FirstName';
