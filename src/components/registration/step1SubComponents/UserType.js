@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../../redux/actions';
 import { Form, Select } from 'antd';
 
-const UserType = ({ registrationForm, setRegistrationForm }) => {
+const UserType = ({ user, setUser }) => {
   const { Option } = Select;
   return (
     <Form.Item
@@ -18,13 +18,13 @@ const UserType = ({ registrationForm, setRegistrationForm }) => {
       ]}
     >
       <Select
-        value={registrationForm}
+        value={user}
         onChange={(e) => {
-            const updatedRegForm = {
-              ...registrationForm,
+            const updatedUser = {
+              ...user,
               userType: e.target.value
             };
-            setRegistrationForm(updatedRegForm);
+            setUser(updatedUser);
           }}
       >
         <Option value="Mentor">Mentor</Option>
@@ -39,7 +39,7 @@ const UserType = ({ registrationForm, setRegistrationForm }) => {
 };
 
 const mapStateToProps = (state) => {
-  return { registrationForm: state.registrationForm };
+  return { user: state.user };
 };
 
 export default connect(mapStateToProps, actions)(UserType);
