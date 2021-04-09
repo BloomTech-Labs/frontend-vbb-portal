@@ -25,7 +25,7 @@ const FirstName = ({ registrationForm, setRegistrationForm }) => {
   >
     <Input
       name="first name"
-      value={registrationForm.first_name}
+      value={registrationForm.firstName}
       onChange={(e) => {
         const updatedRegForm = {
           ...registrationForm,

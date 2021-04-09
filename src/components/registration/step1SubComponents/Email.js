@@ -20,7 +20,7 @@ const Email = ({ registrationForm, setRegistrationForm }) => {
       >
         <Input
           name="email"
-          value={registrationForm.personal_email}
+          value={registrationForm.email}
           onChange={(e) => {
             const updatedRegForm = {
               ...registrationForm,
