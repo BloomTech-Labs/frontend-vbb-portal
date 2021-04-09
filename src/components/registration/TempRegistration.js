@@ -14,7 +14,7 @@ import UserType from './step1SubComponents/UserType';
 function TempRegistration() {
     return (
         <div>
-            <Row justify="center">
+            <Row justify="center" style={{ margin: '1rem 0' }}>
                 <h1>User Registration</h1>
             </Row>
             <Row justify="center">
