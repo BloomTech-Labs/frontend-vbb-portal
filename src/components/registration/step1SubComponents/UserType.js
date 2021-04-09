@@ -27,11 +27,11 @@ const UserType = ({ registrationForm, setRegistrationForm }) => {
             setRegistrationForm(updatedRegForm);
           }}
       >
-        <Option value="Mentor">Homemaker</Option>
-        <Option value="Student">Retired</Option>
-        <Option value="Headmaster">Working Professional</Option>
-        <Option value="Library Administrator">College Student</Option>
-        <Option value="Teacher">High School Student</Option>
+        <Option value="Mentor">Mentor</Option>
+        <Option value="Student">Student</Option>
+        <Option value="Headmaster">Headmaster</Option>
+        <Option value="Library Administrator">Library Administrator</Option>
+        <Option value="Teacher">Teacher</Option>
         <Option value="Other">Other</Option>
       </Select>
     </Form.Item>
