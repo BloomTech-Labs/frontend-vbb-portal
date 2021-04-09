@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../../redux/actions';
 import { Form, Input } from 'antd';
 
-const LastName = ({ registrationForm, setRegistrationForm }) => {
+const Password = ({ registrationForm, setRegistrationForm }) => {
     return (
       <Form.Item
         label={
