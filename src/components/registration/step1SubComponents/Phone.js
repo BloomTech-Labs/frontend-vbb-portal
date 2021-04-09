@@ -1,4 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../../../redux/actions';
+import { Form, Tooltip, Input } from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';
 
 const Phone= ({ registrationForm, setRegistrationForm }) => {
     return (

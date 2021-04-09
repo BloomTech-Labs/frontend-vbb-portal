@@ -1,4 +1,7 @@
-import React from 'react'
+import React from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../../../redux/actions';
+import { Form, Checkbox} from 'antd';
 
 const Newsletter= ({ registrationForm, setRegistrationForm }) => {
     return (
