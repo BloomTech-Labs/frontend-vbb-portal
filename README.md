@@ -7,13 +7,6 @@ This project is broken up into a separate backend and frontend repository. The b
 Install node.js and get the backend server running beforehand!
 
 Run the following commands inside of the repository folder to get started:
-npm:
-
-```bash
-npm start
-```
-
-yarn:
 
 ```bash
 yarn start
@@ -23,19 +16,18 @@ These commands (respectively)
 ( You will need to add an a `.env` file. An example of this file can be found in `/examples/exampleENV`)
 
 1. yarn (install the node_js modules) (node js needs to be installed on your computer first)
-2. npm/yarn start (this will create a temporary local server which reloads on detecting newly-saved changes to the codebase)
+
+2. yarn start (this will create a temporary local server which reloads on detecting newly-saved changes to the codebase)
+
 3. ctrl + c (when pressed in the terminal window running the node server will close the server)
-
-For the Youtube tutorials associated with this code (and preparing it for production), click here https://youtu.be/uZgRbnIsgrA
-
-*Note: run server on local Host : http://localhost:8000/signin
-*Note: to access, django admin, go to http://localhost:8000/admin/
-Username and Password: \$\$;
-Note: Discard any database changes on your local server (**DON'T PUSH**)
 
 ## Docs and valuable links
 
 - [Swagger docs for standalone python backend ](https://vbb-backend.herokuapp.com/swagger/)
+
+## Testing Notes
+
+**NOTE**: Phone numbers must be accurate down to the exchange. For the US that means the country code ( 1 ) + area code ( 202 ) + ( 489 ) must be real or the request to the backend will fail
 
 ## Terminology
 
