@@ -8,6 +8,8 @@ import Password from './step1SubComponents/Password';
 import Phone from './step1SubComponents/Phone';
 import TimeZone from './step2SubComponents/TimeZone';
 import Address from './step2SubComponents/Address';
+import IsAdult from './step2SubComponents/IsAdult';
+import UserType from './step1SubComponents/UserType';
 
 function TempRegistration() {
     return (
@@ -23,6 +25,8 @@ function TempRegistration() {
                         <Phone />
                         <TimeZone />
                         <Address />
+                        <IsAdult />
+                        <UserType />
                     </Form>
                 </Col>
             </Row>
