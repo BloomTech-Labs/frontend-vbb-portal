@@ -1,5 +1,6 @@
 import React from 'react';
-import { Form, Row, Col } from 'antd';
+import { Form, Row, Col, Button } from 'antd';
+import { CheckOutlined } from '@ant-design/icons';
 
 import FirstName from './step1SubComponents/FirstName';
 import LastName from './step1SubComponents/LastName';
@@ -11,7 +12,7 @@ import Address from './step2SubComponents/Address';
 import IsAdult from './step2SubComponents/IsAdult';
 import UserType from './step1SubComponents/UserType';
 
-function TempRegistration() {
+const TempRegistration = ({ subUserRegistration, history }) => {
     return (
         <div>
             <Row justify="center" style={{ margin: '1rem 0' }}>
@@ -29,6 +30,16 @@ function TempRegistration() {
                         <Address />
                         <IsAdult />
                         <UserType />
+                        <Button
+                            style={{ marginRight: '10px' }}
+                            type="button"
+                            onClick={() => {
+                                subUserRegistration(history);
+                            }}
+                            >
+                            Register
+                            <CheckOutlined />
+                        </Button>
                     </Form>
                 </Col>
             </Row>
