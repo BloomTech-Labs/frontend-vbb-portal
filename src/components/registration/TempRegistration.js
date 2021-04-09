@@ -14,8 +14,10 @@ import UserType from './step1SubComponents/UserType';
 function TempRegistration() {
     return (
         <div>
-        <h1>User Registration</h1>
-            <Row>
+            <Row justify="center">
+                <h1>User Registration</h1>
+            </Row>
+            <Row justify="center">
                 <Col xs={24} sm={24} md={24} lg={16} xl={12}>
                     <Form name="register" layout="vertical" scrollToFirstError>
                         <FirstName />
