@@ -29,10 +29,10 @@ const UserType = ({ registrationForm, setRegistrationForm }) => {
       >
         <Option value="Mentor">Mentor</Option>
         <Option value="Student">Student</Option>
-        <Option value="Headmaster">Headmaster</Option>
-        <Option value="Library Administrator">Library Administrator</Option>
         <Option value="Teacher">Teacher</Option>
-        <Option value="Other">Other</Option>
+        <Option value="Headmaster">Headmaster</Option>
+        <Option value="Director">Director</Option>
+        <Option value="Advisor">Advisor</Option>
       </Select>
     </Form.Item>
   );
