@@ -1,9 +1,10 @@
 import React from 'react';
-import { Button, Row, Col } from 'antd';
+import { Form, Input, Button, Checkbox, Row, Col } from 'antd';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
 import * as actions from '../redux/actions';
-import Logo from '../images/vbb-small-logo-white.png';
+import Logo from '../images/vbb-picture-logo.png';
 
 /**
  * HomeSignin.
@@ -21,10 +22,6 @@ const HomeSignin = ({ history, logIn, manageFailedGoogleLogin }) => {
         span={24}
         style={{
           textAlign: 'center',
-          color: 'white',
-          backgroundColor: '#549bea',
-          borderRadius: '15px',
-          padding: '2rem 1rem',
         }}
       >
         <img
@@ -34,10 +31,50 @@ const HomeSignin = ({ history, logIn, manageFailedGoogleLogin }) => {
           height="75"
           style={{ margin: '1rem' }}
         ></img>
-        <h1 style={{ margin: '1rem 0', color: 'white' }}>Village Portal</h1>
-        <h4 style={{ margin: '1rem 0 2rem 0', color: 'white' }}>
+        <h1 style={{ margin: '1rem 0' }}>Village Portal</h1>
+        <h4 style={{ margin: '1rem 0 2rem 0' }}>
           Let's give hope to children through mentoring.
         </h4>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[{ required: true, message: 'Email is required.' }]}
+          >
+            <Input
+              prefix={<UserOutlined />}
+              type="text"
+              name="email"
+            />
+          </Form.Item>
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[{ required: true, message: 'Password is required.' }]}
+          >
+            <Input
+              prefix={<LockOutlined />}
+              type="password"
+              name="password"
+            />
+          </Form.Item>
+        </div>
+        <Form.Item>
+          <Form.Item name="remember" valuePropName="checked" noStyle>
+            <Checkbox>Remember me</Checkbox>
+          </Form.Item>
+          <a href="">
+            Forgot password
+          </a>
+        </Form.Item>
+        <Form.Item>
+          <Button
+            type="primary"
+            htmlType="submit"
+          >
+            Log In
+          </Button>
+        </Form.Item>
         <GoogleLogin
           clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
           buttonText="Login with Google"
@@ -48,7 +85,7 @@ const HomeSignin = ({ history, logIn, manageFailedGoogleLogin }) => {
         <p style={{ margin: '1rem 0' }}>
           Don't have an account with us yet?
           <Button
-            style={{ fontWeight: 'bold', lineHeight: '.5', color: 'white' }}
+            style={{ lineHeight: '.5' }}
             type="link"
             href="/signup/"
           >
