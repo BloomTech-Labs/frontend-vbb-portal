@@ -60,18 +60,26 @@ const HomeSignin = ({ history, logIn, manageFailedGoogleLogin, registrationForm,
             <Input.Password
               prefix={<LockOutlined />}
               type="password"
+              value={registrationForm.password}
+              onChange={(e)=> {
+                const updatedRegForm = {
+                  ...registrationForm,
+                  password: e.target.value
+                }
+                setRegistrationForm(updatedRegForm)
+              }}
               iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
             />
           </Form.Item>
         </div>
-        <Form.Item>
+        {/* <Form.Item>
           <Form.Item name="remember" valuePropName="checked" noStyle>
             <Checkbox>Remember me</Checkbox>
           </Form.Item>
           <a href="">
             Forgot password
           </a>
-        </Form.Item>
+        </Form.Item> */}
         <Form.Item>
           <Button
             type="primary"
