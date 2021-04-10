@@ -15,7 +15,7 @@ import Logo from '../images/vbb-picture-logo.png';
  * @param {redux action} logIn current action from login import as a connected component
  * @param {redux action} manageFailedGoogleLogin current action from login import as a connected component
  */
-const HomeSignin = ({ history, logIn, manageFailedGoogleLogin }) => {
+const HomeSignin = ({ history, logIn, manageFailedGoogleLogin, registrationForm, setRegistrationForm }) => {
   return (
     <Row justify="center" align="middle">
       <Col
@@ -38,24 +38,28 @@ const HomeSignin = ({ history, logIn, manageFailedGoogleLogin }) => {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <Form.Item
             label="Email"
-            name="email"
             rules={[{ required: true, message: 'Email is required.' }]}
           >
             <Input
               prefix={<UserOutlined />}
               type="text"
-              name="email"
+              value={registrationForm.email}
+              onChange={(e)=> {
+                const updatedRegForm = {
+                  ...registrationForm,
+                  email: e.target.value
+                }
+                setRegistrationForm(updatedRegForm)
+              }}
             />
           </Form.Item>
           <Form.Item
             label="Password"
-            name="password"
             rules={[{ required: true, message: 'Password is required.' }]}
           >
             <Input.Password
               prefix={<LockOutlined />}
               type="password"
-              name="password"
               iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
             />
           </Form.Item>
@@ -98,4 +102,8 @@ const HomeSignin = ({ history, logIn, manageFailedGoogleLogin }) => {
   );
 };
 
-export default connect(null, actions)(HomeSignin);
+const mapStateToProps = (state) => {
+  return { registrationForm: state.registrationForm };
+};
+
+export default connect(mapStateToProps, actions)(HomeSignin);
