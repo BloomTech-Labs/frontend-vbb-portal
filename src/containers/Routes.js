@@ -8,11 +8,15 @@ import MasterForm from '../components/registration/MasterForm';
 import HomeSignin from '../components/HomeSignin';
 import SessionDetails from '../components/SessionDetails';
 import Donation from '../components/registration/Donation';
+import TempRegistration from '../components/registration/TempRegistration';
 
 const Routes = () => {
   return (
     <div className="App">
       <Switch>
+        <Route exact path="/register/">
+          <TempRegistration />
+        </Route>
         <PrivateRoute exact path="/">
           <Dashboard />
         </PrivateRoute>
