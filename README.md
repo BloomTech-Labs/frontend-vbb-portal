@@ -34,3 +34,5 @@ This project is broken up into a separate backend and frontend repository. The b
 ## Coding
 
 Examples of component patterns can be found under examples as can redux folder structure.
+
+test
