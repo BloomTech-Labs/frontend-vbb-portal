@@ -11,11 +11,13 @@ This project is broken up into a separate backend and frontend repository. The b
 3. `yarn start`
 
 
-For the Youtube tutorials associated with this code (and preparing it for production), click here https://youtu.be/uZgRbnIsgrA
-
 ## API Docs and valuable links
 
 - [Swagger docs for standalone python backend ](https://vbb-backend.herokuapp.com/swagger/)
+
+## Testing Notes
+
+**NOTE**: Phone numbers must be accurate down to the exchange. For the US that means the country code ( 1 ) + area code ( 202 ) + ( 489 ) must be real or the request to the backend will fail
 
 ## Terminology
 

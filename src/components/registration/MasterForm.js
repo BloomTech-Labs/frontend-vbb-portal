@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../../redux/actions';
+import { withRouter } from 'react-router';
 import { Button, Form } from 'antd';
 import { RightOutlined, LeftOutlined, CheckOutlined } from '@ant-design/icons';
+
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
 import Step4 from './Step4';
 import ProgressBar from './ProgressBar';
 
-const MasterForm = () => {
+const MasterForm = ({
+  registerForNewsletter,
+  subUserRegistration,
+  history,
+}) => {
   let [currentStep, setCurrentStep] = useState(1);
 
   const next = () => {
@@ -34,21 +42,45 @@ const MasterForm = () => {
   };
 
   const nextButton = () => {
-    if (currentStep === 1 || currentStep === 2) {
-      return (
-        <Button style={{ marginRight: '10px' }} type="button" onClick={next}>
-          Next
-          <RightOutlined />
-        </Button>
-      );
+    switch (currentStep) {
+      case 1:
+        return (
+          <Button
+            style={{ marginRight: '10px' }}
+            type="button"
+            onClick={() => {
+              //@todo: how do we handle previously submitted user?
+              registerForNewsletter();
+              next();
+            }}
+          >
+            Next
+            <RightOutlined />
+          </Button>
+        );
+
+      case 2:
+        return (
+          <Button style={{ marginRight: '10px' }} type="button" onClick={next}>
+            Next
+            <RightOutlined />
+          </Button>
+        );
+      default:
+        return null;
     }
-    return null;
   };
 
   const registerButton = () => {
     if (currentStep === 3) {
       return (
-        <Button style={{ marginRight: '10px' }} type="button" onClick={next}>
+        <Button
+          style={{ marginRight: '10px' }}
+          type="button"
+          onClick={() => {
+            subUserRegistration(history);
+          }}
+        >
           Register
           <CheckOutlined />
         </Button>
@@ -67,7 +99,7 @@ const MasterForm = () => {
         <div></div>
       )}
 
-      <Form>
+      <div>
         <Step1 currentStep={currentStep} />
         <Step2 currentStep={currentStep} />
         <Step3 currentStep={currentStep} />
@@ -75,9 +107,9 @@ const MasterForm = () => {
         {backButton()}
         {nextButton()}
         {registerButton()}
-      </Form>
+      </div>
     </div>
   );
 };
 
-export default MasterForm;
+export default withRouter(connect(null, actions)(MasterForm));
