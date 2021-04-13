@@ -96,11 +96,11 @@ export const logIn = (googleToken, history) => async (dispatch) => {
 /**
  * Responsible for logging in the user given an email and a password
  * Will attempt a call to the API and set the user in store
- * @param {string} email user's email address
+ * @param {HistoryObj} history History object from react router
  * @param {string} password user's plain text password
  * @returns
  */
-export const logInEmailPassword = () => async (dispatch, getState) => {
+export const logInEmailPassword = (history) => async (dispatch, getState) => {
   const email = getState().registrationForm?.email;
   const password = getState().registrationForm?.password;
 
@@ -113,14 +113,16 @@ export const logInEmailPassword = () => async (dispatch, getState) => {
   try {
     const token = await getTokenFromEmailPassword(email, password);
     const user = await getUserFromAuthToken(token);
+
     dispatch(setUser(transformUser(user)));
-    return;
+    dispatch(setAuthToken(token));
+
+    history.push('/');
   } catch (err) {
     console.debug('Error logging in user');
     setIsError('Error logging in User');
     await sleep(3000);
     clearIsError();
-    return;
   }
 };
 

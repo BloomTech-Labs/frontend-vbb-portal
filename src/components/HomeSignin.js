@@ -105,7 +105,7 @@ const HomeSignin = ({
             type="primary"
             htmlType="button"
             onClick={() => {
-              logInEmailPassword();
+              logInEmailPassword(history);
             }}
           >
             Log In
