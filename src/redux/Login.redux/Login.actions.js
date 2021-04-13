@@ -27,11 +27,11 @@ import {
  * Manages failed google Login
  * Sets an error state, sleeps for 2000ms and then clears error state
  */
-export const manageFailedGoogleLogin = async (res) => {
+export const manageFailedGoogleLogin = (res) => async (dispatch) => {
   console.debug('Error response from failed google login', res);
-  setIsError('Google login has failed. Please try again');
+  dispatch(setIsError('Google login has failed. Please try again'));
   await sleep(2000);
-  clearIsError();
+  dispatch(clearIsError());
 };
 
 /**
