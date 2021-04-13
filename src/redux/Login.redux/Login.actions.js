@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { getUserFromAuthToken } from '../../util/getUserWithAuthToken';
 import { sleep } from '../../util/sleep';
 import {
   PYTHON_API,
@@ -8,7 +8,6 @@ import {
   setIsError,
   clearIsError,
   setAuthToken,
-  getUserFromAuthToken,
   setUser,
 } from '../actions';
 
