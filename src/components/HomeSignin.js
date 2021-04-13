@@ -1,6 +1,11 @@
 import React from 'react';
-import { Form, Input, Button, Checkbox, Row, Col } from 'antd';
-import { UserOutlined, LockOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import { Form, Input, Button, Row, Col } from 'antd';
+import {
+  UserOutlined,
+  LockOutlined,
+  EyeInvisibleOutlined,
+  EyeTwoTone,
+} from '@ant-design/icons';
 import { connect } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
 import * as actions from '../redux/actions';
@@ -15,7 +20,14 @@ import Logo from '../images/vbb-picture-logo.png';
  * @param {redux action} logIn current action from login import as a connected component
  * @param {redux action} manageFailedGoogleLogin current action from login import as a connected component
  */
-const HomeSignin = ({ history, logIn, manageFailedGoogleLogin, registrationForm, setRegistrationForm }) => {
+const HomeSignin = ({
+  history,
+  logIn,
+  manageFailedGoogleLogin,
+  registrationForm,
+  setRegistrationForm,
+  logInEmailPassword,
+}) => {
   return (
     <Row justify="center" align="middle">
       <Col
@@ -35,7 +47,13 @@ const HomeSignin = ({ history, logIn, manageFailedGoogleLogin, registrationForm,
         <h4 style={{ margin: '1rem 0 2rem 0' }}>
           Let's give hope to children through mentoring.
         </h4>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
           <Form.Item
             label="Email"
             rules={[{ required: true, message: 'Email is required.' }]}
@@ -44,12 +62,12 @@ const HomeSignin = ({ history, logIn, manageFailedGoogleLogin, registrationForm,
               prefix={<UserOutlined />}
               type="text"
               value={registrationForm.email}
-              onChange={(e)=> {
+              onChange={(e) => {
                 const updatedRegForm = {
                   ...registrationForm,
-                  email: e.target.value
-                }
-                setRegistrationForm(updatedRegForm)
+                  email: e.target.value,
+                };
+                setRegistrationForm(updatedRegForm);
               }}
             />
           </Form.Item>
@@ -61,14 +79,16 @@ const HomeSignin = ({ history, logIn, manageFailedGoogleLogin, registrationForm,
               prefix={<LockOutlined />}
               type="password"
               value={registrationForm.password}
-              onChange={(e)=> {
+              onChange={(e) => {
                 const updatedRegForm = {
                   ...registrationForm,
-                  password: e.target.value
-                }
-                setRegistrationForm(updatedRegForm)
+                  password: e.target.value,
+                };
+                setRegistrationForm(updatedRegForm);
               }}
-              iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+              iconRender={(visible) =>
+                visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+              }
             />
           </Form.Item>
         </div>
@@ -83,7 +103,10 @@ const HomeSignin = ({ history, logIn, manageFailedGoogleLogin, registrationForm,
         <Form.Item>
           <Button
             type="primary"
-            htmlType="submit"
+            htmlType="button"
+            onClick={() => {
+              logInEmailPassword();
+            }}
           >
             Log In
           </Button>
@@ -97,11 +120,7 @@ const HomeSignin = ({ history, logIn, manageFailedGoogleLogin, registrationForm,
         />
         <p style={{ margin: '1rem 0' }}>
           Don't have an account with us yet?
-          <Button
-            style={{ lineHeight: '.5' }}
-            type="link"
-            href="/signup/"
-          >
+          <Button style={{ lineHeight: '.5' }} type="link" href="/signup/">
             Register
           </Button>
         </p>
