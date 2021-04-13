@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { PYTHON_API } from '../actions';
+import { PYTHON_API } from '../redux/actions';
 /**
  * This gets the user from the API using the auth token.
  * NOTE Not an action creator
