@@ -7,8 +7,9 @@ import {
   setLoadingFalse,
   setIsError,
   clearIsError,
-  logOut,
   setAuthToken,
+  getUserFromAuthToken,
+  setUser,
 } from '../actions';
 
 /**
@@ -93,184 +94,69 @@ export const logIn = (googleToken, history) => async (dispatch) => {
   }
 };
 
-//************* All code below this line is legacy. The things that are currently being exported my be deleted if not moved above this line *****************//
-
-//************* Looks like an auto logout after 1 hour ( 3600 * 1000 )*****************//
 /**
- * checkAuthTimeout.
- *
- * @param {} expirationTime
+ * Responsible for logging in the user given an email and a password
+ * Will attempt a call to the API and set the user in store
+ * @param {string} email user's email address
+ * @param {string} password user's plain text password
+ * @returns
  */
-//? needs to also return a logout id so that we don't leave multiple logout timers in the app
-export const checkAuthTimeout = (expirationTime) => {
-  return (dispatch) => {
-    setTimeout(() => {
-      dispatch(logOut());
-    }, expirationTime * 1000);
-  };
-};
+export const logInEmailPassword = () => async (dispatch, getState) => {
+  const email = getState().registrationForm?.email;
+  const password = getState().registrationForm?.password;
 
-//old refactor
-export const gAuth = (googleToken) => {
-  return (dispatch) => {
-    dispatch(setLoading());
-    axios
-      // ************* Why do this look like it points to local host? *****************//
-      .post('http://127.0.0.1:8000/api/googlelogin/', {
-        access_token: googleToken,
-      })
-      .then((res) => {
-        dispatch(setLoadingFalse());
-        const token = res.data.key;
-        checkSignIn(token, dispatch);
-      })
-      .catch((err) => {
-        dispatch(setLoadingFalse());
-        dispatch(setIsError('Error with gauth'));
-      });
-  };
-};
+  if (!email || !password) {
+    console.log('Can not log in user. Missing email or password');
+    return;
+  }
 
-/**
- * gAuthV2.
- *
- * @param {} googleToken
- */
-export const gAuthV2 = (googleToken) => async (dispatch) => {
-  //dispatch loading
-  dispatch(setLoading());
   try {
-    //log into google
-    const googleResponse = await axios.post(
-      'http://127.0.0.1:8000/api/googlelogin/',
-      { access_token: googleToken }
-    );
-    const googleResponseToken = googleResponse.data.key;
-    await checkSignIn(googleResponseToken, dispatch);
+    const token = await getTokenFromEmailPassword(email, password);
+    const user = await getUserFromAuthToken(token);
+    dispatch(setUser(transformUser(user)));
+    return;
   } catch (err) {
-    dispatch(setLoadingFalse());
-    //replaces authFail
-    const errorMessage = err.message ?? 'Error logging in';
-    dispatch(setIsError(errorMessage));
+    console.error('Error logging in user');
+    setIsError('Error logging in User');
+    await sleep(3000);
+    clearIsError();
+    return;
   }
 };
 
-/**
- * Helper function to check Google sign in
- * */
-const checkSignIn = async (token, dispatch) => {
-  axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN';
-  axios.defaults.xsrfCookieName = 'csrftoken';
-  axios.defaults.headers = {
+const getTokenFromEmailPassword = async (email, password) => {
+  // get token from the backend
+  const body = {
+    email,
+    password,
+  };
+  const headers = {
     'Content-Type': 'application/json',
-    Authorization: `Token ${token}`,
   };
-  //try to confirm token
   try {
-    const checkSignInResponse = await axios.get(
-      'http://127.0.0.1:8000/api/checksignin/'
+    const { data, status } = await axios.post(
+      PYTHON_API + 'v1/auth/login/',
+      body,
+      headers
     );
-
-    if (checkSignInResponse.data.success === 'true') {
-      //adds one hour to the current time as an expirationDate
-      const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
-      localStorage.setItem('token', token);
-      localStorage.setItem('expirationDate', expirationDate);
-      dispatch(setAuthToken(token));
-      dispatch(checkAuthTimeout(3600));
-    } else {
-      console.warn('Error siginning in with google signin', {
-        res: checkSignInResponse.data,
-      });
-      dispatch(setIsError(checkSignInResponse.data));
+    if (status !== 201) {
+      return new Error('Error logging in user');
     }
+    return data;
   } catch (err) {
-    console.error(err);
-    dispatch(setIsError(err));
+    console.error('Error logging in user');
+    return new Error('Error logging in user');
   }
 };
 
-//old function refactor
-export const authSignup = (
-  first_name,
-  last_name,
-  personal_email,
-  vbb_email,
-  phone,
-  adult,
-  occupation,
-  vbb_chapter,
-  affiliation,
-  referral_source,
-  languages,
-  time_zone,
-  charged,
-  initials,
-  desired_involvement,
-  city
-) => {
-  return (dispatch) => {
-    dispatch(setLoading());
-    axios
-      .post('http://127.0.0.1:8000/api/signup/', {
-        first_name: first_name,
-        last_name: last_name,
-        personal_email: personal_email,
-        vbb_email: vbb_email,
-        phone: phone,
-        adult: adult,
-        occupation: occupation,
-        vbb_chapter: vbb_chapter,
-        affiliation: affiliation,
-        referral_source: referral_source,
-        languages: languages,
-        time_zone: time_zone,
-        charged: charged,
-        initials: initials,
-        desired_involvement: desired_involvement,
-        city: city,
-      })
-      .then((res) => {
-        if (res.success) dispatch(checkAuthTimeout(3600));
-        else dispatch(setIsError('Error Logging in'));
-      })
-      .catch((err) => {
-        console.log(err);
-        alert(err);
-        dispatch(setIsError('Error Logging in'));
-      });
-  };
-};
-
-/**
- * authCheckState.
- * gets token from local storage
- * logs out if no token
- * looks at the expirationDate in local storage and compares to now
- * if it's before now, it dispatches log out
- * else
- * adds the token to the state
- * sets the check auth time to be the difference in time in minutes before checking out
- */
-//@TODO-UPDATE
-//@TODO: Old function with a few updates to store actions, look at what this does and update
-export const authCheckState = () => {
-  return (dispatch) => {
-    const token = localStorage.getItem('token');
-    if (token === undefined) {
-      dispatch(logOut());
-    } else {
-      const expirationDate = new Date(localStorage.getItem('expirationDate'));
-      if (expirationDate <= new Date()) {
-        dispatch(logOut());
-      } else {
-        dispatch(setAuthToken(token));
-        dispatch(
-          checkAuthTimeout(
-            (expirationDate.getTime() - new Date().getTime()) / 1000
-          )
-        );
-      }
-    }
+const transformUser = (userAPI) => {
+  const { id, user_type, first_name, last_name, email, external_id } = userAPI;
+  return {
+    id: id,
+    userType: user_type,
+    firstName: first_name,
+    lastName: last_name,
+    email: email,
+    externalId: external_id,
   };
 };
