@@ -28,7 +28,7 @@ import {
  * Sets an error state, sleeps for 2000ms and then clears error state
  */
 export const manageFailedGoogleLogin = async (res) => {
-  console.log('Error response from failed google login', res);
+  console.debug('Error response from failed google login', res);
   setIsError('Google login has failed. Please try again');
   await sleep(2000);
   clearIsError();
@@ -56,7 +56,7 @@ export const logIn = (googleToken, history) => async (dispatch) => {
       },
       headers
     );
-    console.log('backendRes', response);
+    console.debug('backendRes', response);
 
     // @TODO remove once we have a functional backend repo
     // const response = fakeResponseForTesting;
@@ -78,14 +78,14 @@ export const logIn = (googleToken, history) => async (dispatch) => {
       //push user to dashboard
       history.push('/');
     } else {
-      console.log('Failed login');
+      console.debug('Failed login');
       dispatch(setIsError('Google login has failed. Please try again'));
       await sleep(2000);
       dispatch(clearIsError());
     }
   } catch (err) {
-    console.log('Login Catch block failed login');
-    console.log('Backend Login Error: ', err);
+    console.debug('Login Catch block failed login');
+    console.debug('Backend Login Error: ', err);
     dispatch(setLoadingFalse());
     dispatch(setIsError(err.message ?? 'Connection to the API failed'));
     await sleep(2000);
@@ -105,7 +105,8 @@ export const logInEmailPassword = () => async (dispatch, getState) => {
   const password = getState().registrationForm?.password;
 
   if (!email || !password) {
-    console.log('Can not log in user. Missing email or password');
+    console.debug('Can not log in user. Missing email or password');
+    //@todo: do we want to fail silently?
     return;
   }
 
@@ -115,7 +116,7 @@ export const logInEmailPassword = () => async (dispatch, getState) => {
     dispatch(setUser(transformUser(user)));
     return;
   } catch (err) {
-    console.error('Error logging in user');
+    console.debug('Error logging in user');
     setIsError('Error logging in User');
     await sleep(3000);
     clearIsError();
@@ -143,7 +144,6 @@ const getTokenFromEmailPassword = async (email, password) => {
     }
     return data;
   } catch (err) {
-    console.error('Error logging in user');
     throw new Error('Error logging in user');
   }
 };
