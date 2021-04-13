@@ -25,12 +25,12 @@ export const getUserFromAuthToken = async (authToken = null) => {
 
     // if the response is not a 200
     if (status !== 200) {
-      return new Error('Error getting User from Auth token');
+      throw new Error('Error getting User from Auth token');
     }
 
     return data;
   } catch (err) {
     //this is left vague so that we don't return any user info accidentally
-    return new Error('Error getting User from Auth token');
+    throw new Error('Error getting User from Auth token');
   }
 };

@@ -139,12 +139,12 @@ const getTokenFromEmailPassword = async (email, password) => {
       headers
     );
     if (status !== 201) {
-      return new Error('Error logging in user');
+      throw new Error('Error logging in user');
     }
     return data;
   } catch (err) {
     console.error('Error logging in user');
-    return new Error('Error logging in user');
+    throw new Error('Error logging in user');
   }
 };
 
