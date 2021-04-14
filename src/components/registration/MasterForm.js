@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actions';
 import { withRouter } from 'react-router';
-import { Button, Form } from 'antd';
+import { Button } from 'antd';
 import { RightOutlined, LeftOutlined, CheckOutlined } from '@ant-design/icons';
 
 import Step1 from './Step1';

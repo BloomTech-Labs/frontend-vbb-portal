@@ -9,6 +9,8 @@ import {
 import { connect } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
 import * as actions from '../redux/actions';
+import { Link } from 'react-router-dom';
+
 import Logo from '../images/vbb-picture-logo.png';
 
 /**
@@ -17,13 +19,16 @@ import Logo from '../images/vbb-picture-logo.png';
  * Displays Google Signin button and Register button
  *
  * @param { Type History } history from react router dom
+ * @param {redux store} registrationForm registration form from redux store
  * @param {redux action} logIn current action from login import as a connected component
  * @param {redux action} manageFailedGoogleLogin current action from login import as a connected component
+ * @param {redux action} setRegistrationForm sets the registration form
+ * @param {redux action} logInEmailPassword logs in a user with email and password ( non-google login and dev login route)
  */
 const HomeSignin = ({
   history,
-  logIn,
-  manageFailedGoogleLogin,
+  logIn, // used for google auth commented out for dev
+  manageFailedGoogleLogin, // used for google auth commented out for dev
   registrationForm,
   setRegistrationForm,
   logInEmailPassword,
@@ -111,19 +116,18 @@ const HomeSignin = ({
             Log In
           </Button>
         </Form.Item>
-        <GoogleLogin
+        {/* GoogleLogin commented out for ease of local development until production ready */}
+        {/* <GoogleLogin
           clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
           buttonText="Login with Google"
           onSuccess={(res) => logIn(res.accessToken, history)}
           onFailure={(res) => manageFailedGoogleLogin(res)}
           cookiePolicy={'single_host_origin'}
-        />
-        <p style={{ margin: '1rem 0' }}>
-          Don't have an account with us yet?
-          <Button style={{ lineHeight: '.5' }} type="link" href="/signup/">
-            Register
-          </Button>
-        </p>
+        /> */}
+        <p style={{ margin: '1rem 0' }}>Don't have an account with us yet?</p>
+        <Link to="/signup/">
+          <Button style={{ lineHeight: '.5' }}>Register</Button>
+        </Link>
       </Col>
     </Row>
   );
