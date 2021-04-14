@@ -18,23 +18,31 @@ This repo will default to a `dev` environment hosted on Heroku so you don't need
 
 **Note:** The Heroku hosted `dev` server will sleep if not accessed every 5 minutes so your first request (typically login) will take a little bit to return. This is normal.
 
+## Development
+
 ### To Log In for Development
 
 Navigate to your local host ( typically `http://localhost:3000`) and go to the `/signin/` route and log in with an email/pw provided to you as the role you which to emulate (see User types below).
 
-## Docs and valuable links
+### Docs and valuable links
+
+- `NOTES.MD` has been added to the `.gitignore` file if you'd like to keep a set of notes with your local file.
 
 - [Swagger docs for the python backend ](https://vbb-backend.herokuapp.com/swagger/)
 
 - **Note:** The `v1/`, or version, of the end point should be written into the axios call and <strong>not</strong> added to the root endpoint.
 
-## Testing Notes
+### Coding
 
-**NOTE:** Phone numbers must be accurate down to the exchange. For the US that means the country code ( 1 ) + area code ( 202 ) + ( 489 ) must be real or the request to the backend will fail
+Examples of component patterns can be found under examples as can redux folder structure.
 
-## Terminology
+### Testing Notes
 
-- Users types:
+**NOTE:** Phone numbers must be accurate down to the exchange. For the US that means the country code ( 1 ) + area code ( 202 ) + ( 489 ) must be real or the request to the backend will fail. The last four digits can be any number.
+
+### Terminology
+
+- Users types (found in `src/redux/User.redux/User.types.js`):
 
   - 'STUDENT'
   - 'MENTOR'
@@ -46,7 +54,3 @@ Navigate to your local host ( typically `http://localhost:3000`) and go to the `
 - Session: Represents the template of a slot ( think of this as the cookie cutter you make the cookies (slots) from )
 
 - Slot: Represents an individual meeting created from the session slot
-
-## Coding
-
-Examples of component patterns can be found under examples as can redux folder structure.
