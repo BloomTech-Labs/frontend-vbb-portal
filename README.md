@@ -4,38 +4,44 @@ Village Portal is a open-sourced `school-based mentoring managment platform`. De
 
 This project is broken up into a separate backend and frontend repository. The backend contains the Django project which uses the Django Rest Framework to host a simple API and can be found at [backend-vbb-portal](https://github.com/VilllageBookBuilders/backend-vbb-portal). The frontend uses React and queries data from the API.
 
-Install node.js and get the backend server running beforehand!
+## Running locally
 
-Run the following commands inside of the repository folder to get started:
+This repo will default to a `dev` environment hosted on Heroku so you don't need to run the backend repo locally. If you would like to please see instructions on how to do so in the [backend-vbb-portal](https://github.com/VilllageBookBuilders/backend-vbb-portal). You will also need to configure a `.env` file. An example of this file can be found in `./examples/exampleENV`.
 
-```bash
-yarn start
-```
+### Run the following commands inside of the repository folder to get started:
 
-These commands (respectively)
-( You will need to add an a `.env` file. An example of this file can be found in `/examples/exampleENV`)
+1. `yarn` (install the node_js modules) (node js needs to be installed on your computer first)
 
-1. yarn (install the node_js modules) (node js needs to be installed on your computer first)
+2. `yarn start` (this will create a temporary local server which reloads on detecting newly-saved changes to the codebase)
 
-2. yarn start (this will create a temporary local server which reloads on detecting newly-saved changes to the codebase)
+3. `ctrl + c` (when pressed in the terminal window running the node server will close the server)
 
-3. ctrl + c (when pressed in the terminal window running the node server will close the server)
+**Note:** The Heroku hosted `dev` server will sleep if not accessed every 5 minutes so your first request (typically login) will take a little bit to return. This is normal.
+
+### To Log In for Development
+
+Navigate to your local host ( typically `http://localhost:3000`) and go to the `/signin/` route and log in with an email/pw provided to you as the role you which to emulate (see User types below).
 
 ## Docs and valuable links
 
-- [Swagger docs for standalone python backend ](https://vbb-backend.herokuapp.com/swagger/)
+- [Swagger docs for the python backend ](https://vbb-backend.herokuapp.com/swagger/)
+
+- **Note:** The `v1/`, or version, of the end point should be written into the axios call and <strong>not</strong> added to the root endpoint.
 
 ## Testing Notes
 
-**NOTE**: Phone numbers must be accurate down to the exchange. For the US that means the country code ( 1 ) + area code ( 202 ) + ( 489 ) must be real or the request to the backend will fail
+**NOTE:** Phone numbers must be accurate down to the exchange. For the US that means the country code ( 1 ) + area code ( 202 ) + ( 489 ) must be real or the request to the backend will fail
 
 ## Terminology
 
-- Users:
+- Users types:
 
-  - Mentor
-  - Mentee
-  - Admin
+  - 'STUDENT'
+  - 'MENTOR'
+  - 'TEACHER'
+  - 'DIRECTOR'
+  - 'ADVISOR'
+  - 'HEADMASTER'
 
 - Session: Represents the template of a slot ( think of this as the cookie cutter you make the cookies (slots) from )
 
