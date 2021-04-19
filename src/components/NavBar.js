@@ -9,9 +9,6 @@ import fullLogo from '../images/vbb-full-logo.png';
 // import miniLogo from '../images/vbb-picture-logo.png';
 
 const NavBar = ({ logout, authToken }) => {
-  console.log('Logout', logout);
-  console.log('AuthToken', authToken);
-
   const signInSignOut = !authToken ? (
     <Link to="/signin" key="link-1">
       <Button key="1" style={{ marginTop: '15px', color: '#549bea' }}>

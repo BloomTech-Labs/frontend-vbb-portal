@@ -10,25 +10,37 @@ This project is broken up into a separate backend and frontend repository. The b
 3. Create `.env` file - example found in `.env.sample`
 3. `yarn start`
 
+### To Log In for Development
 
-For the Youtube tutorials associated with this code (and preparing it for production), click here https://youtu.be/uZgRbnIsgrA
+Navigate to your local host ( typically `http://localhost:3000`) and go to the `/signin/` route and log in with an email/pw provided to you as the role you which to emulate (see User types below).
 
-## API Docs and valuable links
+### Docs and valuable links
 
-- [Swagger docs for standalone python backend ](https://vbb-backend.herokuapp.com/swagger/)
+- `NOTES.MD` has been added to the `.gitignore` file if you'd like to keep a set of notes with your local file.
 
-## Terminology
+- [Swagger docs for the python backend ](https://vbb-backend.herokuapp.com/swagger/)
 
-- Users:
+- **Note:** The `v1/`, or version, of the end point should be written into the axios call and <strong>not</strong> added to the root endpoint.
 
-  - Mentor
-  - Mentee
-  - Admin
+### Coding
+
+Examples of component patterns can be found under examples as can redux folder structure.
+
+### Testing Notes
+
+**NOTE:** Phone numbers must be accurate down to the exchange. For the US that means the country code ( 1 ) + area code ( 202 ) + ( 489 ) must be real or the request to the backend will fail. The last four digits can be any number.
+
+### Terminology
+
+- Users types (found in `src/redux/User.redux/User.types.js`):
+
+  - 'STUDENT'
+  - 'MENTOR'
+  - 'TEACHER'
+  - 'DIRECTOR'
+  - 'ADVISOR'
+  - 'HEADMASTER'
 
 - Session: Represents the template of a slot ( think of this as the cookie cutter you make the cookies (slots) from )
 
 - Slot: Represents an individual meeting created from the session slot
-
-## Coding
-
-Examples of component patterns can be found under examples as can redux folder structure.

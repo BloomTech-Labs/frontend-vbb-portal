@@ -11,3 +11,5 @@ export * from '../LogOut.redux/LogOut.actions';
 export * from '../AuthToken.redux/AuthToken.actions';
 export * from '../SessionSlot.redux/SessionSlot.actions';
 export * from '../User.redux/User.actions';
+export * from '../Registration.redux/Registration.actions';
+export * from '../Newsletter.redux/Newsletter.actions';
