@@ -143,7 +143,7 @@ const getTokenFromEmailPassword = async (email, password) => {
     const { data, status } = await axios.post(
       PYTHON_API + 'v1/auth/login/',
       body,
-      headers
+      { headers }
     );
     if (status !== 200) {
       throw new Error('Error logging in user');
