@@ -111,11 +111,15 @@ export const logInEmailPassword = (history) => async (dispatch, getState) => {
   }
 
   try {
-    const token = await getTokenFromEmailPassword(email, password);
-    const user = await getUserFromAuthToken(token);
+    const { accessToken, refreshToken } = await getTokenFromEmailPassword(
+      email,
+      password
+    );
+    const user = await getUserFromAuthToken(accessToken);
 
+    //@todo: add access token to cookie
     dispatch(setUser(transformUser(user)));
-    dispatch(setAuthToken(token));
+    dispatch(setAuthToken(refreshToken));
 
     history.push('/');
   } catch (err) {
@@ -139,12 +143,12 @@ const getTokenFromEmailPassword = async (email, password) => {
     const { data, status } = await axios.post(
       PYTHON_API + 'v1/auth/login/',
       body,
-      headers
+      { headers }
     );
-    if (status !== 201) {
+    if (status !== 200) {
       throw new Error('Error logging in user');
     }
-    return data;
+    return { accessToken: data.access, refreshToken: data.refresh };
   } catch (err) {
     throw new Error('Error logging in user');
   }
