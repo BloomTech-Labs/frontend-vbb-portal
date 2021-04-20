@@ -9,6 +9,7 @@ import HomeSignin from '../components/HomeSignin';
 import SessionDetails from '../components/SessionDetails';
 import Donation from '../components/registration/Donation';
 import TempRegistration from '../components/registration/TempRegistration';
+import Calendar from '../components/Calendar/Calendar';
 
 const Routes = () => {
   return (
@@ -34,6 +35,9 @@ const Routes = () => {
         </Route>
         <Route exact path="/donate/">
           <Donation />
+        </Route>
+        <Route exact path="/calendar/">
+          <Calendar/>
         </Route>
       </Switch>
     </div>
