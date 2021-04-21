@@ -11,17 +11,15 @@ export const getUserFromAuthToken = async (authToken = null) => {
   if (!authToken) {
     return new Error('authToken required to login user');
   }
-
   //get user from backend
   const headers = {
     'Content-Type': 'application/json',
     Authorization: `Bearer ${authToken}`,
   };
   const { data, status } = await axios.get(
-    PYTHON_API + 'v1/auth/getcurrentuser/',
-    headers
+    PYTHON_API + 'v1/auth/getcurrentuser',
+    { headers }
   );
-
   // if the response is not a 200
   if (status !== 200) {
     //this is left vague so that we don't return any user info accidentally
