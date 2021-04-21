@@ -13,13 +13,10 @@ const Calendar = () => {
                 center: 'title',
                 right: 'dayGridMonth,timeGridWeek,timeGridDay'
               }}
-<<<<<<< HEAD
-=======
             dayHeaderFormat={{
                 weekday: 'short',
                 day: 'numeric'
             }}
->>>>>>> cf773c370b239f7b0aafce9da5459265b64496e2
         />
     )
 }
