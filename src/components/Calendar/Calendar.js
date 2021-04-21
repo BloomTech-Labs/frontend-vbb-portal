@@ -13,6 +13,10 @@ const Calendar = () => {
                 center: 'title',
                 right: 'dayGridMonth,timeGridWeek,timeGridDay'
               }}
+            dayHeaderFormat={{
+                weekday: 'short',
+                day: 'numeric'
+            }}
         />
     )
 }
