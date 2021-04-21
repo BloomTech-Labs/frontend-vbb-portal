@@ -1,4 +1,3 @@
-import { BorderBottomOutlined } from "@ant-design/icons";
 
 export const fakeData = [
     {
