@@ -2,18 +2,22 @@ import React, { useState } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
 import { fakeData } from './data';
 
 const Calendar = () => {
 
     const [events] = useState(fakeData)
     console.log("Events", events);
-    
+
 
     return (
         <FullCalendar
-            plugins={[dayGridPlugin, timeGridPlugin]}
+            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             initialView="timeGridWeek"
+            selectable={true}
+            editable={true} //to drag event
+            durationEditable = {true}//to change event duration
             events={events}
             customButtons={{
                 myCustomButton: {
