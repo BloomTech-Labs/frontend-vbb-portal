@@ -8,6 +8,7 @@ const Calendar = () => {
         <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin]}
             initialView="timeGridWeek"
+            nowIndicator="true"
             headerToolbar={{
                 left: 'prev,next today',
                 center: 'title',
