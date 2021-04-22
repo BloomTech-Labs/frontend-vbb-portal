@@ -16,6 +16,7 @@
     "@ant-design/icons": "^4.6.2",
     "@craco/craco": "^6.1.1",
     "@fullcalendar/daygrid": "^5.6.0",
+    "@fullcalendar/interaction": "^5.6.0",
     "@fullcalendar/react": "^5.6.0",
     "@fullcalendar/timegrid": "^5.6.0",
     "@stripe/react-stripe-js": "^1.4.0",
