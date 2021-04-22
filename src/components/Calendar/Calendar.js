@@ -8,6 +8,7 @@ const Calendar = () => {
         <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin]}
             initialView="timeGridWeek"
+            nowIndicator="true"
             customButtons={{
                 myCustomButton: {
                     text: "▼",
