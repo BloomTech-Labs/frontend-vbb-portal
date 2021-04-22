@@ -20,10 +20,6 @@ const Calendar = () => {
                 center: 'title',
                 right: 'dayGridMonth,timeGridWeek,timeGridDay,myCustomButton'
               }}
-            dayHeaderFormat={{
-                weekday: 'short',
-                day: 'numeric'
-            }}
         />
     )
 }
