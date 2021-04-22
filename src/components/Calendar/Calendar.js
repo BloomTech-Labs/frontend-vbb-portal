@@ -8,10 +8,16 @@ const Calendar = () => {
         <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin]}
             initialView="timeGridWeek"
+            customButtons={{
+                myCustomButton: {
+                    text: "▼",
+                    // click:
+                },
+            }}
             headerToolbar={{
                 left: 'prev,next today',
                 center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                right: 'dayGridMonth,timeGridWeek,timeGridDay,myCustomButton'
               }}
             dayHeaderFormat={{
                 weekday: 'short',
