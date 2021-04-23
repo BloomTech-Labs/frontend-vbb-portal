@@ -8,8 +8,6 @@ import { fakeData } from './data';
 const Calendar = () => {
 
     const [events] = useState(fakeData)
-    console.log("Events", events);
-
 
     return (
         <FullCalendar
