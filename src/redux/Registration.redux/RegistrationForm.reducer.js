@@ -4,6 +4,7 @@ const registrationFormInitialState = {
   firstName: '',
   lastName: '',
   email: '',
+  password: '', // temp for dev
   phone: '',
   subToNewsLetter: true,
   is_adult: false,

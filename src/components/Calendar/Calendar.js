@@ -17,9 +17,8 @@ const Calendar = () => {
             initialView="timeGridWeek"
             selectable={true}
             editable={true} //to drag event
-            durationEditable = {true}//to change event duration
+            durationEditable = {true}//to change
             events={events}
-            nowIndicator="true"
             customButtons={{
                 myCustomButton: {
                     text: "▼",
