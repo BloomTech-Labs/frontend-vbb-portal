@@ -1,8 +1,7 @@
-import React from 'react';
-import { AutoComplete, Input } from 'antd';
+import React, { useState } from 'react';
+import { AutoComplete, Input, Modal, Button } from 'antd';
 import { v4 as uuidv4 } from 'uuid';
 import dummy from './MOCK_DATA.json';
-import UserModal from './modal';
 
 const renderTitle = (title) => {
   return (
@@ -48,16 +47,39 @@ const listOptions = [
 ];
 
 const SearchBarAutoComplete = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [selectedUser, setSelectedUser] = useState();
+
+  const handleCancel = () => {
+    setIsVisible(false);
+  };
+
+  const handleOk = () => {
+    setIsVisible(false);
+  };
+
   return (
     <>
-    <AutoComplete
-      style={{ width: 500 }}
-      options={listOptions}
-      filterOption={true}
-      autoClearSearchValue={true}
-    >
-      <Input.Search size="large" placeholder="Find User" />
-    </AutoComplete>
+      <AutoComplete
+        style={{ width: 500 }}
+        options={listOptions}
+        filterOption={true}
+        autoClearSearchValue={true}
+        onSelect={() => setIsVisible(true)}
+        onChange={(e) => setSelectedUser(e)}
+      >
+        <Input.Search size="large" placeholder="Find User" />
+      </AutoComplete>
+      <Modal
+        title="Mentee Name"
+        visible={isVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        {selectedUser ? <h1>{selectedUser}</h1> : null}
+
+        <Button>Edit mentee</Button>
+      </Modal>
     </>
   );
 };
