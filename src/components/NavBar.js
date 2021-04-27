@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../redux/actions';
 import { Button, PageHeader } from 'antd';
 import { LoginOutlined, FormOutlined, LogoutOutlined } from '@ant-design/icons';
+import SearchBarAutoComplete from './search-bar/beginning'
 
 import fullLogo from '../images/vbb-full-logo.png';
 // import miniLogo from '../images/vbb-picture-logo.png';
@@ -17,6 +18,8 @@ const NavBar = ({ logout, authToken }) => {
       </Button>
     </Link>
   ) : (
+      <>
+        <SearchBarAutoComplete/>
     <Link to="/" key="link-1">
       <Button
         key="1"
@@ -27,6 +30,7 @@ const NavBar = ({ logout, authToken }) => {
         <LogoutOutlined />
       </Button>
     </Link>
+      </>
   );
   return (
     <PageHeader
