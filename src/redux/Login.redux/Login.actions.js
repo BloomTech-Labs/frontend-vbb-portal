@@ -119,7 +119,7 @@ export const logInEmailPassword = (history) => async (dispatch, getState) => {
 
     //@todo: add access token to cookie
     dispatch(setUser(transformUser(user)));
-    dispatch(setAuthToken(refreshToken));
+    dispatch(setAuthToken(accessToken));
 
     history.push('/');
   } catch (err) {
