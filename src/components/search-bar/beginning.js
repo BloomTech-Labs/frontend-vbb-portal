@@ -2,6 +2,7 @@ import React from 'react';
 import { AutoComplete, Input } from 'antd';
 import { v4 as uuidv4 } from 'uuid';
 import dummy from './MOCK_DATA.json';
+import UserModal from './modal';
 
 const renderTitle = (title) => {
   return (
@@ -48,6 +49,7 @@ const listOptions = [
 
 const SearchBarAutoComplete = () => {
   return (
+    <>
     <AutoComplete
       style={{ width: 500 }}
       options={listOptions}
@@ -56,6 +58,7 @@ const SearchBarAutoComplete = () => {
     >
       <Input.Search size="large" placeholder="Find User" />
     </AutoComplete>
+    </>
   );
 };
 

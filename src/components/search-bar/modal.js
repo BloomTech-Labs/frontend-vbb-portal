@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Button} from 'antd';
 
-const StudentModal = () => {
+const UserModal = () => {
     const [visible, setVisible] = React.useState(false);
     const [confirmLoading, setConfirmLoading] = React.useState(false);
     const [modalText, setModalText] = React.useState('Content of the modal');
@@ -26,9 +26,9 @@ const StudentModal = () => {
 
     return (
         <>
-            <Button type="primary" onClick={showModal}>
+            {/* <Button type="primary" onClick={showModal}>
                 this will be the search bar
-            </Button>
+            </Button> */}
             <Modal
                 title="Mentee Name"
                 visible={visible}
@@ -47,4 +47,4 @@ const StudentModal = () => {
     );
 };
 
-export default StudentModal;
+export default UserModal;
