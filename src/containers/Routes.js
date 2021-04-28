@@ -10,7 +10,7 @@ import SessionDetails from '../components/SessionDetails';
 import Donation from '../components/registration/Donation';
 import TempRegistration from '../components/registration/TempRegistration';
 import Calendar from '../components/Calendar/Calendar';
-import SearchBarAutoComplete  from '../components/search-bar/beginning';
+import SearchBarAutoComplete from '../components/search-bar/SearchBarAutoComplete';
 
 const Routes = () => {
   return (
