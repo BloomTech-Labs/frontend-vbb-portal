@@ -1,31 +1,47 @@
-import React, { useState } from 'react';
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import './calendar.css'
-import interactionPlugin from '@fullcalendar/interaction';
-import { fakeData } from './data';
-const Calendar = () => {
-    const [events] = useState(fakeData)
-    return (
-        <div className="wrapper-div">
-            <FullCalendar
-                plugins={[dayGridPlugin, timeGridPlugin]}
-                initialView="timeGridWeek"
-                nowIndicator="true"
-                customButtons={{
-                    myCustomButton: {
-                        text: "▼",
-                        // click:
-                    },
-                }}
-                headerToolbar={{
-                    left: 'prev,today,next',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay,myCustomButton'
-                }}
-            />
-        </div>
-    )
+import React from 'react'
+import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
+import 'react-big-calendar/lib/css/react-big-calendar.css'
+import './Calendar.css'
+import { events } from './data'
+import {customWeekViewEvent} from './CustomEvent'
+import format from 'date-fns/format'
+import parse from 'date-fns/parse'
+import startOfWeek from 'date-fns/startOfWeek'
+import getDay from 'date-fns/getDay'
+import Resources from './Resources'
+const locales = {
+  'en-US': require('date-fns/locale/en-US'),
 }
-export default Calendar;
+const localizer = dateFnsLocalizer({
+  format,
+  parse,
+  startOfWeek,
+  getDay,
+  locales,
+})
+let components = {
+    week: {
+         event: customWeekViewEvent,
+    },
+  }
+
+const MyCalendar = props => {
+    return (
+  <div className="calendarWrapperDiv">
+    <Calendar
+      localizer={localizer}
+      events={events}
+      startAccessor="start"
+      endAccessor="end"
+      views={{
+        week: true,
+        day: Resources,
+      }}
+      components={components}
+      timeslots={1}
+      defaultView='week'
+    />
+  </div>
+)}
+
+export default MyCalendar
