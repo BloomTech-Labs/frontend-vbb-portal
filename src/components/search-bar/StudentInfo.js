@@ -37,7 +37,7 @@ const StudentInfo = () => {
     };
 
 return (
-    <form style="display:flex">
+    <form>
         {/* <label>
             Count
             <br></br>

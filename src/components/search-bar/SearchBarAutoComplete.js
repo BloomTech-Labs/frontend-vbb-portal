@@ -87,9 +87,7 @@ const SearchBarAutoComplete = () => {
         height="100%"
       >
         {selectedUser ? (
-          <>
-            <StudentInfo/>
-          </>
+          <StudentInfo/>
         ) : null}
       </Modal>
     </>
