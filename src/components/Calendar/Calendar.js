@@ -5,11 +5,8 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import './calendar.css'
 import interactionPlugin from '@fullcalendar/interaction';
 import { fakeData } from './data';
-
 const Calendar = () => {
-
     const [events] = useState(fakeData)
-
     return (
         <div className="wrapper-div">
             <FullCalendar
@@ -23,7 +20,7 @@ const Calendar = () => {
                     },
                 }}
                 headerToolbar={{
-                    left: 'prev,next today',
+                    left: 'prev,today,next',
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay,myCustomButton'
                 }}
@@ -31,5 +28,4 @@ const Calendar = () => {
         </div>
     )
 }
-
 export default Calendar;

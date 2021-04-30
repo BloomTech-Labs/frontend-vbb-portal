@@ -10,15 +10,11 @@ import SessionDetails from '../components/SessionDetails';
 import Donation from '../components/registration/Donation';
 import TempRegistration from '../components/registration/TempRegistration';
 import Calendar from '../components/Calendar/Calendar';
-import SearchBarAutoComplete  from '../components/search-bar/beginning';
 
 const Routes = () => {
   return (
     <div className="App">
       <Switch>
-        <Route exact path = "/searchbar">
-          <SearchBarAutoComplete/>
-        </Route>
         <Route exact path="/register/">
           <TempRegistration />
         </Route>
@@ -28,7 +24,7 @@ const Routes = () => {
         <PrivateRoute exact path="/booking/">
           <Booking />
         </PrivateRoute>
-        <Route exact path="/signin/" >
+        <Route exact path="/signin/">
           <HomeSignin />
         </Route>
         <Route exact path="/signup/">
@@ -41,7 +37,7 @@ const Routes = () => {
           <Donation />
         </Route>
         <Route exact path="/calendar/">
-          <Calendar/>
+          <Calendar />
         </Route>
       </Switch>
     </div>
