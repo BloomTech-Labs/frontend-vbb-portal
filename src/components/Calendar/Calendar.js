@@ -1,40 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import './calendar.css'
+import interactionPlugin from '@fullcalendar/interaction';
 import { fakeData } from './data';
-import DataToBeDisplayed from './dataDisplay'
 
 const Calendar = () => {
-    const CalendarEventDisplay = () => {
-        alert("Help me out, give me a Mentor")
-        return(
-            {DataToBeDisplayed}
-        )
-    }
+
+    const [events] = useState(fakeData)
+
+
     return (
-        <FullCalendar
-            plugins={[dayGridPlugin, timeGridPlugin]}
-            initialView="timeGridWeek"
-            nowIndicator="true"
-            customButtons={{
-                myCustomButton: {
-                    text: "▼",
-                    // click:
-                },
-            }}
-            headerToolbar={{
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay,myCustomButton'
-              }}
-            dayHeaderFormat={{
-                weekday: 'short',
-                day: 'numeric'
-            }}
-            events={fakeData}
-            eventClick={CalendarEventDisplay}
-        />
+        <div className="wrapper-div">
+            <FullCalendar
+                plugins={[dayGridPlugin, timeGridPlugin]}
+                initialView="timeGridWeek"
+                timeZone="local"
+                nowIndicator="true"
+                customButtons={{
+                    myCustomButton: {
+                        text: "▼",
+                        // click:
+                    },
+                }}
+                headerToolbar={{
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay,myCustomButton'
+                }}
+            />
+        </div>
     )
 }
 

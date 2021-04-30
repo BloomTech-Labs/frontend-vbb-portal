@@ -1,0 +1,27 @@
+.fc-now-indicator.fc-now-indicator-arrow::before {
+    background-color: #ef6c00;
+    content: "";
+    display: block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-top: -7px;
+  }
+  
+.fc-now-indicator.fc-now-indicator-arrow {
+    left: 44px !important;
+    right: 0;
+    background-color: #ef6c00;
+    height: 2px;
+    margin: 0;
+    border: none;
+  }
+
+
+.wrapper-div {
+    position: relative;
+    z-index: 0;
+}
+
+
+  
