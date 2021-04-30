@@ -2,3 +2,20 @@
     position: relative;
     z-index: 0;
 }
+
+.fc .fc-button-group > .fc-button {
+    background-color: #FF914D;
+    color: #FFFFF6;
+    border-color: #FFFFF6;
+    border-radius: 15px;
+}
+
+.fc .fc-button-primary:disabled, .fc .fc-button-group > .fc-button:focus, .fc .fc-button-group > .fc-button:active, .fc .fc-button-group > .fc-button.fc-button-active {
+    background-color: #FFBD59;
+    color: #FFFFF6;
+    border-color: #FFFFF6;
+}
+
+a:not([href]):not([tabindex]) {
+    color: #FF914D;
+}

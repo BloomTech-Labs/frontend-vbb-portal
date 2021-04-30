@@ -23,7 +23,7 @@ const Calendar = () => {
                     },
                 }}
                 headerToolbar={{
-                    left: 'prev,next today',
+                    left: 'prev,today,next',
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay,myCustomButton'
                 }}
