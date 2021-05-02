@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { AutoComplete, Input, Modal } from 'antd';
 import { v4 as uuidv4 } from 'uuid';
 import dummy from './MOCK_DATA.json';
+import StudentInfo from './StudentInfo';
 
 const SearchBarAutoComplete = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -82,16 +83,11 @@ const SearchBarAutoComplete = () => {
         visible={isVisible}
         onOk={handleOk}
         onCancel={handleCancel}
+        width="100%"
+        height="100%"
       >
         {selectedUser ? (
-          <>
-            <h3>{selectedUser.id}</h3>
-            <h1>{selectedUser.full_name}</h1>
-            <p>{selectedUser.date_of_birth}</p>
-            <p>{selectedUser.personal_email}</p>
-            <p>{selectedUser.phone}</p>
-            <p>{selectedUser.city}</p>
-          </>
+          <StudentInfo/>
         ) : null}
       </Modal>
     </>
