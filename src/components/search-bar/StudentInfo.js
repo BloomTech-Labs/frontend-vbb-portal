@@ -68,12 +68,12 @@ return (
             </input>
         </label>
         <br></br> */}
-        <label>
+        {/* <label>
             ID
             <br></br>
             <input placeholder={student.results[0].id}>
             </input>
-        </label>
+        </label> */}
         <label>
             First Name
             <br></br>
@@ -131,13 +131,13 @@ return (
             <input placeholder={student.results[0].user.notes}>
             </input>
         </label>
-        <label>
+        {/* <label>
             Created Date
             <br></br>
             <input placeholder={student.results[0].created_date}>
             </input>
-        </label>
-        <label>
+        </label> */}
+        {/* <label>
             Motified Date
             <br></br>
             <input placeholder={student.results[0].modified_date}>
@@ -149,7 +149,7 @@ return (
             <br></br>
             <input placeholder={student.results[0].external_id}>
             </input>
-        </label>
+        </label> */}
         <label>
             School Level
             <br></br>
@@ -162,6 +162,8 @@ return (
             <input placeholder={student.results[0].group_name}>
             </input>
         </label>
+        <br></br>
+        <button>Edit</button>
     </form>
 )
 }

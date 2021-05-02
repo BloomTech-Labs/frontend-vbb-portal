@@ -85,6 +85,7 @@ const SearchBarAutoComplete = () => {
         onCancel={handleCancel}
         width="100%"
         height="100%"
+        overflow-y="scroll"
       >
         {selectedUser ? (
           <StudentInfo/>
