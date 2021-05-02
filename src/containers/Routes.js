@@ -24,7 +24,7 @@ const Routes = () => {
         <PrivateRoute exact path="/booking/">
           <Booking />
         </PrivateRoute>
-        <Route exact path="/signin/" >
+        <Route exact path="/signin/">
           <HomeSignin />
         </Route>
         <Route exact path="/signup/">
@@ -37,7 +37,7 @@ const Routes = () => {
           <Donation />
         </Route>
         <Route exact path="/calendar/">
-          <Calendar/>
+          <Calendar />
         </Route>
       </Switch>
     </div>
