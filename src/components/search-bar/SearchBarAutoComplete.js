@@ -85,12 +85,24 @@ const SearchBarAutoComplete = () => {
       >
         {selectedUser ? (
           <>
-            <h3>{selectedUser.id}</h3>
-            <h1>{selectedUser.full_name}</h1>
-            <p>{selectedUser.date_of_birth}</p>
-            <p>{selectedUser.personal_email}</p>
-            <p>{selectedUser.phone}</p>
-            <p>{selectedUser.city}</p>
+            <div style={{ fontWeight: 'bold' }}>
+              <h3>ID: {selectedUser.id}</h3>
+              <h1>{selectedUser.full_name}</h1>
+              <p>DOB: {selectedUser.date_of_birth}</p>
+              <p>
+                Email:{' '}
+                <a href={`mailto:${selectedUser.personal_email}`} style={{ color: 'blue' }}>
+                  {selectedUser.personal_email}
+                </a>
+              </p>
+              <p>Cell: {selectedUser.phone}</p>
+              <p>
+                Location:{' '}
+                <a href={`http://maps.google.com/maps?q= ${selectedUser.city}`}>
+                  {selectedUser.city}
+                </a>
+              </p>
+            </div>
           </>
         ) : null}
       </Modal>
