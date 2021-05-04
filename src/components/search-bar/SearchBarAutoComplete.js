@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { AutoComplete, Input, Modal } from 'antd';
 import { v4 as uuidv4 } from 'uuid';
 import dummy from './MOCK_DATA.json';
+import { logIn } from '../../redux/actions';
 
 const SearchBarAutoComplete = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -36,6 +37,26 @@ const SearchBarAutoComplete = () => {
     key,
   });
 
+  const renderFeature = (feature, key) => ({
+    value: feature.name,
+    label: (
+      <div
+        key={key}
+        style={{ display: 'flex', justifyContent: 'space-between' }}
+        // onClick={() => setSelectedFeature(feature)}
+      >
+        {feature.name}
+      </div>
+    ),
+    key,
+  });
+
+  //to add features to desplay in search bar add them in this array
+  const features = [
+    {name: "Create Mentee", url: ""},
+    {name: "Create Mentor", url: ""}
+  ]
+
   const options = dummy.map((user) => {
     const reformattedUser = {
       ...user,
@@ -56,6 +77,10 @@ const SearchBarAutoComplete = () => {
       label: renderTitle('Teachers'),
       options: options.map((user) => renderItem(user, uuidv4())),
     },
+    {
+      label: renderTitle("Features"),
+      options: features.map((feature) => renderFeature(feature, uuidv4())),
+    }
   ];
 
   const handleCancel = () => {
