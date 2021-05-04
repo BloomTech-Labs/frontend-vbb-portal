@@ -9,7 +9,7 @@ import getDay from 'date-fns/getDay'
 import * as dates from 'react-big-calendar/lib/utils/dates'
 import {navigate} from 'react-big-calendar/lib/utils/constants'
 import Toolbar from './ResourcesToolbar'
-import './calendar.css'
+import './Calendar.css'
 import { customResourceViewEvent } from './CustomEvent'
 
 const locales = {
