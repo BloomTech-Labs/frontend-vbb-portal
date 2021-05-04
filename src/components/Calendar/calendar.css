@@ -63,3 +63,7 @@ body {
     color: #FFFFF6;
     border-color: #FFFFF6
   }
+
+  .rbc-time-content  {
+    overflow-x: hidden;
+  }
