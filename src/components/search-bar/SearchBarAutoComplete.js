@@ -1,12 +1,36 @@
-import React, { useState } from 'react';
-import { AutoComplete, Input, Modal } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { AutoComplete, Input, Modal, Button, ButtonProps } from 'antd';
 import { v4 as uuidv4 } from 'uuid';
 import dummy from './MOCK_DATA.json';
 import StudentInfo from './StudentInfo';
+import axios from 'axios';
 
 const SearchBarAutoComplete = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [selectedUser, setSelectedUser] = useState();
+  const [editUser, setEditUser] = useState();
+  const [errorMessage, setErrorMessage] = useState();
+
+useEffect(() => {
+  const updateUsers = {
+    method: "PUT",
+    headers: {"content": "app"},
+    body: JSON.stringify({title: "react"})
+  };
+  fetch('vbb-backend.herokuapp.com/api/v1/mentor/{external_id}')
+    .then(async res => {
+      const data = await res.json();
+      if (!res.ok) {
+        const err = (data && data.message) || res.status;
+        return Promise.reject(err);
+      }
+      setEditUser(data.id);
+    })
+    .catch(error => {
+      setErrorMessage(error);
+      console.error("error", error);
+    });
+}, []);
 
   const renderTitle = (title) => {
     return (
@@ -67,6 +91,10 @@ const SearchBarAutoComplete = () => {
     setIsVisible(false);
   };
 
+  const handleEdit = () => {
+    setEditUser();
+  }
+
   return (
     <>
       <AutoComplete
@@ -85,10 +113,12 @@ const SearchBarAutoComplete = () => {
         onCancel={handleCancel}
         width="100%"
         height="100%"
+        
       >
         {selectedUser ? (
           <StudentInfo/>
         ) : null}
+        <Button onClick={handleEdit}>Edit</Button>
       </Modal>
     </>
   );
