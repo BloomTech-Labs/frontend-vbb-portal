@@ -1,3 +1,4 @@
+import SearchModalContent from '../Modal/SeachModalFragment'
 import React, { useState } from 'react';
 import { AutoComplete, Input, Modal} from 'antd';
 import useModal from '../Modal/useModal'
@@ -72,7 +73,9 @@ const SearchBarAutoComplete = () => {
       >
         <Input.Search size="large" placeholder="Find User" />
       </AutoComplete>
-      <SearchModal title={selectedUser.full_name} visible={isVisible} onOk={toggleModal} onCancel={toggleModal} />
+      <SearchModal title={selectedUser.full_name} visible={isVisible} onOk={toggleModal} onCancel={toggleModal} >
+        <SearchModalContent user={selectedUser}/>
+      </SearchModal>
     </>
   );
 };
