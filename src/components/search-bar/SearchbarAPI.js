@@ -2,8 +2,8 @@ import React, {useState} from "react";
 import axios from "axios";
 import {PYTHON_API} from "../../redux/actions/index";
 
-export const Headmasters = () => {
-    axios.get(``)
+export const getHeadmasters = () => {
+    axios.get(`${PYTHON_API}headmaster`)
         .then((res)=> {
             console.log(res)
         })
@@ -13,7 +13,7 @@ export const Headmasters = () => {
 }
 
 export const createHeadmaster = () => {
-    axios.post(``)
+    axios.post(`${PYTHON_API}headmaster`)
         .then((res)=> {
             console.log(res)
         })
@@ -22,8 +22,8 @@ export const createHeadmaster = () => {
         })
 }
 
-export const getMentorById = () => {
-    axios.get(``)
+export const getHeadmasterById = () => {
+    axios.get(`${PYTHON_API}headmaster/${id}/`)
         .then((res)=> {
             console.log(res)
         })
@@ -33,7 +33,7 @@ export const getMentorById = () => {
 }
 
 export const updateHeadmasterById = () => {
-    axios.put(``)
+    axios.put(`${PYTHON_API}headmaster/${id}/`)
         .then((res)=> {
             console.log(res)
         })
@@ -43,7 +43,7 @@ export const updateHeadmasterById = () => {
 }
 
 export const deleteHeadmasterById = () => {
-    axios.delete(``)
+    axios.delete(`${PYTHON_API}headmaster/${id}/`)
         .then((res)=> {
             console.log(res)
         })
@@ -144,6 +144,56 @@ export const updateMenteeById = () => {
 
 export const deleteMenteeById = () => {
     axios.delete(``)
+        .then((res)=> {
+            console.log(res)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
+
+export const getStudentsByProgramAndSchool = () => {
+    axios.get(`${PYTHON_API}program/${program_external_id}/school/${school_external_id}/student/`)
+        .then((res)=> {
+            console.log(res)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
+
+export const createStudentsByProgramAndSchool = () => {
+    axios.post(`${PYTHON_API}program/${program_external_id}/school/${school_external_id}/student/`)
+        .then((res)=> {
+            console.log(res)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
+
+export const getStudentByProgramAndSchoolAndId  = () => {
+    axios.get(`${PYTHON_API}program/${program_external_id}/school/${school_external_id}/student/${external_id}`)
+        .then((res)=> {
+            console.log(res)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
+
+export const updateStudentByProgramAndSchoolAndId  = () => {
+    axios.put(`${PYTHON_API}program/${program_external_id}/school/${school_external_id}/student/${external_id}`)
+        .then((res)=> {
+            console.log(res)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
+
+export const deleteStudentByProgramAndSchoolAndId  = () => {
+    axios.delete(`${PYTHON_API}program/${program_external_id}/school/${school_external_id}/student/${external_id}`)
         .then((res)=> {
             console.log(res)
         })

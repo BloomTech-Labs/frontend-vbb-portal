@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AutoComplete, Input, Modal } from 'antd';
 import { v4 as uuidv4 } from 'uuid';
 import dummy from './MOCK_DATA.json';
-import {getMentors} from "./SearchbarAPI";
+import {*} from "./SearchbarAPI";
 
 const SearchBarAutoComplete = () => {
   const [isVisible, setIsVisible] = useState(false);
