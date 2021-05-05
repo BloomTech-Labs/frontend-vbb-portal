@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AutoComplete, Input, Modal } from 'antd';
 import { v4 as uuidv4 } from 'uuid';
 import dummy from './MOCK_DATA.json';
-import {*} from "./SearchbarAPI";
+import AllAPIS from "./SearchbarAPI";
 
 const SearchBarAutoComplete = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -36,6 +36,8 @@ const SearchBarAutoComplete = () => {
     ),
     key,
   });
+
+  AllAPIS.getHeadmasters()
 
   const options = dummy.map((user) => {
     const reformattedUser = {
