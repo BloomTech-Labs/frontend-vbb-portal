@@ -35,9 +35,6 @@ const components = {
   day: {
        event: customResourceViewEvent,
   },
-  week:{
-      views:MyCalendar
-  }
 }
 
 
