@@ -1,5 +1,5 @@
 import React from 'react'
-import { Calendar, dateFnsLocalizer,Navigate} from 'react-big-calendar'
+import { Calendar, dateFnsLocalizer} from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import { events, resourceMap } from './data'
 import format from 'date-fns/format'
@@ -11,7 +11,7 @@ import {navigate} from 'react-big-calendar/lib/utils/constants'
 import Toolbar from './ResourcesToolbar'
 import './Calendar.css'
 import { customResourceViewEvent } from './CustomEvent'
-import MyCalendar from './Calendar'
+
 
 const locales = {
   'en-US': require('date-fns/locale/en-US'),
@@ -66,10 +66,10 @@ const Resources = props => {
 Resources.title = (date) => {return `R ${date.toLocaleDateString()}`}
 Resources.navigate = (date, action) => {
   switch (action) {
-    case Navigate.PREVIOUS:
+    case navigate.PREVIOUS:
       return dates.add(date, -1, 'day')
 
-    case Navigate.NEXT:
+    case navigate.NEXT:
       return dates.add(date, 1, 'day')
 
     default:
