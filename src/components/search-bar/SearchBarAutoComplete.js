@@ -1,11 +1,15 @@
+import SearchModalContent from '../Modal/SeachModalFragment'
 import React, { useState } from 'react';
-import { AutoComplete, Input, Modal } from 'antd';
+import { AutoComplete, Input, Modal} from 'antd';
+import useModal from '../Modal/useModal'
 import { v4 as uuidv4 } from 'uuid';
 import dummy from './MOCK_DATA.json';
 
+
 const SearchBarAutoComplete = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [selectedUser, setSelectedUser] = useState();
+  const SearchModal = Modal
+ const {isVisible, toggleModal } = useModal(SearchModal)
+  const [selectedUser, setSelectedUser] = useState({});
 
   const renderTitle = (title) => {
     return (
@@ -58,14 +62,6 @@ const SearchBarAutoComplete = () => {
     },
   ];
 
-  const handleCancel = () => {
-    setIsVisible(false);
-  };
-
-  const handleOk = () => {
-    setIsVisible(false);
-  };
-
   return (
     <>
       <AutoComplete
@@ -73,39 +69,13 @@ const SearchBarAutoComplete = () => {
         options={listOptions}
         filterOption={true}
         autoClearSearchValue={true}
-        onSelect={() => setIsVisible(true)}
+        onSelect={() => toggleModal(SearchModal)}
       >
         <Input.Search size="large" placeholder="Find User" />
       </AutoComplete>
-      <Modal
-        title="Mentee Name"
-        visible={isVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-      >
-        {selectedUser ? (
-          <>
-            <div style={{ fontWeight: 'bold' }}>
-              <h3>ID: {selectedUser.id}</h3>
-              <h1>{selectedUser.full_name}</h1>
-              <p>DOB: {selectedUser.date_of_birth}</p>
-              <p>
-                Email:{' '}
-                <a href={`mailto:${selectedUser.personal_email}`} style={{ color: 'blue' }}>
-                  {selectedUser.personal_email}
-                </a>
-              </p>
-              <p>Cell: {selectedUser.phone}</p>
-              <p>
-                Location:{' '}
-                <a href={`http://maps.google.com/maps?q= ${selectedUser.city}`}>
-                  {selectedUser.city}
-                </a>
-              </p>
-            </div>
-          </>
-        ) : null}
-      </Modal>
+      <SearchModal title={selectedUser.full_name} visible={isVisible} onOk={toggleModal} onCancel={toggleModal} >
+        <SearchModalContent user={selectedUser}/>
+      </SearchModal>
     </>
   );
 };
