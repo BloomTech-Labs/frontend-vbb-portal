@@ -1,5 +1,5 @@
 import React from 'react'
-import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
+import { Calendar, dateFnsLocalizer} from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import { events, resourceMap } from './data'
 import format from 'date-fns/format'
@@ -9,8 +9,9 @@ import getDay from 'date-fns/getDay'
 import * as dates from 'react-big-calendar/lib/utils/dates'
 import {navigate} from 'react-big-calendar/lib/utils/constants'
 import Toolbar from './ResourcesToolbar'
-import './Calendar.css'
+import './calendar.css'
 import { customResourceViewEvent } from './CustomEvent'
+
 
 const locales = {
   'en-US': require('date-fns/locale/en-US'),
@@ -51,6 +52,7 @@ const Resources = props => {
       }}
       timeslots={1}
       defaultView='day'
+      defaultDate={new Date()}
       components={components}
       resources={resourceMap}
       resourceIdAccessor="resourceId"
