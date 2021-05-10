@@ -1,22 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { AutoComplete, Input, Modal, Button, ButtonProps } from 'antd';
+import { AutoComplete, Input, Modal, Button} from 'antd';
 import { v4 as uuidv4 } from 'uuid';
 import dummy from './MOCK_DATA.json';
-import StudentInfo from './StudentInfo';
-import axios from 'axios';
+import SearchModalContent from '../Modal/SeachModalFragment'
+import useModal from '../Modal/useModal'
+
 
 const SearchBarAutoComplete = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  
+  const SearchModal = Modal
+  const {isVisible, toggleModal } = useModal(SearchModal)
   const [selectedUser, setSelectedUser] = useState();
-  const [editUser, setEditUser] = useState();
-  const [errorMessage, setErrorMessage] = useState();
+  const [setEditUser] = useState();
+  const [setErrorMessage] = useState();
+  
+
 
 useEffect(() => {
-  const updateUsers = {
-    method: "PUT",
-    headers: {"content": "app"},
-    body: JSON.stringify({title: "react"})
-  };
+  // const updateUsers = {
+  //   method: "PUT",
+  //   headers: {"content": "app"},
+  //   body: JSON.stringify({title: "react"})
+  // };
   fetch('vbb-backend.herokuapp.com/api/v1/mentor/{external_id}')
     .then(async res => {
       const data = await res.json();
@@ -30,7 +35,7 @@ useEffect(() => {
       setErrorMessage(error);
       console.error("error", error);
     });
-}, []);
+});
 
   const renderTitle = (title) => {
     return (
@@ -83,14 +88,6 @@ useEffect(() => {
     },
   ];
 
-  const handleCancel = () => {
-    setIsVisible(false);
-  };
-
-  const handleOk = () => {
-    setIsVisible(false);
-  };
-
   const handleEdit = () => {
     setEditUser();
   }
@@ -102,26 +99,18 @@ useEffect(() => {
         options={listOptions}
         filterOption={true}
         autoClearSearchValue={true}
-        onSelect={() => setIsVisible(true)}
+        onSelect={() => toggleModal(SearchModal)}
       >
         <Input.Search size="large" placeholder="Find User" />
       </AutoComplete>
-      <Modal
-        title="Mentee Name"
-        visible={isVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        width="100%"
-        height="100%"
-        
-      >
-        {selectedUser ? (
-          <StudentInfo/>
-        ) : null}
+        <SearchModal title={selectedUser.full_name} visible={isVisible} onOk={toggleModal} onCancel={toggleModal} >
+        <SearchModalContent user={selectedUser}/>
         <Button onClick={handleEdit}>Edit</Button>
-      </Modal>
+      </SearchModal>
     </>
   );
 };
+
+
 
 export default SearchBarAutoComplete;

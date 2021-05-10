@@ -1,7 +1,7 @@
 import React from 'react'
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
-import './Calendar.css'
+import './calendar.css'
 import { events } from './data'
 import {customWeekViewEvent} from './CustomEvent'
 import format from 'date-fns/format'
