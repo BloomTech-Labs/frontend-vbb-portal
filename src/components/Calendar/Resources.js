@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Calendar, dateFnsLocalizer} from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import { events, resourceMap } from './data'
@@ -24,6 +24,7 @@ const localizer = dateFnsLocalizer({
   locales,
 })
 
+
 const customToolbar = () => {
   return (
     null
@@ -39,6 +40,7 @@ const components = {
 
 
 const Resources = props => {
+  const[logic]=useState(true)
     return (
   <div>
     <Calendar
@@ -47,7 +49,7 @@ const Resources = props => {
       startAccessor="start"
       endAccessor="end"
       views={{
-        week: true,
+       
         day: true,
       }}
       timeslots={1}

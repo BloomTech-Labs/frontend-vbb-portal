@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import './calendar.css'
@@ -26,21 +26,27 @@ let components = {
   }
 
 const MyCalendar = props => {
+  const [show,setShow] = useState(true)
     return (
   <div className="calendarWrapperDiv">
+    {show
+    ?
     <Calendar
-      localizer={localizer}
-      events={events}
-      startAccessor="start"
-      endAccessor="end"
-      views={{
-        week: true,
-        day: Resources,
-      }}
-      components={components}
-      timeslots={1}
-      defaultView='week'
-    />
+    localizer={localizer}
+    events={events}
+    startAccessor="start"
+    endAccessor="end"
+    views={{
+      week: true,
+    }}
+    components={components}
+    timeslots={1}
+    defaultView='week'
+  />
+  :
+  <Resources/>
+    }
+    
   </div>
 )}
 
