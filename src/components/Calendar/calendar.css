@@ -63,3 +63,29 @@ body {
     color: #FFFFF6;
     border-color: #FFFFF6
   }
+
+  .rbc-time-content  {
+    overflow-x: Auto;
+  }
+  @media print {
+    body * {
+      visibility: hidden;
+    }
+  
+    #section-to-print, #section-to-print * {
+      visibility: visible;
+    }
+  
+    #section-to-print {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      
+    }
+    .calendarWrapperDiv {
+      height: 100%;
+      width: 95%;
+      
+    }
+  }
