@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import axios from "axios";
 import {PYTHON_API} from "../../redux/actions/index";
 
+
+//gets all headmasters
 const getHeadmasters = () => {
     axios.get(`${PYTHON_API}headmaster`)
         .then((res)=> {
@@ -12,6 +14,7 @@ const getHeadmasters = () => {
         })
 }
 
+//create headmaster
 const createHeadmaster = () => {
     axios.post(`${PYTHON_API}headmaster`)
         .then((res)=> {
@@ -22,6 +25,7 @@ const createHeadmaster = () => {
         })
 }
 
+//get headmaster by id
 const getHeadmasterById = () => {
     axios.get(`${PYTHON_API}headmaster/:id/`)
         .then((res)=> {
@@ -32,6 +36,7 @@ const getHeadmasterById = () => {
         })
 }
 
+//update headmaster by id
 const updateHeadmasterById = () => {
     axios.put(`${PYTHON_API}headmaster/:id/`)
         .then((res)=> {
@@ -42,6 +47,7 @@ const updateHeadmasterById = () => {
         })
 }
 
+//deletes headmaster by id
 const deleteHeadmasterById = () => {
     axios.delete(`${PYTHON_API}headmaster/:id/`)
         .then((res)=> {
@@ -52,6 +58,7 @@ const deleteHeadmasterById = () => {
         })
 }
 
+//gets all mentors
 const getMentors = () => {
     axios.get(`${PYTHON_API}mentor`)
         .then((res)=> {
@@ -62,6 +69,7 @@ const getMentors = () => {
         })
 }
 
+//creates mentor
 const createMentor = () => {
     axios.post(`${PYTHON_API}mentor`)
         .then((res)=> {
@@ -72,6 +80,7 @@ const createMentor = () => {
         })
 }
 
+//get mentor by id
 const getMentorById = () => {
     axios.get(`${PYTHON_API}mentor/:id/`)
         .then((res)=> {
@@ -82,6 +91,7 @@ const getMentorById = () => {
         })
 }
 
+//update mentor by id
 const updateMentorById = () => {
     axios.put(`${PYTHON_API}mentor/:id/`)
         .then((res)=> {
@@ -92,6 +102,7 @@ const updateMentorById = () => {
         })
 }
 
+//delete mentor by id
 const deleteMentorById = () => {
     axios.delete(`${PYTHON_API}mentor/:id/`)
         .then((res)=> {
@@ -102,6 +113,7 @@ const deleteMentorById = () => {
         })
 }
 
+//get all mentees (this api does not exist yet 5/11/21)
 const getMentees = () => {
     axios.get(``)
         .then((res)=> {
@@ -112,6 +124,7 @@ const getMentees = () => {
         })
 }
 
+//create mentee (this api does not exist yet 5/11/21)
 const createMentee = () => {
     axios.post(``)
         .then((res)=> {
@@ -122,6 +135,7 @@ const createMentee = () => {
         })
 }
 
+//get mentee by id (this api does not exist yet 5/11/21)
 const getMenteeById = () => {
     axios.get(``)
         .then((res)=> {
@@ -132,6 +146,7 @@ const getMenteeById = () => {
         })
 }
 
+//update mentee by id (this api does not exist yet 5/11/21)
 const updateMenteeById = () => {
     axios.put(``)
         .then((res)=> {
@@ -142,6 +157,7 @@ const updateMenteeById = () => {
         })
 }
 
+//delete mentee by id (this api does not exist yet 5/11/21)
 const deleteMenteeById = () => {
     axios.delete(``)
         .then((res)=> {
@@ -152,6 +168,7 @@ const deleteMenteeById = () => {
         })
 }
 
+//get students by program id and school id
 const getStudentsByProgramAndSchool = () => {
     axios.get(`${PYTHON_API}program/:program_external_id/school/:school_external_id/student/`)
         .then((res)=> {
@@ -162,7 +179,8 @@ const getStudentsByProgramAndSchool = () => {
         })
 }
 
-const createStudentsByProgramAndSchool = () => {
+//create student by program id and school id
+const createStudentByProgramAndSchool = () => {
     axios.post(`${PYTHON_API}program/:program_external_id/school/:school_external_id/student/`)
         .then((res)=> {
             console.log(res)
@@ -172,6 +190,7 @@ const createStudentsByProgramAndSchool = () => {
         })
 }
 
+//get student by program id and school id and student
 const getStudentByProgramAndSchoolAndId  = () => {
     axios.get(`${PYTHON_API}program/:program_external_id/school/:school_external_id/student/:external_id`)
         .then((res)=> {
@@ -182,6 +201,7 @@ const getStudentByProgramAndSchoolAndId  = () => {
         })
 }
 
+//update student by program id and school id and student
 const updateStudentByProgramAndSchoolAndId  = () => {
     axios.put(`${PYTHON_API}program/:program_external_id/school:school_external_id/student/:external_id`)
         .then((res)=> {
@@ -192,6 +212,7 @@ const updateStudentByProgramAndSchoolAndId  = () => {
         })
 }
 
+//delete student by program id and school id and student
 const deleteStudentByProgramAndSchoolAndId  = () => {
     axios.delete(`${PYTHON_API}program/:program_external_id/school/:school_external_id/student/:external_id`)
         .then((res)=> {
@@ -219,7 +240,7 @@ export default {
     updateMenteeById,
     deleteMenteeById,
     getStudentsByProgramAndSchool,
-    createStudentsByProgramAndSchool,
+    createStudentByProgramAndSchool,
     getStudentByProgramAndSchoolAndId,
     updateStudentByProgramAndSchoolAndId,
     deleteStudentByProgramAndSchoolAndId,
