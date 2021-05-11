@@ -10,10 +10,9 @@ const SearchBarAutoComplete = () => {
   
   const SearchModal = Modal
   const {isVisible, toggleModal } = useModal(SearchModal)
-  const [selectedUser, setSelectedUser] = useState();
-  const [setEditUser] = useState();
-  const [setErrorMessage] = useState();
-  
+  const [selectedUser, setSelectedUser] = useState({});
+  const [editUser, setEditUser] = useState();
+  const [errorMessage, setErrorMessage] = useState();
 
 
 useEffect(() => {
@@ -35,7 +34,7 @@ useEffect(() => {
       setErrorMessage(error);
       console.error("error", error);
     });
-});
+},[]);
 
   const renderTitle = (title) => {
     return (
