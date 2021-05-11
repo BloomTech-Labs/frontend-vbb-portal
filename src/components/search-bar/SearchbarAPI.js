@@ -223,7 +223,7 @@ const deleteStudentByProgramAndSchoolAndId  = () => {
         })
 }
 
-export default {
+export {
     getHeadmasters,
     createHeadmaster,
     getHeadmasterById,
