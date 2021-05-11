@@ -1,10 +1,12 @@
 import SearchModalContent from '../Modal/SeachModalFragment'
 import React, { useState } from 'react';
-import { AutoComplete, Input, Modal} from 'antd';
+import { AutoComplete, Button, Input, Modal} from 'antd';
 import useModal from '../Modal/useModal'
 import { v4 as uuidv4 } from 'uuid';
 import dummy from './MOCK_DATA.json';
+import { withRouter, Link } from 'react-router-dom';
 import { logIn } from '../../redux/actions';
+import Calendar from "../Calendar/Calendar"
 
 
 const SearchBarAutoComplete = () => {
@@ -44,20 +46,30 @@ const SearchBarAutoComplete = () => {
   const renderFeature = (feature, key) => ({
     value: feature.name,
     label: (
-      <div
+      <Link to= {feature.url} >
+      <div 
+       
         key={key}
         style={{ display: 'flex', justifyContent: 'space-between' }}
-        // onClick={() => setSelectedFeature(feature)}
+        //onClick={() => setSelectedFeature(feature)}
+        //onClick = {() => SearchModal.isVisible = false}
       >
         {feature.name}
       </div>
+      </Link>
     ),
     key,
   });
 
-  //to add features to desplay in search bar add them in this array
+  //to add features to display in search bar add them in this array
   const features = [
-    {name: "Create Mentee", url: ""},
+    {name: "calendar", url: "/calendar/"},
+    {name: "donate", url: "/donate/"},
+    {name: "signup", url: "/signup/"},
+    {name: "signin", url: "/signin/"},
+    {name: "booking", url: "/booking/"},
+    {name: "dashboard", url: "/"},
+    {name: "register", url: "/register/"},
     {name: "Create Mentor", url: ""}
   ]
 
@@ -100,7 +112,8 @@ const SearchBarAutoComplete = () => {
       </AutoComplete>
       <SearchModal title={selectedUser.full_name} visible={isVisible} onOk={toggleModal} onCancel={toggleModal} >
         <SearchModalContent user={selectedUser}/>
-      </SearchModal>
+      </SearchModal> 
+
     </>
   );
 };

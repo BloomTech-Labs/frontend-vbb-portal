@@ -15,4 +15,5 @@ function useModal (modal) {
   return {isVisible, toggleModal, sendData}
 }
 
+
 export default useModal
