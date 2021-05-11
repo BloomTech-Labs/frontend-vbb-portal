@@ -42,8 +42,9 @@ const components = {
 const Resources = props => {
   const[logic]=useState(true)
     return (
-  <div>
+  <div id="section-to-print"className="calendarWrapperDiv">
     <Calendar
+      
       localizer={localizer}
       events={events}
       startAccessor="start"
@@ -59,7 +60,7 @@ const Resources = props => {
       resources={resourceMap}
       resourceIdAccessor="resourceId"
       resourceTitleAccessor="resourceTitle"
-      style={{ height: 800 }}
+      // style={{ height: 800 }}
     />
   </div>
 )}
