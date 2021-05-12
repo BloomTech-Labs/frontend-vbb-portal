@@ -112,7 +112,7 @@ const SearchBarAutoComplete = () => {
       >
         <Input.Search size="large" placeholder="Find User" />
       </AutoComplete>
-      <SearchModal title={selectedUser.full_name} visible={isVisible} onOk={toggleModal} onCancel={toggleModal} >
+      <SearchModal visible={isVisible} onOk={toggleModal} onCancel={toggleModal} destroyOnClose={true}>
         <SearchModalContent user={selectedUser}/>
       </SearchModal>
 
