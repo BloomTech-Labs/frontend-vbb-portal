@@ -57,11 +57,12 @@ body {
     color: #FFFFF6;
     border-color: #FFFFF6
   }
-
-  .rbc-toolbar button:active, .rbc-toolbar button:hover, .rbc-toolbar button.rbc-active {
+  .rbc-toolbar button:active:hover, .rbc-toolbar button:active:focus, .rbc-toolbar button.rbc-active:hover, .rbc-toolbar button.rbc-active:focus,
+  .rbc-toolbar button:active, .rbc-toolbar button:hover, .rbc-toolbar button:focus, .rbc-toolbar button.rbc-active {
     background-color: #FFBD59;
     color: #FFFFF6;
-    border-color: #FFFFF6
+    border-color: #FFFFF6;
+    outline: none;
   }
 
   .rbc-day-slot .rbc-event {
@@ -73,7 +74,7 @@ body {
   }
 
   .rbc-time-content  {
-    overflow-x: Auto;
+    overflow-x: auto;
   }
   @media print {
     body * {
