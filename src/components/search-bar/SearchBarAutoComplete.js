@@ -33,7 +33,7 @@ const SearchBarAutoComplete = () => {
       <div
         key={key}
         style={{ display: 'flex', justifyContent: 'space-between' }}
-        onClick={() => setSelectedUser(user)}
+        onClick={() => toggleModal(SearchModal, user)}
       >
         {user.full_name}
       </div>
@@ -70,7 +70,6 @@ const SearchBarAutoComplete = () => {
         options={listOptions}
         filterOption={true}
         autoClearSearchValue={true}
-        onSelect={() => toggleModal(SearchModal)}
       >
         <Input.Search size="large" placeholder="Find User" />
       </AutoComplete>
