@@ -64,6 +64,14 @@ body {
     border-color: #FFFFF6
   }
 
+  .rbc-day-slot .rbc-event {
+    border-style: none;
+  }
+  
+  .rbc-event, .rbc-day-slot .rbc-background-event {
+    background-color: transparent;
+  }
+
   .rbc-time-content  {
     overflow-x: Auto;
   }
