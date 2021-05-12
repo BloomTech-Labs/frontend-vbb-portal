@@ -11,15 +11,15 @@ class Toolbar extends React.Component {
       localizer: { messages },
       label,
     } = this.props
-    
+    // May not need these
     function handleButtonClick(e) {
       message.info('Click on left button.');
-      console.log('click left button', e);
+      
     }
     
     function handleMenuClick(e) {
       message.info('Click on menu item.');
-      console.log('click', e);
+      
     }
     const menu = (
       <Menu onClick={handleMenuClick}>
