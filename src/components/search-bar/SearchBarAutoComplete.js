@@ -1,10 +1,10 @@
+import SearchModalContent from '../Modal/SeachModalFragment'
 import React, { useEffect, useState } from 'react';
 import { AutoComplete, Input, Modal, Button} from 'antd';
+import useModal from '../Modal/useModal'
 import { v4 as uuidv4 } from 'uuid';
 import dummy from './MOCK_DATA.json';
-import SearchModalContent from '../Modal/SeachModalFragment'
-import useModal from '../Modal/useModal'
-
+import AllAPIS from "./SearchbarAPI";
 
 const SearchBarAutoComplete = () => {
   
@@ -14,13 +14,9 @@ const SearchBarAutoComplete = () => {
   const [editUser, setEditUser] = useState();
   const [errorMessage, setErrorMessage] = useState();
 
-
+//Need to connect with back end and have a PUT request for Edit button, this endpoint requires an external id
+//Once backend is ready and seeded, use the searchbarAPI to make requests to the backend
 useEffect(() => {
-  // const updateUsers = {
-  //   method: "PUT",
-  //   headers: {"content": "app"},
-  //   body: JSON.stringify({title: "react"})
-  // };
   fetch('vbb-backend.herokuapp.com/api/v1/mentor/{external_id}')
     .then(async res => {
       const data = await res.json();
@@ -109,7 +105,5 @@ useEffect(() => {
     </>
   );
 };
-
-
 
 export default SearchBarAutoComplete;
