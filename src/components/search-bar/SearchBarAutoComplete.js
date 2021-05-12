@@ -9,8 +9,7 @@ import AllAPIS from "./SearchbarAPI";
 
 const SearchBarAutoComplete = () => {
   const SearchModal = Modal
- const {isVisible, toggleModal } = useModal(SearchModal)
-  const [selectedUser, setSelectedUser] = useState({});
+ const {isVisible, selectedUser, toggleModal } = useModal(SearchModal)
 
   const renderTitle = (title) => {
     return (
