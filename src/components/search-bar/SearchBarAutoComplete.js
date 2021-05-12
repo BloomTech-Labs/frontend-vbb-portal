@@ -41,8 +41,6 @@ const SearchBarAutoComplete = () => {
     key,
   });
 
-  AllAPIS.getHeadmasters()
-
   const options = dummy.map((user) => {
     const reformattedUser = {
       ...user,
