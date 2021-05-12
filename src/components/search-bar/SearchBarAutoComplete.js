@@ -1,20 +1,16 @@
 import SearchModalContent from '../Modal/SeachModalFragment'
 import React, { useState } from 'react';
-import { AutoComplete, Button, Input, Modal} from 'antd';
+import { AutoComplete, Input, Modal} from 'antd';
 import useModal from '../Modal/useModal'
 import { v4 as uuidv4 } from 'uuid';
 import dummy from './MOCK_DATA.json';
-import { withRouter, Link } from 'react-router-dom';
-import { logIn } from '../../redux/actions';
-import Calendar from "../Calendar/Calendar"
+import AllAPIS from "./SearchbarAPI";
 
 
 const SearchBarAutoComplete = () => {
   const SearchModal = Modal
- const {isVisible, toggleModal, selectedUser } = useModal(SearchModal)
-
-
-
+ const {isVisible, toggleModal } = useModal(SearchModal)
+  const [selectedUser, setSelectedUser] = useState({});
 
   const renderTitle = (title) => {
     return (
@@ -37,44 +33,13 @@ const SearchBarAutoComplete = () => {
       <div
         key={key}
         style={{ display: 'flex', justifyContent: 'space-between' }}
-        onClick={() => toggleModal(SearchModal, user)}
-
+        onClick={() => setSelectedUser(user)}
       >
         {user.full_name}
       </div>
     ),
     key,
   });
-
-  const renderFeature = (feature, key) => ({
-    value: feature.name,
-    label: (
-      <Link to= {feature.url} >
-      <div
-
-        key={key}
-        style={{ display: 'flex', justifyContent: 'space-between' }}
-        //onClick={() => setSelectedFeature(feature)}
-        //onClick = {() => SearchModal.isVisible = false}
-      >
-        {feature.name}
-      </div>
-      </Link>
-    ),
-    key,
-  });
-
-  //to add features to display in search bar add them in this array
-  const features = [
-    {name: "calendar", url: "/calendar/"},
-    {name: "donate", url: "/donate/"},
-    {name: "signup", url: "/signup/"},
-    {name: "signin", url: "/signin/"},
-    {name: "booking", url: "/booking/"},
-    {name: "dashboard", url: "/"},
-    {name: "register", url: "/register/"},
-    {name: "Create Mentor", url: ""}
-  ]
 
   const options = dummy.map((user) => {
     const reformattedUser = {
@@ -96,10 +61,6 @@ const SearchBarAutoComplete = () => {
       label: renderTitle('Teachers'),
       options: options.map((user) => renderItem(user, uuidv4())),
     },
-    {
-      label: renderTitle("Features"),
-      options: features.map((feature) => renderFeature(feature, uuidv4())),
-    }
   ];
 
   return (
@@ -109,13 +70,13 @@ const SearchBarAutoComplete = () => {
         options={listOptions}
         filterOption={true}
         autoClearSearchValue={true}
+        onSelect={() => toggleModal(SearchModal)}
       >
         <Input.Search size="large" placeholder="Find User" />
       </AutoComplete>
-      <SearchModal visible={isVisible} onOk={toggleModal} onCancel={toggleModal} destroyOnClose={true}>
+      <SearchModal title={selectedUser.full_name} visible={isVisible} onOk={toggleModal} onCancel={toggleModal} >
         <SearchModalContent user={selectedUser}/>
       </SearchModal>
-
     </>
   );
 };

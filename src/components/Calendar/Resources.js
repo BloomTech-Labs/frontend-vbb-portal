@@ -9,7 +9,7 @@ import getDay from 'date-fns/getDay'
 import * as dates from 'react-big-calendar/lib/utils/dates'
 import {navigate} from 'react-big-calendar/lib/utils/constants'
 import Toolbar from './ResourcesToolbar'
-import './calendar.css'
+import './Calendar.css'
 import { customResourceViewEvent } from './CustomEvent'
 
 
@@ -40,8 +40,9 @@ const components = {
 
 const Resources = props => {
     return (
-  <div>
+  <div id="section-to-print"className="calendarWrapperDiv">
     <Calendar
+      
       localizer={localizer}
       events={events}
       startAccessor="start"
@@ -57,7 +58,7 @@ const Resources = props => {
       resources={resourceMap}
       resourceIdAccessor="resourceId"
       resourceTitleAccessor="resourceTitle"
-      style={{ height: 800 }}
+      // style={{ height: 800 }}
     />
   </div>
 )}
