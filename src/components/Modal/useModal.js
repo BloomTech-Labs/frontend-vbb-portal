@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 function useModal (modal) {
   const [ isVisible, setIsVisible ] = useState(false)
+  const [selectedUser, setSelectedUser] = useState({});
 
   function toggleModal (modal) {
     return setIsVisible(!isVisible)
@@ -12,7 +13,7 @@ function useModal (modal) {
     // axios call to update the user info from the modal
   }
 
-  return {isVisible, toggleModal, sendData}
+  return {isVisible, selectedUser, toggleModal, sendData}
 }
 
 

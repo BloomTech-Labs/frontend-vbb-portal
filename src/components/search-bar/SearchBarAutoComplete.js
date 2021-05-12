@@ -11,8 +11,10 @@ import Calendar from "../Calendar/Calendar"
 
 const SearchBarAutoComplete = () => {
   const SearchModal = Modal
- const {isVisible, toggleModal } = useModal(SearchModal)
-  const [selectedUser, setSelectedUser] = useState({});
+ const {isVisible, toggleModal, selectedUser } = useModal(SearchModal)
+
+
+
 
   const renderTitle = (title) => {
     return (
