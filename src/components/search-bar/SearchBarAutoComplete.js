@@ -1,16 +1,36 @@
 import SearchModalContent from '../Modal/SeachModalFragment'
-import React, { useState } from 'react';
-import { AutoComplete, Input, Modal} from 'antd';
+import React, { useEffect, useState } from 'react';
+import { AutoComplete, Input, Modal, Button} from 'antd';
 import useModal from '../Modal/useModal'
 import { v4 as uuidv4 } from 'uuid';
 import dummy from './MOCK_DATA.json';
 import AllAPIS from "./SearchbarAPI";
 
-
 const SearchBarAutoComplete = () => {
+  
   const SearchModal = Modal
- const {isVisible, toggleModal } = useModal(SearchModal)
+  const {isVisible, toggleModal } = useModal(SearchModal)
   const [selectedUser, setSelectedUser] = useState({});
+  const [editUser, setEditUser] = useState();
+  const [errorMessage, setErrorMessage] = useState();
+
+//Need to connect with back end and have a PUT request for Edit button, this endpoint requires an external id
+//Once backend is ready and seeded, use the searchbarAPI to make requests to the backend
+useEffect(() => {
+  fetch('vbb-backend.herokuapp.com/api/v1/mentor/{external_id}')
+    .then(async res => {
+      const data = await res.json();
+      if (!res.ok) {
+        const err = (data && data.message) || res.status;
+        return Promise.reject(err);
+      }
+      setEditUser(data.id);
+    })
+    .catch(error => {
+      setErrorMessage(error);
+      console.error("error", error);
+    });
+},[]);
 
   const renderTitle = (title) => {
     return (
@@ -63,6 +83,10 @@ const SearchBarAutoComplete = () => {
     },
   ];
 
+  const handleEdit = () => {
+    setEditUser();
+  }
+
   return (
     <>
       <AutoComplete
@@ -76,6 +100,7 @@ const SearchBarAutoComplete = () => {
       </AutoComplete>
       <SearchModal title={selectedUser.full_name} visible={isVisible} onOk={toggleModal} onCancel={toggleModal} >
         <SearchModalContent user={selectedUser}/>
+        <Button onClick={handleEdit}>Edit</Button>
       </SearchModal>
     </>
   );
