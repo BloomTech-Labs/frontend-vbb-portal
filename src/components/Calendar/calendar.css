@@ -76,6 +76,18 @@ body {
   .rbc-time-content  {
     overflow-x: auto;
   }
+
+  .resourceEvent {
+    background-color: white;
+    color: black;
+  }
+
+  .rbc-events-container p {
+    margin: 1px;
+    padding: 0;
+    font-size: 1em;
+  }
+
   @media print {
     body * {
       visibility: hidden;
