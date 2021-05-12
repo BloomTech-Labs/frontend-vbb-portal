@@ -37,7 +37,8 @@ const SearchBarAutoComplete = () => {
       <div
         key={key}
         style={{ display: 'flex', justifyContent: 'space-between' }}
-        onClick={() => setSelectedUser(user)}
+        onClick={() => toggleModal(SearchModal, user)}
+
       >
         {user.full_name}
       </div>
@@ -49,8 +50,8 @@ const SearchBarAutoComplete = () => {
     value: feature.name,
     label: (
       <Link to= {feature.url} >
-      <div 
-       
+      <div
+
         key={key}
         style={{ display: 'flex', justifyContent: 'space-between' }}
         //onClick={() => setSelectedFeature(feature)}
@@ -108,13 +109,12 @@ const SearchBarAutoComplete = () => {
         options={listOptions}
         filterOption={true}
         autoClearSearchValue={true}
-        onSelect={() => toggleModal(SearchModal)}
       >
         <Input.Search size="large" placeholder="Find User" />
       </AutoComplete>
       <SearchModal title={selectedUser.full_name} visible={isVisible} onOk={toggleModal} onCancel={toggleModal} >
         <SearchModalContent user={selectedUser}/>
-      </SearchModal> 
+      </SearchModal>
 
     </>
   );

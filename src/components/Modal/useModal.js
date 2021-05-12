@@ -4,8 +4,14 @@ function useModal (modal) {
   const [ isVisible, setIsVisible ] = useState(false)
   const [selectedUser, setSelectedUser] = useState({});
 
-  function toggleModal (modal) {
-    return setIsVisible(!isVisible)
+  function toggleModal (modal, user) {
+    setIsVisible(!isVisible)
+    setSelectedUser(user)
+  }
+
+  function closeModal () {
+    setIsVisible(!isVisible)
+    setSelectedUser({})
   }
 
   // any other funtion that needs to be used with any modal can be added here
