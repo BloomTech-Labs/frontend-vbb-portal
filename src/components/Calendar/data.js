@@ -10,7 +10,7 @@ export const myEventsList = [{
       id: 0,
       title: 'Board meeting',
       start: new Date(2021, 3, 27, 9, 0, 0),
-      end: new Date(2021, 3, 27, 9, 30, 0),
+      end: new Date(2021, 3, 27, 11, 30, 0),
       resourceId: 1,
     },
     {

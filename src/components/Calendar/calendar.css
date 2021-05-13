@@ -65,9 +65,29 @@ body {
     outline: none;
   }
 
+  .rbc-day-slot .rbc-event {
+    border-style: none;
+  }
+  
+  .rbc-event, .rbc-day-slot .rbc-background-event {
+    background-color: transparent;
+  }
+
   .rbc-time-content  {
     overflow-x: auto;
   }
+
+  .resourceEvent {
+    background-color: white;
+    color: black;
+  }
+
+  .rbc-events-container p {
+    margin: 1px;
+    padding: 0;
+    font-size: 1em;
+  }
+
   @media print {
     body * {
       visibility: hidden;

@@ -3,7 +3,7 @@ import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import './calendar.css'
 import { events ,resourceMap } from './data'
-import {customWeekViewEvent} from './CustomEvent'
+import {customWeekViewEvent, customResourceViewEvent} from './CustomEvent'
 import format from 'date-fns/format'
 import parse from 'date-fns/parse'
 import startOfWeek from 'date-fns/startOfWeek'
@@ -24,6 +24,9 @@ let components = {
     week: {
          event: customWeekViewEvent,
     },
+    day: {
+      event: customResourceViewEvent
+    }
   }
 
 const MyCalendar = props => {
