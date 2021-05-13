@@ -2,15 +2,15 @@ import SearchModalContent from '../Modal/SeachModalFragment'
 import React, { useEffect, useState } from 'react';
 import { AutoComplete, Input, Modal, Button} from 'antd';
 import useModal from '../Modal/useModal'
+import { withRouter, Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import dummy from './MOCK_DATA.json';
 import AllAPIS from "./SearchbarAPI";
 
 const SearchBarAutoComplete = () => {
-  
+
   const SearchModal = Modal
-  const {isVisible, toggleModal } = useModal(SearchModal)
-  const [selectedUser, setSelectedUser] = useState({});
+ const {isVisible, selectedUser, toggleModal } = useModal(SearchModal)
   const [editUser, setEditUser] = useState();
   const [errorMessage, setErrorMessage] = useState();
 
@@ -53,13 +53,43 @@ useEffect(() => {
       <div
         key={key}
         style={{ display: 'flex', justifyContent: 'space-between' }}
-        onClick={() => setSelectedUser(user)}
+        onClick={() => toggleModal(SearchModal, user)}
       >
         {user.full_name}
       </div>
     ),
     key,
   });
+
+  const renderFeature = (feature, key) => ({
+    value: feature.name,
+    label: (
+        <Link to= {feature.url} >
+          <div
+
+              key={key}
+              style={{ display: 'flex', justifyContent: 'space-between' }}
+              //onClick={() => setSelectedFeature(feature)}
+              //onClick = {() => SearchModal.isVisible = false}
+          >
+            {feature.name}
+          </div>
+        </Link>
+    ),
+    key,
+  });
+
+  //to add features to display in search bar add them in this array
+  const features = [
+    {name: "calendar", url: "/calendar/"},
+    {name: "donate", url: "/donate/"},
+    {name: "signup", url: "/signup/"},
+    {name: "signin", url: "/signin/"},
+    {name: "booking", url: "/booking/"},
+    {name: "dashboard", url: "/"},
+    {name: "register", url: "/register/"},
+    {name: "Create Mentor", url: ""}
+  ]
 
   const options = dummy.map((user) => {
     const reformattedUser = {
@@ -68,6 +98,7 @@ useEffect(() => {
     };
     return reformattedUser;
   });
+
 
   /**
    * @description This an array that display different sections in the search-bar sepereated by Students and Students
@@ -81,6 +112,10 @@ useEffect(() => {
       label: renderTitle('Teachers'),
       options: options.map((user) => renderItem(user, uuidv4())),
     },
+    {
+      label: renderTitle("Features"),
+      options: features.map((feature) => renderFeature(feature, uuidv4())),
+    }
   ];
 
   const handleEdit = () => {
@@ -94,11 +129,10 @@ useEffect(() => {
         options={listOptions}
         filterOption={true}
         autoClearSearchValue={true}
-        onSelect={() => toggleModal(SearchModal)}
       >
         <Input.Search size="large" placeholder="Find User" />
       </AutoComplete>
-      <SearchModal title={selectedUser.full_name} visible={isVisible} onOk={toggleModal} onCancel={toggleModal} >
+      <SearchModal visible={isVisible} onOk={toggleModal} onCancel={toggleModal} destroyOnClose={true} >
         <SearchModalContent user={selectedUser}/>
         <Button onClick={handleEdit}>Edit</Button>
       </SearchModal>
