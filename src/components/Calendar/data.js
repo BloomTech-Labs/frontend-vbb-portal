@@ -11,13 +11,15 @@ export const myEventsList = [{
       title: 'Board meeting',
       start: new Date(2021, 3, 27, 9, 0, 0),
       end: new Date(2021, 3, 27, 9, 30, 0),
+      availableComputers: 3,
       resourceId: 1,
     },
     {
       id: 1,
       title: 'MS training',
-      start: new Date(2021, 3, 27, 14, 0, 0),
-      end: new Date(2021, 3, 27, 14, 30, 0),
+      start: new Date(2021, 3, 27, 10, 0, 0),
+      end: new Date(2021, 3, 27, 10, 30, 0),
+      availableComputers: 8,
       resourceId: 2,
     },
     {
@@ -25,6 +27,7 @@ export const myEventsList = [{
       title: 'Team lead meeting',
       start: new Date(2021, 3, 27, 8, 30, 0),
       end: new Date(2021, 3, 27, 9, 0, 0),
+      availableComputers: 8,
       resourceId: 3,
     },
     {
@@ -32,6 +35,7 @@ export const myEventsList = [{
       title: 'Birthday Party',
       start: new Date(2021, 3, 27, 7, 0, 0),
       end: new Date(2021, 3, 27, 7, 30, 0),
+      availableComputers: 7,
       resourceId: 4,
     },
     {
@@ -39,19 +43,12 @@ export const myEventsList = [{
       title: 'Dog Walking',
       start: new Date(2021, 3, 28, 7, 0, 0),
       end: new Date(2021, 3, 28, 7, 30, 0),
+      availableComputers: 5,
       resourceId: 5,
     },
   ]
   
-  export const resourceMap = [
-    { resourceId: 1, resourceTitle: 'Computer 1' },
-    { resourceId: 2, resourceTitle: 'Computer 2' },
-    { resourceId: 3, resourceTitle: 'Computer 3' },
-    { resourceId: 4, resourceTitle: 'Computer 4' },
-    { resourceId: 5, resourceTitle: 'Computer 5' },
-    { resourceId: 6, resourceTitle: 'Computer 6' },
-    { resourceId: 7, resourceTitle: 'Computer 7' },
-    { resourceId: 8, resourceTitle: 'Computer 8' },
-    { resourceId: 9, resourceTitle: 'Computer 9' },
-    { resourceId: 10, resourceTitle: 'Computer 10' },
-  ]
+  const resourcesArray = ['computer 1', 'computer 2', 'computer 3', 'computer 4', 'computer 5', 'computer 6', 'computer 7', 'computer 8', 'computer 9', 'computer 10']
+  export const resourceMap = resourcesArray.map((computer, index) => {
+    return {resourceId: index + 1, resourceTitle: computer}
+  })
