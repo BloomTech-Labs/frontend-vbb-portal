@@ -1,17 +1,13 @@
-export const myEventsList = [{
-    title: 'test',
-    start: new Date(2021, 3, 27, 15, 24, 0),
-    end: new Date(2021, 3, 27, 16, 24, 0),
-    allDay: false,
-  }]
-
-  export const events = [
+export const events = [
     {
       id: 0,
       title: 'Board meeting',
       start: new Date(2021, 3, 27, 9, 0, 0),
       end: new Date(2021, 3, 27, 9, 30, 0),
       availableComputers: 3,
+      unavailableComputers: 6,
+      mentor: 'Liz',
+      student: 'Henry',
       resourceId: 1,
     },
     {
@@ -20,6 +16,9 @@ export const myEventsList = [{
       start: new Date(2021, 3, 27, 10, 0, 0),
       end: new Date(2021, 3, 27, 10, 30, 0),
       availableComputers: 8,
+      unavailableComputers: 5,
+      mentor: 'Maple',
+      student: 'Alley',
       resourceId: 2,
     },
     {
@@ -28,6 +27,9 @@ export const myEventsList = [{
       start: new Date(2021, 3, 27, 8, 30, 0),
       end: new Date(2021, 3, 27, 9, 0, 0),
       availableComputers: 8,
+      unavailableComputers: 2,
+      mentor: 'Morgan',
+      student: 'Ares',
       resourceId: 3,
     },
     {
@@ -36,6 +38,9 @@ export const myEventsList = [{
       start: new Date(2021, 3, 27, 7, 0, 0),
       end: new Date(2021, 3, 27, 7, 30, 0),
       availableComputers: 7,
+      unavailableComputers: 3,
+      mentor: 'Calli',
+      student: 'Piper',
       resourceId: 4,
     },
     {
@@ -44,6 +49,9 @@ export const myEventsList = [{
       start: new Date(2021, 3, 28, 7, 0, 0),
       end: new Date(2021, 3, 28, 7, 30, 0),
       availableComputers: 5,
+      unavailableComputers: 3,
+      mentor: 'Leo',
+      student: 'Nyx',
       resourceId: 5,
     },
   ]
