@@ -10,7 +10,7 @@ export const customWeekViewEvent = () => {
 
 export const customResourceViewEvent = () => {
     return (
-        <div className='rbc-event-container'>
+        <div className='rbc-events-container'>
             <p className='resourceEvent'>Mentor Name</p>
             <p className='resourceEvent'>Student Name</p>
         </div>

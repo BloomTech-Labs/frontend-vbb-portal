@@ -3,11 +3,12 @@ import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import './calendar.css'
 import { events ,resourceMap } from './data'
-import {customWeekViewEvent} from './CustomEvent'
+import {customResourceViewEvent, customWeekViewEvent} from './CustomEvent'
 import format from 'date-fns/format'
 import parse from 'date-fns/parse'
 import startOfWeek from 'date-fns/startOfWeek'
 import getDay from 'date-fns/getDay'
+import Toolbar from './ResourcesToolbar'
 
 const locales = {
   'en-US': require('date-fns/locale/en-US'),
@@ -21,15 +22,20 @@ const localizer = dateFnsLocalizer({
 })
 
 let components = {
+  toolbar: Toolbar,
     week: {
          event: customWeekViewEvent,
     },
+    day: {
+      event: customResourceViewEvent,
+    },
+         
   }
 
 const MyCalendar = props => {
   const [theView,setTheView] = useState(true)
     return (
-  <div className="calendarWrapperDiv">
+  <div className="calendarWrapperDiv" id="section-to-print">
     <Calendar
       localizer={localizer}
       onView={()=>{
@@ -44,7 +50,6 @@ const MyCalendar = props => {
       }}
       components={components}
       resources={theView === true ? null : resourceMap}
-      
       resourceIdAccessor="resourceId"
       resourceTitleAccessor="resourceTitle"
       timeslots={1}

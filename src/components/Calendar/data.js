@@ -10,15 +10,15 @@ export const myEventsList = [{
       id: 0,
       title: 'Board meeting',
       start: new Date(2021, 3, 27, 9, 0, 0),
-      end: new Date(2021, 3, 27, 9, 30, 0),
+      end: new Date(2021, 3, 27, 11, 30, 0),
       resourceId: 1,
     },
     {
       id: 1,
       title: 'MS training',
       start: new Date(2021, 3, 27, 14, 0, 0),
-      end: new Date(2021, 3, 27, 14, 30, 0),
-      resourceId: 2,
+      end: new Date(2021, 3, 27, 16, 30, 0),
+      resourceId: 1,
     },
     {
       id: 2,
