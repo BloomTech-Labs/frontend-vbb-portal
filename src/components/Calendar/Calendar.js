@@ -8,6 +8,7 @@ import format from 'date-fns/format'
 import parse from 'date-fns/parse'
 import startOfWeek from 'date-fns/startOfWeek'
 import getDay from 'date-fns/getDay'
+import Toolbar from './ResourcesToolbar'
 
 const locales = {
   'en-US': require('date-fns/locale/en-US'),
@@ -21,6 +22,7 @@ const localizer = dateFnsLocalizer({
 })
 
 let components = {
+  toolbar: Toolbar,
     week: {
          event: customWeekViewEvent,
     },
@@ -32,7 +34,7 @@ let components = {
 const MyCalendar = props => {
   const [theView,setTheView] = useState(true)
     return (
-  <div className="calendarWrapperDiv">
+  <div className="calendarWrapperDiv" id="section-to-print">
     <Calendar
       localizer={localizer}
       onView={()=>{
@@ -47,7 +49,6 @@ const MyCalendar = props => {
       }}
       components={components}
       resources={theView === true ? null : resourceMap}
-      
       resourceIdAccessor="resourceId"
       resourceTitleAccessor="resourceTitle"
       timeslots={1}
