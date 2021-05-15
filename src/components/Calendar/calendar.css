@@ -19,13 +19,20 @@ body {
     margin-left: -700vw;
   }
 
-  .rbc-event-label {
-    margin: 0;
+  .mentor, .student {
+    margin: 1px;
+    padding: 0;
+    font-size: 0.8em;
   }
 
-  .rbc-day-slot .rbc-event-label {
-    padding: 4px;
+  .rbc-event-label {
+    margin: 0;
+    font-size: 1rem;
   }
+
+  /* .rbc-day-slot .rbc-event-label {
+    padding: 4px;
+  } */
 
   .assignedComputers {
     background-color: red;
@@ -57,16 +64,31 @@ body {
     color: #FFFFF6;
     border-color: #FFFFF6
   }
-
-  .rbc-toolbar button:active, .rbc-toolbar button:hover, .rbc-toolbar button.rbc-active {
+  .rbc-toolbar button:active:hover, .rbc-toolbar button:active:focus, .rbc-toolbar button.rbc-active:hover, .rbc-toolbar button.rbc-active:focus,
+  .rbc-toolbar button:active, .rbc-toolbar button:hover, .rbc-toolbar button:focus, .rbc-toolbar button.rbc-active {
     background-color: #FFBD59;
     color: #FFFFF6;
-    border-color: #FFFFF6
+    border-color: #FFFFF6;
+    outline: none;
+  }
+
+  .rbc-day-slot .rbc-event {
+    border-style: none;
+  }
+  
+  .rbc-event, .rbc-day-slot .rbc-background-event {
+    background-color: transparent;
   }
 
   .rbc-time-content  {
-    overflow-x: Auto;
+    overflow-x: auto;
   }
+
+  .resourceEvent {
+    background-color: white;
+    color: black;
+  }
+
   @media print {
     body * {
       visibility: hidden;
