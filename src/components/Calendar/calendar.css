@@ -60,15 +60,15 @@ body {
 
   .rbc-toolbar button  {
     border-radius: 15px;
-    background-color: #FF914D;
-    color: #FFFFF6;
-    border-color: #FFFFF6
+    background-color: #549bea;
+    color: #FFFFFF;
+    border-color: #FFFFFF;
   }
   .rbc-toolbar button:active:hover, .rbc-toolbar button:active:focus, .rbc-toolbar button.rbc-active:hover, .rbc-toolbar button.rbc-active:focus,
   .rbc-toolbar button:active, .rbc-toolbar button:hover, .rbc-toolbar button:focus, .rbc-toolbar button.rbc-active {
-    background-color: #FFBD59;
-    color: #FFFFF6;
-    border-color: #FFFFF6;
+    background-color: #FFFFFF;
+    color: #549bea;
+    border-color: #FFFFFF;
     outline: none;
   }
 
