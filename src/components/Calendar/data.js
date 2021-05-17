@@ -1,4 +1,5 @@
 export const events = [
+
   {
     id: 0,
     title: 'Board meeting',

@@ -33,17 +33,13 @@ let components = {
 
 const MyCalendar = props => {
   const [theView,setTheView] = useState(true)
-  const handleSelectEvent=(event,target) =>{
-    let obj = target.currentTarget;
-    obj.getElementsByTagName('strong')[0].click();
-  }
-    return (
+  return (
   <div className="calendarWrapperDiv" id="section-to-print">
     <Calendar
       localizer={localizer}
       // min and max sets the start and end time of day displayed
-      min={new Date(0, 0, 0, 10, 0, 0)}
-      max={new Date(0, 0, 0, 22, 0, 0)}
+      min={new Date(Date.UTC(0, 0, 0, 10, 0, 0))}
+      max={new Date(Date.UTC(0, 0, 0, 22, 0, 0))}
       onView={()=>{
         setTheView(!theView)
       }}
