@@ -28,6 +28,10 @@ let components = {
 
 const MyCalendar = props => {
   const [theView,setTheView] = useState(true)
+  const handleSelectEvent=(event,target) =>{
+    let obj = target.currentTarget;
+    obj.getElementsByTagName('strong')[0].click();
+  }
     return (
   <div className="calendarWrapperDiv">
     <Calendar
@@ -35,6 +39,7 @@ const MyCalendar = props => {
       onView={()=>{
         setTheView(!theView)
       }}
+      onSelectEvent={handleSelectEvent} 
       events={events}
       startAccessor="start"
       endAccessor="end"
@@ -49,6 +54,7 @@ const MyCalendar = props => {
       resourceTitleAccessor="resourceTitle"
       timeslots={1}
       defaultView='week'
+     
     />
   </div>
 )}
