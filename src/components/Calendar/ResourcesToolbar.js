@@ -11,7 +11,7 @@ class Toolbar extends React.Component {
       localizer: { messages },
       label,
     } = this.props
-    // May not need these
+    
     function handleButtonClick(e) {
       message.info('Click on left button.');
       
@@ -19,7 +19,7 @@ class Toolbar extends React.Component {
     
     function handleMenuClick(e) {
       message.info('Click on menu item.');
-      
+      // May not need these
     }
     const menu = (
       <Menu onClick={handleMenuClick}>

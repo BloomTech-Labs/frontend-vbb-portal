@@ -4,13 +4,26 @@ const SearchModalContent = (props) => {
   return (
       <>
         { props.user ? (
-            <>
-              <h1>{ props.user.full_name}</h1>
-              <p>{props.user.date_of_birth}</p>
-              <p>{props.user.personal_email}</p>
-              <p>{props.user.phone}</p>
-              <p>{props.user.city}</p>
-            </>
+          <>
+            <div style={{ fontWeight: 'bold' }}>
+              <h3>ID: {props.user.id}</h3>
+              <h1>{props.user.full_name}</h1>
+              <p>DOB: {props.user.date_of_birth}</p>
+              <p>
+                Email:{' '}
+                <a href={`mailto:${props.user.personal_email}`} style={{ color: 'blue' }}>
+                  {props.user.personal_email}
+                </a>
+              </p>
+              <p>Cell: {props.user.phone}</p>
+              <p>
+                Location:{' '}
+                <a href={`http://maps.google.com/maps?q= ${props.user.city}`}>
+                  {props.user.city}
+                </a>
+              </p>
+            </div>
+          </>
         ) : null}
       </>
   )
