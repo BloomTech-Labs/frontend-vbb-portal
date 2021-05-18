@@ -69,8 +69,6 @@ useEffect(() => {
 
               key={key}
               style={{ display: 'flex', justifyContent: 'space-between' }}
-              //onClick={() => setSelectedFeature(feature)}
-              //onClick = {() => SearchModal.isVisible = false}
           >
             {feature.name}
           </div>
