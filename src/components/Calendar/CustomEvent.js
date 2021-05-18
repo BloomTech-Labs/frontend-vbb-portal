@@ -1,5 +1,4 @@
 import React from 'react'
-import { events, resourceMap } from './data'
 
 export const customWeekViewEvent = data => {
     return (
