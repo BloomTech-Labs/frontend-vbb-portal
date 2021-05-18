@@ -61,7 +61,7 @@ body {
     border-color: #FFFFFF;
   }
   .rbc-toolbar button:active:hover, .rbc-toolbar button:active:focus, .rbc-toolbar button.rbc-active:hover, .rbc-toolbar button.rbc-active:focus,
-  .rbc-toolbar button:active, .rbc-toolbar button:hover, .rbc-toolbar button:focus, .rbc-toolbar button.rbc-active {
+  .rbc-toolbar button:active, .rbc-toolbar button:hover, .rbc-toolbar button:focus, .rbc-toolbar button.rbc-active, .print-download-button:hover .print-download-icon, .print-download-button:focus .print-download-icon {
     background-color: #FFFFFF;
     color: #549bea;
     border-color: #FFFFFF;
@@ -106,4 +106,8 @@ body {
       width: 95%;
       
     }
+  }
+
+  .print-download-icon {
+    color: #FFFFFF;
   }

@@ -36,7 +36,7 @@ const schoolMenu = (
 let components = {
   toolbar: Toolbar,
     week: {
-         event: customWeekViewEvent,
+      event: customWeekViewEvent,
     },
     day: {
       event: customResourceViewEvent
