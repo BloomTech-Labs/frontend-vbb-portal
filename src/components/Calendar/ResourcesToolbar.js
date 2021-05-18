@@ -2,8 +2,8 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import clsx from 'clsx'
 import { navigate } from 'react-big-calendar/lib/utils/constants'
-import { Menu, Dropdown, Button, message, Space, Tooltip } from 'antd';
-import { DownloadOutlined, DownOutlined, PrinterOutlined, UserOutlined } from '@ant-design/icons';
+import { Menu, Dropdown, message } from 'antd';
+import { DownloadOutlined, DownOutlined, PrinterOutlined } from '@ant-design/icons';
 
 class Toolbar extends React.Component {
   render() {
@@ -11,11 +11,6 @@ class Toolbar extends React.Component {
       localizer: { messages },
       label,
     } = this.props
-    
-    function handleButtonClick(e) {
-      message.info('Click on left button.');
-      
-    }
     
     function handleMenuClick(e) {
       message.info('Click on menu item.');
@@ -57,9 +52,9 @@ class Toolbar extends React.Component {
         <span className="rbc-toolbar-label">{label}</span>
         
         <span className="rbc-btn-group">{this.viewNamesGroup(messages)}
-        <Dropdown overlay={menu}>
-        <button trigger={['click']}><DownOutlined /></button>
-        </Dropdown>
+          <Dropdown overlay={menu}>
+            <button trigger={['click']}><DownOutlined /></button>
+          </Dropdown>
         </span>
       </div>
     )
