@@ -1,4 +1,6 @@
-- search-bar
+# About the Search Bar
+
+### search-bar
     - SearchbarAutoComplete
         - Autocompleting search bar using Ant Design
         - Features are hardcoded with the URL, and if more features are added, they will need to be added to the list with their URL.
@@ -11,7 +13,7 @@
     - Mock_Data
         - Dummy data that uses the backend schema as a template for development use.
 
-- Modal
+### Modal
     - useModal
         - Modal custom hooks
         - Any functions that need to be added to the Modal should be added here.
