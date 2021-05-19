@@ -10,6 +10,7 @@ import startOfWeek from 'date-fns/startOfWeek'
 import getDay from 'date-fns/getDay'
 import Toolbar from './ResourcesToolbar'
 import { Menu, Dropdown } from 'antd';
+import ComputersList from './assign-computers/computers-list'
 
 const locales = {
   'en-US': require('date-fns/locale/en-US'),
@@ -45,6 +46,7 @@ let components = {
 
 const MyCalendar = props => {
   const [theView,setTheView] = useState(true)
+  const[show,setShow]= useState(true)
   return (
   <div className="calendarWrapperDiv" id="section-to-print">
 
@@ -53,6 +55,7 @@ const MyCalendar = props => {
     <button trigger={['click']}>Select Location</button>
   </Dropdown>
 </div>
+{show ?
     <Calendar
       localizer={localizer}
       // min and max sets the start and end time of day displayed
@@ -75,8 +78,13 @@ const MyCalendar = props => {
       resourceTitleAccessor="resourceTitle"
       timeslots={1}
       defaultView='week'
+      // onSelectSlot={setShow(false)}
+      onSelectEvent = {e=>setShow(!show)}
      
     />
+    :
+    <ComputersList setShow={setShow} show = {show}/>
+}
   </div>
 )}
 

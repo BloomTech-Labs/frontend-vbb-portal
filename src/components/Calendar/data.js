@@ -57,6 +57,8 @@ export const events = [
   },
 ]
 
+export const mentors = ['Leo','Calli','Morgan']
+export const mentees = ['Nyx','Steven','Morgan']
 const resourcesArray = ['computer 1', 'computer 2', 'computer 3', 'computer 4', 'computer 5', 'computer 6', 'computer 7', 'computer 8', 'computer 9', 'computer 10']
 export const resourceMap = resourcesArray.map((computer, index) => {
   return {resourceId: index + 1, resourceTitle: computer}
