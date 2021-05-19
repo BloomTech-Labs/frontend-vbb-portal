@@ -1,35 +1,91 @@
-import React, { useState } from 'react';
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
+import {React, useState} from 'react'
+import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
+import 'react-big-calendar/lib/css/react-big-calendar.css'
 import './calendar.css'
-import interactionPlugin from '@fullcalendar/interaction';
-import { fakeData } from './data';
+import { events ,resourceMap } from './data'
+import {customWeekViewEvent, customResourceViewEvent} from './CustomEvent'
+import format from 'date-fns/format'
+import parse from 'date-fns/parse'
+import startOfWeek from 'date-fns/startOfWeek'
+import getDay from 'date-fns/getDay'
+import Toolbar from './ResourcesToolbar'
+import { Menu, Dropdown } from 'antd';
+import ComputersList from './assign-computers/computers-list'
 
-const Calendar = () => {
-
-    const [events] = useState(fakeData)
-
-    return (
-        <div className="wrapper-div">
-            <FullCalendar
-                plugins={[dayGridPlugin, timeGridPlugin]}
-                initialView="timeGridWeek"
-                nowIndicator="true"
-                customButtons={{
-                    myCustomButton: {
-                        text: "▼",
-                        // click:
-                    },
-                }}
-                headerToolbar={{
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay,myCustomButton'
-                }}
-            />
-        </div>
-    )
+const locales = {
+  'en-US': require('date-fns/locale/en-US'),
 }
+const localizer = dateFnsLocalizer({
+  format,
+  parse,
+  startOfWeek,
+  getDay,
+  locales,
+})
 
-export default Calendar;
+const schoolMenu = (
+  <Menu>
+    <Menu.Item key="1">
+      India
+    </Menu.Item>
+    <Menu.Item key="2">
+      Africa
+    </Menu.Item>
+  </Menu>
+);
+
+let components = {
+  toolbar: Toolbar,
+    week: {
+      event: customWeekViewEvent,
+    },
+    day: {
+      event: customResourceViewEvent
+    }
+  }
+
+const MyCalendar = props => {
+  const [theView,setTheView] = useState(true)
+  const[show,setShow]= useState(true)
+  return (
+  <div className="calendarWrapperDiv" id="section-to-print">
+
+<div className="rbc-toolbar rbc-btn-group">
+  <Dropdown overlay={schoolMenu}>
+    <button trigger={['click']}>Select Location</button>
+  </Dropdown>
+</div>
+{show ?
+    <Calendar
+      localizer={localizer}
+      // min and max sets the start and end time of day displayed
+      min={new Date(Date.UTC(0, 0, 0, 12, 0, 0))}
+      max={new Date(Date.UTC(0, 0, 0, 22, 0, 0))}
+      onView={()=>{
+        setTheView(!theView)
+      }}
+      // onSelectEvent={handleSelectEvent} 
+      events={events}
+      startAccessor="start"
+      endAccessor="end"
+      views={{
+        week: true,
+        day: true,
+      }}
+      components={components}
+      resources={theView === true ? null : resourceMap}
+      resourceIdAccessor="resourceId"
+      resourceTitleAccessor="resourceTitle"
+      timeslots={1}
+      defaultView='week'
+      // onSelectSlot={setShow(false)}
+      onSelectEvent = {e=>setShow(!show)}
+     
+    />
+    :
+    <ComputersList setShow={setShow} show = {show}/>
+}
+  </div>
+)}
+
+export default MyCalendar

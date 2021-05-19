@@ -1,48 +1,65 @@
-
-export const fakeData = [
-    {
-        id: 4321,
-        start: '2021-08-01T09:30:00', 
-        end: '2021-08-01T10:30:00',
-        details: {
-            computer:1,
-            mentor: "Bob",
-            Student: "Paul",
-            city: "Paris",
-        },
-    },
-    {
-        id: 5432,
-        start: '2021-08-01T09:30:00',
-        end:  '2021-08-01T10:30:00',
-        details: {
-            computer:2,
-            mentor: "Patty",
-            student: "Rose",
-            city: "Columbus"
-        },
-    },
-    {
-        id: 6543,
-        start: '2021-08-01T09:30:00',
-        end:  '2021-08-01T10:30:00',
-        details: {
-            computer:3, 
-            mentor: "Tom",
-            student: "Frank",
-            city: "Austin",
-        },
-    },
-    {
-        id: 8765,
-        start: '2021-08-01T09:30:00',
-        end:  '2021-08-01T10:30:00',
-        details: {
-            computer:4, 
-            mentor: "Steve", 
-            student: "Guy", 
-            city: "Phoenix",
-        },
-    },
+export const events = [
+  {
+    id: 0,
+    title: 'Board meeting',
+    start: new Date(Date.UTC(2021, 4, 17, 18, 0, 0)),
+    end: new Date(Date.UTC(2021, 4, 17, 18, 30, 0)),
+    availableComputers: 3,
+    unavailableComputers: 6,
+    mentor: 'Liz',
+    student: 'Henry',
+    resourceId: 1,
+  },
+  {
+    id: 1,
+    title: 'MS training',
+    start: new Date(Date.UTC(2021, 4, 17, 19, 0, 0)),
+    end: new Date(Date.UTC(2021, 4, 17, 19, 30, 0)),
+    availableComputers: 8,
+    unavailableComputers: 5,
+    mentor: 'Maple',
+    student: 'Alley',
+    resourceId: 2,
+  },
+  {
+    id: 2,
+    title: 'Team lead meeting',
+    start: new Date(Date.UTC(2021, 4, 17, 15, 30, 0)),
+    end: new Date(Date.UTC(2021, 4, 17, 16, 0, 0)),
+    availableComputers: 8,
+    unavailableComputers: 2,
+    mentor: 'Morgan',
+    student: 'Ares',
+    resourceId: 3,
+  },
+  {
+    id: 11,
+    title: 'Birthday Party',
+    start: new Date(Date.UTC(2021, 4, 17, 14, 0, 0)),
+    end: new Date(Date.UTC(2021, 4, 17, 14, 30, 0)),
+    availableComputers: 7,
+    unavailableComputers: 3,
+    mentor: 'Calli',
+    student: 'Steven',
+    resourceId: 4,
+  },
+  {
+    id: 12,
+    title: 'Dog Walking',
+    start: new Date(Date.UTC(2021, 4, 18, 19, 0, 0)),
+    end: new Date(Date.UTC(2021, 4, 18, 19, 30, 0)),
+    availableComputers: 5,
+    unavailableComputers: 3,
+    mentor: 'Leo',
+    student: 'Nyx',
+    resourceId: 5,
+  },
 ]
+
+export const mentors = ['Leo','Calli','Morgan']
+export const mentees = ['Nyx','Steven','Morgan']
+const resourcesArray = ['computer 1', 'computer 2', 'computer 3', 'computer 4', 'computer 5', 'computer 6', 'computer 7', 'computer 8', 'computer 9', 'computer 10']
+export const resourceMap = resourcesArray.map((computer, index) => {
+  return {resourceId: index + 1, resourceTitle: computer}
+})
 
