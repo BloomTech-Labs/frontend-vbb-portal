@@ -3,9 +3,7 @@ import React from 'react'
 export const customWeekViewEvent = data => {
     return (
         <div className='rbc-events-container'>
-            <p className='rbc-event-label assignedComputers'>Assigned Computers: {data.event.unavailableComputers}</p>
-            <p className='rbc-event-label availableComputers'>Available Computers: {data.event.availableComputers}</p>
-        </div>
+            <p className='resourceEvent assignedComputers'>Available computers: {data.event.availableComputers}/{data.event.unavailableComputers + data.event.availableComputers}</p>        </div>
     )
 }
 
