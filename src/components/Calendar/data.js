@@ -1,10 +1,9 @@
 export const events = [
-
   {
     id: 0,
     title: 'Board meeting',
-    start: new Date(2021, 3, 27, 10, 0, 0),
-    end: new Date(2021, 3, 27, 10, 30, 0),
+    start: new Date(Date.UTC(2021, 4, 17, 18, 0, 0)),
+    end: new Date(Date.UTC(2021, 4, 17, 18, 30, 0)),
     availableComputers: 3,
     unavailableComputers: 6,
     mentor: 'Liz',
@@ -14,8 +13,8 @@ export const events = [
   {
     id: 1,
     title: 'MS training',
-    start: new Date(2021, 3, 27, 10, 0, 0),
-    end: new Date(2021, 3, 27, 10, 30, 0),
+    start: new Date(Date.UTC(2021, 4, 17, 19, 0, 0)),
+    end: new Date(Date.UTC(2021, 4, 17, 19, 30, 0)),
     availableComputers: 8,
     unavailableComputers: 5,
     mentor: 'Maple',
@@ -25,8 +24,8 @@ export const events = [
   {
     id: 2,
     title: 'Team lead meeting',
-    start: new Date(2021, 3, 27, 11, 30, 0),
-    end: new Date(2021, 3, 27, 12, 0, 0),
+    start: new Date(Date.UTC(2021, 4, 17, 15, 30, 0)),
+    end: new Date(Date.UTC(2021, 4, 17, 16, 0, 0)),
     availableComputers: 8,
     unavailableComputers: 2,
     mentor: 'Morgan',
@@ -36,8 +35,8 @@ export const events = [
   {
     id: 11,
     title: 'Birthday Party',
-    start: new Date(2021, 3, 27, 11, 0, 0),
-    end: new Date(2021, 3, 27, 11, 30, 0),
+    start: new Date(Date.UTC(2021, 4, 17, 14, 0, 0)),
+    end: new Date(Date.UTC(2021, 4, 17, 14, 30, 0)),
     availableComputers: 7,
     unavailableComputers: 3,
     mentor: 'Calli',
@@ -47,8 +46,8 @@ export const events = [
   {
     id: 12,
     title: 'Dog Walking',
-    start: new Date(2021, 3, 28, 10, 0, 0),
-    end: new Date(2021, 3, 28, 10, 30, 0),
+    start: new Date(Date.UTC(2021, 4, 18, 19, 0, 0)),
+    end: new Date(Date.UTC(2021, 4, 18, 19, 30, 0)),
     availableComputers: 5,
     unavailableComputers: 3,
     mentor: 'Leo',
@@ -63,3 +62,4 @@ const resourcesArray = ['computer 1', 'computer 2', 'computer 3', 'computer 4', 
 export const resourceMap = resourcesArray.map((computer, index) => {
   return {resourceId: index + 1, resourceTitle: computer}
 })
+
