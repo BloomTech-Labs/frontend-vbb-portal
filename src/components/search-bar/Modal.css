@@ -3,8 +3,6 @@ body {
   font-family: 'Nunito', sans-serif;
 }
 
-
-
 .label {
     margin: 2%;
 }
@@ -12,6 +10,4 @@ body {
 .button {
     margin: 2%;
     width: 15%;
-   
-    
 }
