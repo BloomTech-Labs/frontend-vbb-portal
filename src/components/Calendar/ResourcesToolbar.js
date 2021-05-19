@@ -53,7 +53,7 @@ class Toolbar extends React.Component {
         
         <span className="rbc-btn-group">{this.viewNamesGroup(messages)}
           <Dropdown overlay={menu}>
-            <button trigger={['click']}><DownOutlined /></button>
+            <button className="print-download-button" trigger={['click']}><DownOutlined className='print-download-icon' /></button>
           </Dropdown>
         </span>
       </div>
