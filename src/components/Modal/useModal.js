@@ -22,5 +22,4 @@ function useModal (modal) {
   return {isVisible, selectedUser, toggleModal, sendData}
 }
 
-
 export default useModal

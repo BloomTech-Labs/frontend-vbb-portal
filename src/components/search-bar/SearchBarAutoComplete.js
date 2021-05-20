@@ -1,35 +1,36 @@
 import SearchModalContent from '../Modal/SeachModalFragment';
 import React, { useEffect, useState } from 'react';
-import { AutoComplete, Input, Modal, Button } from 'antd';
-import useModal from '../Modal/useModal';
+import { AutoComplete, Input, Modal, Button} from 'antd';
+import useModal from '../Modal/useModal'
+import StudentInfo from './StudentInfo'
 import { withRouter, Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import dummy from './MOCK_DATA.json';
 import AllAPIS from './SearchbarAPI';
 
 const SearchBarAutoComplete = () => {
-  const SearchModal = Modal;
-  const { isVisible, selectedUser, toggleModal } = useModal(SearchModal);
-  const [editUser, setEditUser] = useState();
+
+  const SearchModal = Modal
+ const {isVisible, selectedUser, toggleModal } = useModal(SearchModal)
+  const [isEditing, setIsEditing] = useState(false)
   const [errorMessage, setErrorMessage] = useState();
 
-  //Need to connect with back end and have a PUT request for Edit button, this endpoint requires an external id
-  //Once backend is ready and seeded, use the searchbarAPI to make requests to the backend
-  useEffect(() => {
-    fetch('vbb-backend.herokuapp.com/api/v1/mentor/{external_id}')
-      .then(async (res) => {
-        const data = await res.json();
-        if (!res.ok) {
-          const err = (data && data.message) || res.status;
-          return Promise.reject(err);
-        }
-        setEditUser(data.id);
-      })
-      .catch((error) => {
-        setErrorMessage(error);
-        console.error('error', error);
-      });
-  }, []);
+//Need to connect with back end and have a PUT request for Edit button, this endpoint requires an external id
+//Once backend is ready and seeded, use the searchbarAPI to make requests to the backend
+useEffect(() => {
+  fetch('vbb-backend.herokuapp.com/api/v1/mentor/{external_id}')
+    .then(async res => {
+      const data = await res.json();
+      if (!res.ok) {
+        const err = (data && data.message) || res.status;
+        return Promise.reject(err);
+      }
+    })
+    .catch(error => {
+      setErrorMessage(error);
+      console.error("error", error);
+    });
+},[]);
 
   const renderTitle = (title) => {
     return (
@@ -116,8 +117,8 @@ const SearchBarAutoComplete = () => {
   ];
 
   const handleEdit = () => {
-    setEditUser();
-  };
+    setIsEditing(!isEditing);
+  }
 
   return (
     <>
@@ -129,17 +130,17 @@ const SearchBarAutoComplete = () => {
       >
         <Input.Search size="large" placeholder="Find User" />
       </AutoComplete>
-      <SearchModal
-        visible={isVisible}
-        onOk={toggleModal}
-        onCancel={toggleModal}
-        destroyOnClose={true}
-      >
-        <SearchModalContent user={selectedUser} />
-        <Button onClick={handleEdit}>Edit</Button>
+      <SearchModal visible={isVisible} onOk={toggleModal} onCancel={toggleModal}  destroyOnClose={true} >
+        {!isEditing ? <>
+              <SearchModalContent user={selectedUser}/>
+              <Button onClick={handleEdit}>Edit</Button>
+            </>
+            : <StudentInfo user={selectedUser} closeEditing={handleEdit}/> }
+
       </SearchModal>
     </>
   );
 };
+
 
 export default SearchBarAutoComplete;
