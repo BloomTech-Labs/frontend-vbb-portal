@@ -2,6 +2,7 @@ import SearchModalContent from '../Modal/SeachModalFragment'
 import React, { useEffect, useState } from 'react';
 import { AutoComplete, Input, Modal, Button} from 'antd';
 import useModal from '../Modal/useModal'
+import StudentInfo from './StudentInfo'
 import { withRouter, Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import dummy from './MOCK_DATA.json';
@@ -11,7 +12,7 @@ const SearchBarAutoComplete = () => {
 
   const SearchModal = Modal
  const {isVisible, selectedUser, toggleModal } = useModal(SearchModal)
-  const [editUser, setEditUser] = useState();
+  const [isEditing, setIsEditing] = useState(false)
   const [errorMessage, setErrorMessage] = useState();
 
 //Need to connect with back end and have a PUT request for Edit button, this endpoint requires an external id
@@ -24,7 +25,6 @@ useEffect(() => {
         const err = (data && data.message) || res.status;
         return Promise.reject(err);
       }
-      setEditUser(data.id);
     })
     .catch(error => {
       setErrorMessage(error);
@@ -119,7 +119,7 @@ useEffect(() => {
   ];
 
   const handleEdit = () => {
-    setEditUser();
+    setIsEditing(!isEditing);
   }
 
   return (
@@ -139,5 +139,6 @@ useEffect(() => {
     </>
   );
 };
+
 
 export default SearchBarAutoComplete;
