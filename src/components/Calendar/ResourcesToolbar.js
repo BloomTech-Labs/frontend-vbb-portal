@@ -2,6 +2,8 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import clsx from 'clsx'
 import { navigate } from 'react-big-calendar/lib/utils/constants'
+import { Menu, Dropdown, message } from 'antd';
+import { DownloadOutlined, DownOutlined, PrinterOutlined } from '@ant-design/icons';
 
 class Toolbar extends React.Component {
   render() {
@@ -9,7 +11,21 @@ class Toolbar extends React.Component {
       localizer: { messages },
       label,
     } = this.props
-
+    
+    function handleMenuClick(e) {
+      message.info('Click on menu item.');
+      // May not need these
+    }
+    const menu = (
+      <Menu onClick={handleMenuClick}>
+        <Menu.Item key="1" onClick={() => window.print()}icon={<PrinterOutlined/>}>
+          Print
+        </Menu.Item>
+        <Menu.Item key="2" icon={<DownloadOutlined/>}>
+          Download
+        </Menu.Item>
+      </Menu>
+    );
     return (
       <div className="rbc-toolbar">
         <span className="rbc-btn-group">
@@ -34,8 +50,12 @@ class Toolbar extends React.Component {
         </span>
 
         <span className="rbc-toolbar-label">{label}</span>
-
-        <span className="rbc-btn-group">{this.viewNamesGroup(messages)}</span>
+        
+        <span className="rbc-btn-group">{this.viewNamesGroup(messages)}
+          <Dropdown overlay={menu}>
+            <button className="print-download-button" trigger={['click']}><DownOutlined className='print-download-icon' /></button>
+          </Dropdown>
+        </span>
       </div>
     )
   }

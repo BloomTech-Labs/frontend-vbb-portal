@@ -1,0 +1,27 @@
+ 
+.label-container{
+    display: flex;
+} 
+ 
+ 
+.computer-list-container{
+    display: flex;
+}
+ 
+.computer-list {
+    display: flex;
+    flex-direction: column;
+    /* background-color: green; */
+}
+.computer-list div {
+    padding : 0.5% 1%;
+    font-weight: 600;
+    border: 1px solid #180e0e
+}
+ 
+.available {
+    background-color: rgb(125, 209, 125);
+}
+.unavailable {
+    background-color: red;
+}

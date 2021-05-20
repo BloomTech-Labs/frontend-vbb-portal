@@ -1,12 +1,35 @@
-import React, { useState } from 'react';
-import { AutoComplete, Input, Modal } from 'antd';
+import SearchModalContent from '../Modal/SeachModalFragment';
+import React, { useEffect, useState } from 'react';
+import { AutoComplete, Input, Modal, Button } from 'antd';
+import useModal from '../Modal/useModal';
+import { withRouter, Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import dummy from './MOCK_DATA.json';
-import StudentInfo from './StudentInfo';
+import AllAPIS from './SearchbarAPI';
 
 const SearchBarAutoComplete = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [selectedUser, setSelectedUser] = useState();
+  const SearchModal = Modal;
+  const { isVisible, selectedUser, toggleModal } = useModal(SearchModal);
+  const [editUser, setEditUser] = useState();
+  const [errorMessage, setErrorMessage] = useState();
+
+  //Need to connect with back end and have a PUT request for Edit button, this endpoint requires an external id
+  //Once backend is ready and seeded, use the searchbarAPI to make requests to the backend
+  useEffect(() => {
+    fetch('vbb-backend.herokuapp.com/api/v1/mentor/{external_id}')
+      .then(async (res) => {
+        const data = await res.json();
+        if (!res.ok) {
+          const err = (data && data.message) || res.status;
+          return Promise.reject(err);
+        }
+        setEditUser(data.id);
+      })
+      .catch((error) => {
+        setErrorMessage(error);
+        console.error('error', error);
+      });
+  }, []);
 
   const renderTitle = (title) => {
     return (
@@ -29,13 +52,42 @@ const SearchBarAutoComplete = () => {
       <div
         key={key}
         style={{ display: 'flex', justifyContent: 'space-between' }}
-        onClick={() => setSelectedUser(user)}
+        onClick={() => toggleModal(SearchModal, user)}
       >
         {user.full_name}
       </div>
     ),
     key,
   });
+
+  const renderFeature = (feature, key) => ({
+    value: feature.name,
+    label: (
+      <Link to={feature.url}>
+        <div
+          key={key}
+          style={{ display: 'flex', justifyContent: 'space-between' }}
+          //onClick={() => setSelectedFeature(feature)}
+          //onClick = {() => SearchModal.isVisible = false}
+        >
+          {feature.name}
+        </div>
+      </Link>
+    ),
+    key,
+  });
+
+  //to add features to display in search bar add them in this array
+  const features = [
+    { name: 'calendar', url: '/calendar/' },
+    { name: 'donate', url: '/donate/' },
+    { name: 'signup', url: '/signup/' },
+    { name: 'signin', url: '/signin/' },
+    { name: 'booking', url: '/booking/' },
+    { name: 'dashboard', url: '/' },
+    { name: 'register', url: '/register/' },
+    { name: 'Create Mentor', url: '' },
+  ];
 
   const options = dummy.map((user) => {
     const reformattedUser = {
@@ -57,14 +109,14 @@ const SearchBarAutoComplete = () => {
       label: renderTitle('Teachers'),
       options: options.map((user) => renderItem(user, uuidv4())),
     },
+    {
+      label: renderTitle('Features'),
+      options: features.map((feature) => renderFeature(feature, uuidv4())),
+    },
   ];
 
-  const handleCancel = () => {
-    setIsVisible(false);
-  };
-
-  const handleOk = () => {
-    setIsVisible(false);
+  const handleEdit = () => {
+    setEditUser();
   };
 
   return (
@@ -74,23 +126,18 @@ const SearchBarAutoComplete = () => {
         options={listOptions}
         filterOption={true}
         autoClearSearchValue={true}
-        onSelect={() => setIsVisible(true)}
       >
         <Input.Search size="large" placeholder="Find User" />
       </AutoComplete>
-      <Modal
-        title="Mentee Name"
+      <SearchModal
         visible={isVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        width="100%"
-        height="100%"
-        overflow-y="scroll"
+        onOk={toggleModal}
+        onCancel={toggleModal}
+        destroyOnClose={true}
       >
-        {selectedUser ? (
-          <StudentInfo/>
-        ) : null}
-      </Modal>
+        <SearchModalContent user={selectedUser} />
+        <Button onClick={handleEdit}>Edit</Button>
+      </SearchModal>
     </>
   );
 };

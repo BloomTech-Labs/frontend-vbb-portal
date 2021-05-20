@@ -1,18 +1,17 @@
 import React from 'react'
-export const customWeekViewEvent = () => {
+
+export const customWeekViewEvent = data => {
     return (
         <div className='rbc-events-container'>
-            <p className='rbc-event-label assignedComputers'>Assigned Computers: 5</p>
-            <p className='rbc-event-label availableComputers'>Available Computers: 5</p>
-        </div>
+            <p className='resourceEvent assignedComputers'>Available computers: {data.event.availableComputers}/{data.event.unavailableComputers + data.event.availableComputers}</p>        </div>
     )
 }
 
-export const customResourceViewEvent = () => {
+export const customResourceViewEvent = data => {
     return (
-        <div className='rbc-event-container'>
-            <p className='resourceEvent'>Mentor Name</p>
-            <p className='resourceEvent'>Student Name</p>
+        <div className='rbc-events-container'>
+            <p className='resourceEvent mentor'>Mentor: {data.event.mentor}</p>
+            <p className='resourceEvent student'>Student: {data.event.student}</p>
         </div>
     )
 }
