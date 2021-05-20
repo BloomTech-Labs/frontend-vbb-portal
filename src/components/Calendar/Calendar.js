@@ -45,8 +45,16 @@ let components = {
   }
 
 const MyCalendar = props => {
+
   const [theView,setTheView] = useState(true)
   const[show,setShow]= useState(true)
+  const [dragSelected,setDragSelected] =useState({start:"",end:""})
+
+  const handleDragSelect =({start,end})=>{
+    setDragSelected({start:start,end:end})
+    setShow(!show)
+  }
+
   return (
   <div className="calendarWrapperDiv" id="section-to-print">
 
@@ -57,6 +65,7 @@ const MyCalendar = props => {
 </div>
 {show ?
     <Calendar
+      selectable
       localizer={localizer}
       // min and max sets the start and end time of day displayed
       min={new Date(Date.UTC(0, 0, 0, 12, 0, 0))}
@@ -78,12 +87,12 @@ const MyCalendar = props => {
       resourceTitleAccessor="resourceTitle"
       timeslots={1}
       defaultView='week'
-      // onSelectSlot={setShow(false)}
+      onSelectSlot={handleDragSelect}
       onSelectEvent = {e=>setShow(!show)}
-     
+       
     />
     :
-    <ComputersList setShow={setShow} show = {show}/>
+    <ComputersList dragSelected={dragSelected} setShow={setShow} show = {show}/>
 }
   </div>
 )}
