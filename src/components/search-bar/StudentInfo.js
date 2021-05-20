@@ -1,5 +1,7 @@
 import { Button } from 'antd'
 import React from "react";
+import Modal from "./Modal.css"
+
 
 const StudentInfo = (props) => {
     const [student, setStudent] = React.useState( props.user)
@@ -18,35 +20,35 @@ const StudentInfo = (props) => {
       props.closeEditing()
     }
 return (
-    <form>
-        <label>
+    <form className='StudentInfoForm'>
+        <label className='label'>
             ID
             <br></br>
             <input  name='id' onChange={changeHandler} value={student.id}/>
 
         </label>
-        <label>
+        <label className='label'>
             First Name
             <br></br>
-            <input name='first_name' type="text" onChange={changeHandler} value={student.first_name}/>
+            <input name='first_name' onChange={changeHandler} value={student.first_name}/>
         </label>
-        <label>
+        <label className = "label">
             Last Name
             <br></br>
             <input name='last_name' onChange={changeHandler} value={student.last_name}/>
         </label>
         <br></br>
-        <label>
+        <label className = "label">
             Date of Birth
             <br></br>
             <input name='date_of_birth' onChange={changeHandler} value={student.date_of_birth}/>
         </label>
-      <label>
+      <label className='label'>
         Personal Email
         <br></br>
         <input name='personal_email' onChange={changeHandler} value={student.personal_email}/>
       </label>
-        <label>
+        <label className='label'>
             Location
             <br></br>
             <input name='city' onChange={changeHandler} value={student.city}/>
