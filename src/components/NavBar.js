@@ -5,7 +5,7 @@ import * as actions from '../redux/actions';
 import { Button, PageHeader } from 'antd';
 import { LoginOutlined, FormOutlined, LogoutOutlined } from '@ant-design/icons';
 import SearchBarAutoComplete from './search-bar/SearchBarAutoComplete';
-
+import SearchBar from './search/SearchBar'
 import fullLogo from '../images/vbb-full-logo.png';
 // import miniLogo from '../images/vbb-picture-logo.png';
 
@@ -19,7 +19,6 @@ const NavBar = ({ logout, authToken }) => {
     </Link>
   ) : (
       <>
-        <SearchBarAutoComplete/>
     <Link to="/" key="link-1">
       <Button
         key="1"
@@ -38,6 +37,7 @@ const NavBar = ({ logout, authToken }) => {
         position: 'fixed',
         zIndex: 1,
         width: '100%',
+        height: '200px',
         backgroundColor: '#ff914d',
       }}
       title={
@@ -48,6 +48,10 @@ const NavBar = ({ logout, authToken }) => {
             width="200"
           ></img>
         </Link>
+      }
+      subTitle= {
+         authToken ? 
+         <SearchBar /> : null
       }
       extra={[
         signInSignOut,
