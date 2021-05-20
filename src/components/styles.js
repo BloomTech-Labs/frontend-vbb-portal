@@ -14,13 +14,13 @@ export default makeStyles((theme)=>({
         '&:hover':{
             textDecoration: 'underline',
         }
-        
     },
     myBar: {
-      margin:'0 auto',
-      textAlign: 'center',
-      lineHeight: '2.5',
-  },
+        margin:'0 auto',
+        textAlign: 'center',
+        border:'solid red',
+        backgroundColor:'red'
+    },
     },
       [theme.breakpoints.down('sm')]:{
         mainContainer:{

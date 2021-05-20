@@ -7,15 +7,17 @@ import { LoginOutlined, FormOutlined, LogoutOutlined } from '@ant-design/icons';
 import SearchBarAutoComplete from './search-bar/SearchBarAutoComplete';
 import SearchBar from './search/SearchBar'
 import fullLogo from '../images/vbb-full-logo.png';
+import useStyles from './styles';
 // import miniLogo from '../images/vbb-picture-logo.png';
 
 const NavBar = ({ logout, authToken }) => {
+  const classes = useStyles();
   const signInSignOut = !authToken ? (
     <Link to="/signin" key="link-1">
       <Button key="1" style={{ marginTop: '15px', color: '#549bea' }}>
         Sign In
         <LoginOutlined />
-      </Button>
+      </Button> 
     </Link>
   ) : (
       <>
@@ -63,7 +65,7 @@ const NavBar = ({ logout, authToken }) => {
     >
 
       {authToken ? 
-         <SearchBar /> : null
+         <SearchBar style = {{lineHeight:"5"}} /> : null
       }
     </PageHeader>
   );
@@ -75,3 +77,4 @@ const mapStateToProps = (state) => {
   };
 };
 export default withRouter(connect(mapStateToProps, actions)(NavBar));
+//austin.mehmet@villagebookbuilders.org

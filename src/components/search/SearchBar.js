@@ -4,10 +4,11 @@ import { Input , Button, Modal } from 'antd';
 import { AudioOutlined } from '@ant-design/icons';
 import useModal from '../Modal/useModal';
 import SearchModalContent from '../Modal/SeachModalFragment';
-
+import useStyles from './styles';
 
 const SearchBar = () => {
     const [value,setValue] = useState({});
+    const classes = useStyles();
     const { Search } = Input;
     const suffix = (
         <AudioOutlined
@@ -23,7 +24,7 @@ const SearchBar = () => {
         <Search
             type = 'text'
             enterButton = "Search"
-            style = {{ width: '500px' }}
+            style = {{ width: "80%", margin: "0 100px" }}
             onChange={(e) => setValue({ ...value, name: e.target.value })}
         />
         <SearchField  value = {value} />

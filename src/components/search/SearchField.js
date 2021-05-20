@@ -92,7 +92,7 @@ const SearchField = ({ value }) => {
         { toggle ?
             <>
             <Card 
-                style= {{backgroundColor: 'rgba(255,255,255,1.5)' , width: '500px'}}
+                style= {{backgroundColor: 'rgba(255,255,255,2.5)', width:"80%" , margin: "0 100px" }}
             >
                 {list.map((e) => <li
                                     className = {classes.listItem}
