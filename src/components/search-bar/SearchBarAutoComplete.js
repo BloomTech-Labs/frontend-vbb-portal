@@ -132,9 +132,13 @@ useEffect(() => {
       >
         <Input.Search size="large" placeholder="Find User" />
       </AutoComplete>
-      <SearchModal visible={isVisible} onOk={toggleModal} onCancel={toggleModal} destroyOnClose={true} >
-        <SearchModalContent user={selectedUser}/>
-        <Button onClick={handleEdit}>Edit</Button>
+      <SearchModal visible={isVisible} onOk={toggleModal} onCancel={toggleModal}  destroyOnClose={true} >
+        {!isEditing ? <>
+              <SearchModalContent user={selectedUser}/>
+              <Button onClick={handleEdit}>Edit</Button>
+            </>
+            : <StudentInfo user={selectedUser} closeEditing={handleEdit}/> }
+
       </SearchModal>
     </>
   );
