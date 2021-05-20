@@ -1,11 +1,14 @@
  
 .label-container{
     display: flex;
+ 
 } 
+
  
  
 .computer-list-container{
     display: flex;
+    flex-wrap: wrap;
 }
  
 .computer-list {

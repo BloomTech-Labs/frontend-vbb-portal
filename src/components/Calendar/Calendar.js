@@ -47,6 +47,7 @@ let components = {
 const MyCalendar = props => {
   const [theView,setTheView] = useState(true)
   const[show,setShow]= useState(true)
+  const[event,setEvent]= useState()
   return (
   <div className="calendarWrapperDiv" id="section-to-print">
 
@@ -79,11 +80,11 @@ const MyCalendar = props => {
       timeslots={1}
       defaultView='week'
       // onSelectSlot={setShow(false)}
-      onSelectEvent = {e=>setShow(!show)}
+      onSelectEvent = {()=> setShow(!show)}
      
     />
     :
-    <ComputersList setShow={setShow} show = {show}/>
+    <ComputersList setShow={setShow} show = {show} event = {event} setEvent={setEvent}/>
 }
   </div>
 )}
