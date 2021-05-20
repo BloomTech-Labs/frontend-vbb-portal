@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react'
- 
+import "./computers-list-style.css" 
 // import {resourcesArray,mentees,mentors} from './data'
 import {mentees} from '../data'
 import {mentors} from '../data'
@@ -18,10 +18,12 @@ const ComputersList = (props)=>{
     useEffect(()=>{
  
     })
- 
+    console.log(props.dragSelected)
     return(
         <div>
+            {props.dragSelected ? <p>{props.dragSelected.start.toString()} to {props.dragSelected.end.toString()}</p> : 
             <p style={{textAlign:"center",fontWeight:"600"}}>8AM to 9AM</p>
+    }
         <div className='label-container'>
             <div className='label'>
                 <div >Ment/Computers</div>
