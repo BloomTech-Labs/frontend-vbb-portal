@@ -19,7 +19,6 @@ const NavBar = ({ logout, authToken }) => {
     </Link>
   ) : (
       <>
-      <SearchBarAutoComplete />
     <Link to="/" key="link-1">
       <Button
         key="1"

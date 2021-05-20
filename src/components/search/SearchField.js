@@ -95,7 +95,7 @@ const SearchField = ({ value }) => {
             >
                 {list.map((e) => <li
                                     className = {classes.listItem}
-                                    onClick = {() => handleClick()}
+                                    onClick = {() => toggleModal(SearchModal, e)}
                 > {`${e.first_name} ${e.last_name}`} </li> )}
               
                 {features.map((feature) => <Link className = {classes.featureItem} to = {`${feature.url}`}> {`${feature.name}`} </Link>) }
