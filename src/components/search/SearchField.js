@@ -22,7 +22,8 @@ const SearchField = ({ value }) => {
         setList([{}])
         console.log(list)
         const newList =  options.filter((val) => {
-            if(val.first_name.toLowerCase().includes(value.name.toLowerCase() )) {
+            const fullName = `${val.first_name.toLowerCase()} ${val.last_name.toLowerCase()}`;
+            if(fullName.includes(value.name.toLowerCase())) {
             return val
         }
         }).filter((val, idx) => idx < 10).map((val) => val) 
