@@ -16,6 +16,7 @@
     "@ant-design/icons": "^4.6.2",
     "@craco/craco": "^6.1.1",
     "@material-ui/core": "^4.11.4",
+    "@material-ui/styles": "^4.11.4",
     "@stripe/react-stripe-js": "^1.4.0",
     "@stripe/stripe-js": "^1.13.2",
     "antd": "^4.15.0",

@@ -2,15 +2,23 @@ import React,  { useState, useEffect } from 'react'
 import axios from 'axios';
 import { Card } from 'antd';
 import { Link } from 'react-router-dom';
+import { Input , Button, Modal } from 'antd';
+import useModal from '../Modal/useModal';
+import SearchModalContent from '../Modal/SeachModalFragment';
+import useStyles from './styles';
 
 const SearchField = ({ value }) => {
+    //state variables
     const [ toggle, setToggle ] = useState(false);
     const [ options, setOptions ] = useState();
-    const [ list, setList ] = useState([])
+    const [ list, setList ] = useState([]);
+    //custom hooks
+    const classes = useStyles();
+    const SearchModal = Modal;
+    const {isVisible, selectedUser, toggleModal } = useModal(SearchModal)
+
 
     const filterData = (value,options) => {
-        //take in input
-        //compare input to options 
         setList([{}])
         console.log(list)
         const newList =  options.filter((val) => {
@@ -23,8 +31,8 @@ const SearchField = ({ value }) => {
                 )
 
       }
-    //SearchField needs to take state in SearchBar & pull options in from store and pull in options with an API call 
-    useEffect(() => {
+    
+      useEffect(() => {
         axios.get(`http://localhost:8000/mentees`)
           .then(async res => {
             const data = await res
@@ -73,23 +81,31 @@ const SearchField = ({ value }) => {
         {name: "register", url: "/register/"},
         {name: "Create Mentor", url: ""}
       ]
-       const letOptions = [
-        {
-            label:"Features",
-            options: features.map((feature) => <ul> <li> {`${feature.name}`} </li> </ul>),
-          },
-       ]
+      
     //Search
+      const handleClick = () => {
 
+      }
     return (
         <>
         { toggle ?
-            <Card >
-                {list.map((e) => <li> {`${e.first_name} ${e.last_name}`} </li> )}
+            <>
+            <Card 
+                style= {{backgroundColor: 'rgba(255,255,255,1.5)' , width: '500px'}}
+            >
+                {list.map((e) => <li
+                                    className = {classes.listItem}
+                                    onClick = {() => handleClick()}
+                > {`${e.first_name} ${e.last_name}`} </li> )}
               
-                {features.map((feature) => <Link> {`${feature.name}`} </Link>) }
+                {features.map((feature) => <Link className = {classes.featureItem} to = {`${feature.url}`}> {`${feature.name}`} </Link>) }
               
             </Card>
+             <SearchModal visible={isVisible} onOk={toggleModal} onCancel={toggleModal} destroyOnClose={true} >
+             <SearchModalContent user={selectedUser}/>
+             <Button>Edit</Button>
+           </SearchModal>
+           </>
              :null
         }
              

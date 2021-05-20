@@ -19,6 +19,7 @@ const NavBar = ({ logout, authToken }) => {
     </Link>
   ) : (
       <>
+      <SearchBarAutoComplete />
     <Link to="/" key="link-1">
       <Button
         key="1"
@@ -41,17 +42,15 @@ const NavBar = ({ logout, authToken }) => {
         backgroundColor: '#ff914d',
       }}
       title={
-        <Link to="/">
+        <Link to="/"
+          
+        >
           <img
             src={fullLogo}
             alt="Logo for Village Book Builders, small orange hut with Village Book Builders text"
             width="200"
           ></img>
         </Link>
-      }
-      subTitle= {
-         authToken ? 
-         <SearchBar /> : null
       }
       extra={[
         signInSignOut,
@@ -62,7 +61,12 @@ const NavBar = ({ logout, authToken }) => {
           </Button>
         </Link>,
       ]}
-    ></PageHeader>
+    >
+
+      {authToken ? 
+         <SearchBar /> : null
+      }
+    </PageHeader>
   );
 };
 
