@@ -1,36 +1,35 @@
-import SearchModalContent from '../Modal/SeachModalFragment'
+import SearchModalContent from '../Modal/SeachModalFragment';
 import React, { useEffect, useState } from 'react';
-import { AutoComplete, Input, Modal, Button} from 'antd';
-import useModal from '../Modal/useModal'
+import { AutoComplete, Input, Modal, Button } from 'antd';
+import useModal from '../Modal/useModal';
 import { withRouter, Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import dummy from './MOCK_DATA.json';
-import AllAPIS from "./SearchbarAPI";
+import AllAPIS from './SearchbarAPI';
 
 const SearchBarAutoComplete = () => {
-
-  const SearchModal = Modal
- const {isVisible, selectedUser, toggleModal } = useModal(SearchModal)
+  const SearchModal = Modal;
+  const { isVisible, selectedUser, toggleModal } = useModal(SearchModal);
   const [editUser, setEditUser] = useState();
   const [errorMessage, setErrorMessage] = useState();
 
-//Need to connect with back end and have a PUT request for Edit button, this endpoint requires an external id
-//Once backend is ready and seeded, use the searchbarAPI to make requests to the backend
-useEffect(() => {
-  fetch('vbb-backend.herokuapp.com/api/v1/mentor/{external_id}')
-    .then(async res => {
-      const data = await res.json();
-      if (!res.ok) {
-        const err = (data && data.message) || res.status;
-        return Promise.reject(err);
-      }
-      setEditUser(data.id);
-    })
-    .catch(error => {
-      setErrorMessage(error);
-      console.error("error", error);
-    });
-},[]);
+  //Need to connect with back end and have a PUT request for Edit button, this endpoint requires an external id
+  //Once backend is ready and seeded, use the searchbarAPI to make requests to the backend
+  useEffect(() => {
+    fetch('vbb-backend.herokuapp.com/api/v1/mentor/{external_id}')
+      .then(async (res) => {
+        const data = await res.json();
+        if (!res.ok) {
+          const err = (data && data.message) || res.status;
+          return Promise.reject(err);
+        }
+        setEditUser(data.id);
+      })
+      .catch((error) => {
+        setErrorMessage(error);
+        console.error('error', error);
+      });
+  }, []);
 
   const renderTitle = (title) => {
     return (
@@ -64,32 +63,31 @@ useEffect(() => {
   const renderFeature = (feature, key) => ({
     value: feature.name,
     label: (
-        <Link to= {feature.url} >
-          <div
-
-              key={key}
-              style={{ display: 'flex', justifyContent: 'space-between' }}
-              //onClick={() => setSelectedFeature(feature)}
-              //onClick = {() => SearchModal.isVisible = false}
-          >
-            {feature.name}
-          </div>
-        </Link>
+      <Link to={feature.url}>
+        <div
+          key={key}
+          style={{ display: 'flex', justifyContent: 'space-between' }}
+          //onClick={() => setSelectedFeature(feature)}
+          //onClick = {() => SearchModal.isVisible = false}
+        >
+          {feature.name}
+        </div>
+      </Link>
     ),
     key,
   });
 
   //to add features to display in search bar add them in this array
   const features = [
-    {name: "calendar", url: "/calendar/"},
-    {name: "donate", url: "/donate/"},
-    {name: "signup", url: "/signup/"},
-    {name: "signin", url: "/signin/"},
-    {name: "booking", url: "/booking/"},
-    {name: "dashboard", url: "/"},
-    {name: "register", url: "/register/"},
-    {name: "Create Mentor", url: ""}
-  ]
+    { name: 'calendar', url: '/calendar/' },
+    { name: 'donate', url: '/donate/' },
+    { name: 'signup', url: '/signup/' },
+    { name: 'signin', url: '/signin/' },
+    { name: 'booking', url: '/booking/' },
+    { name: 'dashboard', url: '/' },
+    { name: 'register', url: '/register/' },
+    { name: 'Create Mentor', url: '' },
+  ];
 
   const options = dummy.map((user) => {
     const reformattedUser = {
@@ -98,7 +96,6 @@ useEffect(() => {
     };
     return reformattedUser;
   });
-
 
   /**
    * @description This an array that display different sections in the search-bar sepereated by Students and Students
@@ -113,14 +110,14 @@ useEffect(() => {
       options: options.map((user) => renderItem(user, uuidv4())),
     },
     {
-      label: renderTitle("Features"),
+      label: renderTitle('Features'),
       options: features.map((feature) => renderFeature(feature, uuidv4())),
-    }
+    },
   ];
 
   const handleEdit = () => {
     setEditUser();
-  }
+  };
 
   return (
     <>
@@ -132,8 +129,13 @@ useEffect(() => {
       >
         <Input.Search size="large" placeholder="Find User" />
       </AutoComplete>
-      <SearchModal visible={isVisible} onOk={toggleModal} onCancel={toggleModal} destroyOnClose={true} >
-        <SearchModalContent user={selectedUser}/>
+      <SearchModal
+        visible={isVisible}
+        onOk={toggleModal}
+        onCancel={toggleModal}
+        destroyOnClose={true}
+      >
+        <SearchModalContent user={selectedUser} />
         <Button onClick={handleEdit}>Edit</Button>
       </SearchModal>
     </>
