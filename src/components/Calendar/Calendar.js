@@ -106,7 +106,7 @@ const MyCalendar = props => {
        
     />
     :
-    <ComputersList dragSelected={dragSelected} setShow={setShow} show = {show} />
+    <ComputersList theView={theView} setTheView={setTheView} dragSelected={dragSelected} setShow={setShow} show = {show} />
 }
   </div>
 )}
