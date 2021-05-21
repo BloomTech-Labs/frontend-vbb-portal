@@ -1,4 +1,4 @@
-import {React, useState} from 'react'
+import {React, useState,useEffect} from 'react'
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import './calendar.css'
@@ -11,6 +11,7 @@ import getDay from 'date-fns/getDay'
 import Toolbar from './ResourcesToolbar'
 import { Menu, Dropdown } from 'antd';
 import ComputersList from './assign-computers/computers-list'
+import { clearConfigCache } from 'prettier'
 
 const locales = {
   'en-US': require('date-fns/locale/en-US'),
@@ -45,9 +46,29 @@ let components = {
   }
 
 const MyCalendar = props => {
+
   const [theView,setTheView] = useState(true)
   const[show,setShow]= useState(true)
-  const[event,setEvent]= useState()
+  const [dragSelected,setDragSelected] =useState({start:"",end:"",mentor:"",student:"",resourceId:0})
+
+  const handleDragSelect =({start,end})=>{
+    setDragSelected({start:start,end:end})
+    setShow(!show)
+  }
+  const handleEventClick = e=>{
+    setDragSelected({
+      ...dragSelected,
+      start:e.start,
+      end:e.end,
+      mentor:e.mentor,
+      student:e.student,
+      resourceId: e.resourceId
+    }
+    );
+    setShow(!show)
+  }
+
+
   return (
   <div className="calendarWrapperDiv" id="section-to-print">
 
@@ -58,6 +79,7 @@ const MyCalendar = props => {
 </div>
 {show ?
     <Calendar
+      selectable
       localizer={localizer}
       // min and max sets the start and end time of day displayed
       min={new Date(Date.UTC(0, 0, 0, 12, 0, 0))}
@@ -79,12 +101,12 @@ const MyCalendar = props => {
       resourceTitleAccessor="resourceTitle"
       timeslots={1}
       defaultView='week'
-      // onSelectSlot={setShow(false)}
-      onSelectEvent = {()=> setShow(!show)}
-     
+      onSelectSlot={handleDragSelect}
+      onSelectEvent = {handleEventClick}
+       
     />
     :
-    <ComputersList setShow={setShow} show = {show} event = {event} setEvent={setEvent}/>
+    <ComputersList dragSelected={dragSelected} setShow={setShow} show = {show} />
 }
   </div>
 )}
