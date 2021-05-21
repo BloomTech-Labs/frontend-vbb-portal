@@ -63,7 +63,11 @@ const ComputersList = (props)=>{
          </div>
             <div className='buttons-container'>
                 <button className='scheduler-button'>Submit </button>
-                <button className='scheduler-button' onClick = {()=>props.setShow(!props.show)} >Return </button>
+                <button className='scheduler-button' onClick = {()=>{
+                        props.setTheView(true)
+                        props.setShow(!props.show);
+                        }
+                    } >Return </button>
             </div>
  
         </div>
