@@ -1,6 +1,5 @@
 import React,{useEffect, useState} from 'react'
 import "./computers-list-style.css" 
-// import {resourcesArray,mentees,mentors} from './data'
 import {students} from '../data'
 import {mentors} from '../data'
  
@@ -9,7 +8,6 @@ const ComputersList = (props)=>{
     const[assigned,setAssigned] = useState({mentor: false,student:false})
   
     const newList =[]
-    // const l= computers.length
     const numComputers = 10
  
     for(let i = 1;i<=numComputers;i++){
@@ -18,7 +16,7 @@ const ComputersList = (props)=>{
     useEffect(()=>{
  
     })
-    // console.log(props.dragSelected)
+ 
     return(
         <div>
             {props.dragSelected ? <p className='date-time-string'>{props.dragSelected.start.toLocaleString()} to {props.dragSelected.end.toLocaleString()}</p>: null}

@@ -18,7 +18,6 @@
 .computer-list {
     display: flex;
     flex-direction: column;
-    /* background-color: green; */
 }
 .computer-list div {
     padding : 0.5% 1%;
@@ -44,7 +43,6 @@
     background-color: #549bea;
     color: #FFFFFF;
     border: 1px solid #FFFFFF ;
-    /* padding: .375rem 1rem; */
     padding: 0.3rem 2.5rem;
     margin: 0 2.5%;
   
