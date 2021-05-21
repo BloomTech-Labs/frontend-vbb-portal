@@ -1,15 +1,13 @@
 import React,{useEffect, useState} from 'react'
 import "./computers-list-style.css" 
-// import {resourcesArray,mentees,mentors} from './data'
-import {mentees} from '../data'
+import {students} from '../data'
 import {mentors} from '../data'
  
 const ComputersList = (props)=>{
- 
-    const[assigned,setAssigned] = useState({mentor: false,mentee:false})
+
+    const[assigned,setAssigned] = useState({mentor: false,student:false})
   
     const newList =[]
-    // const l= computers.length
     const numComputers = 10
  
     for(let i = 1;i<=numComputers;i++){
@@ -18,18 +16,12 @@ const ComputersList = (props)=>{
     useEffect(()=>{
  
     })
-    console.log(props.dragSelected)
+ 
     return(
         <div>
-            {props.dragSelected ? <p>{props.dragSelected.start.toString()} to {props.dragSelected.end.toString()}</p> : 
-            <p style={{textAlign:"center",fontWeight:"600"}}>8AM to 9AM</p>
-    }
-        <div className='label-container'>
-            <div className='label'>
-                <div >Ment/Computers</div>
-                <div>Mentor</div>
-                <div>Mentee</div>
-            </div>
+            {props.dragSelected ? <p className='date-time-string'>{props.dragSelected.start.toLocaleString()} to {props.dragSelected.end.toLocaleString()}</p>: null}
+            
+        <div className='container'>
  
             <div className='computer-list-container'>
                 
@@ -37,24 +29,25 @@ const ComputersList = (props)=>{
  
                 return(
                     <div className='computer-list' key ={i}>
-                        <div className={assigned.mentor && assigned.mentee ? `available mentee-mentors-container`: `unavailable`}>{computer+(i+1)}</div>
+                        <div className={assigned.mentor && assigned.student ? `available mentee-mentors-container`: `unavailable`}>{computer+(i+1)}</div>
                         <div >
                         <select className = 'mentor-list' >
                             <option value="none" selected disabled>
                             Mentors List
                             </option>
-                            {mentors.map(mentor=>{
-                                return <option >{mentor}</option>
+                            {mentors.map((mentor,i)=>{
+
+                                return <option  key={i}>{mentor}</option>
                                 
                             })}
                         </select>
                         
-                        <select  className = 'mentor-list' >
+                        <select  className = 'students-list' >
                             <option value="none" selected disabled>
-                            Mentees List
+                            Students List
                             </option>
-                            {mentees.map(mentor=>{
-                                return <option >{mentor}</option>
+                            {students.map((student,i)=>{
+                                return <option key ={i}>{student}</option>
                                 
                             })}
                         </select>
@@ -67,9 +60,11 @@ const ComputersList = (props)=>{
                
             </div>
             
-        </div>
-        <button >Submit</button>
- 	   <button onClick = {()=>props.setShow(!props.show)} >Return </button>
+         </div>
+            <div className='buttons-container'>
+                <button className='scheduler-button'>Submit </button>
+                <button className='scheduler-button' onClick = {()=>props.setShow(!props.show)} >Return </button>
+            </div>
  
         </div>
     )

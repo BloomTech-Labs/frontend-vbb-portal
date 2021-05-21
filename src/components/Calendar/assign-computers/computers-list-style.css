@@ -1,27 +1,59 @@
  
-.label-container{
+.container{
     display: flex;
-} 
+    flex-wrap: wrap;
  
+} 
+
+ select {
+     width: 90%;
+     margin: 2.5% 5%
+ }
  
 .computer-list-container{
     display: flex;
+    flex-wrap: wrap;
 }
  
 .computer-list {
     display: flex;
     flex-direction: column;
-    /* background-color: green; */
 }
 .computer-list div {
     padding : 0.5% 1%;
     font-weight: 600;
-    border: 1px solid #180e0e
+    color:rgb(12, 19, 32);
+    border: 1px solid #180e0e;
+    text-align: center;
 }
  
 .available {
     background-color: rgb(125, 209, 125);
 }
 .unavailable {
-    background-color: red;
+    background-color: #ff914d;
+}
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    padding: 2% 
+}
+.scheduler-button {
+    border-radius: 16px;
+    background-color: #549bea;
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF ;
+    padding: 0.3rem 2.5rem;
+    margin: 0 2.5%;
+  
+}
+
+.scheduler-button:hover{
+    background-color: #FFFFFF;
+    color: #549bea;
+    border-color: #FFFFFF;
+    outline: none;
+}
+.date-time-string{
+    text-align: center;
 }
