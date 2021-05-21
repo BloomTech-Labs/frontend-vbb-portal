@@ -1,5 +1,6 @@
 import React from 'react'
 
+//for now, available and unavailable computers are hardcoded in data file
 export const customWeekViewEvent = data => {
     return (
         <div className='rbc-events-container'>
@@ -7,6 +8,7 @@ export const customWeekViewEvent = data => {
     )
 }
 
+//mentor and student are currently hardcoded in data file
 export const customResourceViewEvent = data => {
     return (
         <div className='rbc-events-container'>
