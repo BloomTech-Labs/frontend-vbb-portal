@@ -18,12 +18,8 @@ const Routes = () => {
         <Route exact path="/register/">
           <TempRegistration />
         </Route>
-        <PrivateRoute exact path="/">
-          <Dashboard />
-        </PrivateRoute>
-        <PrivateRoute exact path="/booking/">
-          <Booking />
-        </PrivateRoute>
+        <PrivateRoute exact path="/" component={Dashboard} />
+        <PrivateRoute exact path="/booking/" component={Booking} />
         <Route exact path="/signin/">
           <HomeSignin />
         </Route>
