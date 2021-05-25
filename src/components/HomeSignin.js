@@ -9,9 +9,9 @@ import {
   LoginOutlined,
 } from '@ant-design/icons';
 import { connect } from 'react-redux';
-import { GoogleLogin } from 'react-google-login';
+// import { GoogleLogin } from 'react-google-login';
 import * as actions from '../redux/actions';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 import Logo from '../images/vbb-picture-logo.png';
 
@@ -21,6 +21,7 @@ import Logo from '../images/vbb-picture-logo.png';
  * Displays Google Signin button and Register button
  *
  * @param { Type History } history from react router dom
+ * @param {redux store} authToken authentication token from redux store
  * @param {redux store} registrationForm registration form from redux store
  * @param {redux action} setRegistrationForm sets the registration form
  * @param {redux action} logInEmailPassword logs in a user with email and password ( non-google login and dev login route)
@@ -29,11 +30,12 @@ import Logo from '../images/vbb-picture-logo.png';
  */
 const HomeSignin = ({
   history,
+  authToken,
   registrationForm,
   setRegistrationForm,
   logInEmailPassword,
-  logIn, // used for google auth commented out for dev
-  manageFailedGoogleLogin, // used for google auth commented out for dev
+  // logIn, // used for google auth commented out for dev
+  // manageFailedGoogleLogin, // used for google auth commented out for dev
 }) => {
   return (
     <Row justify="center" align="middle">
@@ -149,7 +151,10 @@ const HomeSignin = ({
 };
 
 const mapStateToProps = (state) => {
-  return { registrationForm: state.registrationForm };
+  return {
+    registrationForm: state.registrationForm,
+    authToken: state.authToken,
+  };
 };
 
-export default connect(mapStateToProps, actions)(HomeSignin);
+export default withRouter(connect(mapStateToProps, actions)(HomeSignin));

@@ -11,13 +11,15 @@ import {
   setUser,
 } from '../actions';
 
+export const LOG_IN = 'LOG_IN';
+
 /**
  * This handles all actions associated with logging in
  *
  */
 
 // @TODO delete after backend endpoint is live
-// to use replace the call with the const resposne = fakeResponseForTesting
+// to use replace the call with the const response = fakeResponseForTesting
 // const fakeResponseForTesting = {
 //   status: 200,
 //   jwt_refresh_token: 'FAKE_JWT_REFRESH_TOKEN',
@@ -36,7 +38,7 @@ export const manageFailedGoogleLogin = (res) => async (dispatch) => {
 
 /**
  * logIn.
- * Handles log in for the app. Calls google as part of the loging action
+ * Handles log in for the app. Calls google as part of the login action
  * Tokens received from the backend will expire in 10 minutes
  * @param {string} googleToken: string from the successful response from google
  * @param {history function} history: function from react-router-dom
@@ -91,6 +93,10 @@ export const logIn = (googleToken, history) => async (dispatch) => {
     await sleep(2000);
     dispatch(clearIsError());
   }
+
+  return {
+    type: LOG_IN,
+  };
 };
 
 /**
@@ -111,7 +117,7 @@ export const logInEmailPassword = (history) => async (dispatch, getState) => {
   }
 
   try {
-    const { accessToken, refreshToken } = await getTokenFromEmailPassword(
+    const { accessToken } = await getTokenFromEmailPassword(
       email,
       password
     );
@@ -121,13 +127,18 @@ export const logInEmailPassword = (history) => async (dispatch, getState) => {
     dispatch(setUser(transformUser(user)));
     dispatch(setAuthToken(accessToken));
 
-    history.push('/');
+    //push user to dashboard
+    // history.push('/');
   } catch (err) {
     console.debug('Error logging in user');
     setIsError('Error logging in User');
     await sleep(3000);
     clearIsError();
   }
+
+  return {
+    type: LOG_IN,
+  };
 };
 
 const getTokenFromEmailPassword = async (email, password) => {
