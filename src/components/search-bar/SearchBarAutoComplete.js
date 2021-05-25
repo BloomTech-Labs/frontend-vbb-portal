@@ -17,6 +17,8 @@ const SearchBarAutoComplete = () => {
   const [isEditing, setIsEditing] = useState(false)
   const [errorMessage, setErrorMessage] = useState();
 
+  const mentor_id = null; // undefined for now until API ready to avoid useEffect problems
+
   //Need to connect with back end and have a PUT request for Edit button, this endpoint requires an external id
   //Once backend is ready and seeded, use the searchbarAPI to make requests to the backend
   useEffect((mentor_id) => {
@@ -32,7 +34,7 @@ const SearchBarAutoComplete = () => {
         setErrorMessage(error);
         console.error("error", error);
       });
-  }, []);
+  }, [mentor_id]);
 
   const renderTitle = (title, href = "https://www.google.com/search?q=antd") => {
     return (
