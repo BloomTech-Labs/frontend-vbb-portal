@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 // import MentorProfile from "./MentorProfile";
@@ -207,5 +208,4 @@ const mapStateToProps = (state) => {
     authToken: state.authToken,
   };
 };
-
-export default connect(mapStateToProps)(Dashboard);
+export default withRouter(connect(mapStateToProps, actions)(Dashboard));
