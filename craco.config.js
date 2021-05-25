@@ -1,6 +1,18 @@
-const CracoLessPlugin = require('craco-less');
+const WebpackBar = require("webpackbar");
+const CracoLessPlugin = require("craco-less");
+
+// Don't open the browser during development
+process.env.BROWSER = "none";
 
 module.exports = {
+  eslint: {
+    enable: false,
+  },
+  webpack: {
+    plugins: [
+      new WebpackBar({ profile: true }),
+    ],
+  },
   plugins: [
     {
       plugin: CracoLessPlugin,
