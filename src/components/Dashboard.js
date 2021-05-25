@@ -189,15 +189,13 @@ class Dashboard extends React.Component {
             style={{ padding: '20px', paddingLeft: '40px', maxWidth: '900px' }}
           >
             <b>
-              If you would like to change a mentoring session, have questions
-              about mentoring, or ANY QUESTIONS, please
+              If you would like to change a mentoring session, have questions about
+              mentoring, or ANY QUESTIONS, please contact your mentor advisor at{' '}
               <a href="mailto:mentor@villagebookbuilders.org">
-                {' '}
-                contact your mentor advisor{' '}
-              </a>
-              at mentor@villagebookbuilders.org! <br></br>
+                mentor@villagebookbuilders.org
+              </a>!<br/>
             </b>
-          </p>{' '}
+          </p>
         </div>
       </div>
     );
