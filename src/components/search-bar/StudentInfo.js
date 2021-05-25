@@ -1,9 +1,12 @@
 import { Button } from 'antd'
 import React from "react";
 import Modal from "./Modal.css"
+import { useDispatch } from "react-redux"
+import { SET_REGISTRATION_FORM} from "./redux/Registration"
 
 
 const StudentInfo = (props) => {
+  const dispatch = useDispatch();
     const [student, setStudent] = React.useState( props.user)
 
     const changeHandler = (e) => {
@@ -14,9 +17,10 @@ const StudentInfo = (props) => {
       });
     };
 
-    const onSubmit = () => {
+    const onSubmit = (e) => {
       // this need to be connected to the backend to update the data on the database
-
+      e.preventDefault();
+      dispatch(SET_REGISTRATION_FORM)
       props.closeEditing()
     }
 return (
