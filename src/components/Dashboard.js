@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import * as actions from '../redux/actions';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -18,7 +19,7 @@ class Dashboard extends React.Component {
       Authorization: `Token ${this.props.authToken}`,
     };
     axios
-      .get('http://127.0.0.1:8000/api/session/')
+      .get(`${actions.PYTHON_API}v1/session/`)
       .then((res) => {
         this.setState({
           sessionSlots: res.data,
