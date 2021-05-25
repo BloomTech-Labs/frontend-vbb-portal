@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Spinner from 'react-bootstrap/Spinner';
 
@@ -28,4 +29,4 @@ const mapStateToProps = (state) => ({
   loading: state.loading,
 });
 
-export default connect(mapStateToProps)(PrivateRoute);
+export default withRouter(connect(mapStateToProps)(PrivateRoute));
