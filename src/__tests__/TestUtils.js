@@ -3,8 +3,9 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
+import storeRedux from '../redux/store';
 
-import store from '../redux/store';
+const store = storeRedux();
 
 export const MockRedux = ({ children }) => (
   <Provider store={store}>
