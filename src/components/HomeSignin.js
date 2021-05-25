@@ -9,7 +9,7 @@ import {
   LoginOutlined,
 } from '@ant-design/icons';
 import { connect } from 'react-redux';
-// import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin } from 'react-google-login';
 import * as actions from '../redux/actions';
 import { withRouter, Link } from 'react-router-dom';
 
@@ -34,8 +34,8 @@ const HomeSignin = ({
   registrationForm,
   setRegistrationForm,
   logInEmailPassword,
-  // logIn, // used for google auth commented out for dev
-  // manageFailedGoogleLogin, // used for google auth commented out for dev
+  logIn, // used for google auth commented out for dev
+  manageFailedGoogleLogin, // used for google auth commented out for dev
 }) => {
   return (
     <Row justify="center" align="middle">

@@ -1,45 +1,38 @@
 import SearchModalContent from '../Modal/SeachModalFragment';
-import React, {
-  // useEffect,
-  useState
-} from 'react';
+import React, { useEffect, useState } from 'react';
 import { AutoComplete, Input, Modal, Button } from 'antd';
 import useModal from '../Modal/useModal'
 import StudentInfo from './StudentInfo'
-import {
-  // withRouter,
-  Link
-} from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import dummy from './MOCK_DATA.json';
-// import axios from "axios";
-// import { PYTHON_API } from "../../redux/actions/index";
-// import AllAPIS from './SearchbarAPI';
+import axios from "axios";
+import { PYTHON_API } from "../../redux/actions/index";
+import AllAPIS from './SearchbarAPI';
 
 const SearchBarAutoComplete = () => {
 
   const SearchModal = Modal
   const { isVisible, selectedUser, toggleModal } = useModal(SearchModal)
   const [isEditing, setIsEditing] = useState(false)
-  // // eslint-disable-next-line
-  // const [errorMessage, setErrorMessage] = useState();
+  const [errorMessage, setErrorMessage] = useState();
 
-  // //Need to connect with back end and have a PUT request for Edit button, this endpoint requires an external id
-  // //Once backend is ready and seeded, use the searchbarAPI to make requests to the backend
-  // useEffect((mentor_id) => {
-  //   axios.get(`${PYTHON_API}v1/mentor/${mentor_id}/`)
-  //     .then(async res => {
-  //       const data = await res.json();
-  //       if (!res.ok) {
-  //         const err = (data && data.message) || res.status;
-  //         return Promise.reject(err);
-  //       }
-  //     })
-  //     .catch(error => {
-  //       setErrorMessage(error);
-  //       console.error("error", error);
-  //     });
-  // }, []);
+  //Need to connect with back end and have a PUT request for Edit button, this endpoint requires an external id
+  //Once backend is ready and seeded, use the searchbarAPI to make requests to the backend
+  useEffect((mentor_id) => {
+    axios.get(`${PYTHON_API}v1/mentor/${mentor_id}/`)
+      .then(async res => {
+        const data = await res.json();
+        if (!res.ok) {
+          const err = (data && data.message) || res.status;
+          return Promise.reject(err);
+        }
+      })
+      .catch(error => {
+        setErrorMessage(error);
+        console.error("error", error);
+      });
+  }, []);
 
   const renderTitle = (title, href = "https://www.google.com/search?q=antd") => {
     return (

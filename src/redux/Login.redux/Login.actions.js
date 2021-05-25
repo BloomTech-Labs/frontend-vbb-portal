@@ -128,7 +128,7 @@ export const logInEmailPassword = (history) => async (dispatch, getState) => {
     dispatch(setAuthToken(accessToken));
 
     //push user to dashboard
-    // history.push('/');
+    history.push('/');
   } catch (err) {
     console.debug('Error logging in user');
     setIsError('Error logging in User');
