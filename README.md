@@ -1,14 +1,15 @@
 # Lambda Labs Clone - Village Portal (VBB)
 
-Village Portal is a open-sourced `school-based mentoring managment platform`. Development is lead by Village Book Builders volunteers. Village Book Builders accelerates learners globally through virtual mentoring, learning libraries, and special educational community-wide interventions. Village Portal helps schedule hundreds of virtual volunteer mentors in global time zones. Other Features are in development.
+Village Portal is a open-sourced `school-based mentoring management platform`. Development is lead by Village Book Builders volunteers. Village Book Builders accelerates learners globally through virtual mentoring, learning libraries, and special educational community-wide interventions. Village Portal helps schedule hundreds of virtual volunteer mentors in global time zones. Other Features are in development.
 
 This project is broken up into a separate backend and frontend repository. The backend contains the Django project which uses the Django Rest Framework to host a simple API and can be found at [backend-vbb-portal](https://github.com/VilllageBookBuilders/backend-vbb-portal). The frontend uses React and queries data from the API.
 
 ## Installation
+
 1. `npm i -g yarn`
 2. run `yarn` in root of project
 3. Create `.env` file - example found in `.env.sample`
-3. `yarn start`
+4. `yarn dev` or `yarn start`
 
 ### To Log In for Development
 
@@ -18,7 +19,7 @@ Navigate to your local host ( typically `http://localhost:3000`) and go to the `
 
 - `NOTES.MD` has been added to the `.gitignore` file if you'd like to keep a set of notes with your local file.
 
-- [Swagger docs for the python backend ](https://vbb-backend.herokuapp.com/swagger/)
+- [Swagger docs for the python backend](https://vbb-backend.herokuapp.com/swagger/)
 
 - **Note:** The `v1/`, or version, of the end point should be written into the axios call and <strong>not</strong> added to the root endpoint.
 
