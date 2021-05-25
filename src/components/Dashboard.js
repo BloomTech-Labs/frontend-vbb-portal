@@ -14,7 +14,7 @@ class Dashboard extends React.Component {
     axios.defaults.xsrfCookieName = 'csrftoken';
     axios.defaults.headers = {
       'Content-Type': 'application/json',
-      Authorization: `Token ${this.props.token}`,
+      Authorization: `Token ${this.props.authToken}`,
     };
     axios
       .get('http://127.0.0.1:8000/api/session/')
@@ -204,7 +204,7 @@ class Dashboard extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    token: state.authToken,
+    authToken: state.authToken,
   };
 };
 
