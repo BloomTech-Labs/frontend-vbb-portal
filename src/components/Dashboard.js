@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 class Dashboard extends React.Component {
   state = {
-    sessionslots: [],
+    sessionSlots: [],
   };
 
   fetchSessionSlotData = () => {
@@ -20,7 +20,7 @@ class Dashboard extends React.Component {
       .get('http://127.0.0.1:8000/api/session/')
       .then((res) => {
         this.setState({
-          sessionslots: res.data,
+          sessionSlots: res.data,
         });
       })
       .catch((err) => {
@@ -39,9 +39,9 @@ class Dashboard extends React.Component {
         <div className="column col-card" id="mentoring-session-box">
           <h1 className="vbb-header">My Weekly Mentoring Session</h1>
 
-          {this.state.sessionslots && this.state.sessionslots.length > 0 ? (
+          {this.state.sessionSlots && this.state.sessionSlots.length > 0 ? (
             <ul>
-              {this.state.sessionslots.map((apt) => {
+              {this.state.sessionSlots.map((apt) => {
                 console.log(apt);
                 return (
                   <li className="mb-2 mr-2" key={apt.id} value={apt.event_id}>
