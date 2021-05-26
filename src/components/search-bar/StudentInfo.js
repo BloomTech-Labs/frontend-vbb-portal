@@ -2,7 +2,7 @@ import { Button } from 'antd'
 import React from "react";
 import Modal from "./Modal.css"
 import { useDispatch } from "react-redux"
-import { SET_REGISTRATION_FORM} from "./redux/Registration"
+import { SET_REGISTRATION_FORM} from "../redux/Registration.redux/Registration.actions"
 
 
 const StudentInfo = (props) => {
