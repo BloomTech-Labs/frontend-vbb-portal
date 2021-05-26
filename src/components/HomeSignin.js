@@ -125,8 +125,13 @@ const HomeSignin = ({
           cookiePolicy={'single_host_origin'}
         /> */}
         <p style={{ margin: '1rem 0' }}>Don't have an account with us yet?</p>
-        <Link to="/signup/">
-          <Button style={{ lineHeight: '.5' }}>Register</Button>
+        <Link to="/signupMentor/">
+          <Button style={{ lineHeight: '.5' }}>
+            Looking to teach? Be A Mentor!
+          </Button>
+          <Link to="/signupMentee/">
+            <Button style={{ lineHeight: '.5' }}>Register A Mentee</Button>
+          </Link>
         </Link>
       </Col>
     </Row>

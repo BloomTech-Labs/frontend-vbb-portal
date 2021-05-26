@@ -5,6 +5,7 @@ import PrivateRoute from './PrivateRoute';
 import Booking from '../components/Booking';
 import Dashboard from '../components/Dashboard';
 import MasterForm from '../components/registration/MasterForm';
+import MasterFormMentee from '../components/registration/MasterFormMentee';
 import HomeSignin from '../components/HomeSignin';
 import SessionDetails from '../components/SessionDetails';
 import Donation from '../components/registration/Donation';
@@ -27,7 +28,10 @@ const Routes = () => {
         <Route exact path="/signin/">
           <HomeSignin />
         </Route>
-        <Route exact path="/signup/">
+        <Route exact path="/signupMentee/">
+          <MasterFormMentee />
+        </Route>
+        <Route exact path="/signupMentor/">
           <MasterForm />
         </Route>
         <Route exact path="/sessiondetails/:sessionid/">
