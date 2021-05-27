@@ -12,6 +12,7 @@ import {
 import { USER_TYPES } from '../User.redux/User.types';
 
 export const SET_REGISTRATION_FORM = 'SET_REGISTRATION_FORM';
+
 /**
  * sets the registration form store to the payload
  * @param {obj: registrationForm} regForm
