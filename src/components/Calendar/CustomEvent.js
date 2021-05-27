@@ -1,4 +1,5 @@
 import React from 'react'
+import { WarningOutlined } from '@ant-design/icons'
 
 //for now, available and unavailable computers are hardcoded in data file
 export const customWeekViewEvent = data => {
@@ -13,7 +14,7 @@ export const customResourceViewEvent = data => {
     return (
         <div className='rbc-events-container'>
             <p className='resourceEvent mentor'>Mentor: {data.event.mentor}</p>
-            <p className='resourceEvent student'>Student: {data.event.student ? data.event.student: <span>None</span>}</p>
+            <p className='resourceEvent student'>Student: {data.event.student ? data.event.student: <span><WarningOutlined style={{ color: '#FF914C' }} /></span>}</p>
         </div>
     )
 }
