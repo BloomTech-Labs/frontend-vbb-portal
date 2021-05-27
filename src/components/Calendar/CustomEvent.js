@@ -13,7 +13,7 @@ export const customResourceViewEvent = data => {
     return (
         <div className='rbc-events-container'>
             <p className='resourceEvent mentor'>Mentor: {data.event.mentor}</p>
-            <p className='resourceEvent student'>Student: {data.event.student}</p>
+            <p className='resourceEvent student'>Student: {data.event.student ? data.event.student: <span>None</span>}</p>
         </div>
     )
 }
