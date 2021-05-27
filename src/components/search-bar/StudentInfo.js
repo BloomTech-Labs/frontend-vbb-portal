@@ -1,12 +1,11 @@
 import { Button } from 'antd'
 import React from "react";
+import axios from 'axios';
 import Modal from "./Modal.css"
-import { useDispatch } from "react-redux"
-import { SET_REGISTRATION_FORM} from "../redux/Registration.redux/Registration.actions"
 
 
 const StudentInfo = (props) => {
-  const dispatch = useDispatch();
+  
     const [student, setStudent] = React.useState( props.user)
 
     const changeHandler = (e) => {
@@ -20,9 +19,14 @@ const StudentInfo = (props) => {
     const onSubmit = (e) => {
       // this need to be connected to the backend to update the data on the database
       e.preventDefault();
-      dispatch(SET_REGISTRATION_FORM)
+      axios
+      .put(`http://localhost:8000/mentees/${student.id}`, student)
+      .then(res => {
+        console.log(res);
+      })
       props.closeEditing()
     }
+
 return (
     <form className='StudentInfoForm'>
         <label className='label'>
