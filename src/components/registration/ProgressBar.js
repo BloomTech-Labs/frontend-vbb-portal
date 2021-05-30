@@ -28,7 +28,7 @@ export const ProgressBar = (props) => {
         <h1 style={{ padding: '10px 0' }}>Support Your Mentee with a Gift!</h1>
       );
     } else {
-      return <h1 style={{ padding: '10px 0' }}>Mentor Registration</h1>;
+      return <h1 style={{ padding: '10px 0' }}>Registration</h1>;
     }
   };
 

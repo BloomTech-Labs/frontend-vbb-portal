@@ -17,7 +17,7 @@ const MainLayout = () => {
           className="site-layout"
           style={{ padding: '50px', marginTop: 64, backgroundColor: '#fffff6' }}
         >
-          <Breadcrumb style={{ margin: '16px 0' }}>
+          <Breadcrumb style={{ margin: '16px 0', textAlign: 'center' }}>
             <Breadcrumb.Item>
               <Link to="/">Village Portal</Link>
             </Breadcrumb.Item>

@@ -130,7 +130,9 @@ const HomeSignin = ({
             Looking to teach? Be A Mentor!
           </Button>
           <Link to="/signupMentee/">
-            <Button style={{ lineHeight: '.5' }}>Register A Mentee</Button>
+            <Button style={{ lineHeight: '.5' }}>
+              Ready to Learn? Register A Mentee
+            </Button>
           </Link>
         </Link>
       </Col>

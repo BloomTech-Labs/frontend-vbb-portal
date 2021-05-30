@@ -2,114 +2,131 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actions';
 import { withRouter } from 'react-router';
-import { Button } from 'antd';
-import { RightOutlined, LeftOutlined, CheckOutlined } from '@ant-design/icons';
-
-import Step1 from './Step1';
-import Step2 from './Step2';
-import Step3 from './Step3';
-import Step4 from './Step4';
-import ProgressBar from './ProgressBar';
-
-const MasterForm = ({
-  registerForNewsletter,
-  subUserRegistration,
-  history,
-}) => {
-  let [currentStep, setCurrentStep] = useState(1);
-
-  const next = () => {
-    window.scrollTo(0, 0);
-    currentStep = currentStep === 4 ? 4 : currentStep + 1;
-    setCurrentStep(currentStep);
+import { Form, Tooltip, Input } from 'antd';
+import { Formik, useField, useFormikContext } from 'formik';
+import * as Yup from 'yup';
+//https://codesandbox.io/s/building-multi-step-form-with-formik-yup-3ro0d?file=/src/App.js
+const MasterFormMentee = () => {
+  const MyTextInput = ({ label, ...props }) => {
+    // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
+    // which we can spread on <input> and alse replace ErrorMessage entirely.
+    const [field, meta] = useField(props);
+    return (
+      <>
+        <label htmlFor={props.id || props.name}>{label}</label>
+        <input className="text-input" {...field} {...props} />
+        {meta.touched && meta.error ? (
+          <div className="error" style={{ color: 'red', display: 'block' }}>
+            {meta.error}
+          </div>
+        ) : null}
+      </>
+    );
   };
 
-  const back = () => {
-    currentStep = currentStep <= 1 ? 1 : currentStep - 1;
-    setCurrentStep(currentStep);
+  const MyCheckbox = ({ children, ...props }) => {
+    const [field, meta] = useField({ ...props, type: 'checkbox' });
+    return (
+      <>
+        <label className="checkbox">
+          <input {...field} {...props} type="checkbox" />
+          {children}
+        </label>
+        {meta.touched && meta.error ? (
+          <div className="error" style={{ color: 'red', display: 'block' }}>
+            {meta.error}
+          </div>
+        ) : null}
+      </>
+    );
   };
 
-  const backButton = () => {
-    if (currentStep === 2 || currentStep === 3) {
-      return (
-        <Button style={{ marginRight: '10px' }} type="button" onClick={back}>
-          <LeftOutlined />
-          Back
-        </Button>
-      );
-    }
-    return null;
+  const MySelect = ({ label, ...props }) => {
+    // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
+    // which we can spread on <input> and alse replace ErrorMessage entirely.
+    const [field, meta] = useField(props);
+    return (
+      <>
+        <label htmlFor={props.id || props.name}>{label}</label>
+        <select {...field} {...props} />
+        {meta.touched && meta.error ? <span>{meta.error}</span> : null}
+      </>
+    );
   };
-
-  const nextButton = () => {
-    switch (currentStep) {
-      case 1:
-        return (
-          <Button
-            style={{ marginRight: '10px' }}
-            type="button"
-            onClick={() => {
-              //@todo: how do we handle previously submitted user?
-              registerForNewsletter();
-              next();
-            }}
-          >
-            Next
-            <RightOutlined />
-          </Button>
-        );
-
-      case 2:
-        return (
-          <Button style={{ marginRight: '10px' }} type="button" onClick={next}>
-            Next
-            <RightOutlined />
-          </Button>
-        );
-      default:
-        return null;
-    }
-  };
-
-  const registerButton = () => {
-    if (currentStep === 3) {
-      return (
-        <Button
-          style={{ marginRight: '10px' }}
-          type="button"
-          onClick={() => {
-            subUserRegistration(history);
-          }}
-        >
-          Register
-          <CheckOutlined />
-        </Button>
-      );
-    }
-    return null;
-  };
-
   return (
-    <div>
-      {currentStep < 4 ? (
-        <div style={{ margin: '0 0 25px 0' }}>
-          <ProgressBar currentStep={currentStep} />
-        </div>
-      ) : (
-        <div></div>
-      )}
+    <Formik
+      initialValues={{
+        firstName: '',
+        lastName: '',
+        email: '',
+        acceptedTerms: false, // added for our checkbox
+        jobType: '', // added for our select
+      }}
+      validationSchema={Yup.object({
+        firstName: Yup.string()
+          .max(15, 'Must be 15 characters or less')
+          .required('Required'),
+        lastName: Yup.string()
+          .max(20, 'Must be 20 characters or less')
+          .required('Required'),
+        email: Yup.string()
+          .email('Invalid email addresss`')
+          .required('Required'),
+        acceptedTerms: Yup.boolean()
+          .required('Required')
+          .oneOf([true], 'You must accept the terms and conditions.'),
+        type: Yup.string()
+          // specify the set of valid values for job type
+          // @see http://bit.ly/yup-mixed-oneOf
+          .oneOf(
+            ['designer', 'development', 'product', 'other'],
+            'Invalid Job Type'
+          )
+          .required('Required'),
+      })}
+      onSubmit={async (values, { setSubmitting }) => {
+        await new Promise((r) => setTimeout(r, 500));
+        setSubmitting(false);
+      }}
+    >
+      <Form style={{ display: 'flex', flexDirection: 'column' }}>
+        <MyTextInput
+          style={{ width: '10vw' }}
+          label="First Name"
+          name="firstName"
+          type="text"
+          placeholder="Jane"
+        />
+        <MyTextInput
+          style={{ width: '10vw' }}
+          label="Last Name"
+          name="lastName"
+          type="text"
+          placeholder="Doe"
+        />
+        <MyTextInput
+          style={{ width: '10vw' }}
+          label="Email Address"
+          name="email"
+          type="email"
+          placeholder="jane@formik.com"
+        />
+        <MySelect label="Type" name="typ" style={{ width: '10vw' }}>
+          <option value="">Select a type</option>
+          <option value="Mentee">Mentee</option>
+          <option value="Mentor">Mentor</option>
+          <option value="headmanster">headmanster</option>
+          <option value="other">Other</option>
+        </MySelect>
+        <MyCheckbox name="acceptedTerms" style={{ width: '10vw' }}>
+          I accept the terms and conditions
+        </MyCheckbox>
 
-      <div>
-        <Step1 currentStep={currentStep} />
-        <Step2 currentStep={currentStep} />
-        <Step3 currentStep={currentStep} />
-        <Step4 currentStep={currentStep} />
-        {backButton()}
-        {nextButton()}
-        {registerButton()}
-      </div>
-    </div>
+        <button type="submit" style={{ width: '10vw' }}>
+          Submit
+        </button>
+      </Form>
+    </Formik>
   );
 };
-
-export default withRouter(connect(null, actions)(MasterForm));
+export default withRouter(connect(null, actions)(MasterFormMentee));
