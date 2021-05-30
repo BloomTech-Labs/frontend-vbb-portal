@@ -18,19 +18,19 @@ const NavBar = ({ logout, authToken }) => {
       </Button>
     </Link>
   ) : (
-      <>
-        <SearchBarAutoComplete/>
-    <Link to="/" key="link-1">
-      <Button
-        key="1"
-        style={{ marginTop: '15px', color: '#549bea' }}
-        onClick={logout}
-      >
-        Sign Out
-        <LogoutOutlined />
-      </Button>
-    </Link>
-      </>
+    <>
+      <SearchBarAutoComplete />
+      <Link to="/" key="link-1">
+        <Button
+          key="1"
+          style={{ marginTop: '15px', color: '#549bea' }}
+          onClick={logout}
+        >
+          Sign Out
+          <LogoutOutlined />
+        </Button>
+      </Link>
+    </>
   );
   return (
     <PageHeader
@@ -51,7 +51,7 @@ const NavBar = ({ logout, authToken }) => {
       }
       extra={[
         signInSignOut,
-        <Link to="/signup" key="link-2">
+        <Link to="/signin" key="link-2">
           <Button type="primary" key="2">
             Register
             <FormOutlined style={{ color: 'white' }} />

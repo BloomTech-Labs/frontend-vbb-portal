@@ -129,11 +129,11 @@ const HomeSignin = ({
           <Button style={{ lineHeight: '.5' }}>
             Looking to teach? Be A Mentor!
           </Button>
-          <Link to="/signupMentee/">
-            <Button style={{ lineHeight: '.5' }}>
-              Ready to Learn? Register A Mentee
-            </Button>
-          </Link>
+        </Link>
+        <Link to="/signupMentee/">
+          <Button style={{ lineHeight: '.5' }}>
+            Ready to Learn? Register A Mentee
+          </Button>
         </Link>
       </Col>
     </Row>
