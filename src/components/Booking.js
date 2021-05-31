@@ -393,7 +393,7 @@ class Booking extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    token: state.authToken,
+    authToken: state.authToken,
   };
 };
 

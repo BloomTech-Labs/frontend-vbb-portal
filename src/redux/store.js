@@ -5,13 +5,12 @@ import rootReducer from './rootReducer';
 
 /*
  * Exports the store and adds redux dev tools and thunk middleware
- *
  */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(
+const storeRedux = () => createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(thunk))
 );
 
-export default store;
+export default storeRedux;

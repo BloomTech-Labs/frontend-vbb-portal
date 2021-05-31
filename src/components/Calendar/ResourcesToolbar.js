@@ -2,9 +2,10 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import clsx from 'clsx'
 import { navigate } from 'react-big-calendar/lib/utils/constants'
-import { Menu, Dropdown, Button, message, Space, Tooltip } from 'antd';
-import { DownloadOutlined, DownOutlined, PrinterOutlined, UserOutlined } from '@ant-design/icons';
+import { Menu, Dropdown, message } from 'antd';
+import { DownloadOutlined, DownOutlined, PrinterOutlined } from '@ant-design/icons';
 
+//most of this was copied straight from the react-big-calendar repo, then adjusted as needed
 class Toolbar extends React.Component {
   render() {
     let {
@@ -12,14 +13,9 @@ class Toolbar extends React.Component {
       label,
     } = this.props
     
-    function handleButtonClick(e) {
-      message.info('Click on left button.');
-      console.log('click left button', e);
-    }
-    
     function handleMenuClick(e) {
       message.info('Click on menu item.');
-      console.log('click', e);
+      // May not need these
     }
     const menu = (
       <Menu onClick={handleMenuClick}>
@@ -56,10 +52,13 @@ class Toolbar extends React.Component {
 
         <span className="rbc-toolbar-label">{label}</span>
         
-        <span className="rbc-btn-group">{this.viewNamesGroup(messages)}</span>
-        <Dropdown overlay={menu}>
-        <button    trigger={['click']}><DownOutlined/></button>
-        </Dropdown>
+        <span className="rbc-btn-group">{this.viewNamesGroup(messages)}
+          <Dropdown overlay={menu}>
+            <button className="print-download-button" trigger={['click']}>
+              <DownOutlined className='print-download-icon' />
+            </button>
+          </Dropdown>
+        </span>
       </div>
     )
   }
