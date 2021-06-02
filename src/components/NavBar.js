@@ -64,9 +64,7 @@ const NavBar = ({ logout, authToken }) => {
       ]}
     >
 
-      {authToken ? 
-         <SearchBar style = {{lineHeight:"5"}} /> : null
-      }
+         <SearchBar /> 
     </PageHeader>
   );
 };

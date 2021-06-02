@@ -7,9 +7,8 @@ import useModal from '../Modal/useModal';
 import SearchModalContent from '../Modal/SeachModalFragment';
 import useStyles from './styles';
 
-const SearchField = ({ value }) => {
+const SearchField = ({ value, toggle, setToggle }) => {
     //state variables
-    const [ toggle, setToggle ] = useState(false);
     const [ options, setOptions ] = useState();
     const [ list, setList ] = useState([]);
     //custom hooks
@@ -32,7 +31,7 @@ const SearchField = ({ value }) => {
                 )
 
       }
-    
+    //pulling in the data for search
       useEffect(() => {
         axios.get(`http://localhost:8000/mentees`)
           .then(async res => {
@@ -50,6 +49,7 @@ const SearchField = ({ value }) => {
             console.error("error", error);
           });
       },[]);
+      //useEffect that filters the list as a user types
       useEffect(() => {
         if(toggle) {
             if( value.name.length < 1 ) {
@@ -92,15 +92,21 @@ const SearchField = ({ value }) => {
         { toggle ?
             <>
             <Card 
-                style= {{backgroundColor: 'rgba(255,255,255,2.5)', width:"80%" , margin: "0 100px" }}
+                style= {{backgroundColor: 'rgba(255,255,255,2.5)', width:"80%" , margin: "0px 100px",  overflow: "hidden" , overflowY: "scroll", height:'20vh' }}
             >
-                {list.map((e) => <li
+                {list.map((e) =><> <li
                                     className = {classes.listItem}
-                                    onClick = {() => toggleModal(SearchModal, e)}
-                > {`${e.first_name} ${e.last_name}`} </li> )}
-              
-                {features.map((feature) => <Link className = {classes.featureItem} to = {`${feature.url}`}> {`${feature.name}`} </Link>) }
-              
+                                    onClick = {() => {
+                                      toggleModal(SearchModal,e);
+                                      handleClick();}}
+                > <span>{`${e.first_name} ${e.last_name}`} </span>
+            <span style = {{
+            position: "relative",
+            backgroundColor: "rgba(0,0,0,.05)",
+            float:"right"
+            }}> mentee </span> </li> </> )}
+                {features.map((feature) => <Link style = {{margin:"10px"}} className = {classes.featureItem} to = {`${feature.url}`}> {`${feature.name}`} </Link>) }
+              <Button type = "primary" danger style = {{float:"right", marginBottom: "5px"}} onClick = {() => setToggle(false)}> close </Button>
             </Card>
              <SearchModal visible={isVisible} onOk={toggleModal} onCancel={toggleModal} destroyOnClose={true} >
              <SearchModalContent user={selectedUser}/>
