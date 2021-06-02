@@ -16,7 +16,7 @@ const TempRegistration = ({ subUserRegistration, history }) => {
     return (
         <div>
             <Row justify="center" style={{ margin: '1rem 0' }}>
-                <h1>Register A Student or Mentor</h1>
+                <h1>User Registration</h1>
             </Row>
             <Row justify="center">
                 <Col xs={24} sm={24} md={24} lg={16} xl={12}>

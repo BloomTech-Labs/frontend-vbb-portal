@@ -3,7 +3,7 @@ import React from 'react'
 const SearchModalContent = (props) => {
   return (
       <>
-        { props ? (
+        { props.user ? (
           <>
             <div style={{ fontWeight: 'bold' }}>
               <h3>ID: {props.user.id}</h3>
