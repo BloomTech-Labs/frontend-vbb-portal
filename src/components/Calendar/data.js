@@ -8,7 +8,7 @@ export const events = [
     availableComputers: 3,
     unavailableComputers: 6,
     mentor: 'Liz',
-    student: 'Henry',
+    student: '',
     resourceId: 1,
   },
   {
@@ -41,7 +41,7 @@ export const events = [
     availableComputers: 7,
     unavailableComputers: 3,
     mentor: 'Calli',
-    student: 'Steven',
+    student: '',
     resourceId: 4,
   },
   {
