@@ -18,7 +18,7 @@ const SearchModalContent = (props) => {
               <p>Cell: {props.user.phone}</p>
               <p>
                 Location:{' '}
-                <a href={`http://maps.google.com/maps?q= ${props.user.city}`}>
+                <a href={`http://maps.google.com/maps?q= ${props.user.city}`} target="_blank" rel="noopener noreferrer">
                   {props.user.city}
                 </a>
               </p>

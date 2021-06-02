@@ -1,3 +1,4 @@
+//mock data because we don't have a backend to work with
 export const events = [
   {
     id: 0,
@@ -7,7 +8,7 @@ export const events = [
     availableComputers: 3,
     unavailableComputers: 6,
     mentor: 'Liz',
-    student: 'Henry',
+    student: '',
     resourceId: 1,
   },
   {
@@ -40,7 +41,7 @@ export const events = [
     availableComputers: 7,
     unavailableComputers: 3,
     mentor: 'Calli',
-    student: 'Steven',
+    student: '',
     resourceId: 4,
   },
   {
@@ -52,13 +53,17 @@ export const events = [
     unavailableComputers: 3,
     mentor: 'Leo',
     student: 'Nyx',
+    //resourceId is a required field in order to map to the resources in day view
     resourceId: 5,
   },
 ]
 
 export const mentors = ['Leo','Calli','Morgan']
-export const mentees = ['Nyx','Steven','Morgan']
+export const students = ['Nyx','Steven','Morgan']
+
 const resourcesArray = ['computer 1', 'computer 2', 'computer 3', 'computer 4', 'computer 5', 'computer 6', 'computer 7', 'computer 8', 'computer 9', 'computer 10']
+
+//resource map is needed for the resource view
 export const resourceMap = resourcesArray.map((computer, index) => {
   return {resourceId: index + 1, resourceTitle: computer}
 })
