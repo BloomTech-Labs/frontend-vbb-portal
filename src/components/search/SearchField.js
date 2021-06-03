@@ -1,8 +1,7 @@
 import React,  { useState, useEffect } from 'react'
 import axios from 'axios';
-import { Card } from 'antd';
 import { Link } from 'react-router-dom';
-import { Input , Button, Modal } from 'antd';
+import { Input , Button, Modal, Card } from 'antd';
 import useModal from '../Modal/useModal';
 import SearchModalContent from '../Modal/SeachModalFragment';
 import useStyles from './styles';
@@ -20,7 +19,6 @@ const SearchField = ({ value }) => {
 
     const filterData = (value,options) => {
         setList([{}])
-        console.log(list)
         const newList =  options.filter((val) => {
             const fullName = `${val.first_name.toLowerCase()} ${val.last_name.toLowerCase()}`;
             if(fullName.includes(value.name.toLowerCase())) {
@@ -92,15 +90,15 @@ const SearchField = ({ value }) => {
         { toggle ?
             <>
             <Card 
-                style= {{backgroundColor: 'rgba(255,255,255,2.5)', width:"80%" , margin: "0 100px" }}
+                style= {{backgroundColor: 'rgba(255,255,255,2.5)', width:"80%" , margin: "0 100px", overflow: "hidden", overflowY: "scroll", height: "20vh" }}
             >
                 {list.map((e) => <li
                                     className = {classes.listItem}
                                     onClick = {() => toggleModal(SearchModal, e)}
                 > {`${e.first_name} ${e.last_name}`} </li> )}
               
-                {features.map((feature) => <Link className = {classes.featureItem} to = {`${feature.url}`}> {`${feature.name}`} </Link>) }
-              
+                {features.map((feature) => <Link style = {{margin:"5px"}}className = {classes.featureItem} to = {`${feature.url}`}> {`${feature.name}`} </Link>) }
+              <Button type= "primary" danger onClick = {() => setToggle(false)} style = {{position:"relative", float:"right"}}> close </Button>
             </Card>
              <SearchModal visible={isVisible} onOk={toggleModal} onCancel={toggleModal} destroyOnClose={true} >
              <SearchModalContent user={selectedUser}/>
