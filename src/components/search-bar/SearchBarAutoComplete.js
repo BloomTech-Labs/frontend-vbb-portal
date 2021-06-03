@@ -16,6 +16,7 @@ const SearchBarAutoComplete = () => {
   const { isVisible, selectedUser, toggleModal } = useModal(SearchModal)
   const [isEditing, setIsEditing] = useState(false)
   const [errorMessage, setErrorMessage] = useState();
+  const [filter, setFilter] = useState(true);
 
   const mentor_id = null; // undefined for now until API ready to avoid useEffect problems
 
@@ -125,19 +126,39 @@ const SearchBarAutoComplete = () => {
     setIsEditing(!isEditing);
   };
 
-  let searchbarContent = ''
+  let searchbarContent = '';
+  const [newListOptions, setNewListOptions] = useState(listOptions);
 
   const handleSearch = (e) => {
-    searchbarContent = e
+    searchbarContent = e;
+    changeListOptions()
+  };
+
+  const changeListOptions = () => {
+    if (searchbarContent === 'students') {
+      setNewListOptions([listOptions[0]]);
+      setFilter(false);
+      return newListOptions;
+    }
+    if (searchbarContent === 'teachers') {
+      setNewListOptions([listOptions[1]]);
+      setFilter(false);
+      return newListOptions;
+    }
+    else {
+      setNewListOptions(listOptions);
+      setFilter(true);
+      return newListOptions;
+    }
   };
 
   return (
     <>
       <AutoComplete
         style={{ width: 500 }}
-        options={listOptions}
+        options={newListOptions}
         onSearch={handleSearch}
-        filterOption={true}
+        filterOption={filter}
         autoClearSearchValue={true}
         key="autoComplete"
       >
