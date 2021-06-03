@@ -16,7 +16,7 @@ const SearchBarAutoComplete = () => {
   const { isVisible, selectedUser, toggleModal } = useModal(SearchModal)
   const [isEditing, setIsEditing] = useState(false)
   const [errorMessage, setErrorMessage] = useState();
-  const [filter, setFilter] = useState(true);
+  const [filter, setFilter] = useState(true); // used for toggling autocomplete filtering
 
   const mentor_id = null; // undefined for now until API ready to avoid useEffect problems
 
@@ -126,27 +126,30 @@ const SearchBarAutoComplete = () => {
     setIsEditing(!isEditing);
   };
 
-  let searchbarContent = '';
-  const [newListOptions, setNewListOptions] = useState(listOptions);
+  let searchbarContent = ''; // holds what is typed into the search bar
+  const [newListOptions, setNewListOptions] = useState(listOptions); // options for autocomplete
 
+  // update the searchbarContent variable and check if we need to change listOptions
   const handleSearch = (e) => {
     searchbarContent = e;
     changeListOptions()
   };
 
+  // change which listOptions are returned based on the searchbar content
+  // Note: with the keywords, we turn filtering off so it can be displayed
   const changeListOptions = () => {
     if (searchbarContent === 'students') {
-      setNewListOptions([listOptions[0]]);
+      setNewListOptions([listOptions[0]]); // location of 'students' object in the listOptions array
       setFilter(false);
       return newListOptions;
     }
     if (searchbarContent === 'teachers') {
-      setNewListOptions([listOptions[1]]);
+      setNewListOptions([listOptions[1]]); // location of 'teachers' object in the listOptions array
       setFilter(false);
       return newListOptions;
     }
     else {
-      setNewListOptions(listOptions);
+      setNewListOptions(listOptions); // go back to the original listOptions
       setFilter(true);
       return newListOptions;
     }
