@@ -1,5 +1,5 @@
 export const POST_FORM_DATA = 'POST_FORM_DATA';
-export const POST_FORM_DATA_SUCCESS = 'POST_FORM_DATA_SUCESS';
+export const POST_FORM_DATA_SUCCESS = 'POST_FORM_DATA_SUCCESS';
 export const POST_FORM_DATA_FAIL = 'POST_FORM_DATA_FAIL';
 
 export function postFormData(formData) {
