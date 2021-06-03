@@ -123,13 +123,20 @@ const SearchBarAutoComplete = () => {
 
   const handleEdit = () => {
     setIsEditing(!isEditing);
-  }
+  };
+
+  let searchbarContent = ''
+
+  const handleSearch = (e) => {
+    searchbarContent = e
+  };
 
   return (
     <>
       <AutoComplete
         style={{ width: 500 }}
         options={listOptions}
+        onSearch={handleSearch}
         filterOption={true}
         autoClearSearchValue={true}
         key="autoComplete"
