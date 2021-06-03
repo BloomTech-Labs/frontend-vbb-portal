@@ -123,9 +123,9 @@ export const logInEmailPassword = (history) => async (dispatch, getState) => {
     );
     const user = await getUserFromAuthToken(accessToken);
 
-    //@todo: add access token to cookie
     dispatch(setUser(transformUser(user)));
     dispatch(setAuthToken(accessToken));
+    localStorage.setItem('token', accessToken);
 
     //push user to dashboard
     history.push('/');
