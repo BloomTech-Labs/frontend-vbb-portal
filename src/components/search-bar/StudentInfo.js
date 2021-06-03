@@ -2,11 +2,54 @@ import { Button } from 'antd'
 import React from "react";
 import axios from 'axios';
 import Modal from "./Modal.css"
+import * as yup from "yup";
+
 
 
 const StudentInfo = (props) => {
   
     const [student, setStudent] = React.useState( props.user)
+
+      const menteeLoginSchema = yup.object().shape({
+        userType: yup
+        .string()
+        .min(1, "Username must be at least one character"),
+        firstName: yup
+          .string()
+          .min(1, "Username must be at least 1 characters")
+          .required("Username is a required field"),
+        lastName: yup
+          .string()
+          .min(1, "Password must be at least 1 characters")
+          .required("Password is a required field"),
+        email: yup
+        .string()
+        .min(6, "Must be an email address"),
+        dateOfBirth: yup
+        .string()
+        .min(1, "must be in format dd/mm/yyyy"),
+        location: yup
+        .string()
+        .min(1, "id must be at least one character")
+      });
+
+      const validateChange = (e) => {
+        yup
+          .reach(loginSchema, e.target.name)
+          .validate()
+          .then((valid) => {
+            setErrors({
+              ...errors,
+              [e.target.value]: "",
+            });
+          })
+          .catch((err) => {
+            setErrors({
+              ...errors,
+              [e.target.name]: err.errors[0],
+            });
+          });
+      };
 
     const changeHandler = (e) => {
       e.persist();
@@ -14,6 +57,7 @@ const StudentInfo = (props) => {
         ...student,
         [e.target.name]: e.target.value,
       });
+      validateChange(e)
     };
 
     const onSubmit = (e) => {
