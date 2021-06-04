@@ -4,11 +4,9 @@ import { Input , Button, Modal } from 'antd';
 import { AudioOutlined } from '@ant-design/icons';
 import useModal from '../Modal/useModal';
 import SearchModalContent from '../Modal/SeachModalFragment';
-import useStyles from './styles';
 
 const SearchBar = () => {
     const [value,setValue] = useState({});
-    const classes = useStyles();
     const { Search } = Input;
     const suffix = (
         <AudioOutlined
