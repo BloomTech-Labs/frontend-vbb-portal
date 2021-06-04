@@ -16,7 +16,7 @@ class Dashboard extends React.Component {
     axios.defaults.xsrfCookieName = 'csrftoken';
     axios.defaults.headers = {
       'Content-Type': 'application/json',
-      Authorization: `Token ${this.props.authToken}`,
+      Authorization: `Bearer ${this.props.authToken}`,
     };
     axios
       .get(`${actions.PYTHON_API}v1/session/`)
@@ -193,7 +193,7 @@ class Dashboard extends React.Component {
               mentoring, or ANY QUESTIONS, please contact your mentor advisor at{' '}
               <a href="mailto:mentor@villagebookbuilders.org">
                 mentor@villagebookbuilders.org
-              </a>!<br/>
+              </a>!<br />
             </b>
           </p>
         </div>
