@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import SearchField from './SearchField'
-import { Input , Button, Modal } from 'antd';
+import { Input } from 'antd';
 import { AudioOutlined } from '@ant-design/icons';
-import useModal from '../Modal/useModal';
-import SearchModalContent from '../Modal/SeachModalFragment';
 
 const SearchBar = () => {
     const [value,setValue] = useState({});
