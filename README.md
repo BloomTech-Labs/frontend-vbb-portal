@@ -45,3 +45,5 @@ Examples of component patterns can be found under examples as can redux folder s
 - Session: Represents the template of a slot ( think of this as the cookie cutter you make the cookies (slots) from )
 
 - Slot: Represents an individual meeting created from the session slot
+
+<!--  -->
