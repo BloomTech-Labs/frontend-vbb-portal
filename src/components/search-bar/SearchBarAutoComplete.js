@@ -1,20 +1,19 @@
 import SearchModalContent from '../Modal/SeachModalFragment';
 import React, { useEffect, useState } from 'react';
 import { AutoComplete, Input, Modal, Button } from 'antd';
-import useModal from '../Modal/useModal'
-import StudentInfo from './StudentInfo'
+import useModal from '../Modal/useModal';
+import StudentInfo from './StudentInfo';
 import { withRouter, Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import dummy from './MOCK_DATA.json';
-import axios from "axios";
-import { PYTHON_API } from "../../redux/actions/index";
+import axios from 'axios';
+import { PYTHON_API } from '../../redux/actions/index';
 import AllAPIS from './SearchbarAPI';
 
 const SearchBarAutoComplete = () => {
-
-  const SearchModal = Modal
-  const { isVisible, selectedUser, toggleModal } = useModal(SearchModal)
-  const [isEditing, setIsEditing] = useState(false)
+  const SearchModal = Modal;
+  const { isVisible, selectedUser, toggleModal } = useModal(SearchModal);
+  const [isEditing, setIsEditing] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
   const [filter, setFilter] = useState(true); // used for toggling autocomplete filtering
 
@@ -22,22 +21,29 @@ const SearchBarAutoComplete = () => {
 
   //Need to connect with back end and have a PUT request for Edit button, this endpoint requires an external id
   //Once backend is ready and seeded, use the searchbarAPI to make requests to the backend
-  useEffect((mentor_id) => {
-    axios.get(`${PYTHON_API}v1/mentor/${mentor_id}/`)
-      .then(async res => {
-        const data = await res.json();
-        if (!res.ok) {
-          const err = (data && data.message) || res.status;
-          return Promise.reject(err);
-        }
-      })
-      .catch(error => {
-        setErrorMessage(error);
-        console.error("error", error);
-      });
-  }, [mentor_id]);
+  useEffect(
+    (mentor_id) => {
+      axios
+        .get(`${PYTHON_API}v1/mentor/${mentor_id}/`)
+        .then(async (res) => {
+          const data = await res.json();
+          if (!res.ok) {
+            const err = (data && data.message) || res.status;
+            return Promise.reject(err);
+          }
+        })
+        .catch((error) => {
+          setErrorMessage(error);
+          console.error('error', error);
+        });
+    },
+    [mentor_id]
+  );
 
-  const renderTitle = (title, href = "https://www.google.com/search?q=antd") => {
+  const renderTitle = (
+    title,
+    href = 'https://www.google.com/search?q=antd'
+  ) => {
     return (
       <span key={title}>
         {title}
@@ -94,6 +100,7 @@ const SearchBarAutoComplete = () => {
     { name: 'Dashboard', url: '/' },
     { name: 'Register', url: '/register/' },
     { name: 'Create Mentor', url: '' },
+    { name: 'Create Mentee', url: '/mentee/' },
   ];
 
   const options = dummy.map((user) => {
@@ -132,7 +139,7 @@ const SearchBarAutoComplete = () => {
   // update the searchbarContent variable and check if we need to change listOptions
   const handleSearch = (e) => {
     searchbarContent = e;
-    changeListOptions()
+    changeListOptions();
   };
 
   // change which listOptions are returned based on the searchbar content
@@ -147,8 +154,7 @@ const SearchBarAutoComplete = () => {
       setNewListOptions([listOptions[1]]); // location of 'teachers' object in the listOptions array
       setFilter(false);
       return newListOptions;
-    }
-    else {
+    } else {
       setNewListOptions(listOptions); // go back to the original listOptions
       setFilter(true);
       return newListOptions;
@@ -167,16 +173,24 @@ const SearchBarAutoComplete = () => {
       >
         <Input.Search size="large" placeholder="Find User" />
       </AutoComplete>
-      <SearchModal visible={isVisible} onOk={toggleModal} onCancel={toggleModal} destroyOnClose={true} key="searchModal" >
-        {!isEditing ? <>
-          <SearchModalContent user={selectedUser} />
-          <Button onClick={handleEdit}>Edit</Button>
-        </>
-          : <StudentInfo user={selectedUser} closeEditing={handleEdit} />}
+      <SearchModal
+        visible={isVisible}
+        onOk={toggleModal}
+        onCancel={toggleModal}
+        destroyOnClose={true}
+        key="searchModal"
+      >
+        {!isEditing ? (
+          <>
+            <SearchModalContent user={selectedUser} />
+            <Button onClick={handleEdit}>Edit</Button>
+          </>
+        ) : (
+          <StudentInfo user={selectedUser} closeEditing={handleEdit} />
+        )}
       </SearchModal>
     </>
   );
 };
-
 
 export default SearchBarAutoComplete;
