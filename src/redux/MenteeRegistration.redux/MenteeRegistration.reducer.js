@@ -10,7 +10,7 @@ const initialState = {
   error: '',
 };
 
-const menteeRegReducer = (state = initialState, actions) => {
+const menteeRegistrationReducer = (state = initialState, actions) => {
   switch (actions.type) {
     case POST_FORM_DATA:
       return {
@@ -35,4 +35,4 @@ const menteeRegReducer = (state = initialState, actions) => {
   }
 };
 
-export default menteeRegReducer;
+export default menteeRegistrationReducer;
