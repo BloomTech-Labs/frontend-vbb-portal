@@ -24,7 +24,7 @@ const SearchField = ({ value }) => {
             cursor:pointer;
      }
     `;
-
+   //custom made filter funtion without any hard specificity currently, I'd like to make this better
     const filterData = (value,options) => {
         setList([{}])
         const newList =  options.filter((val) => {
@@ -38,7 +38,9 @@ const SearchField = ({ value }) => {
                 )
 
       }
-    
+
+    //wrote out the api call originally going to local host and everything seemed to work , reverted to local mockdata file for development
+
       useEffect(() => {
       //   axios.get(`http://localhost:8000/mentees`)
       //     .then(async res => {
@@ -82,8 +84,8 @@ const SearchField = ({ value }) => {
        const features = [
         {name: "Calendar", url: "/calendar/"},
         {name: "Donate", url: "/donate/"},
-        {name: "Signup", url: "/signup/"},
-        {name: "Signin", url: "/signin/"},
+        {name: "Sign up", url: "/signup/"},
+        {name: "Sign in", url: "/signin/"},
         {name: "Booking", url: "/booking/"},
         {name: "Dashboard", url: "/"},
         {name: "Register", url: "/register/"},
