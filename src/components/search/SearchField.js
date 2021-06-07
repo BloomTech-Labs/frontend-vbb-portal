@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { Button, Modal, Card } from 'antd';
 import useModal from '../Modal/useModal';
 import SearchModalContent from '../Modal/SeachModalFragment';
-import styled from "styled-components";
 import  data from '../search-bar/MOCK_DATA.json';
+import classes from  '../search-bar/Modal.css';
 
 const SearchField = ({ value }) => {
     //state variables
@@ -16,14 +16,6 @@ const SearchField = ({ value }) => {
     const SearchModal = Modal;
     const {isVisible, selectedUser, toggleModal } = useModal(SearchModal)
     
-    //styled components
-    const ListItem = styled.li `
-    width:100%;
-    &:hover {
-      background-color:rgba(0,0,0,.025);
-            cursor:pointer;
-     }
-    `;
    //custom made filter funtion without any hard specificity currently, I'd like to make this better
     const filterData = (value,options) => {
         setList([{}])
@@ -99,9 +91,10 @@ const SearchField = ({ value }) => {
             <Card 
                 style= {{backgroundColor: 'rgba(255,255,255,2.5)', width:"80%" , margin: "0 100px", overflow: "hidden", overflowY: "scroll", height: "20vh" }}
             >
-                {list.map((e) => <ListItem
+                {list.map((e) => <li
+                                    className = 'searchBar'
                                     onClick = {() => toggleModal(SearchModal, e)}
-                > {`${e.first_name} ${e.last_name}`} </ListItem> )}
+                > {`${e.first_name} ${e.last_name}`} </li> )}
               
                 {features.map((feature) => <Link style = {{margin:"5px"}} to = {`${feature.url}`} onClick = {() => setToggle(false)}> {`${feature.name}`} </Link>) }
               <Button type= "primary" danger onClick = {() => setToggle(false)} style = {{position:"relative", float:"right"}}> close </Button>

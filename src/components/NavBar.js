@@ -82,4 +82,3 @@ const mapStateToProps = (state) => {
   };
 };
 export default withRouter(connect(mapStateToProps, actions)(NavBar));
-//austin.mehmet@villagebookbuilders.org
