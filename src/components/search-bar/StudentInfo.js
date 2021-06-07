@@ -1,5 +1,5 @@
 import { Button } from 'antd'
-import React from "react";
+import React, {useState}  from "react";
 import axios from 'axios';
 import Modal from "./Modal.css"
 import * as yup from "yup";
@@ -8,34 +8,42 @@ import * as yup from "yup";
 
 const StudentInfo = (props) => {
   
-    const [student, setStudent] = React.useState( props.user)
+    const [student, setStudent] = React.useState(props.user)
+
+    const [errors, setErrors] = useState({
+      first_name: "",
+      last_name: "",
+      personal_email: "",
+      date_of_birth: "",
+      city: ""
+    });
 
       const menteeLoginSchema = yup.object().shape({
-        userType: yup
-        .string()
-        .min(1, "Username must be at least one character"),
-        firstName: yup
+        // userType: yup
+        // .string()
+        // .min(1, "Username must be at least one character"),
+        first_name: yup
           .string()
           .min(1, "Username must be at least 1 characters")
           .required("Username is a required field"),
-        lastName: yup
+        last_name: yup
           .string()
           .min(1, "Password must be at least 1 characters")
           .required("Password is a required field"),
-        email: yup
+        personal_email: yup
         .string()
         .min(6, "Must be an email address"),
-        dateOfBirth: yup
+        date_of_birth: yup
         .string()
         .min(1, "must be in format dd/mm/yyyy"),
-        location: yup
+        city: yup
         .string()
         .min(1, "id must be at least one character")
       });
 
     const validateChange = (e) => {
         yup
-          .reach(loginSchema, e.target.name)
+          .reach(menteeLoginSchema, e.target.name)
           .validate()
           .then((valid) => {
             setErrors({
@@ -77,7 +85,6 @@ return (
             ID
             <br></br>
             <input  name='id' onChange={changeHandler} value={student.id}/>
-
         </label>
         <label className='label'>
             First Name
