@@ -15,6 +15,6 @@ body {
   width: 100%;
 }
 .searchBar:hover {
-  background-color: rgba(0, 0, 0, 0.025);
+  background-color: rgba(0, 0, 0, 0.05);
   cursor: pointer;
 }
