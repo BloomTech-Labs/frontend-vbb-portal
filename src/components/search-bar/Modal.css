@@ -11,3 +11,10 @@ body {
   margin: 2%;
   width: 15%;
 }
+.searchBar {
+  width: 100%;
+}
+.searchBar:hover {
+  background-color: rgba(0, 0, 0, 0.025);
+  cursor: pointer;
+}
