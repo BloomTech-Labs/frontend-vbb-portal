@@ -17,7 +17,7 @@ const MasterForm = ({
 }) => {
   let [currentStep, setCurrentStep] = useState(1);
 
-  // allows users to navigate form by selectiving individual steps
+  // allows users to navigate form by selecting individual steps
   const onChange = (currentStep) => {
     console.log('onChange:', currentStep);
     setCurrentStep(currentStep + 1);
@@ -39,7 +39,7 @@ const MasterForm = ({
       return (
         <Button style={{ marginRight: '10px' }} type="button" onClick={back}>
           <LeftOutlined />
-          Back
+          Previous
         </Button>
       );
     }
