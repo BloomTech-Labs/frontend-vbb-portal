@@ -33,7 +33,7 @@ const StudentInfo = (props) => {
         .min(1, "id must be at least one character")
       });
 
-      const validateChange = (e) => {
+    const validateChange = (e) => {
         yup
           .reach(loginSchema, e.target.name)
           .validate()
