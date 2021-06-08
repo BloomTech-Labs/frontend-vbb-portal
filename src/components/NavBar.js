@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../redux/actions';
 import { Button, PageHeader } from 'antd';
 import { LoginOutlined, FormOutlined, LogoutOutlined } from '@ant-design/icons';
+
 import SearchBar from './search/SearchBar'
 
 import fullLogo from '../images/vbb-full-logo.png';
