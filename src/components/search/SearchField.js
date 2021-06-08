@@ -6,6 +6,7 @@ import useModal from '../Modal/useModal';
 import SearchModalContent from '../Modal/SeachModalFragment';
 import  data from '../search-bar/MOCK_DATA.json';
 import classes from  '../search-bar/Modal.css';
+import register from '../../registerServiceWorker';
 
 const SearchField = ({ value }) => {
     //state variables
@@ -96,6 +97,10 @@ const SearchField = ({ value }) => {
                                     className = 'searchBar'
                                     onClick = {() => toggleModal(SearchModal, e)}
                 > {`${e.first_name} ${e.last_name}`} </li> )}
+                { value && list.length === 0 ?
+                        <p>Need to register a new mentee? click here <Link to = {register.url}> register </Link></p>
+                        : null
+                            }
               
                 {features.map((feature) => <Link style = {{margin:"5px"}} to = {`${feature.url}`} onClick = {() => setToggle(false)}> {`${feature.name}`} </Link>) }
               <Button type= "primary" danger onClick = {() => setToggle(false)} style = {{position:"relative", float:"right"}}> close </Button>
