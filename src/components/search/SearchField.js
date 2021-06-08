@@ -14,8 +14,7 @@ const SearchField = ({ value }) => {
     const [ options, setOptions ] = useState();
     const [ list, setList ] = useState([]);
     //custom hooks
-    const SearchModal = Modal;
-    const {isVisible, selectedUser, toggleModal } = useModal(SearchModal)
+    const {isVisible, selectedUser, toggleModal } = useModal(SearchModalContent)
     
    //custom made filter funtion without any hard specificity currently, I'd like to make this better
     const filterData = (value,options) => {
@@ -95,7 +94,7 @@ const SearchField = ({ value }) => {
             >
                 {list.map((e) => <li
                                     className = 'searchBar'
-                                    onClick = {() => toggleModal(SearchModal, e)}
+                                    onClick = {() => toggleModal(SearchModalContent, e)}
                 > {`${e.first_name} ${e.last_name}`} </li> )}
                 { value && list.length === 0 ?
                         <p>Need to register a new mentee? click here <Link to = {register.url}> register </Link></p>
@@ -105,10 +104,10 @@ const SearchField = ({ value }) => {
                 {features.map((feature) => <Link style = {{margin:"5px"}} to = {`${feature.url}`} onClick = {() => setToggle(false)}> {`${feature.name}`} </Link>) }
               <Button type= "primary" danger onClick = {() => setToggle(false)} style = {{position:"relative", float:"right"}}> close </Button>
             </Card>
-             <SearchModal visible={isVisible} onOk={toggleModal} onCancel={toggleModal} destroyOnClose={true} >
+             <Modal visible={isVisible} onOk={toggleModal} onCancel={toggleModal} destroyOnClose={true} >
              <SearchModalContent user={selectedUser}/>
              <Button>Edit</Button>
-           </SearchModal>
+           </Modal>
            </>
              :null
         }
