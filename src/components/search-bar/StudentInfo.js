@@ -1,63 +1,14 @@
 import { Button } from 'antd'
-import React, {useState}  from "react";
+import React from "react";
 import axios from 'axios';
 import Modal from "./Modal.css"
-import * as yup from "yup";
+
 
 
 
 const StudentInfo = (props) => {
   
     const [student, setStudent] = React.useState(props.user)
-
-    const [errors, setErrors] = useState({
-      first_name: "",
-      last_name: "",
-      personal_email: "",
-      date_of_birth: "",
-      city: ""
-    });
-
-      const menteeLoginSchema = yup.object().shape({
-        // userType: yup
-        // .string()
-        // .min(1, "Username must be at least one character"),
-        first_name: yup
-          .string()
-          .min(1, "Username must be at least 1 characters")
-          .required("Username is a required field"),
-        last_name: yup
-          .string()
-          .min(1, "Password must be at least 1 characters")
-          .required("Password is a required field"),
-        personal_email: yup
-        .string()
-        .min(6, "Must be an email address"),
-        date_of_birth: yup
-        .string()
-        .min(1, "must be in format dd/mm/yyyy"),
-        city: yup
-        .string()
-        .min(1, "id must be at least one character")
-      });
-
-    const validateChange = (e) => {
-        yup
-          .reach(menteeLoginSchema, e.target.name)
-          .validate()
-          .then((valid) => {
-            setErrors({
-              ...errors,
-              [e.target.value]: "",
-            });
-          })
-          .catch((err) => {
-            setErrors({
-              ...errors,
-              [e.target.name]: err.errors[0],
-            });
-          });
-      };
 
     const changeHandler = (e) => {
       e.persist();
