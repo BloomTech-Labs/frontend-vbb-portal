@@ -4,8 +4,6 @@ import axios from 'axios';
 import Modal from "./Modal.css"
 
 
-
-
 const StudentInfo = (props) => {
   
     const [student, setStudent] = React.useState(props.user)
@@ -16,7 +14,6 @@ const StudentInfo = (props) => {
         ...student,
         [e.target.name]: e.target.value,
       });
-      validateChange(e)
     };
 
     const onSubmit = (e) => {
