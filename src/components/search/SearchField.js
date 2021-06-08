@@ -35,26 +35,11 @@ const SearchField = ({ value }) => {
     //wrote out the api call originally going to local host and everything seemed to work , reverted to local mockdata file for development
 
       useEffect(() => {
-      //   axios.get(`http://localhost:8000/mentees`)
-      //     .then(async res => {
-      //       const data = await res
-      //       if (!res) {
-      //         const err = (data && data.message) || res.status;
-      //         return Promise.reject(err);
-      //         console.log('no response')
-      //       }
-      //       setOptions(data.data);
-
-         // })
-          // .catch(error => {
-          //   //setErrorMessage(error);
-          //   console.error("error", error);
-          // });
           setOptions(data);
       },[]);
       useEffect(() => {
         if(toggle) {
-            if( value.name.length < 1 ) {
+            if( value?.name?.length < 1 ) {
                 setToggle(!toggle)
                 setList(filterData(value,options))
             }
