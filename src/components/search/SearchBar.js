@@ -12,7 +12,6 @@ const SearchBar = () => {
   const fieldRef = useRef();
 
   const handleClickSearchBar = () => {
-    console.log('click');
     setToggle(true);
   };
 
