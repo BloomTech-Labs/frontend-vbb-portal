@@ -55,6 +55,17 @@ const columns = [
       title: 'Tags',
       key: 'tags',
       dataIndex: 'tags',
+      filters: [
+        {
+          text: 'Mentee',
+          value: 'mentee'
+        },
+        {
+          text: 'Mentor',
+          value: 'mentor'
+        }
+      ],
+      onFilter: (value, record) => record.tags.includes(value),
       render: tags => (
         <>
           {tags.map(tag => {
