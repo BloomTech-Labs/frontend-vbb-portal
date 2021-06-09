@@ -1,12 +1,14 @@
 import React from 'react';
 import axios from 'axios';
+import * as actions from '../redux/actions';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 // import MentorProfile from "./MentorProfile";
 
 class Dashboard extends React.Component {
   state = {
-    sessionslots: [],
+    sessionSlots: [],
   };
 
   fetchSessionSlotData = () => {
@@ -14,13 +16,13 @@ class Dashboard extends React.Component {
     axios.defaults.xsrfCookieName = 'csrftoken';
     axios.defaults.headers = {
       'Content-Type': 'application/json',
-      Authorization: `Token ${this.props.token}`,
+      Authorization: `Bearer ${this.props.authToken}`,
     };
     axios
-      .get('http://127.0.0.1:8000/api/session/')
+      .get(`${actions.PYTHON_API}v1/session/`)
       .then((res) => {
         this.setState({
-          sessionslots: res.data,
+          sessionSlots: res.data,
         });
       })
       .catch((err) => {
@@ -39,9 +41,9 @@ class Dashboard extends React.Component {
         <div className="column col-card" id="mentoring-session-box">
           <h1 className="vbb-header">My Weekly Mentoring Session</h1>
 
-          {this.state.sessionslots && this.state.sessionslots.length > 0 ? (
+          {this.state.sessionSlots && this.state.sessionSlots.length > 0 ? (
             <ul>
-              {this.state.sessionslots.map((apt) => {
+              {this.state.sessionSlots.map((apt) => {
                 console.log(apt);
                 return (
                   <li className="mb-2 mr-2" key={apt.id} value={apt.event_id}>
@@ -187,15 +189,13 @@ class Dashboard extends React.Component {
             style={{ padding: '20px', paddingLeft: '40px', maxWidth: '900px' }}
           >
             <b>
-              If you would like to change a mentoring session, have questions
-              about mentoring, or ANY QUESTIONS, please
+              If you would like to change a mentoring session, have questions about
+              mentoring, or ANY QUESTIONS, please contact your mentor advisor at{' '}
               <a href="mailto:mentor@villagebookbuilders.org">
-                {' '}
-                contact your mentor advisor{' '}
-              </a>
-              at mentor@villagebookbuilders.org! <br></br>
+                mentor@villagebookbuilders.org
+              </a>!<br />
             </b>
-          </p>{' '}
+          </p>
         </div>
       </div>
     );
@@ -204,8 +204,7 @@ class Dashboard extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    token: state.authToken,
+    authToken: state.authToken,
   };
 };
-
-export default connect(mapStateToProps)(Dashboard);
+export default withRouter(connect(mapStateToProps, actions)(Dashboard));

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import moment from 'moment';
 import 'moment-timezone';
+import * as actions from '../redux/actions';
 
 import menteeComputer from '../images/vbb-mentee-computer.png';
 
@@ -29,7 +30,7 @@ class Booking extends React.Component {
 
   fetchBookingData = () => {
     axios
-      .get('http://127.0.0.1:8000/api/library/')
+      .get(`${actions.PYTHON_API}v1/library/`)
       .then((res) => {
         this.setState({
           libraries: res.data,
@@ -39,7 +40,7 @@ class Booking extends React.Component {
         console.log(err);
       });
     axios
-      .get('http://127.0.0.1:8000/api/language/')
+      .get(`${actions.PYTHON_API}v1/language/`)
       .then((res) => {
         this.setState({
           languages: res.data,
@@ -56,10 +57,10 @@ class Booking extends React.Component {
     axios.defaults.xsrfCookieName = 'csrftoken';
     axios.defaults.headers = {
       'Content-Type': 'application/json',
-      Authorization: `Token ${this.props.token}`,
+      Authorization: `Bearer ${this.props.authToken}`,
     };
     axios
-      .get('http://127.0.0.1:8000/api/available/', {
+      .get(`${actions.PYTHON_API}v1/available/`, {
         params: {
           library: this.state.library,
           language: this.state.language,
@@ -169,10 +170,10 @@ class Booking extends React.Component {
     axios.defaults.xsrfCookieName = 'csrftoken';
     axios.defaults.headers = {
       'Content-Type': 'application/json',
-      Authorization: `Token ${this.props.token}`,
+      Authorization: `Bearer ${this.props.authToken}`,
     };
     axios
-      .post('http://127.0.0.1:8000/api/book/', null, {
+      .post(`${actions.PYTHON_API}v1/book/`, null, {
         params: {
           library: this.state.library,
           language: this.state.language,
@@ -393,7 +394,7 @@ class Booking extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    token: state.authToken,
+    authToken: state.authToken,
   };
 };
 

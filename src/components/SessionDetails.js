@@ -211,7 +211,7 @@ class SessionDetails extends PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    token: state.authToken,
+    authToken: state.authToken,
     sessionSlot: state.sessionSlot,
   };
 };
