@@ -5,7 +5,7 @@ import * as actions from '../redux/actions';
 import { Button, PageHeader } from 'antd';
 import { LoginOutlined, FormOutlined, LogoutOutlined } from '@ant-design/icons';
 
-import SearchBar from './search/SearchBar'
+import SearchBar from './search/SearchBar';
 
 import fullLogo from '../images/vbb-full-logo.png';
 // import miniLogo from '../images/vbb-picture-logo.png';
@@ -28,18 +28,18 @@ const NavBar = ({ history, authToken, logOut }) => {
       </Button>
     </Link>
   ) : (
-      <React.Fragment key="group">
-        <Link to="/" key="link-signout">
-          <Button
-            key="1"
-            style={{ marginTop: '15px', color: '#549bea' }}
-            onClick={logOut}
-          >
-            Sign Out
-            <LogoutOutlined />
-          </Button>
-        </Link>
-      </React.Fragment>
+    <React.Fragment key="group">
+      <Link to="/" key="link-signout">
+        <Button
+          key="1"
+          style={{ marginTop: '15px', color: '#549bea' }}
+          onClick={logOut}
+        >
+          Sign Out
+          <LogoutOutlined />
+        </Button>
+      </Link>
+    </React.Fragment>
   );
   return (
     <PageHeader
@@ -69,10 +69,7 @@ const NavBar = ({ history, authToken, logOut }) => {
         </Link>,
       ]}
     >
-        {authToken ? 
-         <SearchBar /> : null
-      }
-
+      {authToken ? <SearchBar /> : null}
     </PageHeader>
   );
 };
