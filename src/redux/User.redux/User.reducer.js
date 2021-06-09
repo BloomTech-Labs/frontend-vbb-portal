@@ -6,11 +6,9 @@ import { LOG_OUT, SET_USER } from '../actions';
  */
 const userInitialState = {
   userType: '',
-  first_name: '',
-  last_name: '',
-  personal_email: '',
-  city: '',
-  date_of_birth: '',
+  firstName: '',
+  lastName: '',
+  email: '',
   id: '',
   externalId: '',
 };
