@@ -23,6 +23,21 @@ const columns = [
     {
       title: 'Last Name',
       dataIndex: 'lname',
+      filters: [
+        {
+          text: 'Brown',
+          value: 'Brown'
+        },
+        {
+          text: 'Green',
+          value: 'Green'
+        },
+        {
+          text: 'Black',
+          value: 'Black'
+        }
+      ],
+      onFilter: (value, record) => record.lname.indexOf(value) === 0,
       key: 'lname',
       render: text => <a>{text}</a>
     },
