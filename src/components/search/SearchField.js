@@ -64,7 +64,6 @@ const SearchField = ({ value, toggle, setToggle, fieldRef }) => {
     { name: 'Create Mentor', url: '' },
   ];
 
-  console.log('toggle', toggle);
   return (
     <>
       {toggle && (
