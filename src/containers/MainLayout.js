@@ -22,9 +22,6 @@ const MainLayout = () => {
               <Link to="/">Village Portal</Link>
             </Breadcrumb.Item>
             <Breadcrumb.Item>
-              <Link to="/signup">Mentor Registration</Link>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>
               <Link to="/calendar/">Calendar</Link>
             </Breadcrumb.Item>
           </Breadcrumb>

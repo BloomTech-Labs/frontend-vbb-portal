@@ -1,5 +1,6 @@
-import SearchModalContent from '../Modal/SeachModalFragment';
 import React, { useEffect, useState } from 'react';
+import SearchModalContent from '../Modal/SeachModalFragment';
+import FormModalContent from '../Modal/FormModalFragment';
 import { AutoComplete, Input, Modal, Button } from 'antd';
 import useModal from '../Modal/useModal';
 import StudentInfo from './StudentInfo';
@@ -12,7 +13,9 @@ import AllAPIS from './SearchbarAPI';
 
 const SearchBarAutoComplete = () => {
   const SearchModal = Modal;
-  const { isVisible, selectedUser, toggleModal } = useModal(SearchModal);
+  const { isVisible, selectedUser, toggleModal, selectedForm } = useModal(
+    SearchModal
+  );
   const [isEditing, setIsEditing] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
   const [filter, setFilter] = useState(true); // used for toggling autocomplete filtering
@@ -90,6 +93,28 @@ const SearchBarAutoComplete = () => {
     key,
   });
 
+  //Register mentors and mentees
+  const renderRegister = (forms, key) => ({
+    value: forms.name,
+    label: (
+      <Link to={forms.url} key={key}>
+        <div>
+          <searchModal
+            visible={isVisible}
+            onOk={toggleModal}
+            onCancel={toggleModal}
+            destroyOnClose={true}
+            key="searchModal"
+            onClick={() => toggleModal(SearchModal, forms)}
+          >
+            {forms.name}
+          </searchModal>
+        </div>
+      </Link>
+    ),
+    key,
+  });
+
   //to add features to display in search bar add them in this array
   const features = [
     { name: 'Calendar', url: '/calendar/' },
@@ -98,11 +123,12 @@ const SearchBarAutoComplete = () => {
     { name: 'Sign in', url: '/signin/' },
     { name: 'Booking', url: '/booking/' },
     { name: 'Dashboard', url: '/' },
+  ];
+  const forms = [
     { name: 'Register', url: '/register/' },
-    { name: 'Create Mentor', url: '' },
+    { name: 'Create Mentor', url: '/mentor/' },
     { name: 'Create Mentee', url: '/mentee/' },
   ];
-
   const options = dummy.map((user) => {
     const reformattedUser = {
       ...user,
@@ -126,6 +152,10 @@ const SearchBarAutoComplete = () => {
     {
       label: renderTitle('Features'),
       options: features.map((feature) => renderFeature(feature, uuidv4())),
+    },
+    {
+      label: renderTitle('Forms'),
+      options: forms.map((register) => renderRegister(register, uuidv4())),
     },
   ];
 
@@ -152,6 +182,11 @@ const SearchBarAutoComplete = () => {
     }
     if (searchbarContent === 'teachers') {
       setNewListOptions([listOptions[1]]); // location of 'teachers' object in the listOptions array
+      setFilter(false);
+      return newListOptions;
+    }
+    if (searchbarContent === 'Register') {
+      setNewListOptions([listOptions[2]]); // location of 'teachers' object in the listOptions array
       setFilter(false);
       return newListOptions;
     } else {
@@ -189,6 +224,15 @@ const SearchBarAutoComplete = () => {
           <StudentInfo user={selectedUser} closeEditing={handleEdit} />
         )}
       </SearchModal>
+      {/* <SearchModal
+        visible={isVisible}
+        onOk={toggleModal}
+        onCancel={toggleModal}
+        destroyOnClose={true}
+        key="searchModal"
+      >
+        <FormModalContent menteeForm={selectedForm} />
+      </SearchModal> */}
     </>
   );
 };

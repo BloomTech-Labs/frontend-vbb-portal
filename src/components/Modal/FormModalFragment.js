@@ -4,8 +4,25 @@ import * as actions from '../../redux/actions';
 import { withRouter } from 'react-router';
 import { Form, Tooltip, Input, Button } from 'antd';
 
-const MasterFormMentee = (props) => {
+const FormModalContent = (props) => {
   const [student, setStudent] = React.useState(props.user);
+  const validateChange = (e) => {
+    yup
+      .reach(menteeLoginSchema, e.target.name)
+      .validate()
+      .then((valid) => {
+        setErrors({
+          ...errors,
+          [e.target.value]: '',
+        });
+      })
+      .catch((err) => {
+        setErrors({
+          ...errors,
+          [e.target.name]: err.errors[0],
+        });
+      });
+  };
   const changeHandler = (e) => {
     e.persist();
     setStudent({
@@ -71,4 +88,4 @@ const MasterFormMentee = (props) => {
     </Form>
   );
 };
-export default withRouter(connect(null, actions)(MasterFormMentee));
+export default withRouter(connect(null, actions)(FormModalContent));
