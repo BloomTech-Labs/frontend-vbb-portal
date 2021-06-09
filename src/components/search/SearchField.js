@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Modal, Card } from 'antd';
 
+import  '../search-bar/Modal.css';
 import useModal from '../Modal/useModal';
 import SearchModalContent from '../Modal/SeachModalFragment';
 import data from '../search-bar/MOCK_DATA.json';
@@ -13,7 +14,16 @@ const SearchField = ({ value }) => {
   const [list, setList] = useState([]);
   //custom hooks
   const { isVisible, selectedUser, toggleModal } = useModal(Modal);
+  const wrapperRef = useRef(null);
 
+  //click outside function
+  const handleClickOutside = event => {
+    if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+      setToggle(false);
+    }
+  };
+
+  //filter function for search bar
   const filterData = (value, options) => {
     if (!value?.name?.length) {
       return [];
@@ -44,6 +54,7 @@ const SearchField = ({ value }) => {
   }, []);
 
   useEffect(() => {
+    
     if (value?.name?.length >= 1) {
       setToggle(true);
     } else {
@@ -51,6 +62,14 @@ const SearchField = ({ value }) => {
     }
     setList(filterData(value, options));
   }, [value, options]);
+
+  //use Effect for click listener
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, false);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, false);
+    };
+  }, [toggle]);
 
   //setting up perma features first
   const features = [
@@ -67,7 +86,7 @@ const SearchField = ({ value }) => {
   return (
     <>
       {toggle && (
-        <>
+        <><div ref = {wrapperRef}>
           <Card
             style={{
               backgroundColor: 'rgba(255,255,255,2.5)',
@@ -116,6 +135,7 @@ const SearchField = ({ value }) => {
               close{' '}
             </Button>
           </Card>
+          </div>
           <Modal
             visible={isVisible}
             onOk={toggleModal}
