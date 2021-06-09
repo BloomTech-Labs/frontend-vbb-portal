@@ -4,10 +4,16 @@ import {Table, Tag, Space} from 'antd';
 /*Placeholder data*/
 const columns = [
     {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
+      title: 'First Name',
+      dataIndex: 'fname',
+      key: 'fname',
       render: text => <a>{text}</a>,
+    },
+    {
+      title: 'Last Name',
+      dataIndex: 'lname',
+      key: 'lname',
+      render: text => <a>{text}</a>
     },
     {
       title: 'Age',
@@ -27,7 +33,7 @@ const columns = [
         <>
           {tags.map(tag => {
             let color = tag.length > 5 ? 'geekblue' : 'green';
-            if (tag === 'loser') {
+            if (tag === 'mentee') {
               color = 'volcano';
             }
             return (
@@ -54,24 +60,27 @@ const columns = [
 const data = [
     {
       key: '1',
-      name: 'John Brown',
+      fname: 'John',
+      lname: 'Brown',
       age: 32,
       address: 'New York No. 1 Lake Park',
-      tags: ['nice', 'developer'],
+      tags: ['mentor'],
     },
     {
       key: '2',
-      name: 'Jim Green',
+      fname: 'Jim',
+      lname: 'Green',
       age: 42,
       address: 'London No. 1 Lake Park',
-      tags: ['loser'],
+      tags: ['mentee'],
     },
     {
       key: '3',
-      name: 'Joe Black',
+      fname: 'Joe',
+      lname: 'Black',
       age: 32,
       address: 'Sidney No. 1 Lake Park',
-      tags: ['cool', 'teacher'],
+      tags: ['mentor'],
     },
 ];
 
