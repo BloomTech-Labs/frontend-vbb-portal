@@ -16,22 +16,20 @@ const MasterForm = ({
   subUserRegistration,
   history,
 }) => {
-  let [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(0);
 
   // allows users to navigate form by selecting individual steps
   const onChange = (currentStep) => {
-    setCurrentStep(currentStep + 1);
+    setCurrentStep(currentStep);
   };
 
   const next = () => {
     window.scrollTo(0, 0);
-    currentStep = currentStep === 4 ? 4 : currentStep + 1;
-    setCurrentStep(currentStep);
+    setCurrentStep(currentStep === 4 ? 4 : currentStep + 1);
   };
 
   const back = () => {
-    currentStep = currentStep <= 1 ? 1 : currentStep - 1;
-    setCurrentStep(currentStep);
+    setCurrentStep(currentStep <= 1 ? 1 : currentStep - 1);
   };
 
   const backButton = () => {

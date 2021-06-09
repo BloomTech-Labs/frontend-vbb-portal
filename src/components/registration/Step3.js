@@ -12,7 +12,7 @@ import {
 import ActionPicture from '../../images/vbb-in-action.png';
 
 export const Step3 = (props) => {
-  if (props.currentStep !== 3) {
+  if (props.currentStep !== 2) {
     return null;
   }
 
