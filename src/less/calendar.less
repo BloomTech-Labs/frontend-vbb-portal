@@ -1,0 +1,122 @@
+@import "~react-big-calendar/lib/css/react-big-calendar.css";
+
+.calendarWrapperDiv {
+    height: 80vh;
+    width: 90%;
+    margin: 30px auto;
+}
+
+.rbc-current-time-indicator {
+    background-color: red;
+    height: 2px;
+    margin: 0;
+    border: none;
+    /* this extends red line to full width */
+    width: 1400vw;
+    margin-left: -700vw;
+}
+
+.mentor,
+.student,
+.assignedComputers {
+    margin: 0;
+    padding: 0;
+    font-size: 0.8em;
+    text-align: center;
+}
+
+.rbc-event-label {
+    margin: 0;
+}
+
+.rbc-day-slot .rbc-events-container {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.rbc-event,
+.rbc-day-slot .rbc-background-event {
+    padding: 0;
+}
+
+.rbc-day-slot .rbc-event,
+.rbc-day-slot .rbc-background-event {
+    border-color: #FF914D;
+}
+
+.rbc-header {
+    color: #FF914D;
+}
+
+.rbc-toolbar button {
+    border-radius: 15px;
+    background-color: #549bea;
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+}
+
+.rbc-toolbar button:active:hover,
+.rbc-toolbar button:active:focus,
+.rbc-toolbar button.rbc-active:hover,
+.rbc-toolbar button.rbc-active:focus,
+.rbc-toolbar button:active,
+.rbc-toolbar button:hover,
+.rbc-toolbar button:focus,
+.rbc-toolbar button.rbc-active,
+.print-download-button:hover .print-download-icon,
+.print-download-button:focus .print-download-icon {
+    background-color: #FFFFFF;
+    color: #549bea;
+    border-color: #FFFFFF;
+    outline: none;
+}
+
+.rbc-day-slot .rbc-event {
+    border-style: none;
+}
+
+.rbc-event,
+.rbc-day-slot .rbc-background-event {
+    background-color: transparent;
+}
+
+.rbc-time-content {
+    overflow-x: auto;
+}
+
+.resourceEvent {
+    background-color: white;
+    color: black;
+}
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    #section-to-print,
+    #section-to-print * {
+        visibility: visible;
+    }
+
+    #section-to-print {
+        position: fixed;
+        left: 0;
+        top: 0;
+
+
+    }
+
+    .calendarWrapperDiv {
+        height: 90%;
+        width: 95%;
+
+    }
+}
+
+.print-download-icon {
+    color: #FFFFFF;
+}

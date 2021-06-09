@@ -17,6 +17,7 @@ module.exports = {
     {
       plugin: CracoAntDesignPlugin,
       options: {
+        customizeThemeLessPath: './src/less/index.less',
         lessLoaderOptions: {
           lessOptions: {
             javascriptEnabled: true,
