@@ -18,6 +18,7 @@ import fullLogo from '../images/vbb-full-logo.png';
  * @param {redux store} authToken authentication token from redux store
  * @param {redux action} logOut action from logout import as a connected component
  */
+
 const NavBar = ({ history, authToken, logOut }) => {
   const signInSignOut = !authToken ? (
     <Link to="/signin" key="link-signin">
@@ -27,19 +28,19 @@ const NavBar = ({ history, authToken, logOut }) => {
       </Button>
     </Link>
   ) : (
-      <React.Fragment key="group">
-        <SearchBarAutoComplete key="searchBarAutoComplete"/>
-        <Link to="/" key="link-signout">
-          <Button
-            key="1"
-            style={{ marginTop: '15px', color: '#549bea' }}
-            onClick={logOut}
-          >
-            Sign Out
-            <LogoutOutlined />
-          </Button>
-        </Link>
-      </React.Fragment>
+    <React.Fragment key="group">
+      <SearchBarAutoComplete key="searchBarAutoComplete" />
+      <Link to="/" key="link-signout">
+        <Button
+          key="1"
+          style={{ marginTop: '15px', color: '#549bea' }}
+          onClick={logOut}
+        >
+          Sign Out
+          <LogoutOutlined />
+        </Button>
+      </Link>
+    </React.Fragment>
   );
   return (
     <PageHeader

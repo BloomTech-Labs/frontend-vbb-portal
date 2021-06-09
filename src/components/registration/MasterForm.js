@@ -19,7 +19,6 @@ const MasterForm = ({
 
   // allows users to navigate form by selecting individual steps
   const onChange = (currentStep) => {
-    console.log('onChange:', currentStep);
     setCurrentStep(currentStep + 1);
   };
 
