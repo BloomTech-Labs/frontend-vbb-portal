@@ -10,6 +10,7 @@ import SessionDetails from '../components/SessionDetails';
 import Donation from '../components/registration/Donation';
 import TempRegistration from '../components/registration/TempRegistration';
 import Calendar from '../components/Calendar/Calendar';
+import Admin from '../components/Admin/Admin';
 
 const Routes = () => {
   return (
