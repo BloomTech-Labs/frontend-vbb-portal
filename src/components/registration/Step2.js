@@ -16,7 +16,7 @@ import AgreeTermsAndConditions from './step2SubComponents/AgreeTermsAndCondition
 import DesiredInvolvement from './step2SubComponents/DesiredInvolvement';
 
 export const Step2 = ({ currentStep }) => {
-  if (currentStep !== 2) {
+  if (currentStep !== 1) {
     return null;
   }
 

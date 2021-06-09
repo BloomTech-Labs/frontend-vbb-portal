@@ -1,8 +1,10 @@
-import { Button } from 'antd'
-import React from "react"
-import '../../less/Modal.less'
+import { Button } from 'antd';
+import React from "react";
+import axios from 'axios';
+import '../../less/Modal.less';
 
 const StudentInfo = (props) => {
+
   const [student, setStudent] = React.useState(props.user)
 
   const changeHandler = (e) => {
@@ -13,18 +15,23 @@ const StudentInfo = (props) => {
     });
   };
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
     // this need to be connected to the backend to update the data on the database
-
+    e.preventDefault();
+    axios
+      .put(`http://localhost:8000/mentees/${student.id}`, student)
+      .then(res => {
+        console.log(res);
+      })
     props.closeEditing()
   }
+
   return (
     <form className='StudentInfoForm'>
       <label className='label'>
         ID
             <br></br>
         <input name='id' onChange={changeHandler} value={student.id} />
-
       </label>
       <label className='label'>
         First Name
