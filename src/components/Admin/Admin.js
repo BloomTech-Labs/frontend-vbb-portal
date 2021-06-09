@@ -6,6 +6,17 @@ const columns = [
     {
       title: 'First Name',
       dataIndex: 'fname',
+      filters: [
+        {
+          text: 'Joe',
+          value: 'Joe'
+        },
+        {
+          text: 'Jim',
+          value: 'Jim'
+        }
+      ],
+      onFilter: (value, record) => record.fname.indexOf(value) === 0,
       key: 'fname',
       render: text => <a>{text}</a>,
     },
@@ -50,8 +61,8 @@ const columns = [
       key: 'action',
       render: (text, record) => (
         <Space size="middle">
-          <a>Invite {record.name}</a>
-          <a>Delete</a>
+          <a>Edit</a>
+          <a>Deactivate</a>
         </Space>
       ),
     },
