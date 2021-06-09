@@ -18,7 +18,6 @@ import fullLogo from '../images/vbb-full-logo.png';
  * @param {redux store} authToken authentication token from redux store
  * @param {redux action} logOut action from logout import as a connected component
  */
-
 const NavBar = ({ history, authToken, logOut }) => {
   const signInSignOut = !authToken ? (
     <Link to="/signin" key="link-signin">

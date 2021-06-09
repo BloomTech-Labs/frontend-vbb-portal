@@ -4,6 +4,7 @@ import * as actions from '../../redux/actions';
 import { withRouter } from 'react-router';
 import { Button } from 'antd';
 import { RightOutlined, LeftOutlined, CheckOutlined } from '@ant-design/icons';
+
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
