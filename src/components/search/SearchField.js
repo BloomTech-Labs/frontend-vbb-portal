@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Modal, Card } from 'antd';
+import { Button, Card } from 'antd';
+import { connect } from 'react-redux';
 
 import '../../less/Modal.less';
-import useModal from '../Modal/useModal';
 import SearchModalContent from '../Modal/SeachModalFragment';
 import data from '../search-bar/MOCK_DATA.json';
+import { createModal } from '../../redux/actions';
 
-const SearchField = ({ value, toggle, setToggle, fieldRef }) => {
+const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
   //state variables
   const [options, setOptions] = useState([]);
   const [list, setList] = useState([]);
-  //custom hooks
-  const { isVisible, selectedUser, toggleModal } = useModal(Modal);
-
-  //click outside function
 
   //filter function for search bar
   const filterData = (value, options) => {
@@ -85,7 +82,7 @@ const SearchField = ({ value, toggle, setToggle, fieldRef }) => {
                 <li
                   key={e.id}
                   className="searchBar"
-                  onClick={() => toggleModal(Modal, e)}
+                  onClick={() => createModal(<SearchModalContent user={e} />)}
                 >
                   {' '}
                   {`${e.first_name} ${e.last_name}`}{' '}
@@ -120,19 +117,10 @@ const SearchField = ({ value, toggle, setToggle, fieldRef }) => {
               </Button>
             </Card>
           </div>
-          <Modal
-            visible={isVisible}
-            onOk={toggleModal}
-            onCancel={toggleModal}
-            destroyOnClose={true}
-          >
-            <SearchModalContent user={selectedUser} />
-            <Button>Edit</Button>
-          </Modal>
         </div>
       )}
     </>
   );
 };
 
-export default SearchField;
+export default connect(null, { createModal })(SearchField);
