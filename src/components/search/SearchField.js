@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Modal, Card } from 'antd';
 
-import '../search-bar/Modal.css';
+import '../../less/Modal.less';
 import useModal from '../Modal/useModal';
 import SearchModalContent from '../Modal/SeachModalFragment';
 import data from '../search-bar/MOCK_DATA.json';
