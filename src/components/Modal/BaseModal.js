@@ -3,7 +3,7 @@ import { Modal as AntdModal } from 'antd';
 import { connect } from 'react-redux';
 import { closeModal } from '../../redux/actions';
 
-const Modal = ({ content, isOpen, closeModal, config }) => {
+const BaseModal = ({ content, isOpen, closeModal, config }) => {
   return (
     <div
       onClick={(e) => {
@@ -26,4 +26,6 @@ const Modal = ({ content, isOpen, closeModal, config }) => {
   );
 };
 
-export default connect(({ modal }) => ({ ...modal }), { closeModal })(Modal);
+export default connect(({ modal }) => ({ ...modal }), { closeModal })(
+  BaseModal
+);
