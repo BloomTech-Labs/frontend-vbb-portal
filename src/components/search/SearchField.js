@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Card } from 'antd';
+import { Card } from 'antd';
 import { connect } from 'react-redux';
 
 import '../../less/Modal.less';
@@ -94,7 +94,6 @@ const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
                   <Link to={'/register/'}> register </Link>
                 </p>
               )}
-
               {features.map((feature) => (
                 <Link
                   key={feature.name}
@@ -106,15 +105,6 @@ const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
                   {`${feature.name}`}{' '}
                 </Link>
               ))}
-              <Button
-                type="primary"
-                danger
-                onClick={() => setToggle(false)}
-                style={{ position: 'relative', float: 'right' }}
-              >
-                {' '}
-                close{' '}
-              </Button>
             </Card>
           </div>
         </div>
