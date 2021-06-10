@@ -14,7 +14,17 @@ const SearchField = ({ value, toggle, setToggle, fieldRef }) => {
   //custom hooks
   const { isVisible, selectedUser, toggleModal } = useModal(Modal);
 
-  //click outside function
+  // array that holds each section of search dropdown
+  const listSections = [
+    {
+      title: 'Students',
+      data: list
+    },
+    {
+      title: 'Teachers',
+      data: list
+    }
+  ]
 
   //filter function for search bar
   const filterData = (value, options) => {
@@ -81,16 +91,24 @@ const SearchField = ({ value, toggle, setToggle, fieldRef }) => {
                 height: '20vh',
               }}
             >
-              {list.map((e) => (
-                <li
-                  key={e.id}
-                  className="searchBar"
-                  onClick={() => toggleModal(Modal, e)}
-                >
-                  {' '}
-                  {`${e.first_name} ${e.last_name}`}{' '}
-                </li>
-              ))}
+              {value.name.length > 0 ? listSections.map((section) => (
+                <>
+                  <span key={section.title}>
+                    {section.title}
+                  </span>
+
+                {section.data.map((user) => {
+                  return (
+                    <div
+                    key={user.id}
+                    onClick={() => toggleModal(Modal, user)}
+                  >
+                    {user.first_name} {user.last_name}
+                  </div>
+                  )
+                })}
+                </>
+              )) : ''}
               {list.length === 0 && (
                 <p>
                   Need to register a new mentee? click here{' '}
