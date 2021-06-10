@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'antd';
 
-import SearchModalFragment from './StudentInfoDisplay';
-import StudentInfo from './StudentInfoEdit';
+import StudentInfoDisplay from './StudentInfoDisplay';
+import StudentInfoEdit from './StudentInfoEdit';
 import { setConfig } from '../../redux/actions';
 
 const StudentInfoModal = ({ user, setConfig }) => {
@@ -28,9 +28,9 @@ const StudentInfoModal = ({ user, setConfig }) => {
   }, [editing]);
 
   return editing ? (
-    <StudentInfo user={user} />
+    <StudentInfoEdit user={user} />
   ) : (
-    <SearchModalFragment user={user} />
+    <StudentInfoDisplay user={user} />
   );
 };
 
