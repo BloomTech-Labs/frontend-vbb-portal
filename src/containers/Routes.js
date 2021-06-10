@@ -10,6 +10,7 @@ import SessionDetails from '../components/SessionDetails';
 import Donation from '../components/registration/Donation';
 import TempRegistration from '../components/registration/TempRegistration';
 import Calendar from '../components/Calendar/Calendar';
+import Student from '../components/StudentProfile';
 
 const Routes = () => {
   return (
@@ -18,6 +19,7 @@ const Routes = () => {
         <Route exact path="/register/">
           <TempRegistration />
         </Route>
+        <PrivateRoute exact path="/student" component={Student} />
         <PrivateRoute exact path="/" component={Dashboard} />
         <PrivateRoute exact path="/booking/" component={Booking} />
         <Route exact path="/signin/">
