@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import storeRedux from '../redux/store';
 import MainLayout from './MainLayout';
-import Modal from '../components/Modal/Modal';
+import Modal from '../components/Modal/BaseModal';
 
 const store = storeRedux();
 
