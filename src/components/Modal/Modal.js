@@ -5,15 +5,24 @@ import { closeModal } from '../../redux/actions';
 
 const Modal = ({ content, isOpen, closeModal, config }) => {
   return (
-    <AntdModal
-      visible={isOpen}
-      destroyOnClose={true}
-      onCancel={closeModal}
-      footer={null}
-      {...config}
+    <div
+      onClick={(e) => {
+        // by default, prevent the modal from triggering event listeners elsewhere in the application
+        if (!config.allowEventPropagation) {
+          e.stopPropagation();
+        }
+      }}
     >
-      {content}
-    </AntdModal>
+      <AntdModal
+        visible={isOpen}
+        destroyOnClose={true}
+        onCancel={closeModal}
+        footer={null}
+        {...config}
+      >
+        {content}
+      </AntdModal>
+    </div>
   );
 };
 
