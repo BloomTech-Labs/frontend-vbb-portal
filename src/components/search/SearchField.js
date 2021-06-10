@@ -4,7 +4,7 @@ import { Card } from 'antd';
 import { connect } from 'react-redux';
 
 import '../../less/Modal.less';
-import SearchModalContent from '../Modal/SeachModalFragment';
+import StudentInfoModal from '../StudentInfo/StudentInfoModal';
 import data from '../search-bar/MOCK_DATA.json';
 import { createModal } from '../../redux/actions';
 
@@ -82,7 +82,7 @@ const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
                 <li
                   key={e.id}
                   className="searchBar"
-                  onClick={() => createModal(<SearchModalContent user={e} />)}
+                  onClick={() => createModal(<StudentInfoModal user={e} />)}
                 >
                   {' '}
                   {`${e.first_name} ${e.last_name}`}{' '}
