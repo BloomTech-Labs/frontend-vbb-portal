@@ -12,13 +12,10 @@ const StudentInfoModal = ({ user, setConfig }) => {
   useEffect(() => {
     if (editing) {
       setConfig({
-        // replace the onClick function for 'Submit' button with a call to appropriate redux action
-        footer: (
-          <>
-            <Button onClick={() => setEditing(false)}>Cancel</Button>
-            <Button onClick={() => setEditing(false)}>Submit</Button>
-          </>
-        ),
+        footer: undefined, // tells BaseModal to use antd's default footer, instead of no footer
+        onOk: () => setEditing(false), //replace with appropriate redux actions to submit changes
+        onCancel: () => setEditing(false),
+        okText: 'Submit',
       });
     } else {
       setConfig({

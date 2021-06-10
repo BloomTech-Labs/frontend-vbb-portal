@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import storeRedux from '../redux/store';
 import MainLayout from './MainLayout';
-import Modal from '../components/Modal/BaseModal';
+import BaseModal from '../components/Modal/BaseModal';
 
 const store = storeRedux();
 
@@ -13,7 +13,7 @@ const App = () => {
       <Router>
         <div className="App">
           <MainLayout />
-          <Modal />
+          <BaseModal />
         </div>
       </Router>
     </Provider>
