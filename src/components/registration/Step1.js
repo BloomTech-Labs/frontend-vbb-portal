@@ -15,7 +15,7 @@ export const Step1 = ({
   registrationForm,
   setRegistrationForm,
 }) => {
-  if (currentStep !== 1) {
+  if (currentStep !== 0) {
     return null;
   }
   return (
