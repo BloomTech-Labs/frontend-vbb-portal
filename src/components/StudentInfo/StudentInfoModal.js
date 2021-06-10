@@ -4,21 +4,21 @@ import { Button } from 'antd';
 
 import StudentInfoDisplay from './StudentInfoDisplay';
 import StudentInfoEdit from './StudentInfoEdit';
-import { setConfig } from '../../redux/actions';
+import { setModalConfig } from '../../redux/actions';
 
-const StudentInfoModal = ({ user, setConfig }) => {
+const StudentInfoModal = ({ user, setModalConfig }) => {
   const [editing, setEditing] = useState(false);
 
   useEffect(() => {
     if (editing) {
-      setConfig({
+      setModalConfig({
         footer: undefined, // tells BaseModal to use antd's default footer, instead of no footer
         onOk: () => setEditing(false), //replace with appropriate redux actions to submit changes
         onCancel: () => setEditing(false),
         okText: 'Submit',
       });
     } else {
-      setConfig({
+      setModalConfig({
         footer: <Button onClick={() => setEditing(true)}>Edit</Button>,
       });
     }
@@ -31,4 +31,4 @@ const StudentInfoModal = ({ user, setConfig }) => {
   );
 };
 
-export default connect(null, { setConfig })(StudentInfoModal);
+export default connect(null, { setModalConfig })(StudentInfoModal);
