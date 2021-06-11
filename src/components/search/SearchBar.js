@@ -36,7 +36,14 @@ const SearchBar = () => {
 
   return (
     <>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
         <div ref={barRef} style={{ width: '80%', margin: '0 100px' }}>
           <Search
             type="text"
@@ -45,13 +52,13 @@ const SearchBar = () => {
             onClick={handleClickSearchBar}
           />
         </div>
+        <SearchField
+          value={value}
+          toggle={toggle}
+          setToggle={setToggle}
+          fieldRef={fieldRef}
+        />
       </div>
-      <SearchField
-        value={value}
-        toggle={toggle}
-        setToggle={setToggle}
-        fieldRef={fieldRef}
-      />
     </>
   );
 };

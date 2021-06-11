@@ -64,49 +64,45 @@ const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
   return (
     <>
       {toggle && (
-        <div
-          style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
-        >
-          <div ref={fieldRef} style={{ width: '80%' }}>
-            <Card
-              style={{
-                backgroundColor: 'rgba(255,255,255,2.5)',
-                width: '100%',
-                margin: '0',
-                overflow: 'hidden',
-                overflowY: 'scroll',
-                height: '20vh',
-              }}
-            >
-              {list.map((e) => (
-                <li
-                  key={e.id}
-                  className="searchBar"
-                  onClick={() => createModal(<StudentInfoModal user={e} />)}
-                >
-                  {' '}
-                  {`${e.first_name} ${e.last_name}`}{' '}
-                </li>
-              ))}
-              {list.length === 0 && (
-                <p>
-                  Need to register a new mentee? click here{' '}
-                  <Link to={'/register/'}> register </Link>
-                </p>
-              )}
-              {features.map((feature) => (
-                <Link
-                  key={feature.name}
-                  style={{ margin: '5px' }}
-                  to={`${feature.url}`}
-                  onClick={() => setToggle(false)}
-                >
-                  {' '}
-                  {`${feature.name}`}{' '}
-                </Link>
-              ))}
-            </Card>
-          </div>
+        <div ref={fieldRef} style={{ width: '80%' }}>
+          <Card
+            style={{
+              backgroundColor: 'rgba(255,255,255,2.5)',
+              width: '100%',
+              margin: '0',
+              overflow: 'hidden',
+              overflowY: 'scroll',
+              height: '20vh',
+            }}
+          >
+            {list.map((e) => (
+              <li
+                key={e.id}
+                className="searchBar"
+                onClick={() => createModal(<StudentInfoModal user={e} />)}
+              >
+                {' '}
+                {`${e.first_name} ${e.last_name}`}{' '}
+              </li>
+            ))}
+            {list.length === 0 && (
+              <p>
+                Need to register a new mentee? click here{' '}
+                <Link to={'/register/'}> register </Link>
+              </p>
+            )}
+            {features.map((feature) => (
+              <Link
+                key={feature.name}
+                style={{ margin: '5px' }}
+                to={`${feature.url}`}
+                onClick={() => setToggle(false)}
+              >
+                {' '}
+                {`${feature.name}`}{' '}
+              </Link>
+            ))}
+          </Card>
         </div>
       )}
     </>
