@@ -13,5 +13,3 @@ fs.writeFileSync(
   path.resolve(__dirname, './MOCK_DATA.json'),
   JSON.stringify(newData, null, 4)
 );
-
-fs.close();
