@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import '../../less/Modal.less';
 import StudentInfoModal from '../StudentInfo/StudentInfoModal';
-import data from '../search-bar/MOCK_DATA.json';
+import data from '../../mock-data/MOCK_DATA.json';
 import { createModal } from '../../redux/actions';
 
 const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
