@@ -5,8 +5,6 @@ import '../../less/Modal.less';
 import SearchResultsList from './SearchResultsList';
 
 const SearchField = ({ results, setToggle }) => {
-  console.log('SearchField', results);
-
   //setting up perma features first
   const features = [
     { name: 'Calendar', url: '/calendar/' },

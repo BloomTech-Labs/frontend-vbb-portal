@@ -11,18 +11,14 @@ const SearchBar = () => {
   const [toggle, setToggle] = useState(false);
   const [results, setResults] = useState({ student: [], mentor: [] });
 
-  const barRef = useRef();
-  const fieldRef = useRef();
+  const clickAwayRef = useRef();
 
   useEffect(() => {
     searchUsers(value.name).then((data) => setResults(data));
   }, [value]);
 
   const handleClickOutside = useCallback((event) => {
-    if (
-      !barRef.current?.contains(event.target) &&
-      !fieldRef.current?.contains(event.target)
-    ) {
+    if (!clickAwayRef.current?.contains(event.target)) {
       setToggle(false);
     }
   }, []);
@@ -38,24 +34,18 @@ const SearchBar = () => {
     <div
       style={{
         display: 'flex',
-        flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center',
       }}
     >
-      <div ref={barRef} style={{ width: '80%' }}>
+      <div ref={clickAwayRef} style={{ width: '80%' }}>
         <Search
           type="text"
           enterButton="Search"
           onChange={(e) => setValue({ ...value, name: e.target.value })}
           onClick={() => setToggle(true)}
         />
+        {toggle && <SearchField results={results} setToggle={setToggle} />}
       </div>
-      {toggle && (
-        <div ref={fieldRef} style={{ width: '80%' }}>
-          <SearchField results={results} setToggle={setToggle} />
-        </div>
-      )}
     </div>
   );
 };
