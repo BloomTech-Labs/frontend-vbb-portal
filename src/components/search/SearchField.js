@@ -11,6 +11,7 @@ const SearchField = ({ value, toggle, setToggle, fieldRef }) => {
   //state variables
   const [options, setOptions] = useState([]);
   const [list, setList] = useState([]);
+
   //custom hooks
   const { isVisible, selectedUser, toggleModal } = useModal(Modal);
 
@@ -24,15 +25,28 @@ const SearchField = ({ value, toggle, setToggle, fieldRef }) => {
       title: 'Teachers',
       data: list
     }
-  ]
+  ];
+
+  const [currentListSections, setCurrentListSections] = useState(listSections)
 
   //filter function for search bar
-  const filterData = (value, options) => {
+  const handleFiltering = (value, options) => {
     if (!value?.name?.length) {
       return [];
     }
     const searchTerm = value.name.toLowerCase();
-    return options
+
+    if (searchTerm === 'students') {
+      setCurrentListSections([listSections[0]])
+      return options
+    }
+    if (searchTerm === 'teachers') {
+      setCurrentListSections([listSections[1]])
+      return options
+    }
+    else {
+      setCurrentListSections(listSections)
+      return options
       .filter((e) => {
         if (
           searchTerm.length <= e.first_name.length &&
@@ -49,6 +63,7 @@ const SearchField = ({ value, toggle, setToggle, fieldRef }) => {
         return false;
       })
       .slice(0, 10);
+    }
   };
 
   //wrote out the api call originally going to local host and everything seemed to work , reverted to local mockdata file for development
@@ -57,12 +72,9 @@ const SearchField = ({ value, toggle, setToggle, fieldRef }) => {
   }, []);
 
   useEffect(() => {
-    setList(filterData(value, options));
+    setList(handleFiltering(value, options))
   }, [value, options, setToggle]);
 
-  //use Effect for click listener
-
-  //setting up perma features first
   const features = [
     { name: 'Calendar', url: '/calendar/' },
     { name: 'Donate', url: '/donate/' },
@@ -91,22 +103,23 @@ const SearchField = ({ value, toggle, setToggle, fieldRef }) => {
                 height: '20vh',
               }}
             >
-              {value.name.length > 0 ? listSections.map((section) => (
+              {console.log('currentListSections', currentListSections)}
+              {value.name.length > 0 && list.length > 0 ? currentListSections.map((section) => (
                 <>
-                  <span key={section.title}>
+                  <span key={section.title} style={{fontWeight: 'bold'}}>
                     {section.title}
                   </span>
 
-                {section.data.map((user) => {
-                  return (
-                    <div
-                    key={user.id}
-                    onClick={() => toggleModal(Modal, user)}
-                  >
-                    {user.first_name} {user.last_name}
-                  </div>
-                  )
-                })}
+                  {section.data.map((user) => {
+                    return (
+                      <div
+                      key={user.id}
+                      onClick={() => toggleModal(Modal, user)}
+                    >
+                      {user.first_name} {user.last_name}
+                    </div>
+                    )
+                  })}
                 </>
               )) : ''}
               {list.length === 0 && (
