@@ -53,22 +53,14 @@ export const searchUsers = (query, options) => {
     );
   };
 
-  // if no query is provided, return an object with empty arrays of each requested userType
   if (!query?.length) {
-    return Promise.resolve(
-      Object.values(userTypes).reduce((acc, curr) => {
-        if (queryIncludes(curr)) {
-          acc[curr] = [];
-        }
-        return acc;
-      }, {})
-    );
+    return Promise.resolve({});
   }
 
   // sort/filter users into arrays of requested userTypes, where their name matches the provided query
   const result = Object.values(userTypes).reduce((acc, curr) => {
     if (queryIncludes(curr)) {
-      acc[curr] = data
+      const res = data
         .filter(
           (e) =>
             e.user_type === curr &&
@@ -78,6 +70,7 @@ export const searchUsers = (query, options) => {
           mergedOptions.offset,
           mergedOptions.offset + mergedOptions.limit
         );
+      if (res.length) acc[curr] = res;
     }
     return acc;
   }, {});

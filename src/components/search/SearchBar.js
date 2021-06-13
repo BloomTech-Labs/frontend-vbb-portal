@@ -1,15 +1,18 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { Input } from 'antd';
+import { connect } from 'react-redux';
 
 import SearchField from './SearchField';
 import { searchUsers } from '../../mock-data/mockApi';
+import { createModal } from '../../redux/actions';
+import StudentInfoModal from '../StudentInfo/StudentInfoModal';
 
 const { Search } = Input;
 
-const SearchBar = () => {
+const SearchBar = ({ createModal }) => {
   const [value, setValue] = useState({ name: '' });
   const [toggle, setToggle] = useState(false);
-  const [results, setResults] = useState({ student: [], mentor: [] });
+  const [results, setResults] = useState({});
 
   const clickAwayRef = useRef();
 
@@ -30,6 +33,13 @@ const SearchBar = () => {
     };
   }, [handleClickOutside]);
 
+  const handlePressEnter = () => {
+    const user = Object.values(results)?.[0]?.[0];
+    if (user) {
+      createModal(<StudentInfoModal user={user} />);
+    }
+  };
+
   return (
     <div
       style={{
@@ -43,6 +53,7 @@ const SearchBar = () => {
           enterButton="Search"
           onChange={(e) => setValue({ ...value, name: e.target.value })}
           onClick={() => setToggle(true)}
+          onPressEnter={handlePressEnter}
         />
         {toggle && <SearchField results={results} setToggle={setToggle} />}
       </div>
@@ -50,4 +61,4 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+export default connect(null, { createModal })(SearchBar);

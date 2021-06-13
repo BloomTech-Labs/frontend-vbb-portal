@@ -28,10 +28,10 @@ const SearchField = ({ results, setToggle }) => {
         maxHeight: '40vh',
       }}
     >
-      {!!results.student.length && (
+      {!!results.student?.length && (
         <SearchResultsList title="Students" results={results.student} />
       )}
-      {!!results.mentor.length && (
+      {!!results.mentor?.length && (
         <SearchResultsList title="Mentors" results={results.mentor} />
       )}
       {Object.values(results).every((e) => !e.length) && (
