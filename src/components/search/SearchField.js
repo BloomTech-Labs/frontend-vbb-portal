@@ -13,6 +13,18 @@ const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
   const [options, setOptions] = useState([]);
   const [list, setList] = useState([]);
 
+  // sections of the dropdown
+  const listSections = [
+    {
+      title: "Students",
+      data: list
+    },
+     {
+       title: "Teachers",
+       data: list
+     }
+  ];
+
   //filter function for search bar
   const filterData = (value, options) => {
     if (!value?.name?.length) {
@@ -47,8 +59,6 @@ const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
     setList(filterData(value, options));
   }, [value, options, setToggle]);
 
-  //use Effect for click listener
-
   //setting up perma features first
   const features = [
     { name: 'Calendar', url: '/calendar/' },
@@ -78,16 +88,24 @@ const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
                 height: '20vh',
               }}
             >
-              {list.map((e) => (
-                <li
-                  key={e.id}
-                  className="searchBar"
-                  onClick={() => createModal(<StudentInfoModal user={e} />)}
-                >
-                  {' '}
-                  {`${e.first_name} ${e.last_name}`}{' '}
-                </li>
-              ))}
+              {value.name.length > 0 && list.length > 0 ? listSections.map((section) => (
+                <>
+                  <span key={section.title} style={{fontWeight: 'bold'}}>
+                    {section.title}
+                  </span>
+
+                  {section.data.map((user) => {
+                    return (
+                      <div
+                      key={user.id}
+                      onClick={() => createModal(<StudentInfoModal user={user} />)}
+                      >
+                        {user.first_name} {user.last_name}
+                      </div>
+                    )
+                  })}
+                </>
+              )) : ''}
               {list.length === 0 && (
                 <p>
                   Need to register a new mentee? click here{' '}
