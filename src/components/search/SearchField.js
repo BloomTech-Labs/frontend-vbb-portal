@@ -12,6 +12,7 @@ const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
   //state variables
   const [options, setOptions] = useState([]);
   const [list, setList] = useState([]);
+  const [filtering, setFiltering] = useState(true);
 
   // sections of the dropdown
   const listSections = [
@@ -24,6 +25,7 @@ const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
        data: list
      }
   ];
+  const [currentListSections, setCurrentListSections] = useState([])
 
   //filter function for search bar
   const filterData = (value, options) => {
@@ -31,7 +33,8 @@ const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
       return [];
     }
     const searchTerm = value.name.toLowerCase();
-    return options
+    if (filtering === true) {
+      return options
       .filter((e) => {
         if (
           searchTerm.length <= e.first_name.length &&
@@ -48,7 +51,29 @@ const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
         return false;
       })
       .slice(0, 10);
+    }
+    if (filtering === false) {
+      return options
+    }
   };
+
+  // function that filters the search result sections by keyword
+  // Note: each keyword case returns it's location in the listSections array
+  const filterSections = () => {
+    const searchTerm = value.name.toLowerCase();
+    if (searchTerm === 'students') {
+      setFiltering(false)
+      return [listSections[0]]
+    }
+    if (searchTerm === 'teachers') {
+      setFiltering(false)
+      return [listSections[1]]
+    }
+    else {
+      setFiltering(true)
+      return listSections
+    }
+  }
 
   //wrote out the api call originally going to local host and everything seemed to work , reverted to local mockdata file for development
   useEffect(() => {
@@ -57,7 +82,11 @@ const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
 
   useEffect(() => {
     setList(filterData(value, options));
-  }, [value, options, setToggle]);
+  }, [value, options, setToggle, filtering]);
+
+  useEffect(() => {
+    setCurrentListSections(filterSections());
+  }, [value, list]);
 
   //setting up perma features first
   const features = [
@@ -88,7 +117,7 @@ const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
                 height: '20vh',
               }}
             >
-              {value.name.length > 0 && list.length > 0 ? listSections.map((section) => (
+              {value.name.length > 0 && list.length > 0 ? currentListSections.map((section) => (
                 <>
                   <span key={section.title} style={{fontWeight: 'bold'}}>
                     {section.title}
@@ -98,6 +127,7 @@ const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
                     return (
                       <div
                       key={user.id}
+                      style={{cursor: "pointer"}}
                       onClick={() => createModal(<StudentInfoModal user={user} />)}
                       >
                         {user.first_name} {user.last_name}
