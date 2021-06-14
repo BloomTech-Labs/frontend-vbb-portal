@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from 'antd';
 import { connect } from 'react-redux';
@@ -12,20 +12,23 @@ const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
   //state variables
   const [options, setOptions] = useState([]);
   const [list, setList] = useState([]);
-  const [filtering, setFiltering] = useState(true);
 
   // sections of the dropdown
-  const listSections = [
-    {
-      title: "Students",
-      data: list
-    },
-     {
-       title: "Teachers",
-       data: list
-     }
-  ];
-  const [currentListSections, setCurrentListSections] = useState([])
+  const listSections = useMemo(
+    () => [
+      {
+        title: 'Students',
+        data: list,
+      },
+      {
+        title: 'Teachers',
+        data: list,
+      },
+    ],
+    [list]
+  );
+
+  const [currentListSections, setCurrentListSections] = useState([]);
 
   //filter function for search bar
   const filterData = (value, options) => {
@@ -33,8 +36,12 @@ const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
       return [];
     }
     const searchTerm = value.name.toLowerCase();
-    if (filtering === true) {
-      return options
+
+    if (searchTerm === 'students' || searchTerm === 'teachers') {
+      return options;
+    }
+
+    return options
       .filter((e) => {
         if (
           searchTerm.length <= e.first_name.length &&
@@ -51,10 +58,6 @@ const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
         return false;
       })
       .slice(0, 10);
-    }
-    if (filtering === false) {
-      return options
-    }
   };
 
   // function that filters the search result sections by keyword
@@ -62,27 +65,22 @@ const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
   const filterSections = () => {
     const searchTerm = value.name.toLowerCase();
     if (searchTerm === 'students') {
-      setFiltering(false)
-      return [listSections[0]]
+      return [listSections[0]];
     }
     if (searchTerm === 'teachers') {
-      setFiltering(false)
-      return [listSections[1]]
+      return [listSections[1]];
+    } else {
+      return listSections;
     }
-    else {
-      setFiltering(true)
-      return listSections
-    }
-  }
+  };
 
-  //wrote out the api call originally going to local host and everything seemed to work , reverted to local mockdata file for development
   useEffect(() => {
     setOptions(data);
   }, []);
 
   useEffect(() => {
     setList(filterData(value, options));
-  }, [value, options, setToggle, filtering]);
+  }, [value, options, setToggle]);
 
   useEffect(() => {
     setCurrentListSections(filterSections());
@@ -117,25 +115,28 @@ const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
                 height: '20vh',
               }}
             >
-              {value.name.length > 0 && list.length > 0 ? currentListSections.map((section) => (
-                <>
-                  <span key={section.title} style={{fontWeight: 'bold'}}>
-                    {section.title}
-                  </span>
+              {value.name.length > 0 &&
+                list.length > 0 &&
+                currentListSections.map((section) => (
+                  <div key={section.title}>
+                    <span style={{ fontWeight: 'bold' }}>{section.title}</span>
 
-                  {section.data.map((user) => {
-                    return (
-                      <div
-                      key={user.id}
-                      style={{cursor: "pointer"}}
-                      onClick={() => createModal(<StudentInfoModal user={user} />)}
-                      >
-                        {user.first_name} {user.last_name}
-                      </div>
-                    )
-                  })}
-                </>
-              )) : ''}
+                    {section.data.map((user) => {
+                      return (
+                        <div
+                          key={user.id}
+                          style={{ cursor: 'pointer' }}
+                          onClick={() =>
+                            createModal(<StudentInfoModal user={user} />)
+                          }
+                        >
+                          {user.first_name} {user.last_name}
+                        </div>
+                      );
+                    })}
+                  </div>
+                ))}
+
               {list.length === 0 && (
                 <p>
                   Need to register a new mentee? click here{' '}
