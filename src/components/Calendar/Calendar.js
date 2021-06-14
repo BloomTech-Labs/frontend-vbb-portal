@@ -63,7 +63,8 @@ const MyCalendar = props => {
     mentor: "",
     student: "",
     resourceId: 0,
-    title: ""
+    title: "",
+    checkedIn: false
   })
 
   // State to manage visibility of event Modal
@@ -128,6 +129,7 @@ const MyCalendar = props => {
         details={{...clickSelected}}
         isModalVisiable={isModalVisiable}
         setIsModalVisible={setIsModalVisible}
+        setClickSelected={setClickSelected}
       />
 
       <div className="rbc-toolbar rbc-btn-group">

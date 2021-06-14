@@ -1,8 +1,17 @@
 import React from 'react'
-import { Modal, Button } from 'antd'
-import { CheckCircleOutlined } from '@ant-design/icons';
+import { Modal, Button, Switch } from 'antd'
+import { CheckCircleOutlined, CheckCircleTwoTone } from '@ant-design/icons';
 
 const CheckinModal = (props) => {
+
+    if(!props.details.start) {
+        return(
+            <>
+                loading
+            </>
+        )
+    }
+
     console.log(props.details)
 
     const handleOk = () => {
@@ -18,6 +27,17 @@ const CheckinModal = (props) => {
     const end = props.details.end.toLocaleTimeString()
 
 
+    const checkedIn = props.details.checkedIn
+
+    const handleCheckIn = () => {
+        props.setClickSelected({
+            ...props.details,
+            checkedIn: !props.details.checkedIn
+        })
+        console.log(props.details)
+    }
+
+
     return (
         <Modal 
             visible={props.isModalVisiable}
@@ -25,7 +45,13 @@ const CheckinModal = (props) => {
             onCancel={handleCancel}
             style={{ textAlign: "center"}}
         >
-            <h6 style={{textTransform: 'uppercase', fontSize: '.75rem', paddingBottom: '1rem', color: 'red'}}>Status: Not Checked-In</h6>
+            <h6 style={{
+                textTransform: 'uppercase', 
+                fontSize: '.75rem', 
+                paddingBottom: '1rem', 
+                color: props.details.checkedIn ? '#52c41a' : 'red'
+                }}>
+                    Status: {checkedIn ? 'checked-in' : 'not checked-in'}</h6>
           <h2>{props.details.title}</h2>
             {
           //If the details haven't loaded yet do not display, to handle toLocalDateString() error
@@ -48,12 +74,22 @@ const CheckinModal = (props) => {
               {props.details.resourceId}
             </p>
           <Button
-            // type={'primary'}
-            icon={<CheckCircleOutlined />}
+            type={checkedIn ? 'primary' : ''}
+            icon={checkedIn ? <CheckCircleTwoTone twoToneColor="primary" /> : ''}
             shape={'round'}
+            onClick={handleCheckIn}
           >
-            Check-in Student
+            {
+                checkedIn 
+                ? 'Student is Checked-in'
+                : 'Check-in Student'
+            }
           </Button>
+          {/* <Switch
+            checked={checkedIn} 
+            checkedChildren="Student Checked In" unCheckedChildren="Check-in Student"
+            onChange={handleCheckIn}
+        /> */}
       </Modal>
     )
 }
