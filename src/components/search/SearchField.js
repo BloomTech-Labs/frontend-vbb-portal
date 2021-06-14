@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from 'antd';
 import { connect } from 'react-redux';
@@ -13,12 +13,34 @@ const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
   const [options, setOptions] = useState([]);
   const [list, setList] = useState([]);
 
+  // sections of the dropdown
+  const listSections = useMemo(
+    () => [
+      {
+        title: 'Students',
+        data: list,
+      },
+      {
+        title: 'Teachers',
+        data: list,
+      },
+    ],
+    [list]
+  );
+
+  const [currentListSections, setCurrentListSections] = useState([]);
+
   //filter function for search bar
   const filterData = (value, options) => {
     if (!value?.name?.length) {
       return [];
     }
     const searchTerm = value.name.toLowerCase();
+
+    if (searchTerm === 'students' || searchTerm === 'teachers') {
+      return options;
+    }
+
     return options
       .filter((e) => {
         if (
@@ -38,7 +60,20 @@ const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
       .slice(0, 10);
   };
 
-  //wrote out the api call originally going to local host and everything seemed to work , reverted to local mockdata file for development
+  // function that filters the search result sections by keyword
+  // Note: each keyword case returns it's location in the listSections array
+  const filterSections = () => {
+    const searchTerm = value.name.toLowerCase();
+    if (searchTerm === 'students') {
+      return [listSections[0]];
+    }
+    if (searchTerm === 'teachers') {
+      return [listSections[1]];
+    } else {
+      return listSections;
+    }
+  };
+
   useEffect(() => {
     setOptions(data);
   }, []);
@@ -47,7 +82,9 @@ const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
     setList(filterData(value, options));
   }, [value, options, setToggle]);
 
-  //use Effect for click listener
+  useEffect(() => {
+    setCurrentListSections(filterSections());
+  }, [value, list]);
 
   //setting up perma features first
   const features = [
@@ -78,16 +115,28 @@ const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
                 height: '20vh',
               }}
             >
-              {list.map((e) => (
-                <li
-                  key={e.id}
-                  className="searchBar"
-                  onClick={() => createModal(<StudentInfoModal user={e} />)}
-                >
-                  {' '}
-                  {`${e.first_name} ${e.last_name}`}{' '}
-                </li>
-              ))}
+              {value.name.length > 0 &&
+                list.length > 0 &&
+                currentListSections.map((section) => (
+                  <div key={section.title}>
+                    <span style={{ fontWeight: 'bold' }}>{section.title}</span>
+
+                    {section.data.map((user) => {
+                      return (
+                        <div
+                          key={user.id}
+                          style={{ cursor: 'pointer' }}
+                          onClick={() =>
+                            createModal(<StudentInfoModal user={user} />)
+                          }
+                        >
+                          {user.first_name} {user.last_name}
+                        </div>
+                      );
+                    })}
+                  </div>
+                ))}
+
               {list.length === 0 && (
                 <p>
                   Need to register a new mentee? click here{' '}
