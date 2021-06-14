@@ -10,6 +10,7 @@ import getDay from 'date-fns/getDay'
 import Toolbar from './ResourcesToolbar'
 import { Menu, Dropdown } from 'antd'
 import ComputersList from './assign-computers/computers-list'
+import CheckinModal from './CheckinModal'
 
 const locales = {
   'en-US': require('date-fns/locale/en-US'),
@@ -56,6 +57,23 @@ const MyCalendar = props => {
     student: "",
     resourceId: 0
   })
+  const [clickSelected, setClickSelected] = useState({
+    start: "",
+    end: "",
+    mentor: "",
+    student: "",
+    resourceId: 0,
+    title: ""
+  })
+
+  // State to manage visibility of event Modal
+
+  const [isModalVisiable, setIsModalVisible] = useState(false)
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
 
   const handleDragSelect = ({ start, end }) => {
     setDragSelected({
@@ -65,22 +83,52 @@ const MyCalendar = props => {
     })
     setShowCalendar(!showCalendar)
   }
+
+
+
   const handleEventClick = e => {
-    setDragSelected({
-      ...dragSelected,
-      start: e.start,
-      end: e.end,
-      mentor: e.mentor,
-      student: e.student,
-      resourceId: e.resourceId
+
+    //If in week view clicking an event will hide the calendar, to show computer list
+
+    if(showWeekView){
+      setDragSelected({
+        ...dragSelected,
+        start: e.start,
+        end: e.end,
+        mentor: e.mentor,
+        student: e.student,
+        resourceId: e.resourceId
+      }
+      );
+      setShowCalendar(!showCalendar)
     }
-    );
-    setShowCalendar(!showCalendar)
+
+    // Else clicking a event will bring pop-up of event details
+
+    else {
+      setClickSelected({
+        ...dragSelected,
+        start: e.start,
+        end: e.end,
+        mentor: e.mentor,
+        student: e.student,
+        resourceId: e.resourceId,
+        title: e.title
+      })
+      console.log(e)
+      showModal()
+    }
   }
 
 
   return (
     <div className="calendarWrapperDiv" id="section-to-print">
+
+      <CheckinModal 
+        details={{...clickSelected}}
+        isModalVisiable={isModalVisiable}
+        setIsModalVisible={setIsModalVisible}
+      />
 
       <div className="rbc-toolbar rbc-btn-group">
         <Dropdown overlay={schoolMenu}>
