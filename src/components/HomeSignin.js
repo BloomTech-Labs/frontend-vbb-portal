@@ -122,7 +122,7 @@ const HomeSignin = ({
               }}
             >
               Log In
-              <LoginOutlined className="button-icon" />
+              <LoginOutlined className="color-white" />
             </Button>
           </Form.Item>
           {/* GoogleLogin commented out for ease of local development until production ready */}

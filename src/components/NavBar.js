@@ -61,7 +61,7 @@ const NavBar = ({ history, authToken, logOut }) => {
         <Link to="/signup" key="link-signup">
           <Button type="primary" key="2">
             Register
-            <FormOutlined className="button-icon" />
+            <FormOutlined className="color-white" />
           </Button>
         </Link>,
       ]}
