@@ -119,6 +119,54 @@ const data = [
       address: 'Sidney No. 1 Lake Park',
       tags: ['mentor'],
     },
+    {
+      key: '4',
+      fname: 'Joe',
+      lname: 'Black',
+      age: 37,
+      address: 'Sidney No. 1 Lake Park',
+      tags: ['mentor'],
+    },
+    {
+      key: '5',
+      fname: 'Joe',
+      lname: 'Black',
+      age: 39,
+      address: 'Sidney No. 1 Lake Park',
+      tags: ['mentor'],
+    },
+    {
+      key: '6',
+      fname: 'Joe',
+      lname: 'Black',
+      age: 3,
+      address: 'Sidney No. 1 Lake Park',
+      tags: ['mentor'],
+    },
+    {
+      key: '7',
+      fname: 'Joe',
+      lname: 'Black',
+      age: 89,
+      address: 'Sidney No. 1 Lake Park',
+      tags: ['mentor'],
+    },
+    {
+      key: '8',
+      fname: 'Joe',
+      lname: 'Black',
+      age: 22,
+      address: 'Sidney No. 1 Lake Park',
+      tags: ['mentor'],
+    },
+    {
+      key: '9',
+      fname: 'Joe',
+      lname: 'Black',
+      age: 75,
+      address: 'Sidney No. 1 Lake Park',
+      tags: ['mentor'],
+    },
 ];
 
 /*End Placeholder Data*/
@@ -126,7 +174,7 @@ const data = [
 const Admin = props => {
     return(
         <>
-            <Table columns={columns} dataSource={data} />
+            <Table columns={columns} dataSource={data} scroll={{ y: 240 }} />
         </>
     );
 };
