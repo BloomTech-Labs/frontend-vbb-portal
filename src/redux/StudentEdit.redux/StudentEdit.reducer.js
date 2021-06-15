@@ -2,15 +2,9 @@ import {
   EDIT_USER_START,
   EDIT_USER_SUCCESS,
   EDIT_USER_FAILURE,
-} from './StudentEdit.actions';
+} from './StudentEdit.types';
 
-const userEditInitialState = {
-  editingUser: [],
-  editing: false,
-  error: '',
-};
-
-export const editUser = (state = userEditInitialState, action) => {
+export const editUser = (action) => {
   switch (action.type) {
     case EDIT_USER_START:
       return {

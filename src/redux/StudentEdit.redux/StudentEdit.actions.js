@@ -1,8 +1,3 @@
-import Axios from 'axios';
-
-export const EDIT_USER_START = 'EDIT_USER_START';
-export const EDIT_USER_SUCCESS = 'EDIT_USER_SUCCESS';
-export const EDIT_USER_FAILURE = 'EDIT_USER_FAILURE';
 
 export const editUser = (id, { user_id, name }) => (dispatch) => {
   console.log('from PUT', { user_id, name });
