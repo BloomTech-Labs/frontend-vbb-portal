@@ -1,3 +1,4 @@
+/* global require module */
 const WebpackBar = require("webpackbar");
 const CracoAntDesignPlugin = require("craco-antd");
 
@@ -17,7 +18,7 @@ module.exports = {
     {
       plugin: CracoAntDesignPlugin,
       options: {
-        customizeThemeLessPath: './src/less/index.less',
+        customizeThemeLessPath: './src/less/antTheme.less',
         lessLoaderOptions: {
           lessOptions: {
             javascriptEnabled: true,
