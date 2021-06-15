@@ -1,4 +1,7 @@
 /* global require __dirname */
+
+// leaving this here in case someone else needs to make alterations to the mock data in the future
+// just change the properties inside of the map, and it will save them to the json file
 const fs = require('fs');
 const path = require('path');
 
