@@ -2,7 +2,7 @@ import {
   EDIT_USER_START,
   EDIT_USER_SUCCESS,
   EDIT_USER_FAILURE,
-} from './StudentEdit.action';
+} from './StudentEdit.actions';
 
 const userEditInitialState = {
   editingUser: [],
