@@ -1,20 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Modal, Card } from 'antd';
+import { Card } from 'antd';
+import { connect } from 'react-redux';
 
 import '../../less/Modal.less';
-import useModal from '../Modal/useModal';
-import SearchModalContent from '../Modal/SeachModalFragment';
+import StudentInfoModal from '../StudentInfo/StudentInfoModal';
 import data from '../search-bar/MOCK_DATA.json';
+import { createModal } from '../../redux/actions';
 
-const SearchField = ({ value, toggle, setToggle, fieldRef }) => {
+const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
   //state variables
   const [options, setOptions] = useState([]);
   const [list, setList] = useState([]);
-  //custom hooks
-  const { isVisible, selectedUser, toggleModal } = useModal(Modal);
 
-  //click outside function
+  // sections of the dropdown
+  const listSections = useMemo(
+    () => [
+      {
+        title: 'Students',
+        data: list,
+      },
+      {
+        title: 'Teachers',
+        data: list,
+      },
+    ],
+    [list]
+  );
+
+  const [currentListSections, setCurrentListSections] = useState([]);
 
   //filter function for search bar
   const filterData = (value, options) => {
@@ -22,6 +36,11 @@ const SearchField = ({ value, toggle, setToggle, fieldRef }) => {
       return [];
     }
     const searchTerm = value.name.toLowerCase();
+
+    if (searchTerm === 'students' || searchTerm === 'teachers') {
+      return options;
+    }
+
     return options
       .filter((e) => {
         if (
@@ -41,7 +60,20 @@ const SearchField = ({ value, toggle, setToggle, fieldRef }) => {
       .slice(0, 10);
   };
 
-  //wrote out the api call originally going to local host and everything seemed to work , reverted to local mockdata file for development
+  // function that filters the search result sections by keyword
+  // Note: each keyword case returns it's location in the listSections array
+  const filterSections = () => {
+    const searchTerm = value.name.toLowerCase();
+    if (searchTerm === 'students') {
+      return [listSections[0]];
+    }
+    if (searchTerm === 'teachers') {
+      return [listSections[1]];
+    } else {
+      return listSections;
+    }
+  };
+
   useEffect(() => {
     setOptions(data);
   }, []);
@@ -50,7 +82,9 @@ const SearchField = ({ value, toggle, setToggle, fieldRef }) => {
     setList(filterData(value, options));
   }, [value, options, setToggle]);
 
-  //use Effect for click listener
+  useEffect(() => {
+    setCurrentListSections(filterSections());
+  }, [value, list]);
 
   //setting up perma features first
   const features = [
@@ -81,23 +115,34 @@ const SearchField = ({ value, toggle, setToggle, fieldRef }) => {
                 height: '20vh',
               }}
             >
-              {list.map((e) => (
-                <li
-                  key={e.id}
-                  className="searchBar"
-                  onClick={() => toggleModal(Modal, e)}
-                >
-                  {' '}
-                  {`${e.first_name} ${e.last_name}`}{' '}
-                </li>
-              ))}
+              {value.name.length > 0 &&
+                list.length > 0 &&
+                currentListSections.map((section) => (
+                  <div key={section.title}>
+                    <span style={{ fontWeight: 'bold' }}>{section.title}</span>
+
+                    {section.data.map((user) => {
+                      return (
+                        <div
+                          key={user.id}
+                          style={{ cursor: 'pointer' }}
+                          onClick={() =>
+                            createModal(<StudentInfoModal user={user} />)
+                          }
+                        >
+                          {user.first_name} {user.last_name}
+                        </div>
+                      );
+                    })}
+                  </div>
+                ))}
+
               {list.length === 0 && (
                 <p>
                   Need to register a new mentee? click here{' '}
                   <Link to={'/register/'}> register </Link>
                 </p>
               )}
-
               {features.map((feature) => (
                 <Link
                   key={feature.name}
@@ -109,30 +154,12 @@ const SearchField = ({ value, toggle, setToggle, fieldRef }) => {
                   {`${feature.name}`}{' '}
                 </Link>
               ))}
-              <Button
-                type="primary"
-                danger
-                onClick={() => setToggle(false)}
-                style={{ position: 'relative', float: 'right' }}
-              >
-                {' '}
-                close{' '}
-              </Button>
             </Card>
           </div>
-          <Modal
-            visible={isVisible}
-            onOk={toggleModal}
-            onCancel={toggleModal}
-            destroyOnClose={true}
-          >
-            <SearchModalContent user={selectedUser} />
-            <Button>Edit</Button>
-          </Modal>
         </div>
       )}
     </>
   );
 };
 
-export default SearchField;
+export default connect(null, { createModal })(SearchField);

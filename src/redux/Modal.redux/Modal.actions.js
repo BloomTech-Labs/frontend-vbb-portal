@@ -32,7 +32,7 @@ export const createModal = (content, config = {}) => {
   };
 };
 
-export const setConfig = (config) => {
+export const setModalConfig = (config) => {
   return {
     type: SET_CONFIG,
     payload: config,
