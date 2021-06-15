@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import '../../../less/computers-list-style.less'
 import { students } from '../data'
 import { mentors } from '../data'
-import { Switch } from 'antd'
 
 const ComputersList = (props) => {
 
@@ -44,15 +43,6 @@ const ComputersList = (props) => {
                                             return <option key={i}>{student}</option>
                                         })}
                                     </select>
-                                    <Switch
-                                        checked={false}
-                                        checkedChildren="Student Checked In"
-                                        unCheckedChildren='check in student'
-                                        autoFocus={false}
-                                        style={{marginBottom: '1rem'}}
-                                    >
-                                        Check In
-                                    </Switch>
                                 </div>
                             </div>
                         )

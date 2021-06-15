@@ -1,6 +1,7 @@
 import React from 'react'
 import { Modal, Button, Switch } from 'antd'
 import { CheckCircleOutlined, CheckCircleTwoTone } from '@ant-design/icons';
+import '../../less/calendar.less'
 
 const CheckinModal = (props) => {
 
@@ -66,14 +67,14 @@ const CheckinModal = (props) => {
                 {props.details.mentor} 
             </p>
             <p> 
-                <strong>Mentee: </strong> 
+                <strong>Student: </strong> 
                 {props.details.student}
             </p>
             <p>
               <strong>Computer: </strong> 
               {props.details.resourceId}
             </p>
-          <Button
+          {/* <Button
             type={checkedIn ? 'primary' : ''}
             icon={checkedIn ? <CheckCircleTwoTone twoToneColor="primary" /> : ''}
             shape={'round'}
@@ -84,12 +85,12 @@ const CheckinModal = (props) => {
                 ? 'Student is Checked-in'
                 : 'Check-in Student'
             }
-          </Button>
-          {/* <Switch
+          </Button> */}
+          <Switch
             checked={checkedIn} 
             checkedChildren="Student Checked In" unCheckedChildren="Check-in Student"
             onChange={handleCheckIn}
-        /> */}
+        />
       </Modal>
     )
 }
