@@ -8,8 +8,8 @@ const StudentInfoDisplay = (props) => {
       {props.user ? (
         <>
           <div className="font-weight-bold">
-            <h3>ID: {props.user.id}</h3>
-            <h1>{props.user.full_name}</h1>
+            <h3>{`${props.user.first_name} ${props.user.last_name}`}</h3>
+            <h4>ID: {props.user.id}</h4>
             <p>DOB: {props.user.date_of_birth}</p>
             <p>
               Email:{' '}
