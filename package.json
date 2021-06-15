@@ -8,7 +8,7 @@
     "build-demo": "dotenv -e demo.env craco build",
     "eject": "react-scripts eject",
     "lint": "eslint .",
-    "dev": "nodemon -w craco.config.js -w ./style.less --exec \"craco start\"",
+    "dev": "nodemon --exec \"craco start --incremental\"",
     "start": "craco start",
     "test": "craco test"
   },
@@ -57,6 +57,11 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "nodemonConfig": {
+    "ext": "js,ts,less,css,json,env",
+    "ignore": [".circleci/*", ".github/*", ".vscode/*", "build/*", "examples/*", "node_modules/*"],
+    "delay": "500"
   },
   "browserslist": {
     "production": [
