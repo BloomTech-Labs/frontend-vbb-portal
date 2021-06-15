@@ -1,5 +1,12 @@
 import {React, Component} from 'react';
-import {Table, Tag, Space} from 'antd';
+import {
+  Table,
+  Tag,
+  Space,
+  Form,
+  Input,
+  Button
+} from 'antd';
 
 /*Placeholder data*/
 const columns = [
@@ -171,13 +178,58 @@ const data = [
 
 /*End Placeholder Data*/
 
+/*Form Styling*/
+const layout = {
+  labelCol: { span: 1 },
+  wrapperCol: { span: 10 },
+};
+
+const tailLayout = {
+  wrapperCol: { offset: 10, span: 16 },
+};
+/*End Form Styling*/
+
 const Admin = props => {
     return(
         <>
             <Table 
               columns={columns} 
               expandable={{
-                expandedRowRender: record => <p style={{ margin: 0 }}>Form goes here</p>,
+                expandedRowRender: record => (
+                  <p style={{ margin: 0 }}>
+                    <Form
+                      {...layout}
+                      name="basic"
+                    >
+                      <Form.Item
+                        label="First Name"
+                        name="fname"
+                      >
+                        <Input />
+                      </Form.Item>
+                      <Form.Item
+                        label="Last Name"
+                        name="lname"
+                      >
+                        <Input />
+                      </Form.Item>
+                      <Form.Item
+                        label="Phone"
+                        name="phone"
+                      >
+                        <Input />
+                      </Form.Item>
+                      <Form.Item {...tailLayout}>
+                        <Button
+                          type="primary"
+                          htmlType="submit"
+                        >
+                          Submit
+                        </Button>
+                      </Form.Item>
+                    </Form>
+                  </p>
+                ),
                 rowExpandable: record => record,
               }}
               dataSource={data}
