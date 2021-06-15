@@ -174,7 +174,15 @@ const data = [
 const Admin = props => {
     return(
         <>
-            <Table columns={columns} dataSource={data} scroll={{ y: 240 }} />
+            <Table 
+              columns={columns} 
+              expandable={{
+                expandedRowRender: record => <p style={{ margin: 0 }}>Form goes here</p>,
+                rowExpandable: record => record,
+              }}
+              dataSource={data}
+              scroll={{ y: 240 }} 
+            />
         </>
     );
 };
