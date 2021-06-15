@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 
 // import MentorProfile from "./MentorProfile";
 
+import '../less/index.less';
+
 class Dashboard extends React.Component {
   state = {
     sessionSlots: [],
@@ -60,22 +62,12 @@ class Dashboard extends React.Component {
           ) : (
             <>
               <h4
-                style={{
-                  fontSize: '22px',
-                  fontWeight: '400',
-                  fontStyle: 'italic',
-                  textIndent: '0px',
-                  color: '#ff914d',
-                }}
+                className="dashboard-h4-no-sessions"
               >
                 <b>Uh oh!</b> You don't have any mentoring sessions booked yet.
               </h4>
               <h4
-                style={{
-                  textIndent: '0px',
-                  fontStyle: 'italic',
-                  color: '#6ac66b',
-                }}
+                className="dashboard-h4-press-button"
               >
                 Press the green button below to make your first booking!
               </h4>
@@ -84,18 +76,16 @@ class Dashboard extends React.Component {
           <div className="btns">
             <a
               href="/booking/"
-              className="btn btn-light book-btn dashboard-btn"
-              style={{ marginTop: '20px', fontSize: '20px' }}
+              className="btn btn-light book-btn dashboard-btn dashboard-div-a-book"
             >
               + Book Mentoring Session
             </a>
             <br />
             <a
-              className="btn btn-light gcal-btn dashboard-btn"
+              className="btn btn-light gcal-btn dashboard-btn dashboard-div-a-view"
               href="https://calendar.google.com/calendar/r"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ marginTop: '5px', marginBottom: '30px' }}
             >
               View My Sessions Calendar
             </a>
@@ -186,7 +176,7 @@ class Dashboard extends React.Component {
             </a>
           </div>
           <p
-            style={{ padding: '20px', paddingLeft: '40px', maxWidth: '900px' }}
+            className="dashboard-div-p-mail"
           >
             <b>
               If you would like to change a mentoring session, have questions about

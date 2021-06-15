@@ -1,11 +1,13 @@
 import React from 'react';
 
+import '../../less/index.less';
+
 const StudentInfoDisplay = (props) => {
   return (
     <>
       {props.user ? (
         <>
-          <div style={{ fontWeight: 'bold' }}>
+          <div className="font-weight-bold">
             <h3>ID: {props.user.id}</h3>
             <h1>{props.user.full_name}</h1>
             <p>DOB: {props.user.date_of_birth}</p>
@@ -13,7 +15,7 @@ const StudentInfoDisplay = (props) => {
               Email:{' '}
               <a
                 href={`mailto:${props.user.personal_email}`}
-                style={{ color: 'blue' }}
+                className="color-blue"
               >
                 {props.user.personal_email}
               </a>

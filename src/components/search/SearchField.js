@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import { Card } from 'antd';
 import { connect } from 'react-redux';
 
-import '../../less/Modal.less';
 import StudentInfoModal from '../StudentInfo/StudentInfoModal';
 import data from '../search-bar/MOCK_DATA.json';
 import { createModal } from '../../redux/actions';
+
+import '../../less/index.less';
+// import '../../less/Modal.less';
 
 const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
   //state variables
@@ -102,30 +104,23 @@ const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
     <>
       {toggle && (
         <div
-          style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
+          className="width-100 flex justify-center"
         >
-          <div ref={fieldRef} style={{ width: '80%' }}>
+          <div ref={fieldRef} className="width-80">
             <Card
-              style={{
-                backgroundColor: 'rgba(255,255,255,2.5)',
-                width: '100%',
-                margin: '0',
-                overflow: 'hidden',
-                overflowY: 'scroll',
-                height: '20vh',
-              }}
+              className="width-100 height-20vh margin-0 overflow-hidden overflow-Y-scroll background-color-rgba-255-255-255-2_5"
             >
               {value.name.length > 0 &&
                 list.length > 0 &&
                 currentListSections.map((section) => (
                   <div key={section.title}>
-                    <span style={{ fontWeight: 'bold' }}>{section.title}</span>
+                    <span className="font-weight-bold">{section.title}</span>
 
                     {section.data.map((user) => {
                       return (
                         <div
                           key={user.id}
-                          style={{ cursor: 'pointer' }}
+                          className="pointer"
                           onClick={() =>
                             createModal(<StudentInfoModal user={user} />)
                           }
@@ -146,7 +141,7 @@ const SearchField = ({ value, toggle, setToggle, fieldRef, createModal }) => {
               {features.map((feature) => (
                 <Link
                   key={feature.name}
-                  style={{ margin: '5px' }}
+                  className="margin-5"
                   to={`${feature.url}`}
                   onClick={() => setToggle(false)}
                 >

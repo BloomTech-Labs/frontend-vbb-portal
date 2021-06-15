@@ -2,6 +2,8 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import SearchField from './SearchField';
 import { Input } from 'antd';
 
+import '../../less/index.less';
+
 const { Search } = Input;
 
 const SearchBar = () => {
@@ -36,8 +38,8 @@ const SearchBar = () => {
 
   return (
     <>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <div ref={barRef} style={{ width: '80%', margin: '0 100px' }}>
+      <div className="flex justify-center">
+        <div ref={barRef} className="width-80 margin-0-100">
           <Search
             type="text"
             enterButton="Search"

@@ -15,6 +15,8 @@ import { withRouter, Link } from 'react-router-dom';
 
 import Logo from '../images/vbb-picture-logo.png';
 
+import '../less/index.less';
+
 /**
  * HomeSignin
  * Connected functional component
@@ -41,19 +43,17 @@ const HomeSignin = ({
     <Row justify="center" align="middle">
       <Col
         span={24}
-        style={{
-          textAlign: 'center',
-        }}
+        className="center"
       >
         <img
           src={Logo}
           alt="VBB logo icon"
           width="100"
           height="75"
-          style={{ margin: '1rem' }}
+          className="margin-1rem"
         ></img>
-        <h1 style={{ margin: '1rem 0' }}>Village Portal</h1>
-        <h4 style={{ margin: '1rem 0 2rem 0' }}>
+        <h1 className="margin-1rem-0">Village Portal</h1>
+        <h4 className="margin-1rem-0-2rem-0">
           Let's give hope to children through mentoring.
         </h4>
         <Form
@@ -63,11 +63,7 @@ const HomeSignin = ({
           }}
         >
           <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
+            className="flex flex-direction-column align-center"
           >
             <Form.Item
               label="Email"
@@ -126,7 +122,7 @@ const HomeSignin = ({
               }}
             >
               Log In
-              <LoginOutlined style={{ color: 'white' }} />
+              <LoginOutlined className="button-icon" />
             </Button>
           </Form.Item>
           {/* GoogleLogin commented out for ease of local development until production ready */}
@@ -138,9 +134,9 @@ const HomeSignin = ({
             cookiePolicy={'single_host_origin'}
           /> */}
         </Form>
-        <p style={{ margin: '1rem 0' }}>Don't have an account with us yet?</p>
+        <p className="margin-1rem-0">Don't have an account with us yet?</p>
         <Link to="/signup/">
-          <Button style={{ lineHeight: '.5' }}>
+          <Button className="line-height-0_5">
             Register
             <FormOutlined />
           </Button>

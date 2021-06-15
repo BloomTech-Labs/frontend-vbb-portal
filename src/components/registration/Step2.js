@@ -15,6 +15,8 @@ import Address from './step2SubComponents/Address';
 import AgreeTermsAndConditions from './step2SubComponents/AgreeTermsAndConditions';
 import DesiredInvolvement from './step2SubComponents/DesiredInvolvement';
 
+import '../../less/index.less';
+
 export const Step2 = ({ currentStep }) => {
   if (currentStep !== 1) {
     return null;
@@ -40,7 +42,7 @@ export const Step2 = ({ currentStep }) => {
           </Form>
         </Col>
         <Col xs={0} sm={0} md={0} lg={8} xl={12}>
-          <div style={{ padding: '0 10px' }}>
+          <div className="padding-0-10">
             <Image src={ActionPicture}></Image>
           </div>
         </Col>
