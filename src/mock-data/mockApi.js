@@ -53,10 +53,6 @@ export const searchUsers = (query, options) => {
     );
   };
 
-  if (!query?.length) {
-    return Promise.resolve({});
-  }
-
   // sort/filter users into arrays of requested userTypes, where their name matches the provided query
   const result = Object.values(userTypes).reduce((acc, curr) => {
     if (queryIncludes(curr)) {
@@ -79,7 +75,6 @@ export const searchUsers = (query, options) => {
 };
 
 export const createUser = (user) => {
-  console.log(data);
   const id = data[data.length - 1].id + 1;
   data.push({ id, ...user });
   return Promise.resolve({ id, message: 'created successfully' });

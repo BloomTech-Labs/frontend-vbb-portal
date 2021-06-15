@@ -4,19 +4,19 @@ import { Card } from 'antd';
 import '../../less/Modal.less';
 import SearchResultsList from './SearchResultsList';
 
-const SearchField = ({ results, setToggle }) => {
-  //setting up perma features first
-  const features = [
-    { name: 'Calendar', url: '/calendar/' },
-    { name: 'Donate', url: '/donate/' },
-    { name: 'Sign up', url: '/signup/' },
-    { name: 'Sign in', url: '/signin/' },
-    { name: 'Booking', url: '/booking/' },
-    { name: 'Dashboard', url: '/' },
-    { name: 'Register', url: '/register/' },
-    { name: 'Create Mentor', url: '' },
-  ];
+//setting up perma features first
+const features = [
+  { name: 'Calendar', url: '/calendar/' },
+  { name: 'Donate', url: '/donate/' },
+  { name: 'Sign up', url: '/signup/' },
+  { name: 'Sign in', url: '/signin/' },
+  { name: 'Booking', url: '/booking/' },
+  { name: 'Dashboard', url: '/' },
+  { name: 'Register', url: '/register/' },
+  { name: 'Create Mentor', url: '' },
+];
 
+const SearchField = ({ setToggle, results }) => {
   return (
     <Card
       style={{
@@ -36,8 +36,12 @@ const SearchField = ({ results, setToggle }) => {
       )}
       {Object.values(results).every((e) => !e.length) && (
         <p>
-          Need to register a new mentee? click here{' '}
-          <Link to={'/register/'}> register </Link>
+          Need to register a new student? Click{' '}
+          <Link onClick={() => setToggle(false)} to={'/register/'}>
+            {' '}
+            here{' '}
+          </Link>
+          to register.
         </p>
       )}
       {features.map((feature) => (

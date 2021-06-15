@@ -9,15 +9,31 @@ import StudentInfoModal from '../StudentInfo/StudentInfoModal';
 
 const { Search } = Input;
 
+const LIMIT = 50;
+
 const SearchBar = ({ createModal }) => {
-  const [value, setValue] = useState({ name: '' });
+  const [value, setValue] = useState('');
   const [toggle, setToggle] = useState(false);
   const [results, setResults] = useState({});
 
   const clickAwayRef = useRef();
 
   useEffect(() => {
-    searchUsers(value.name).then((data) => setResults(data));
+    if (value.length) {
+      const parts = value.split(':').map((e) => e.trim());
+      if (parts.length > 1) {
+        searchUsers(parts[1], {
+          userTypes: [parts[0]],
+          limit: LIMIT,
+        }).then((data) => setResults(data));
+      } else {
+        searchUsers(parts[0], { limit: LIMIT }).then((data) =>
+          setResults(data)
+        );
+      }
+    } else {
+      setResults({});
+    }
   }, [value]);
 
   const handleClickOutside = useCallback((event) => {
@@ -51,7 +67,7 @@ const SearchBar = ({ createModal }) => {
         <Search
           type="text"
           enterButton="Search"
-          onChange={(e) => setValue({ ...value, name: e.target.value })}
+          onChange={(e) => setValue(e.target.value)}
           onClick={() => setToggle(true)}
           onPressEnter={handlePressEnter}
         />
