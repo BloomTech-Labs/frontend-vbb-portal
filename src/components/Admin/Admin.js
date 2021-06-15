@@ -205,13 +205,13 @@ const Admin = props => {
                         label="First Name"
                         name="fname"
                       >
-                        <Input />
+                        <Input defaultValue={record.fname} />
                       </Form.Item>
                       <Form.Item
                         label="Last Name"
                         name="lname"
                       >
-                        <Input />
+                        <Input defaultValue={record.lname} />
                       </Form.Item>
                       <Form.Item
                         label="Phone"
