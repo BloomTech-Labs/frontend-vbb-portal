@@ -10,12 +10,14 @@ import Phone from '../registration/step1SubComponents/Phone';
 import Email from '../registration/step1SubComponents/Email';
 import Newsletter from '../registration/step1SubComponents/Newsletter';
 
+import '../../less/index.less';
+
 export const Step1 = ({
   currentStep,
   registrationForm,
   setRegistrationForm,
 }) => {
-  if (currentStep !== 1) {
+  if (currentStep !== 0) {
     return null;
   }
   return (
@@ -31,7 +33,7 @@ export const Step1 = ({
           </Form>
         </Col>
         <Col xs={0} sm={0} md={0} lg={8} xl={12}>
-          <div style={{ padding: '0 10px' }}>
+          <div className="padding-0-10">
             <Image src={MenteePicture}></Image>
           </div>
         </Col>

@@ -7,6 +7,8 @@ import {
   CheckOutlined,
 } from '@ant-design/icons';
 
+import '../../less/index.less';
+
 export const ProgressBar = (props) => {
   const { Step } = Steps;
 
@@ -25,17 +27,21 @@ export const ProgressBar = (props) => {
   const pageTitle = () => {
     if (props.currentStep === 3) {
       return (
-        <h1 style={{ padding: '10px 0' }}>Support Your Mentee with a Gift!</h1>
+        <h1 className="padding-10-0">Support Your Mentee with a Gift!</h1>
       );
     } else {
-      return <h1 style={{ padding: '10px 0' }}>Mentor Registration</h1>;
+      return <h1 className="padding-10-0">Mentor Registration</h1>;
     }
   };
 
   return (
-    <Card style={{ marginBottom: '50px' }}>
+    <Card className="margin-bottom-50">
       <div>{pageTitle()}</div>
-      <Steps style={{}} responsive="true">
+      <Steps
+        current={props.currentStep}
+        onChange={props.onChange}
+        responsive="true"
+      >
         <Step status="wait" title="Step 1" icon={<IdcardOutlined />} />
         <Step
           status={progressBarStatus(2)}
