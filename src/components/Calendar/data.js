@@ -3,13 +3,14 @@ export const events = [
   {
     id: 0,
     title: 'Board meeting',
-    start: new Date(Date.UTC(2021, 4, 17, 18, 0, 0)),
-    end: new Date(Date.UTC(2021, 4, 17, 18, 30, 0)),
+    start: new Date(Date.UTC(2021, 5, 15, 18, 0, 0)),
+    end: new Date(Date.UTC(2021, 5, 15, 18, 30, 0)),
     availableComputers: 3,
     unavailableComputers: 6,
     mentor: 'Liz',
     student: '',
     resourceId: 1,
+    checkedIn: true
   },
   {
     id: 1,

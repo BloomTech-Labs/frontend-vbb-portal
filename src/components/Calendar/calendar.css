@@ -30,6 +30,37 @@ body {
     margin: 0;
   }
 
+  #session-event-day-view  {
+    border: black 1px solid;
+    
+  }
+
+  #session-background-week-view {
+    background-color: #549bea;
+    color: white;
+  }
+  .resourceEvent {
+    color: white
+  }
+
+  #session-background-color-checked-in {
+    background-color: green;
+  }
+  #session-background-color-checked-in p {
+    background-color: green;
+    color: white;
+    font-size: 1em;
+    font-weight: bold
+  }
+
+  #session-background-color-pending-check-in {
+    background-color: orange
+  }
+  #session-background-color-not-checked-in {
+    background-color: red
+  }
+  
+
   .rbc-day-slot .rbc-events-container {
     margin: 0;
     display: flex;

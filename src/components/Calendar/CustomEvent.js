@@ -5,14 +5,17 @@ import { WarningOutlined } from '@ant-design/icons'
 export const customWeekViewEvent = data => {
     return (
         <div className='rbc-events-container'>
-            <p className='resourceEvent assignedComputers'>Available computers: {data.event.availableComputers}/{data.event.unavailableComputers + data.event.availableComputers}</p>        </div>
+            <p className='resourceEvent assignedComputers' id="session-background-week-view">Available computers: {data.event.availableComputers}/{data.event.unavailableComputers + data.event.availableComputers}</p>        </div>
     )
 }
+
+
 
 //mentor and student are currently hardcoded in data file
 export const customResourceViewEvent = data => {
     return (
-        <div className='rbc-events-container'>
+        <div className='rbc-events-container' id='session-background-color-checked-in'
+        >
             <p className='resourceEvent mentor'>Mentor: {data.event.mentor}</p>
             <p className='resourceEvent student'>Student: {data.event.student ? data.event.student: <span><WarningOutlined style={{ color: '#FF914C' }} /></span>}</p>
         </div>
