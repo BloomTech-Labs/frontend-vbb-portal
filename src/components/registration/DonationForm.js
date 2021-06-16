@@ -8,6 +8,8 @@ import {
 import { Alert, Spinner } from 'react-bootstrap';
 import axios from 'axios';
 
+import '../../less/index.less';
+
 class CheckoutForm extends React.Component {
   state = {
     data: null,
@@ -81,7 +83,7 @@ class CheckoutForm extends React.Component {
             disabled={loading}
             primary
             onClick={this.submit}
-            style={{ marginTop: '10px' }}
+            className="margin-top-10"
           >
             Submit
           </button>
