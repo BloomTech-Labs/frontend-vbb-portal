@@ -1,5 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 
+/**
+ * @param {function} fn
+ * @param {*} [initVal=null]
+ * @param {*} [initRes=null]
+ * @param {number} [delay=400]
+ */
 export const useDebounce = (
   fn,
   initVal = null,
