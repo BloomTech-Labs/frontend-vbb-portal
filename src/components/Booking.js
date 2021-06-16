@@ -7,6 +7,8 @@ import * as actions from '../redux/actions';
 
 import menteeComputer from '../images/vbb-mentee-computer.png';
 
+import '../less/index.less';
+
 class Booking extends React.Component {
   state = {
     libraries: [],
@@ -242,7 +244,7 @@ class Booking extends React.Component {
             </select>
             <br />
             <br />
-            {/* <br style={{ paddingBottom: "-10px" }} /> */}
+            {/* <br className="padding-bottom--10" /> */}
             {/* <input
               type="checkbox"
               id="mentor"
@@ -254,14 +256,14 @@ class Booking extends React.Component {
             {this.state.isReturning && (
               <div>
                 <label htmlFor="library">
-                  {/* style={{ paddingLeft: "50px" }} */}
+                  {/* className="padding-left-50" */}
                   Your Library:&nbsp;
                 </label>
                 <select
                   name="library"
                   id="library"
                   onChange={this.handleDropDownChange}
-                  style={{ marginTop: '0px' }}
+                  className="margin-top-0"
                 >
                   <option value="0">Select from Available Libraries:</option>
                   {this.state.libraries &&
@@ -385,7 +387,7 @@ class Booking extends React.Component {
           src={menteeComputer}
           id="booking-picture"
           alt="Pic"
-          style={{ width: '600px', margin: '5vw' }}
+          className="width-600 margin-5vw"
         />
       </div>
     );

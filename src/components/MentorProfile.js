@@ -1,5 +1,7 @@
 import React from 'react';
 
+import '../less/index.less';
+
 function MentorProfile() {
   return (
     <div>
@@ -7,8 +9,8 @@ function MentorProfile() {
         <div>
           <br />
           <hr />
-          <h2 style={{ color: '#4C4C49' }}>My Info</h2>
-          <h3 style={{ color: '#FF914D' }}>Account-Related</h3>
+          <h2 className="color-4C4C49">My Info</h2>
+          <h3 className="color-FF914D">Account-Related</h3>
           <p>
             Name (first and last)
             <br />
@@ -18,7 +20,7 @@ function MentorProfile() {
             <br />
             Change Password
           </p>
-          <h3 style={{ color: '#549BEA' }}>Mentor-Related</h3>
+          <h3 className="color-549BEA">Mentor-Related</h3>
           <p>
             My Languages
             <br />

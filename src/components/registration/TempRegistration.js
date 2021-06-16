@@ -12,10 +12,12 @@ import Address from './step2SubComponents/Address';
 import IsAdult from './step2SubComponents/IsAdult';
 import UserType from './step1SubComponents/UserType';
 
+import '../../less/index.less';
+
 const TempRegistration = ({ subUserRegistration, history }) => {
     return (
         <div>
-            <Row justify="center" style={{ margin: '1rem 0' }}>
+            <Row justify="center" className="margin-1rem-0">
                 <h1>User Registration</h1>
             </Row>
             <Row justify="center">
@@ -31,12 +33,12 @@ const TempRegistration = ({ subUserRegistration, history }) => {
                         <IsAdult />
                         <UserType />
                         <Button
-                            style={{ marginRight: '10px' }}
+                            className="margin-right-10"
                             type="button"
                             onClick={() => {
                                 subUserRegistration(history);
                             }}
-                            >
+                        >
                             Register
                             <CheckOutlined />
                         </Button>

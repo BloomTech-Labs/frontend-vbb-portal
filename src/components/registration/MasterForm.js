@@ -11,30 +11,35 @@ import Step3 from './Step3';
 import Step4 from './Step4';
 import ProgressBar from './ProgressBar';
 
+import '../../less/index.less';
+
 const MasterForm = ({
   registerForNewsletter,
   subUserRegistration,
   history,
 }) => {
-  let [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(0);
 
-  const next = () => {
-    window.scrollTo(0, 0);
-    currentStep = currentStep === 4 ? 4 : currentStep + 1;
+  // allows users to navigate form by selecting individual steps
+  const onChange = (currentStep) => {
     setCurrentStep(currentStep);
   };
 
+  const next = () => {
+    window.scrollTo(0, 0);
+    setCurrentStep(currentStep === 4 ? 4 : currentStep + 1);
+  };
+
   const back = () => {
-    currentStep = currentStep <= 1 ? 1 : currentStep - 1;
-    setCurrentStep(currentStep);
+    setCurrentStep(currentStep <= 1 ? 1 : currentStep - 1);
   };
 
   const backButton = () => {
     if (currentStep === 2 || currentStep === 3) {
       return (
-        <Button style={{ marginRight: '10px' }} type="button" onClick={back}>
+        <Button className="margin-right-10" type="button" onClick={back}>
           <LeftOutlined />
-          Back
+          Previous
         </Button>
       );
     }
@@ -46,7 +51,7 @@ const MasterForm = ({
       case 1:
         return (
           <Button
-            style={{ marginRight: '10px' }}
+            className="margin-right-10"
             type="button"
             onClick={() => {
               //@todo: how do we handle previously submitted user?
@@ -61,7 +66,7 @@ const MasterForm = ({
 
       case 2:
         return (
-          <Button style={{ marginRight: '10px' }} type="button" onClick={next}>
+          <Button className="margin-right-10" type="button" onClick={next}>
             Next
             <RightOutlined />
           </Button>
@@ -75,7 +80,7 @@ const MasterForm = ({
     if (currentStep === 3) {
       return (
         <Button
-          style={{ marginRight: '10px' }}
+          className="margin-right-10"
           type="button"
           onClick={() => {
             subUserRegistration(history);
@@ -92,8 +97,8 @@ const MasterForm = ({
   return (
     <div>
       {currentStep < 4 ? (
-        <div style={{ margin: '0 0 25px 0' }}>
-          <ProgressBar currentStep={currentStep} />
+        <div className="margin-0 margin-bottom-25">
+          <ProgressBar currentStep={currentStep} onChange={onChange} />
         </div>
       ) : (
         <div></div>
