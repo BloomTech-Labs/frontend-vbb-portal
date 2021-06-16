@@ -35,7 +35,12 @@ export const ProgressBar = (props) => {
   return (
     <Card style={{ marginBottom: '50px' }}>
       <div>{pageTitle()}</div>
-      <Steps style={{}} responsive="true">
+      <Steps
+        style={{}}
+        current={props.currentStep}
+        onChange={props.onChange}
+        responsive="true"
+      >
         <Step status="wait" title="Step 1" icon={<IdcardOutlined />} />
         <Step
           status={progressBarStatus(2)}
