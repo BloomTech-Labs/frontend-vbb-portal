@@ -5,9 +5,9 @@ import {
 } from '../actions';
 
 const initialState = {
-  menteeFormData: [],
   isPosting: false,
-  error: '',
+  error: null,
+  response: null,
 };
 
 const menteeRegistrationReducer = (state = initialState, actions) => {
@@ -16,13 +16,12 @@ const menteeRegistrationReducer = (state = initialState, actions) => {
       return {
         ...state,
         isPosting: true,
-        menteeFormData: [...state.menteeFormData, actions.payload],
       };
     case POST_FORM_DATA_SUCCESS:
       return {
         ...state,
         isPosting: false,
-        menteeFormData: actions.payload,
+        response: actions.payload,
       };
     case POST_FORM_DATA_FAIL:
       return {

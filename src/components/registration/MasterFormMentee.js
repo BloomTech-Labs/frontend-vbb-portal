@@ -1,74 +1,78 @@
-import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../redux/actions';
-import { withRouter } from 'react-router';
-import { Form, Tooltip, Input, Button } from 'antd';
+import {
+  setModalConfig,
+  closeModal,
+  registerMentee,
+} from '../../redux/actions';
+import { Form, Input } from 'antd';
 
-const MasterFormMentee = (props) => {
-  const [student, setStudent] = React.useState(props.user);
-  const changeHandler = (e) => {
-    e.persist();
-    setStudent({
-      ...student,
-      [e.target.name]: e.target.value,
+const layout = {
+  labelCol: { span: 8 },
+  wrapperCol: { span: 16 },
+};
+
+const MasterFormMentee = ({ setModalConfig, closeModal, registerMentee }) => {
+  const [form] = Form.useForm();
+
+  useEffect(() => {
+    setModalConfig({
+      footer: undefined,
+      onOk: () => {
+        form
+          .validateFields()
+          .then((values) => {
+            registerMentee({ ...values, user_type: 'student' });
+            closeModal();
+          })
+          .catch(() => {});
+      },
+      onCancel: () => closeModal(),
+      okText: 'Submit',
     });
-    validateChange(e);
-  };
+  }, []);
+
   return (
-    <Form className="StudentInfoForm">
-      <label className="label">
-        First Name
-        <br></br>
-        <input
-          name="first_name"
-          onChange={changeHandler}
-          value=""
-          placeholder="First Name"
-        />
-      </label>
-      <label className="label">
-        Last Name
-        <br></br>
-        <input
-          name="last_name"
-          onChange={changeHandler}
-          value=""
-          placeholder="Last Name"
-        />
-      </label>
-      <br></br>
-      <label className="label">
-        Date of Birth
-        <br></br>
-        <input
-          name="date_of_birth"
-          onChange={changeHandler}
-          value=""
-          placeholder="Date of Birth"
-        />
-      </label>
-      <label className="label">
-        Personal Email
-        <br></br>
-        <input
-          name="personal_email"
-          onChange={changeHandler}
-          value=""
-          placeholder="Email"
-        />
-      </label>
-      <label className="label">
-        Location
-        <br></br>
-        <input
-          name="city"
-          onChange={changeHandler}
-          value=""
-          placeholder="City Name"
-        />
-      </label>
-      <Button>Save</Button>
+    <Form className="StudentInfoForm" {...layout} form={form}>
+      <Form.Item
+        name="first_name"
+        label="First Name"
+        rules={[{ required: true, message: 'First Name Required' }]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        name="last_name"
+        label="Last Name"
+        rules={[{ required: true, message: 'Last Name Required' }]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        name="date_of_birth"
+        label="Date of Birth"
+        rules={[{ required: true, message: 'DOB Required' }]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        name="personal_email"
+        label="Personal Email"
+        rules={[{ required: true, message: 'Email Required' }]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        name="city"
+        label="Location"
+        rules={[{ required: true, message: 'Location Required' }]}
+      >
+        <Input />
+      </Form.Item>
     </Form>
   );
 };
-export default withRouter(connect(null, actions)(MasterFormMentee));
+
+export default connect(null, { setModalConfig, closeModal, registerMentee })(
+  MasterFormMentee
+);
