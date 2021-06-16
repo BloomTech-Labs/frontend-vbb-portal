@@ -49,16 +49,6 @@ const columns = [
       render: text => <a>{text}</a>
     },
     {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-    },
-    {
       title: 'Tags',
       key: 'tags',
       dataIndex: 'tags',
@@ -87,16 +77,6 @@ const columns = [
             );
           })}
         </>
-      ),
-    },
-    {
-      title: 'Action',
-      key: 'action',
-      render: (text, record) => (
-        <Space size="middle">
-          <a>Edit</a>
-          <a>Deactivate</a>
-        </Space>
       ),
     },
 ];
