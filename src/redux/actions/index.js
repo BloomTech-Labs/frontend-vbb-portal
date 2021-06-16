@@ -14,3 +14,4 @@ export * from '../User.redux/User.actions';
 export * from '../Registration.redux/Registration.actions';
 export * from '../Newsletter.redux/Newsletter.actions';
 export * from '../MenteeRegistration.redux/MenteeRegistration.actions';
+export * from '../Modal.redux/Modal.actions';

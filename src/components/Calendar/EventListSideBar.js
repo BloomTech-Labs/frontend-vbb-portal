@@ -1,5 +1,3 @@
-import { check } from 'prettier';
-import React from 'react';
 import { events } from './data';
 
 import Event from './Event';
