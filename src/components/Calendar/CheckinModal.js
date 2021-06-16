@@ -74,18 +74,6 @@ const CheckinModal = (props) => {
               <strong>Computer: </strong> 
               {props.details.resourceId}
             </p>
-          {/* <Button
-            type={checkedIn ? 'primary' : ''}
-            icon={checkedIn ? <CheckCircleTwoTone twoToneColor="primary" /> : ''}
-            shape={'round'}
-            onClick={handleCheckIn}
-          >
-            {
-                checkedIn 
-                ? 'Student is Checked-in'
-                : 'Check-in Student'
-            }
-          </Button> */}
           <Switch
             checked={checkedIn} 
             checkedChildren="Student Checked In" unCheckedChildren="Check-in Student"
