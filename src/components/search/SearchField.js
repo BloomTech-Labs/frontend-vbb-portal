@@ -35,7 +35,7 @@ const SearchField = ({ setToggle, results, createModal }) => {
           Need to register a new student? Click{' '}
           <span onClick={() => createModal(<MenteeForm />)}>
             {' '}
-            <strong>here</strong>{' '}
+            <strong className="color-FF914D">here</strong>{' '}
           </span>
           to register.
         </p>
