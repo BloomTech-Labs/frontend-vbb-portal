@@ -48,8 +48,6 @@ let components = {
 
 const MyCalendar = props => {
 
-  console.log(props)
-
   const [showWeekView, setShowWeekView] = useState(true)
   const [showCalendar, setShowCalendar] = useState(true)
   const [dragSelected, setDragSelected] = useState({
@@ -118,7 +116,6 @@ const MyCalendar = props => {
         resourceId: e.resourceId,
         title: e.title
       })
-      console.log(e)
       showModal()
     }
   }
