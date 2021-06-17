@@ -8,7 +8,6 @@ const layout = {
 };
 
 const StudentInfoEdit = ({ form, initialValues }) => {
-  console.log(form);
   return (
     <Form
       name="edit_form"
