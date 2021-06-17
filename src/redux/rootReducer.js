@@ -8,6 +8,7 @@ import { sessionSlot } from './SessionSlot.redux/SessionSlot.reducer';
 import { registrationForm } from './Registration.redux/RegistrationForm.reducer';
 import { modal } from './Modal.redux/Modal.reducer';
 import { editUser } from './StudentEdit.redux/StudentEdit.reducer';
+import { searchBarReducer } from './SearchBar.redux/SearchBar.reducer';
 import menteeRegistration from './MenteeRegistration.redux/MenteeRegistration.reducer';
 
 /**
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   registrationForm,
   modal,
   editUser,
+  searchBarReducer,
   menteeRegistration,
 });
 

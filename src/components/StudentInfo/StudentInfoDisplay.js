@@ -24,7 +24,7 @@ const StudentInfoDisplay = (props) => {
             <p>
               Location:{' '}
               <a
-                href={`http://maps.google.com/maps?q= ${props.user.city}`}
+                href={`https://maps.google.com/maps?q=${props.user.city}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >

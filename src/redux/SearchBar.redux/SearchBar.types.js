@@ -1,0 +1,2 @@
+export const SEARCH_FILTER = 'SEARCH_FILTER';
+export const RECIEVE_FILTER = 'RECIEVE_FILTER';
