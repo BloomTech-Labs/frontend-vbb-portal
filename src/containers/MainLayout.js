@@ -6,6 +6,8 @@ import Routes from './Routes';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 
+import '../less/index.less';
+
 const MainLayout = () => {
   const { Content } = Layout;
 
@@ -14,21 +16,20 @@ const MainLayout = () => {
       <Layout>
         <NavBar />
         <Content
-          className="site-layout"
-          style={{ padding: '50px', marginTop: 64, backgroundColor: '#fffff6' }}
+          className="margin-top-200 padding-50 background-color-FFFFF6"
         >
-          <Breadcrumb style={{ margin: '16px 0' }}>
+          <Breadcrumb className="margin-16-0">
             <Breadcrumb.Item>
               <Link to="/">Village Portal</Link>
             </Breadcrumb.Item>
             <Breadcrumb.Item>
-              <Link to="/signup">Mentor Registration</Link>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>
               <Link to="/calendar/">Calendar</Link>
             </Breadcrumb.Item>
+            <Breadcrumb.Item>
+              <Link to="/admin/">Admin</Link>
+            </Breadcrumb.Item>
           </Breadcrumb>
-          <div style={{ padding: 24, minHeight: 380 }}>
+          <div className="padding-24 min-height-380">
             <Routes />
           </div>
         </Content>

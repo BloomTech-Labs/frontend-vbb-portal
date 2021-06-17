@@ -10,6 +10,9 @@ import SearchBar from './search/SearchBar';
 import fullLogo from '../images/vbb-full-logo.png';
 // import miniLogo from '../images/vbb-picture-logo.png';
 
+import '../less/index.less';
+import '../less/NavBar.less';
+
 /**
  * NavBar
  * Connected functional component
@@ -22,7 +25,7 @@ import fullLogo from '../images/vbb-full-logo.png';
 const NavBar = ({ history, authToken, logOut }) => {
   const signInSignOut = !authToken ? (
     <Link to="/signin" key="link-signin">
-      <Button key="0" style={{ marginTop: '15px', color: '#549bea' }}>
+      <Button key="0" className="margin-top-15 color-549BEA">
         Sign In
         <LoginOutlined />
       </Button>
@@ -32,7 +35,7 @@ const NavBar = ({ history, authToken, logOut }) => {
       <Link to="/" key="link-signout">
         <Button
           key="1"
-          style={{ marginTop: '15px', color: '#549bea' }}
+          className="margin-top-15 color-549BEA"
           onClick={logOut}
         >
           Sign Out
@@ -43,13 +46,7 @@ const NavBar = ({ history, authToken, logOut }) => {
   );
   return (
     <PageHeader
-      style={{
-        position: 'fixed',
-        zIndex: 1,
-        width: '100%',
-        height: '200px',
-        backgroundColor: '#ff914d',
-      }}
+      className="navbar-page-header width-100 height-200"
       title={
         <Link to="/" key="link-dashboard">
           <img
@@ -64,7 +61,7 @@ const NavBar = ({ history, authToken, logOut }) => {
         <Link to="/signup" key="link-signup">
           <Button type="primary" key="2">
             Register
-            <FormOutlined style={{ color: 'white' }} />
+            <FormOutlined className="color-white" />
           </Button>
         </Link>,
       ]}

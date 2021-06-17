@@ -11,24 +11,26 @@ import {
 } from '@ant-design/icons';
 import ActionPicture from '../../images/vbb-in-action.png';
 
+import '../../less/index.less';
+
 export const Step3 = (props) => {
   if (props.currentStep !== 2) {
     return null;
   }
 
   return (
-    <div style={{ paddingBottom: '25px' }}>
+    <div className="padding-bottom-25">
       <Row>
         <Col xs={24} sm={24} md={24} lg={16} xl={12}>
-          <List style={{ padding: '25px 0' }}>
-            <h3 style={{ padding: '0 0 25px 25px' }}>
+          <List className="padding-25-0">
+            <h3 className="padding-0-0-25-25">
               Just $5 / month will afford your mentee:
             </h3>
             <List.Item>
               <List.Item.Meta
                 avatar={
                   <Avatar
-                    style={{ backgroundColor: '#fffff6' }}
+                    className="background-color-FFFFF6"
                     icon={<SafetyOutlined />}
                   />
                 }
@@ -39,7 +41,7 @@ export const Step3 = (props) => {
               <List.Item.Meta
                 avatar={
                   <Avatar
-                    style={{ backgroundColor: '#fffff6' }}
+                    className="background-color-FFFFF6"
                     icon={<LaptopOutlined />}
                   />
                 }
@@ -50,7 +52,7 @@ export const Step3 = (props) => {
               <List.Item.Meta
                 avatar={
                   <Avatar
-                    style={{ backgroundColor: '#fffff6' }}
+                    className="background-color-FFFFF6"
                     icon={<WifiOutlined />}
                   />
                 }
@@ -61,7 +63,7 @@ export const Step3 = (props) => {
               <List.Item.Meta
                 avatar={
                   <Avatar
-                    style={{ backgroundColor: '#fffff6' }}
+                    className="background-color-FFFFF6"
                     icon={<SoundOutlined />}
                   />
                 }
@@ -72,7 +74,7 @@ export const Step3 = (props) => {
               <List.Item.Meta
                 avatar={
                   <Avatar
-                    style={{ backgroundColor: '#fffff6' }}
+                    className="background-color-FFFFF6"
                     icon={<BookOutlined />}
                   />
                 }
@@ -85,7 +87,7 @@ export const Step3 = (props) => {
           </Button>
         </Col>
         <Col xs={0} sm={0} md={0} lg={8} xl={12}>
-          <div style={{ padding: '0 10px' }}>
+          <div className="padding-0-10">
             <Image src={ActionPicture}></Image>
           </div>
         </Col>
