@@ -15,4 +15,5 @@ export * from '../Registration.redux/Registration.actions';
 export * from '../Newsletter.redux/Newsletter.actions';
 export * from '../MenteeRegistration.redux/MenteeRegistration.actions';
 export * from '../Modal.redux/Modal.actions';
+export * from '../StudentEdit.redux/StudentEdit.actions';
 export * from '../SearchBar.redux/SearchBar.actions';
