@@ -44,10 +44,12 @@ const ComputersList = (props) => {
                                             return <option key={i}>{student}</option>
                                         })}
                                     </select>
+                                <div style={{border: 'none', paddingTop: '.5rem', paddingBottom: '1rem'}}>
                                 <Switch
-                                    checked={false} 
-                                    checkedChildren="Student Checked In" unCheckedChildren="Check-in Student"
+                                    // checked={false} 
+                                    checkedChildren="Student Checked-in" unCheckedChildren="Check-in Student"
                                 />
+                                </div>
                                 </div>
                             </div>
                         )
