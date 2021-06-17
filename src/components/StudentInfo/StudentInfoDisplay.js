@@ -20,7 +20,7 @@ const StudentInfoDisplay = (props) => {
                 {props.user.personal_email}
               </a>
             </p>
-            <p>Cell: {props.user.phone}</p>
+            <p>Cell: <a href={`tel:${props.user.phone}`}>{props.user.phone}</a></p>
             <p>
               Location:{' '}
               <a
