@@ -2,7 +2,6 @@ import { useState, useCallback, useRef, useEffect } from 'react';
 import { Input } from 'antd';
 import { connect } from 'react-redux';
 import SearchField from './SearchField';
-import { searchUsers } from '../../mock-data/mockApi';
 import { searchFilterFunction } from '../../redux/SearchBar.redux/SearchBar.reducer';
 import { createModal } from '../../redux/actions';
 import StudentInfoModal from '../StudentInfo/StudentInfoModal';
@@ -12,22 +11,9 @@ import '../../less/index.less';
 
 const { Search } = Input;
 
-const LIMIT = 50;
-
-const search = (value) => {
-  const parts = value.split(':').map((e) => e.trim());
-  if (parts.length > 1) {
-    return searchUsers(parts[1], {
-      userTypes: [parts[0]],
-      limit: LIMIT,
-    });
-  }
-  return parts[0].length ? searchUsers(parts[0], { limit: LIMIT }) : {};
-};
-
-const SearchBar = ({ createModal, searchFilterFunction, value, results }) => {
+const SearchBar = ({ createModal, searchFilterFunction, results }) => {
   const [toggle, setToggle] = useState(false);
-  const [_, setValue] = useDebounce(searchFilterFunction, '', {});
+  const [, setValue] = useDebounce(searchFilterFunction, '', {});
 
   const clickAwayRef = useRef();
 
@@ -45,7 +31,7 @@ const SearchBar = ({ createModal, searchFilterFunction, value, results }) => {
   }, [handleClickOutside]);
 
   const handlePressEnter = () => {
-    const user = Object.values(result)?.[0]?.[0];
+    const user = Object.values(results)?.[0]?.[0];
     if (user) {
       createModal(<StudentInfoModal user={user} />);
     }
@@ -61,8 +47,6 @@ const SearchBar = ({ createModal, searchFilterFunction, value, results }) => {
           onChange={(e) => setValue(e.target.value)}
           onClick={() => setToggle(true)}
           onPressEnter={handlePressEnter}
-          value={value}
-          allowClear
         />
         {toggle && <SearchField results={results} setToggle={setToggle} />}
       </div>
