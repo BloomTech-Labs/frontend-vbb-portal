@@ -1,4 +1,5 @@
 import {React, Component} from 'react';
+import AddUserForm from './AddUserForm';
 import {
   Table,
   Tag,
@@ -168,10 +169,10 @@ const tailLayout = {
   wrapperCol: { offset: 10, span: 16 },
 };
 /*End Form Styling*/
-
 const Admin = props => {
     return(
         <>
+            <AddUserForm />
             <Table 
               columns={columns} 
               expandable={{
