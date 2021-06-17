@@ -29,7 +29,6 @@ function EventListSideBar({ showModal, setClickSelected }) {
     }
   });
 
-  console.log('help', checkedIns);
   return (
     <div className="sidebar-container">
       <h4>Today's Sessions</h4>

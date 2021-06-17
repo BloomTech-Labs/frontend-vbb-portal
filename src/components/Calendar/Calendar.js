@@ -67,7 +67,6 @@ const MyCalendar = (props) => {
   // State to manage visibility of event Modal
 
   const [isModalVisiable, setIsModalVisible] = useState(false);
-  console.log(isModalVisiable);
 
   const showModal = () => {
     setIsModalVisible(true);
