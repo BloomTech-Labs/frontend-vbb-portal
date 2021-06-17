@@ -57,6 +57,7 @@ const SearchBar = ({ createModal }) => {
         <Search
           type="text"
           enterButton="Search"
+          allowClear
           onChange={(e) => setValue(e.target.value)}
           onClick={() => setToggle(true)}
           onPressEnter={handlePressEnter}
