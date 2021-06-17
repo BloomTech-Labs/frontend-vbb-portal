@@ -7,6 +7,8 @@ import { searchUsers } from '../../mock-data/mockApi';
 import { createModal } from '../../redux/actions';
 import StudentInfoModal from '../StudentInfo/StudentInfoModal';
 
+import '../../less/index.less';
+
 const { Search } = Input;
 
 const LIMIT = 50;
@@ -57,13 +59,8 @@ const SearchBar = ({ createModal }) => {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-      }}
-    >
-      <div ref={clickAwayRef} style={{ width: '80%' }}>
+    <div className="flex justify-center">
+      <div ref={clickAwayRef} className="width-80">
         <Search
           type="text"
           enterButton="Search"

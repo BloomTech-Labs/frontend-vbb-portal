@@ -9,7 +9,9 @@ const ComputersList = (props) => {
 
     const [assigned, setAssigned] = useState({
         mentor: false,
-        student: false
+        student: false,
+        startTime: false,
+        endTime: false
     })
 
     const newList = []
@@ -65,6 +67,7 @@ const ComputersList = (props) => {
             </div>
             <div className='buttons-container'>
                 <button className='scheduler-button'>Submit</button>
+                <button className='scheduler-button'>Edit</button>
                 <button className='scheduler-button' onClick={() => {
                     props.setShowWeekView(true)
                     props.setShowCalendar(!props.showCalendar);

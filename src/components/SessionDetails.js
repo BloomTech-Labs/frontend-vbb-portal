@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { getDateStr } from '../helpers';
 import * as actions from '../redux/actions';
 
+import '../less/index.less';
+
 // values in store
 // id: responseData.id,
 // display: responseData.display,
@@ -57,8 +59,7 @@ class SessionDetails extends PureComponent {
     return (
       <div className="cream-bg">
         <div
-          className="session-details-card col-card mx-auto p-4"
-          style={{ borderRadius: '30px' }}
+          className="session-details-card col-card mx-auto p-4 border-radius-30"
         >
           {!this.state.unbookConfirmation ? (
             <>
@@ -123,7 +124,7 @@ class SessionDetails extends PureComponent {
                   className="btn btn-light applychanges-btn"
                   disabled={!this.state.readyToApplyChanges}
                   onClick={this.onApplyChanges}
-                  // FIXME - Make call to end date and mentor notes updater api
+                // FIXME - Make call to end date and mentor notes updater api
                 >
                   APPLY CHANGES
                 </button>
@@ -133,7 +134,7 @@ class SessionDetails extends PureComponent {
             </>
           ) : (
             <>
-              <h5 style={{ paddingLeft: '20%' }}>Sure you want to unbook?</h5>
+              <h5 className="padding-left-20pct">Sure you want to unbook?</h5>
               <div className="d-block px-4 py-2 mb-4">
                 <label>
                   Have you communicated with your mentee and with your mentor
@@ -148,7 +149,7 @@ class SessionDetails extends PureComponent {
                   }}
                   value={this.state.didCommunicate}
                 >
-                  <option value="" style={{ display: 'none' }}></option>
+                  <option value="" className="display-none"></option>
                   <option value="yes">Yes</option>
                   <option value="no">No</option>
                 </select>
@@ -168,7 +169,7 @@ class SessionDetails extends PureComponent {
                   }}
                   value={this.state.proceedToUnbook}
                 >
-                  <option value="" style={{ display: 'none' }}></option>
+                  <option value="" className="display-none"></option>
 
                   <option value="yes">Yes</option>
                   <option value="no">No</option>
@@ -194,7 +195,7 @@ class SessionDetails extends PureComponent {
                   }
                   // onClick={this.submitUnbookRequest}
                   onClick={this.onUnbookRequest}
-                  // FIXME - Make call to unbooking api
+                // FIXME - Make call to unbooking api
                 >
                   REQUEST UNBOOKING
                 </button>

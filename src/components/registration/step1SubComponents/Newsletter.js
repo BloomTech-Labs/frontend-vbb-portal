@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import * as actions from '../../../redux/actions';
 import { Form, Checkbox } from 'antd';
 
+import '../../../less/index.less';
+
 const Newsletter = ({ registrationForm, setRegistrationForm }) => {
   return (
     <Form.Item>
       <Checkbox
-        style={{ borderRadius: '10px' }}
+        className="border-radius-10"
         checked={registrationForm.subToNewsLetter}
         onChange={(e) => {
           const updatedRegForm = {

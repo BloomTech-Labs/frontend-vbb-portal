@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import { Card } from 'antd';
 
-import '../../less/Modal.less';
+import '../../less/index.less';
+// import '../../less/Modal.less';
+
 import SearchResultsList from './SearchResultsList';
 
 //setting up perma features first
@@ -19,14 +21,7 @@ const features = [
 const SearchField = ({ setToggle, results }) => {
   return (
     <Card
-      style={{
-        backgroundColor: 'rgba(255,255,255,2.5)',
-        width: '100%',
-        margin: '0',
-        overflow: 'hidden',
-        overflowY: 'scroll',
-        maxHeight: '40vh',
-      }}
+      className="width-100 margin-0 overflow-hidden overflow-Y-scroll background-color-rgba-255-255-255-2_5 max-height-40vh"
     >
       {!!results.student?.length && (
         <SearchResultsList title="Students" results={results.student} />
@@ -47,7 +42,7 @@ const SearchField = ({ setToggle, results }) => {
       {features.map((feature) => (
         <Link
           key={feature.name}
-          style={{ margin: '5px' }}
+          className="margin-5"
           to={`${feature.url}`}
           onClick={() => setToggle(false)}
         >

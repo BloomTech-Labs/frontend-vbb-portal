@@ -8,7 +8,7 @@
     "build-demo": "dotenv -e demo.env craco build",
     "eject": "react-scripts eject",
     "lint": "eslint .",
-    "dev": "nodemon -w craco.config.js -w ./style.less --exec \"craco start\"",
+    "dev": "nodemon --exec \"craco start --incremental\"",
     "start": "craco start",
     "test": "craco test"
   },
@@ -43,12 +43,13 @@
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^13.0.16",
+    "@types/babel__core": "^7.1.14",
     "eslint": "^7.27.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-react": "^7.24.0",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
-    "typescript": "^4.2.3",
+    "typescript": "^4.3.2",
     "webpackbar": "^5.0.0-3"
   },
   "eslintConfig": {
@@ -56,6 +57,18 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "nodemonConfig": {
+    "ext": "js,ts,less,css,json,env",
+    "ignore": [
+      ".circleci/*",
+      ".github/*",
+      ".vscode/*",
+      "build/*",
+      "examples/*",
+      "node_modules/*"
+    ],
+    "delay": "500"
   },
   "browserslist": {
     "production": [
