@@ -195,21 +195,27 @@ class Student extends React.Component {
             >
               <a
                 className="card-image-link"
-                href="https://www.facebook.com/VillageBookBuilders/"
+                href="https://www.villagebookbuilders.org/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Card.Img
                   variant="top"
-                  src={Facebook}
-                  alt="Village Facebook"
-                  // style={{ maxWidth: '250px', height: 'auto' }}
+                  src={Website}
+                  alt="Home Website"
+                  // style={{ maxWidth: 'auto', height: 'auto' }}
                 />
               </a>
               <Card.Body>
-                <Card.Title>Village Facebook</Card.Title>
+                <Card.Title>Village Home Website</Card.Title>
                 <Card.Text>
-                  <small></small>
+                  <small>
+                    We are a non-profit organization EMPOWERING villages around
+                    the world to end the cycle of poverty through EDUCATION.
+                    Education plays a big role in the development of a community
+                    and BUILDING a library is just the first step towards
+                    creating a space dedicated to LEARNING
+                  </small>
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -254,26 +260,23 @@ class Student extends React.Component {
             >
               <a
                 className="card-image-link"
-                href="https://www.villagebookbuilders.org/"
+                href="https://www.facebook.com/VillageBookBuilders/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Card.Img
                   variant="top"
-                  src={Website}
-                  alt="Home Website"
-                  // style={{ maxWidth: 'auto', height: 'auto' }}
+                  src={Facebook}
+                  alt="Village Facebook"
+                  // style={{ maxWidth: '250px', height: 'auto' }}
                 />
               </a>
               <Card.Body>
-                <Card.Title>Village Home Website</Card.Title>
+                <Card.Title>Village Facebook</Card.Title>
                 <Card.Text>
                   <small>
-                    We are a non-profit organization EMPOWERING villages around
-                    the world to end the cycle of poverty through EDUCATION.
-                    Education plays a big role in the development of a community
-                    and BUILDING a library is just the first step towards
-                    creating a space dedicated to LEARNING
+                    Connect with Village Book Builders and stay up to date on
+                    the latest news, events and community activities.
                   </small>
                 </Card.Text>
               </Card.Body>
