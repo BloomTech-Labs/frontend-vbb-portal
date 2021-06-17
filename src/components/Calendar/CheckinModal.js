@@ -13,8 +13,6 @@ const CheckinModal = (props) => {
         )
     }
 
-    console.log(props.details)
-
     const handleOk = () => {
         props.setIsModalVisible(false);
       };
@@ -35,7 +33,7 @@ const CheckinModal = (props) => {
             ...props.details,
             checkedIn: !props.details.checkedIn
         })
-        console.log(props.details)
+        
     }
 
 
