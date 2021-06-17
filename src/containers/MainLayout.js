@@ -25,6 +25,9 @@ const MainLayout = () => {
             <Breadcrumb.Item>
               <Link to="/calendar/">Calendar</Link>
             </Breadcrumb.Item>
+            <Breadcrumb.Item>
+              <Link to="/admin/">Admin</Link>
+            </Breadcrumb.Item>
           </Breadcrumb>
           <div className="padding-24 min-height-380">
             <Routes />
