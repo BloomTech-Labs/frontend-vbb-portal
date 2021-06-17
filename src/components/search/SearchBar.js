@@ -1,40 +1,21 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { Input } from 'antd';
 import { connect } from 'react-redux';
-
 import SearchField from './SearchField';
 import { searchUsers } from '../../mock-data/mockApi';
+import { searchFilterFunction } from '../../redux/SearchBar.redux/SearchBar.reducer';
 import { createModal } from '../../redux/actions';
 import StudentInfoModal from '../StudentInfo/StudentInfoModal';
 
 const { Search } = Input;
 
-const LIMIT = 50;
-
 const SearchBar = ({ createModal }) => {
-  const [value, setValue] = useState('');
   const [toggle, setToggle] = useState(false);
-  const [results, setResults] = useState({});
-
   const clickAwayRef = useRef();
 
   useEffect(() => {
-    if (value.length) {
-      const parts = value.split(':').map((e) => e.trim());
-      if (parts.length > 1) {
-        searchUsers(parts[1], {
-          userTypes: [parts[0]],
-          limit: LIMIT,
-        }).then((data) => setResults(data));
-      } else {
-        searchUsers(parts[0], { limit: LIMIT }).then((data) =>
-          setResults(data)
-        );
-      }
-    } else {
-      setResults({});
-    }
-  }, [value]);
+    searchFilterFunction();
+  }, [props.value]);
 
   const handleClickOutside = useCallback((event) => {
     if (!clickAwayRef.current?.contains(event.target)) {
@@ -50,7 +31,7 @@ const SearchBar = ({ createModal }) => {
   }, [handleClickOutside]);
 
   const handlePressEnter = () => {
-    const user = Object.values(results)?.[0]?.[0];
+    const user = Object.values(props.results)?.[0]?.[0];
     if (user) {
       createModal(<StudentInfoModal user={user} />);
     }
@@ -67,14 +48,27 @@ const SearchBar = ({ createModal }) => {
         <Search
           type="text"
           enterButton="Search"
-          onChange={(e) => setValue(e.target.value)}
+          onChange={(e) => searchFilterFunction(e.target.value)}
           onClick={() => setToggle(true)}
           onPressEnter={handlePressEnter}
         />
-        {toggle && <SearchField results={results} setToggle={setToggle} />}
+        {toggle && (
+          <SearchField results={props.results} setToggle={setToggle} />
+        )}
       </div>
     </div>
   );
 };
 
-export default connect(null, { createModal })(SearchBar);
+function mapStateToProps(state) {
+  return {
+    value: state.value,
+    results: state.results,
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  { searchFilterFunction },
+  { createModal }
+)(SearchBar);
