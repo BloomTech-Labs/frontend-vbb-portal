@@ -1,34 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'antd';
+import { Button, Form } from 'antd';
 
 import StudentInfoDisplay from './StudentInfoDisplay';
 import StudentInfoEdit from './StudentInfoEdit';
 import { setModalConfig } from '../../redux/actions';
-import { editUser } from '../../redux/StudentEdit.redux/StudentEdit.actions';
+import { editUser } from '../../redux/actions';
 
 const StudentInfoModal = ({ user, setModalConfig, editUser }) => {
   const [editing, setEditing] = useState(false);
-  const [changes, setChanges] = React.useState(user);
-  console.log(changes);
 
-  const changeHandler = (e) => {
-    setChanges({
-      ...changes,
-      [e.target.name]: e.target.value,
+  const [form] = Form.useForm();
+
+  const onSubmit = () => {
+    form.validateFields().then((values) => {
+      console.log('values', values);
+      editUser(user.id, values);
+      setEditing(false);
     });
-  };
-
-  const onSubmit = (changes) => {
-    editUser(changes);
-    setEditing(false);
   };
 
   useEffect(() => {
     if (editing) {
       setModalConfig({
-        footer: undefined, // tells BaseModal to use antd's default footer, instead of no footer
-        onOk: () => onSubmit(changes), //replace with appropriate redux actions to submit changes
+        footer: undefined,
+        onOk: onSubmit,
         onCancel: () => setEditing(false),
         okText: 'Submit',
       });
@@ -37,10 +33,10 @@ const StudentInfoModal = ({ user, setModalConfig, editUser }) => {
         footer: <Button onClick={() => setEditing(true)}>Edit</Button>,
       });
     }
-  }, [editing, changes]);
+  }, [editing]);
 
   return editing ? (
-    <StudentInfoEdit user={changes} changeHandler={changeHandler} />
+    <StudentInfoEdit form={form} initialValues={user} />
   ) : (
     <StudentInfoDisplay user={user} />
   );
