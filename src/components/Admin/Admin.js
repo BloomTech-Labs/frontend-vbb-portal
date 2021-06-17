@@ -1,4 +1,4 @@
-import {React, Component} from 'react';
+import {React, Component, useState} from 'react';
 import AddUserForm from './AddUserForm';
 import {
   Table,
@@ -168,11 +168,23 @@ const layout = {
 const tailLayout = {
   wrapperCol: { offset: 10, span: 16 },
 };
+
+const buttonLayout = {
+  wrapperCol: { offset: 12, span: 16 },
+};
 /*End Form Styling*/
 const Admin = props => {
+    const [show, setShow] = useState(true)
+    const onClick = () => setShow(!show)
     return(
         <>
-            <AddUserForm />
+            <Form.Item {...buttonLayout}>
+              <Button onclick = {onClick}
+                type = "primary"
+                onClick = {onClick}
+              > Create New User</Button>
+            </Form.Item>
+            { show ? <AddUserForm/> : null}
             <Table 
               columns={columns} 
               expandable={{

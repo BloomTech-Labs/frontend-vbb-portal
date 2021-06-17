@@ -20,14 +20,8 @@ const buttonLayout = {
 /*End Form Styling*/
 const AddUserForm = props => {
     return(
-        <>
-            <Form.Item {...buttonLayout}>
-                <Button
-                    type = "primary" 
-                    htmlType="submit"
-                >Create New User</Button>
-            </Form.Item>
-            <Form 
+        <div>
+            <Form
                 {...layout}
                 name= "basic">
                 <Form.Item
@@ -58,7 +52,7 @@ const AddUserForm = props => {
                 </Form.Item>
             </Form>
             <Divider />
-        </>
+        </div>
     )
 }
 
