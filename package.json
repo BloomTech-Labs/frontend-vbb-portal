@@ -19,6 +19,7 @@
     "@stripe/stripe-js": "^1.13.2",
     "antd": "^4.15.0",
     "axios": "^0.21.1",
+    "craco": "^0.0.3",
     "craco-antd": "^1.19.0",
     "date-fns": "^2.21.1",
     "dayjs": "^1.10.4",
@@ -60,7 +61,14 @@
   },
   "nodemonConfig": {
     "ext": "js,ts,less,css,json,env",
-    "ignore": [".circleci/*", ".github/*", ".vscode/*", "build/*", "examples/*", "node_modules/*"],
+    "ignore": [
+      ".circleci/*",
+      ".github/*",
+      ".vscode/*",
+      "build/*",
+      "examples/*",
+      "node_modules/*"
+    ],
     "delay": "500"
   },
   "browserslist": {
