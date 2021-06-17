@@ -8,6 +8,7 @@ import { sessionSlot } from './SessionSlot.redux/SessionSlot.reducer';
 import { registrationForm } from './Registration.redux/RegistrationForm.reducer';
 import { modal } from './Modal.redux/Modal.reducer';
 import { editUser } from './StudentEdit.redux/StudentEdit.reducer';
+import menteeRegistration from './MenteeRegistration.redux/MenteeRegistration.reducer';
 
 /**
  * Exports all reducers as a single combined reducer
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   registrationForm,
   modal,
   editUser,
+  menteeRegistration,
 });
 
 export default rootReducer;
