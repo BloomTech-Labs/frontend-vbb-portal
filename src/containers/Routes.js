@@ -28,6 +28,9 @@ const Routes = () => {
         <Route exact path="/signup/">
           <MasterForm />
         </Route>
+        <Route exact path="/mentor/">
+          <MasterForm />
+        </Route>
         <Route exact path="/sessiondetails/:sessionid/">
           <SessionDetails />
         </Route>
