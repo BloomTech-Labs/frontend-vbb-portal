@@ -23,10 +23,10 @@ const MainLayout = () => {
               <Link to="/">Village Portal</Link>
             </Breadcrumb.Item>
             <Breadcrumb.Item>
-              <Link to="/signup">Mentor Registration</Link>
+              <Link to="/calendar/">Calendar</Link>
             </Breadcrumb.Item>
             <Breadcrumb.Item>
-              <Link to="/calendar/">Calendar</Link>
+              <Link to="/admin/">Admin</Link>
             </Breadcrumb.Item>
           </Breadcrumb>
           <div className="padding-24 min-height-380">
