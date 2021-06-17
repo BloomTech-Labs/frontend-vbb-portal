@@ -1,133 +1,56 @@
-import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Modal, Card } from 'antd';
+import { Card } from 'antd';
 
-import useModal from '../Modal/useModal';
-import SearchModalContent from '../Modal/SeachModalFragment';
-import data from '../search-bar/MOCK_DATA.json';
+import '../../less/index.less';
+// import '../../less/Modal.less';
 
-const SearchField = ({ value }) => {
-  //state variables
-  const [toggle, setToggle] = useState(false);
-  const [options, setOptions] = useState([]);
-  const [list, setList] = useState([]);
-  //custom hooks
-  const { isVisible, selectedUser, toggleModal } = useModal(Modal);
+import SearchResultsList from './SearchResultsList';
 
-  const filterData = (value, options) => {
-    if (!value?.name?.length) {
-      return [];
-    }
-    const searchTerm = value.name.toLowerCase();
-    return options
-      .filter((e) => {
-        if (
-          searchTerm.length <= e.first_name.length &&
-          searchTerm === e.first_name.slice(0, searchTerm.length).toLowerCase()
-        ) {
-          return true;
-        }
-        if (
-          searchTerm.length <= e.last_name.length &&
-          searchTerm === e.last_name.slice(0, searchTerm.length).toLowerCase()
-        ) {
-          return true;
-        }
-        return false;
-      })
-      .slice(0, 10);
-  };
+//setting up perma features first
+const features = [
+  { name: 'Calendar', url: '/calendar/' },
+  { name: 'Donate', url: '/donate/' },
+  { name: 'Sign up', url: '/signup/' },
+  { name: 'Sign in', url: '/signin/' },
+  { name: 'Booking', url: '/booking/' },
+  { name: 'Dashboard', url: '/' },
+  { name: 'Register', url: '/register/' },
+  { name: 'Create Mentor', url: '' },
+];
 
-  //wrote out the api call originally going to local host and everything seemed to work , reverted to local mockdata file for development
-  useEffect(() => {
-    setOptions(data);
-  }, []);
-
-  useEffect(() => {
-    if (value?.name?.length >= 1) {
-      setToggle(true);
-    } else {
-      setToggle(false);
-    }
-    setList(filterData(value, options));
-  }, [value, options]);
-
-  //setting up perma features first
-  const features = [
-    { name: 'Calendar', url: '/calendar/' },
-    { name: 'Donate', url: '/donate/' },
-    { name: 'Sign up', url: '/signup/' },
-    { name: 'Sign in', url: '/signin/' },
-    { name: 'Booking', url: '/booking/' },
-    { name: 'Dashboard', url: '/' },
-    { name: 'Register', url: '/register/' },
-    { name: 'Create Mentor', url: '' },
-  ];
-
+const SearchField = ({ setToggle, results }) => {
   return (
-    <>
-      {toggle && (
-        <>
-          <Card
-            style={{
-              backgroundColor: 'rgba(255,255,255,2.5)',
-              width: '80%',
-              margin: '0 100px',
-              overflow: 'hidden',
-              overflowY: 'scroll',
-              height: '20vh',
-            }}
-          >
-            {list.map((e) => (
-              <li
-                key={e.id}
-                className="searchBar"
-                onClick={() => toggleModal(Modal, e)}
-              >
-                {' '}
-                {`${e.first_name} ${e.last_name}`}{' '}
-              </li>
-            ))}
-            {list.length === 0 && (
-              <p>
-                Need to register a new mentee? click here{' '}
-                <Link to={'/register/'}> register </Link>
-              </p>
-            )}
-
-            {features.map((feature) => (
-              <Link
-                key={feature.name}
-                style={{ margin: '5px' }}
-                to={`${feature.url}`}
-                onClick={() => setToggle(false)}
-              >
-                {' '}
-                {`${feature.name}`}{' '}
-              </Link>
-            ))}
-            <Button
-              type="primary"
-              danger
-              onClick={() => setToggle(false)}
-              style={{ position: 'relative', float: 'right' }}
-            >
-              {' '}
-              close{' '}
-            </Button>
-          </Card>
-          <Modal
-            visible={isVisible}
-            onOk={toggleModal}
-            onCancel={toggleModal}
-            destroyOnClose={true}
-          >
-            <SearchModalContent user={selectedUser} />
-            <Button>Edit</Button>
-          </Modal>
-        </>
+    <Card
+      className="width-100 margin-0 overflow-hidden overflow-Y-scroll background-color-rgba-255-255-255-2_5 max-height-40vh"
+    >
+      {!!results.student?.length && (
+        <SearchResultsList title="Students" results={results.student} />
       )}
-    </>
+      {!!results.mentor?.length && (
+        <SearchResultsList title="Mentors" results={results.mentor} />
+      )}
+      {Object.values(results).every((e) => !e.length) && (
+        <p>
+          Need to register a new student? Click{' '}
+          <Link onClick={() => setToggle(false)} to={'/register/'}>
+            {' '}
+            here{' '}
+          </Link>
+          to register.
+        </p>
+      )}
+      {features.map((feature) => (
+        <Link
+          key={feature.name}
+          className="margin-5"
+          to={`${feature.url}`}
+          onClick={() => setToggle(false)}
+        >
+          {' '}
+          {`${feature.name}`}{' '}
+        </Link>
+      ))}
+    </Card>
   );
 };
 

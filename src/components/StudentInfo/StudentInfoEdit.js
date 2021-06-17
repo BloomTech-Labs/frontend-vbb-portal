@@ -1,9 +1,9 @@
 import { Button } from 'antd';
 import React from 'react';
 import axios from 'axios';
-import Modal from './Modal.css';
+import '../../less/Modal.less';
 
-const StudentInfo = (props) => {
+const StudentInfoEdit = (props) => {
   const [student, setStudent] = React.useState(props.user);
 
   const changeHandler = (e) => {
@@ -80,4 +80,4 @@ const StudentInfo = (props) => {
   );
 };
 
-export default StudentInfo;
+export default StudentInfoEdit;

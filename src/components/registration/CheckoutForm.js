@@ -4,6 +4,8 @@ import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 
 // import CardSection from './CardSection';
 
+import '../../less/index.less';
+
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
@@ -46,12 +48,7 @@ export default function CheckoutForm() {
   return (
     <Form onFinish={handleSubmit}>
       <div
-        style={{
-          padding: '10px',
-          margin: '10px',
-          border: '1px solid #ccc',
-          'border-radius': '5px',
-        }}
+        className="padding-10 margin-10 border-1-solid-ccc border-radius-5"
       >
         <CardElement />
       </div>

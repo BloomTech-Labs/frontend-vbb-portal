@@ -1,10 +1,12 @@
 import React from 'react';
 import { Layout } from 'antd';
 
+import '../less/index.less';
+
 const Footer = () => {
   const { Footer } = Layout;
   return (
-    <Footer style={{ textAlign: 'center', padding: '35px' }}>
+    <Footer className="center padding-35">
       Village Book Builders ©2021 | All Rights Reserved
     </Footer>
   );

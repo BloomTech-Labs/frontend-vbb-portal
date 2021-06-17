@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import * as actions from '../../../redux/actions';
 import { Form, Checkbox, Button, Modal } from 'antd';
 
+import '../../../less/index.less';
+
 const AgreeTermsAndConditions = ({ registrationForm, setRegistrationForm }) => {
   const [visible, setVisible] = useState(false);
   return (
@@ -240,7 +242,7 @@ const AgreeTermsAndConditions = ({ registrationForm, setRegistrationForm }) => {
         </ol>
       </Modal>
       <Checkbox
-        style={{ marginLeft: '25px' }}
+        className="margin-left-25"
         checked={registrationForm.additionalInformation.agreeTermsAndConditions}
         onChange={(e) => {
           const updatedRegForm = {
