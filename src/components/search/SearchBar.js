@@ -25,9 +25,9 @@ const search = (value) => {
   return parts[0].length ? searchUsers(parts[0], { limit: LIMIT }) : {};
 };
 
-const SearchBar = ({ createModal }) => {
+const SearchBar = ({ createModal, searchFilterFunction, value, results }) => {
   const [toggle, setToggle] = useState(false);
-  const [{ result }, setValue] = useDebounce(search, '', {});
+  const [_, setValue] = useDebounce(searchFilterFunction, '', {});
 
   const clickAwayRef = useRef();
 
@@ -57,11 +57,13 @@ const SearchBar = ({ createModal }) => {
         <Search
           type="text"
           enterButton="Search"
-          onChange={(e) => searchFilterFunction(e.target.value)}
+          onChange={(e) => setValue(e.target.value)}
           onClick={() => setToggle(true)}
           onPressEnter={handlePressEnter}
+          value={value}
+          allowClear
         />
-        {toggle && <SearchField results={result} setToggle={setToggle} />}
+        {toggle && <SearchField results={results} setToggle={setToggle} />}
       </div>
     </div>
   );
