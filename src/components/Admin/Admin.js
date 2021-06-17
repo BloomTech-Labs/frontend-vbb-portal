@@ -9,8 +9,6 @@ import {
   Collapse
 } from 'antd';
 
-import StudentInfoEdit from '../StudentInfo/StudentInfoEdit';
-
 /*Placeholder data*/
 const { Panel } = Collapse;
 
@@ -81,7 +79,7 @@ const Admin = props => {
           <Collapse accordion>
             {data.map(record => (
                 <Panel header={record.first_name + ' ' + record.last_name} key={record.key}>
-                  <StudentInfoEdit initialValues={record} lyout={layout} />
+                  <p>Form goes here</p>
                 </Panel>
               )
             )}
