@@ -2,7 +2,7 @@ import { events } from './data';
 
 import Event from './Event';
 
-function EventListSideBar() {
+function EventListSideBar({ showModal, setClickSelected }) {
   const pendings = events
     .filter((e) => {
       if (
@@ -38,7 +38,11 @@ function EventListSideBar() {
           <h5>Pending:</h5>
           <div className="events">
             {pendings.map((e) => (
-              <Event event={e} />
+              <Event
+                setClickSelected={setClickSelected}
+                showModal={showModal}
+                event={e}
+              />
             ))}
           </div>
         </div>
@@ -46,7 +50,11 @@ function EventListSideBar() {
           <h5>Checked-in:</h5>
           <div className="events">
             {checkedIns.map((e) => (
-              <Event event={e} />
+              <Event
+                setClickSelected={setClickSelected}
+                showModal={showModal}
+                event={e}
+              />
             ))}
           </div>
         </div>

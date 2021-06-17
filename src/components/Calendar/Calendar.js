@@ -67,6 +67,7 @@ const MyCalendar = (props) => {
   // State to manage visibility of event Modal
 
   const [isModalVisiable, setIsModalVisible] = useState(false);
+  console.log(isModalVisiable);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -113,7 +114,6 @@ const MyCalendar = (props) => {
 
   return (
     <div className="calendarWrapperDiv" id="section-to-print">
-      <EventListSideBar />
       <CheckinModal
         details={{ ...clickSelected }}
         isModalVisiable={isModalVisiable}
@@ -121,48 +121,56 @@ const MyCalendar = (props) => {
         setClickSelected={setClickSelected}
       />
 
-      <div className="rbc-toolbar rbc-btn-group">
-        <Dropdown overlay={schoolMenu}>
-          <button trigger={['click']}>Select Location</button>
-        </Dropdown>
+      <EventListSideBar
+        showModal={showModal}
+        isModalVisiable={isModalVisiable}
+        setIsModalVisible={setIsModalVisible}
+        setClickSelected={setClickSelected}
+      />
+      <div className="calendar-container">
+        <div className="rbc-toolbar rbc-btn-group">
+          <Dropdown overlay={schoolMenu}>
+            <button trigger={['click']}>Select Location</button>
+          </Dropdown>
+        </div>
+        {/* if showCalendar is true, we give them the default, else we show the scheduler */}
+        {showCalendar ? (
+          <Calendar
+            selectable
+            localizer={localizer}
+            // min and max sets the start and end time of day displayed
+            min={new Date(Date.UTC(0, 0, 0, 12, 0, 0))}
+            max={new Date(Date.UTC(0, 0, 0, 22, 0, 0))}
+            onView={() => {
+              setShowWeekView(!showWeekView);
+            }}
+            // onSelectEvent={handleSelectEvent}
+            events={events}
+            startAccessor="start"
+            endAccessor="end"
+            views={{
+              week: true,
+              day: true,
+            }}
+            components={components}
+            //toggle showWeekView to switch with showing the resource view
+            resources={showWeekView === true ? null : resourceMap}
+            resourceIdAccessor="resourceId"
+            resourceTitleAccessor="resourceTitle"
+            timeslots={1}
+            defaultView="week"
+            onSelectSlot={handleDragSelect}
+            onSelectEvent={handleEventClick}
+          />
+        ) : (
+          <ComputersList
+            setShowWeekView={setShowWeekView}
+            dragSelected={dragSelected}
+            setShowCalendar={setShowCalendar}
+            showCalendar={showCalendar}
+          />
+        )}
       </div>
-      {/* if showCalendar is true, we give them the default, else we show the scheduler */}
-      {showCalendar ? (
-        <Calendar
-          selectable
-          localizer={localizer}
-          // min and max sets the start and end time of day displayed
-          min={new Date(Date.UTC(0, 0, 0, 12, 0, 0))}
-          max={new Date(Date.UTC(0, 0, 0, 22, 0, 0))}
-          onView={() => {
-            setShowWeekView(!showWeekView);
-          }}
-          // onSelectEvent={handleSelectEvent}
-          events={events}
-          startAccessor="start"
-          endAccessor="end"
-          views={{
-            week: true,
-            day: true,
-          }}
-          components={components}
-          //toggle showWeekView to switch with showing the resource view
-          resources={showWeekView === true ? null : resourceMap}
-          resourceIdAccessor="resourceId"
-          resourceTitleAccessor="resourceTitle"
-          timeslots={1}
-          defaultView="week"
-          onSelectSlot={handleDragSelect}
-          onSelectEvent={handleEventClick}
-        />
-      ) : (
-        <ComputersList
-          setShowWeekView={setShowWeekView}
-          dragSelected={dragSelected}
-          setShowCalendar={setShowCalendar}
-          showCalendar={showCalendar}
-        />
-      )}
     </div>
   );
 };

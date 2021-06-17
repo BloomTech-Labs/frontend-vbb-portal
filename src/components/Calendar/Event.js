@@ -1,13 +1,15 @@
 import React from 'react';
 
-function Event({ event }) {
-  // console.log(event);
-
+function Event({ event, showModal, setClickSelected }) {
   const eventStartTime = Date.parse(event.start);
   const newTime = Date.now();
 
   return (
     <div
+      onClick={() => {
+        showModal();
+        setClickSelected({ ...event });
+      }}
       className={`${
         eventStartTime < newTime && event.eventStatus === false
           ? 'no-show'

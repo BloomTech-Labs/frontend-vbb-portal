@@ -1,9 +1,16 @@
 @import '~react-big-calendar/lib/css/react-big-calendar.css';
 
+:root {
+  --green: #73c673;
+  --orange: #ffb347;
+  --red: #ff6961;
+}
+
 .calendarWrapperDiv {
   height: 80vh;
   width: 90%;
   margin: 30px auto;
+  display: flex;
 }
 
 .rbc-current-time-indicator {
@@ -116,4 +123,68 @@
 
 .print-download-icon {
   color: #ffffff;
+}
+
+.calendar-container {
+  flex: 4;
+}
+
+.sidebar-container {
+  flex: 1;
+  margin: 3.2rem 1rem 0 0;
+}
+
+.events-container {
+  width: clamp(20px, 100%, 500px);
+  /* border: 1px solid red; */
+}
+
+.pendings {
+  margin: 0 0 1.2rem 0;
+}
+
+.events {
+  background-color: rgb(240, 240, 240);
+  border-radius: 0.4rem;
+  overflow-y: scroll;
+  flex: 1;
+  height: 31.9vh;
+  padding: 0.5rem;
+}
+
+.event {
+  border-radius: 0.5rem;
+  padding: 0.3rem 0.5rem;
+  color: white;
+  margin: 1.2rem 0.5rem 1rem 0.5rem;
+  line-height: 1rem;
+  padding: 0.6rem;
+}
+
+.event p {
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.event h5 {
+  color: white;
+  margin: 0;
+}
+
+.pending-status {
+  background-color: var(--orange);
+}
+
+.checked-in-status {
+  background-color: var(--green);
+}
+
+.no-show {
+  background-color: var(--red);
+}
+
+.no-show-span {
+  font-style: italic;
+  font-size: 0.9rem;
 }
