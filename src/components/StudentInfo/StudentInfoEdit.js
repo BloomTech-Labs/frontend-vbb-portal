@@ -1,36 +1,12 @@
-import { Button } from 'antd';
-import React from 'react';
-import axios from 'axios';
 import '../../less/Modal.less';
 
-const StudentInfoEdit = (props) => {
-  const [student, setStudent] = React.useState(props.user);
-
-  const changeHandler = (e) => {
-    e.persist();
-    setStudent({
-      ...student,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const onSubmit = (e) => {
-    // this need to be connected to the backend to update the data on the database
-    e.preventDefault();
-    axios
-      .put(`http://localhost:8000/mentees/${student.id}`, student)
-      .then((res) => {
-        console.log(res);
-      });
-    props.closeEditing();
-  };
-
+const StudentInfoEdit = ({ changeHandler, user }) => {
   return (
     <form className="StudentInfoForm">
       <label className="label">
         ID
         <br></br>
-        <input name="id" onChange={changeHandler} value={student.id} />
+        <input name="id" onChange={changeHandler} value={user.id} />
       </label>
       <label className="label">
         First Name
@@ -38,7 +14,7 @@ const StudentInfoEdit = (props) => {
         <input
           name="first_name"
           onChange={changeHandler}
-          value={student.first_name}
+          value={user.first_name}
         />
       </label>
       <label className="label">
@@ -47,7 +23,7 @@ const StudentInfoEdit = (props) => {
         <input
           name="last_name"
           onChange={changeHandler}
-          value={student.last_name}
+          value={user.last_name}
         />
       </label>
       <br></br>
@@ -57,7 +33,7 @@ const StudentInfoEdit = (props) => {
         <input
           name="date_of_birth"
           onChange={changeHandler}
-          value={student.date_of_birth}
+          value={user.date_of_birth}
         />
       </label>
       <label className="label">
@@ -66,16 +42,14 @@ const StudentInfoEdit = (props) => {
         <input
           name="personal_email"
           onChange={changeHandler}
-          value={student.personal_email}
+          value={user.personal_email}
         />
       </label>
       <label className="label">
         Location
         <br></br>
-        <input name="city" onChange={changeHandler} value={student.city} />
+        <input name="city" onChange={changeHandler} value={user.city} />
       </label>
-
-      <Button onClick={onSubmit}>Save</Button>
     </form>
   );
 };

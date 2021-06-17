@@ -1,26 +1,29 @@
-import {
-  EDIT_USER_START,
-  EDIT_USER_SUCCESS,
-  EDIT_USER_FAILURE,
-} from './StudentEdit.types';
+import { STUDENT_EDIT_TYPES } from './StudentEdit.types';
 
-export const editUser = (action) => {
+const initialState = {
+  pending: false,
+  success: null,
+  error: null,
+};
+
+export const editUser = (state = initialState, action) => {
   switch (action.type) {
-    case EDIT_USER_START:
+    case STUDENT_EDIT_TYPES.EDIT_USER_START:
       return {
-        ...state,
-        editing: true,
+        pending: true,
+        success: null,
+        error: null,
       };
-    case EDIT_USER_SUCCESS:
+    case STUDENT_EDIT_TYPES.EDIT_USER_SUCCESS:
       return {
-        ...state,
-        editing: false,
-        editingUser: action.payload,
+        pending: false,
+        success: action.payload,
+        error: null,
       };
-    case EDIT_USER_FAILURE:
+    case STUDENT_EDIT_TYPES.EDIT_USER_FAILURE:
       return {
-        ...state,
-        editing: false,
+        pending: false,
+        success: null,
         error: action.payload,
       };
     default:
