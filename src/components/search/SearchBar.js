@@ -1,9 +1,9 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { Input } from 'antd';
 import { connect } from 'react-redux';
-
 import SearchField from './SearchField';
 import { searchUsers } from '../../mock-data/mockApi';
+import { searchFilterFunction } from '../../redux/SearchBar.redux/SearchBar.reducer';
 import { createModal } from '../../redux/actions';
 import StudentInfoModal from '../StudentInfo/StudentInfoModal';
 import { useDebounce } from '../../hooks/useDebounce';
@@ -25,9 +25,9 @@ const search = (value) => {
   return parts[0].length ? searchUsers(parts[0], { limit: LIMIT }) : {};
 };
 
-const SearchBar = ({ createModal }) => {
+const SearchBar = ({ createModal, searchFilterFunction, value, results }) => {
   const [toggle, setToggle] = useState(false);
-  const [{ result }, setValue] = useDebounce(search, '', {});
+  const [_, setValue] = useDebounce(searchFilterFunction, '', {});
 
   const clickAwayRef = useRef();
 
@@ -61,11 +61,22 @@ const SearchBar = ({ createModal }) => {
           onChange={(e) => setValue(e.target.value)}
           onClick={() => setToggle(true)}
           onPressEnter={handlePressEnter}
+          value={value}
+          allowClear
         />
-        {toggle && <SearchField results={result} setToggle={setToggle} />}
+        {toggle && <SearchField results={results} setToggle={setToggle} />}
       </div>
     </div>
   );
 };
 
-export default connect(null, { createModal })(SearchBar);
+function mapStateToProps(state) {
+  return {
+    value: state.searchBarReducer.value,
+    results: state.searchBarReducer.results,
+  };
+}
+
+export default connect(mapStateToProps, { searchFilterFunction, createModal })(
+  SearchBar
+);

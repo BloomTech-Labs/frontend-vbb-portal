@@ -7,6 +7,7 @@ import { authToken } from './AuthToken.redux/AuthToken.reducer';
 import { sessionSlot } from './SessionSlot.redux/SessionSlot.reducer';
 import { registrationForm } from './Registration.redux/RegistrationForm.reducer';
 import { modal } from './Modal.redux/Modal.reducer';
+import { searchBarReducer } from './SearchBar.redux/SearchBar.reducer';
 import menteeRegistration from './MenteeRegistration.redux/MenteeRegistration.reducer';
 
 /**
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   user,
   registrationForm,
   modal,
+  searchBarReducer,
   menteeRegistration,
 });
 
