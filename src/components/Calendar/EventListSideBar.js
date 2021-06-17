@@ -38,6 +38,7 @@ function EventListSideBar({ showModal, setClickSelected }) {
           <div className="events">
             {pendings.map((e) => (
               <Event
+                key={e.resourceId}
                 setClickSelected={setClickSelected}
                 showModal={showModal}
                 event={e}
@@ -50,6 +51,7 @@ function EventListSideBar({ showModal, setClickSelected }) {
           <div className="events">
             {checkedIns.map((e) => (
               <Event
+                key={e.resourceId}
                 setClickSelected={setClickSelected}
                 showModal={showModal}
                 event={e}
