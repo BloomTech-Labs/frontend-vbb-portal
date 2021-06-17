@@ -7,14 +7,14 @@ const layout = {
   wrapperCol: { span: 16 },
 };
 
-const StudentInfoEdit = ({ form, initialValues }) => {
+const StudentInfoEdit = ({ form, initialValues, lyout }) => {
   return (
     <Form
       name="edit_form"
       form={form}
       initialValues={initialValues}
       className="StudentInfoForm"
-      {...layout}
+      {...lyout ? {...lyout} : {...layout}}
     >
       <Form.Item label="First Name" name="first_name">
         <Input />

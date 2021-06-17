@@ -5,154 +5,60 @@ import {
   Space,
   Form,
   Input,
-  Button
+  Button,
+  Collapse
 } from 'antd';
 
+import StudentInfoEdit from '../StudentInfo/StudentInfoEdit';
+
 /*Placeholder data*/
-const columns = [
-    {
-      title: 'First Name',
-      dataIndex: 'fname',
-      filters: [
-        {
-          text: 'Joe',
-          value: 'Joe'
-        },
-        {
-          text: 'Jim',
-          value: 'Jim'
-        }
-      ],
-      onFilter: (value, record) => record.fname.indexOf(value) === 0,
-      key: 'fname',
-      render: text => <a>{text}</a>,
-    },
-    {
-      title: 'Last Name',
-      dataIndex: 'lname',
-      filters: [
-        {
-          text: 'Brown',
-          value: 'Brown'
-        },
-        {
-          text: 'Green',
-          value: 'Green'
-        },
-        {
-          text: 'Black',
-          value: 'Black'
-        }
-      ],
-      onFilter: (value, record) => record.lname.indexOf(value) === 0,
-      key: 'lname',
-      render: text => <a>{text}</a>
-    },
-    {
-      title: 'Tags',
-      key: 'tags',
-      dataIndex: 'tags',
-      filters: [
-        {
-          text: 'Mentee',
-          value: 'mentee'
-        },
-        {
-          text: 'Mentor',
-          value: 'mentor'
-        }
-      ],
-      onFilter: (value, record) => record.tags.includes(value),
-      render: tags => (
-        <>
-          {tags.map(tag => {
-            let color = tag.length > 5 ? 'geekblue' : 'green';
-            if (tag === 'mentee') {
-              color = 'volcano';
-            }
-            return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            );
-          })}
-        </>
-      ),
-    },
-];
+const { Panel } = Collapse;
 
 const data = [
     {
       key: '1',
-      fname: 'John',
-      lname: 'Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-      tags: ['mentor'],
+      first_name: 'John',
+      last_name: 'Brown',
     },
     {
       key: '2',
-      fname: 'Jim',
-      lname: 'Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      tags: ['mentee'],
+      first_name: 'Jim',
+      last_name: 'Green',
     },
     {
       key: '3',
-      fname: 'Joe',
-      lname: 'Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park',
-      tags: ['mentor'],
+      first_name: 'Joe',
+      last_name: 'Black',
     },
     {
       key: '4',
-      fname: 'Joe',
-      lname: 'Black',
-      age: 37,
-      address: 'Sidney No. 1 Lake Park',
-      tags: ['mentor'],
+      first_name: 'Joe',
+      last_name: 'Black',
     },
     {
       key: '5',
-      fname: 'Joe',
-      lname: 'Black',
-      age: 39,
-      address: 'Sidney No. 1 Lake Park',
-      tags: ['mentor'],
+      first_name: 'Joe',
+      last_name: 'Black',
     },
     {
       key: '6',
-      fname: 'Joe',
-      lname: 'Black',
-      age: 3,
-      address: 'Sidney No. 1 Lake Park',
-      tags: ['mentor'],
+      first_name: 'Joe',
+      last_name: 'Black',
     },
     {
       key: '7',
-      fname: 'Joe',
-      lname: 'Black',
-      age: 89,
-      address: 'Sidney No. 1 Lake Park',
-      tags: ['mentor'],
+      first_name: 'Joe',
+      last_name: 'Black',
     },
     {
       key: '8',
-      fname: 'Joe',
-      lname: 'Black',
-      age: 22,
-      address: 'Sidney No. 1 Lake Park',
-      tags: ['mentor'],
+      first_name: 'Joe',
+      last_name: 'Black',
     },
     {
       key: '9',
-      fname: 'Joe',
-      lname: 'Black',
-      age: 75,
-      address: 'Sidney No. 1 Lake Park',
-      tags: ['mentor'],
+      first_name: 'Joe',
+      last_name: 'Black',
     },
 ];
 
@@ -160,7 +66,7 @@ const data = [
 
 /*Form Styling*/
 const layout = {
-  labelCol: { span: 1 },
+  labelCol: { span: 2 },
   wrapperCol: { span: 10 },
 };
 
@@ -172,49 +78,14 @@ const tailLayout = {
 const Admin = props => {
     return(
         <>
-            <Table 
-              columns={columns} 
-              expandable={{
-                expandedRowRender: record => (
-                  <p style={{ margin: 0 }}>
-                    <Form
-                      {...layout}
-                      name="basic"
-                    >
-                      <Form.Item
-                        label="First Name"
-                        name="fname"
-                      >
-                        <Input defaultValue={record.fname} />
-                      </Form.Item>
-                      <Form.Item
-                        label="Last Name"
-                        name="lname"
-                      >
-                        <Input defaultValue={record.lname} />
-                      </Form.Item>
-                      <Form.Item
-                        label="Phone"
-                        name="phone"
-                      >
-                        <Input />
-                      </Form.Item>
-                      <Form.Item {...tailLayout}>
-                        <Button
-                          type="primary"
-                          htmlType="submit"
-                        >
-                          Submit
-                        </Button>
-                      </Form.Item>
-                    </Form>
-                  </p>
-                ),
-                rowExpandable: record => record,
-              }}
-              dataSource={data}
-              scroll={{ y: 240 }} 
-            />
+          <Collapse accordion>
+            {data.map(record => (
+                <Panel header={record.first_name + ' ' + record.last_name} key={record.key}>
+                  <StudentInfoEdit initialValues={record} lyout={layout} />
+                </Panel>
+              )
+            )}
+          </Collapse>
         </>
     );
 };
