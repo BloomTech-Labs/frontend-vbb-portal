@@ -6,6 +6,7 @@ import SearchField from './SearchField';
 import { searchUsers } from '../../mock-data/mockApi';
 import { createModal } from '../../redux/actions';
 import StudentInfoModal from '../StudentInfo/StudentInfoModal';
+import { useDebounce } from '../../hooks/useDebounce';
 
 import '../../less/index.less';
 
@@ -13,30 +14,22 @@ const { Search } = Input;
 
 const LIMIT = 50;
 
+const search = (value) => {
+  const parts = value.split(':').map((e) => e.trim());
+  if (parts.length > 1) {
+    return searchUsers(parts[1], {
+      userTypes: [parts[0]],
+      limit: LIMIT,
+    });
+  }
+  return parts[0].length ? searchUsers(parts[0], { limit: LIMIT }) : {};
+};
+
 const SearchBar = ({ createModal }) => {
-  const [value, setValue] = useState('');
   const [toggle, setToggle] = useState(false);
-  const [results, setResults] = useState({});
+  const [{ result }, setValue] = useDebounce(search, '', {});
 
   const clickAwayRef = useRef();
-
-  useEffect(() => {
-    if (value.length) {
-      const parts = value.split(':').map((e) => e.trim());
-      if (parts.length > 1) {
-        searchUsers(parts[1], {
-          userTypes: [parts[0]],
-          limit: LIMIT,
-        }).then((data) => setResults(data));
-      } else {
-        searchUsers(parts[0], { limit: LIMIT }).then((data) =>
-          setResults(data)
-        );
-      }
-    } else {
-      setResults({});
-    }
-  }, [value]);
 
   const handleClickOutside = useCallback((event) => {
     if (!clickAwayRef.current?.contains(event.target)) {
@@ -52,7 +45,7 @@ const SearchBar = ({ createModal }) => {
   }, [handleClickOutside]);
 
   const handlePressEnter = () => {
-    const user = Object.values(results)?.[0]?.[0];
+    const user = Object.values(result)?.[0]?.[0];
     if (user) {
       createModal(<StudentInfoModal user={user} />);
     }
@@ -68,7 +61,7 @@ const SearchBar = ({ createModal }) => {
           onClick={() => setToggle(true)}
           onPressEnter={handlePressEnter}
         />
-        {toggle && <SearchField results={results} setToggle={setToggle} />}
+        {toggle && <SearchField results={result} setToggle={setToggle} />}
       </div>
     </div>
   );
