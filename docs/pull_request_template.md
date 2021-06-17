@@ -1,12 +1,18 @@
 # Short Description
 
+Description here
+
 ## Rationale/purpose of the feature
+
+Explain here
 
 ## Link to relevant User Story
 
 [User Story Title](https://trello.com/link-here/)
 
 ## Optional: Screenshot(s) of intended state of feature, wire-frame(s), flowchart
+
+Optional attachments here
 
 ## Checklist for author and reviewers
 
