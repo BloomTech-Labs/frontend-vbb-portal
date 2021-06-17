@@ -1,7 +1,6 @@
-import { SEARCH_FILTER } from './SearchBar.types';
+import { SEARCH_FILTER, RECIEVE_FILTER } from './SearchBar.types';
 import { searchUsers } from '../../mock-data/mockApi';
-import { searchFilter } from '../actions';
-import Search from 'antd/lib/transfer/search';
+import { searchFilter, recieveFilter } from '../actions';
 
 const initialState = {
   value: '',
@@ -14,6 +13,11 @@ export const searchBarReducer = (state = initialState, action) => {
       return {
         ...state,
         value: action.payload,
+      };
+    case RECIEVE_FILTER:
+      return {
+        ...state,
+        results: action.payload,
       };
 
     default:
@@ -30,11 +34,13 @@ export const searchFilterFunction = (value) => (dispatch) => {
       searchUsers(parts[1], {
         userTypes: [parts[0]],
         limit: LIMIT,
-      }).then((data) => (results = data));
+      }).then((data) => dispatch(recieveFilter(data)));
     } else {
-      searchUsers(parts[0], { limit: LIMIT }).then((data) => (results = data));
+      searchUsers(parts[0], { limit: LIMIT }).then((data) =>
+        dispatch(recieveFilter(data))
+      );
     }
   } else {
-    results = {};
+    dispatch(recieveFilter({}));
   }
 };
