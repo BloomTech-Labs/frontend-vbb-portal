@@ -19,6 +19,8 @@ const buttonLayout = {
 
 /*End Form Styling*/
 const AddUserForm = props => {
+    const { EditMode, Record } = props;
+
     return(
         <div>
             <Form
@@ -28,26 +30,26 @@ const AddUserForm = props => {
                     label="First Name"
                     name="fname"
                 >
-                    <Input/>
+                    <Input defaultValue={EditMode ? Record.first_name : ''}/>
                 </Form.Item>
                 <Form.Item
                     label="Last Name"
                     name="lname"
                 >
-                    <Input/>
+                    <Input defaultValue={EditMode ? Record.last_name : ''}/>
                 </Form.Item>
                 <Form.Item
                     label="Phone"
                     name="phone"
                 >
-                    <Input/>
+                    <Input defaultValue={EditMode ? Record.phone : ''}/>
                 </Form.Item>
                 <Form.Item {...buttonLayout}>
                     <Button
                         type="primary"
                         htmlType="submit"
                     >
-                        Add New User
+                        {EditMode ? 'Edit User' : 'Add New User'}
                     </Button>
                 </Form.Item>
             </Form>
