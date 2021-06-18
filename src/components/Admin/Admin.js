@@ -179,7 +179,7 @@ const Admin = props => {
     return(
         <>
             <Form.Item {...buttonLayout}>
-              <Button onclick = {onClick}
+              <Button
                 type = "primary"
                 onClick = {onClick}
               > Create New User</Button>
