@@ -60,7 +60,14 @@
   },
   "nodemonConfig": {
     "ext": "js,ts,less,css,json,env",
-    "ignore": [".circleci/*", ".github/*", ".vscode/*", "build/*", "examples/*", "node_modules/*"],
+    "ignore": [
+      ".circleci/*",
+      ".github/*",
+      ".vscode/*",
+      "build/*",
+      "examples/*",
+      "node_modules/*"
+    ],
     "delay": "500"
   },
   "browserslist": {
