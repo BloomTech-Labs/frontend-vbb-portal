@@ -59,6 +59,8 @@ const ComputersList = (props) => {
                                             return <option key={i}>{end}</option>
                                         })}
                                     </select>
+                                        <button className='scheduler-button'>Submit</button>
+                                        <button className='scheduler-button'>Edit</button>
                                 </div>
                             </div>
                         )
@@ -66,8 +68,6 @@ const ComputersList = (props) => {
                 </div>
             </div>
             <div className='buttons-container'>
-                <button className='scheduler-button'>Submit</button>
-                <button className='scheduler-button'>Edit</button>
                 <button className='scheduler-button' onClick={() => {
                     props.setShowWeekView(true)
                     props.setShowCalendar(!props.showCalendar);
