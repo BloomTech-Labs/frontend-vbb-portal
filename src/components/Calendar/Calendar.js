@@ -1,5 +1,5 @@
 import { React, useState } from 'react'
-import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
+import { Calendar, dateFnsLocalizer} from 'react-big-calendar'
 import '../../less/calendar.less'
 import { events, resourceMap } from './data'
 import { customWeekViewEvent, customResourceViewEvent } from './CustomEvent'

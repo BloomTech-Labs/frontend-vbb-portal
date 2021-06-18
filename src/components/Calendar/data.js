@@ -10,7 +10,7 @@ export const events = [
     mentor: 'Liz',
     student: '',
     resourceId: 1,
-    checkedIn: true
+    eventStatus: true
   },
   {
     id: 1,
