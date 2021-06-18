@@ -1,4 +1,5 @@
-import {React, Component} from 'react';
+import {React, Component, useState} from 'react';
+import AddUserForm from './AddUserForm';
 import {
   Table,
   Tag,
@@ -71,19 +72,31 @@ const layout = {
 const tailLayout = {
   wrapperCol: { offset: 10, span: 16 },
 };
-/*End Form Styling*/
 
+const buttonLayout = {
+  wrapperCol: { offset: 12, span: 16 },
+};
+/*End Form Styling*/
 const Admin = props => {
+    const [show, setShow] = useState(true)
+    const onClick = () => setShow(!show)
     return(
         <>
-          <Collapse accordion>
-            {data.map(record => (
-                <Panel header={record.first_name + ' ' + record.last_name} key={record.key}>
-                  <p>Form goes here</p>
-                </Panel>
-              )
-            )}
-          </Collapse>
+            <Form.Item {...buttonLayout}>
+              <Button
+                type = "primary"
+                onClick = {onClick}
+              > Create New User</Button>
+            </Form.Item>
+            { show ? <AddUserForm/> : null}
+            <Collapse accordion>
+              {data.map(record => (
+                  <Panel header={record.first_name + ' ' + record.last_name} key={record.key}>
+                    <p>Form goes here</p>
+                  </Panel>
+                )
+              )}
+            </Collapse>
         </>
     );
 };
