@@ -3,6 +3,7 @@ import {
   Divider,
   Form,
   Input,
+  Switch,
   Button
 } from 'antd';
 
@@ -16,38 +17,58 @@ const buttonLayout = {
     wrapperCol: { offset: 12, span: 16 },
 };
 
+const switchLayout = {
+    wrapperCol: { offset: 20 },
+};
+
 
 /*End Form Styling*/
 const AddUserForm = props => {
+    const { EditMode, Record } = props;
+
+    const onChange = checked => {
+        console.log(`switch to ${checked}`)
+    };
+
     return(
         <div>
             <Form
                 {...layout}
                 name= "basic">
+                {EditMode ? (<Form.Item {...switchLayout}>
+                                <Switch
+                                    defaultChecked
+                                    checkedChildren="Activated"
+                                    unCheckedChildren="Deactivated"
+                                    onChange={onChange}
+                                />
+                            </Form.Item>) : (
+                                <></>
+                            )}
                 <Form.Item
                     label="First Name"
                     name="fname"
                 >
-                    <Input/>
+                    <Input defaultValue={EditMode ? Record.first_name : ''}/>
                 </Form.Item>
                 <Form.Item
                     label="Last Name"
                     name="lname"
                 >
-                    <Input/>
+                    <Input defaultValue={EditMode ? Record.last_name : ''}/>
                 </Form.Item>
                 <Form.Item
                     label="Phone"
                     name="phone"
                 >
-                    <Input/>
+                    <Input defaultValue={EditMode ? Record.phone : ''}/>
                 </Form.Item>
                 <Form.Item {...buttonLayout}>
                     <Button
                         type="primary"
                         htmlType="submit"
                     >
-                        Add New User
+                        {EditMode ? 'Edit User' : 'Add New User'}
                     </Button>
                 </Form.Item>
             </Form>

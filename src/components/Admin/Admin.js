@@ -18,46 +18,31 @@ const data = [
       key: '1',
       first_name: 'John',
       last_name: 'Brown',
+      phone: '123-000-0000'
     },
     {
       key: '2',
       first_name: 'Jim',
       last_name: 'Green',
+      phone: '123-000-0000'
     },
     {
       key: '3',
       first_name: 'Joe',
       last_name: 'Black',
+      phone: '123-000-0000'
     },
     {
       key: '4',
       first_name: 'Joe',
       last_name: 'Black',
+      phone: '123-000-0000'
     },
     {
       key: '5',
       first_name: 'Joe',
       last_name: 'Black',
-    },
-    {
-      key: '6',
-      first_name: 'Joe',
-      last_name: 'Black',
-    },
-    {
-      key: '7',
-      first_name: 'Joe',
-      last_name: 'Black',
-    },
-    {
-      key: '8',
-      first_name: 'Joe',
-      last_name: 'Black',
-    },
-    {
-      key: '9',
-      first_name: 'Joe',
-      last_name: 'Black',
+      phone: '123-000-0000'
     },
 ];
 
@@ -92,7 +77,7 @@ const Admin = props => {
             <Collapse accordion>
               {data.map(record => (
                   <Panel header={record.first_name + ' ' + record.last_name} key={record.key}>
-                    <p>Form goes here</p>
+                    <AddUserForm EditMode Record={record}/>
                   </Panel>
                 )
               )}
