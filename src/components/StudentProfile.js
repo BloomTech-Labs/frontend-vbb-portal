@@ -107,7 +107,7 @@ class Student extends React.Component {
                   variant="top"
                   src={Whiteboard}
                   alt="Whiteboard"
-                  style={{ maxWidth: 'auto', height: 'auto' }}
+                  style={{ maxWidth: 'auto', height: '150px' }}
                 />
               </a>
               <Card.Body>
@@ -138,7 +138,7 @@ class Student extends React.Component {
                   variant="top"
                   src={Khan}
                   alt="Khan Academy"
-                  // style={{ maxWidth: '250px', height: 'auto' }}
+                  style={{ maxWidth: 'auto', height: '150px' }}
                 />
               </a>
               <Card.Body>
@@ -170,7 +170,7 @@ class Student extends React.Component {
                   variant="top"
                   src={Classroom}
                   alt="Google Classroom"
-                  // style={{ maxWidth: '250px', height: 'auto' }}
+                  style={{ maxWidth: 'auto', height: '150px' }}
                 />
               </a>
               <Card.Body>
@@ -203,7 +203,7 @@ class Student extends React.Component {
                   variant="top"
                   src={Website}
                   alt="Home Website"
-                  // style={{ maxWidth: 'auto', height: 'auto' }}
+                  style={{ maxWidth: 'auto', height: '150px' }}
                 />
               </a>
               <Card.Body>
@@ -236,7 +236,7 @@ class Student extends React.Component {
                   variant="top"
                   src={Meet}
                   alt="Google Meet"
-                  // style={{ maxWidth: '250px', height: 'auto' }}
+                  style={{ maxWidth: 'auto', height: '150px' }}
                 />
               </a>
               <Card.Body>
@@ -268,7 +268,7 @@ class Student extends React.Component {
                   variant="top"
                   src={Facebook}
                   alt="Village Facebook"
-                  // style={{ maxWidth: '250px', height: 'auto' }}
+                  style={{ maxWidth: 'auto', height: '150px' }}
                 />
               </a>
               <Card.Body>
