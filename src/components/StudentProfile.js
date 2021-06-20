@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Card } from 'react-bootstrap';
 
-import Whiteboard from '../images/Whiteboard.png';
+import Whiteboard from '../images/Whiteboard.jpeg';
 import Khan from '../images/Khan-Academy.png';
 import Classroom from '../images/google-classroom.jpg';
 import Facebook from '../images/VBB-FB.png';
