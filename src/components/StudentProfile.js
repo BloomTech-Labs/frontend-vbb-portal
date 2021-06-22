@@ -9,7 +9,7 @@ import Whiteboard from '../images/Whiteboard.jpeg';
 import Khan from '../images/Khan-Academy.png';
 import Classroom from '../images/google-classroom.jpg';
 import Facebook from '../images/VBB-FB.png';
-import Meet from '../images/google-meet.jpg';
+import Meet from '../images/google-meet.png';
 import Website from '../images/VBB-Website.png';
 
 class Student extends React.Component {
