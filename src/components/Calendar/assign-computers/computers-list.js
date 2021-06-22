@@ -59,8 +59,8 @@ const ComputersList = (props) => {
                                             return <option key={i}>{end}</option>
                                         })}
                                     </select>
-                                        <button className='scheduler-button'>Submit</button>
-                                        <button className='scheduler-button'>Edit</button>
+                                    <button className='scheduler-button'>Save Changes</button>
+                                    <button className='scheduler-button'>Cancel</button>
                                 </div>
                             </div>
                         )
