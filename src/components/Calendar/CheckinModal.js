@@ -1,6 +1,6 @@
 import React from 'react'
 import { Modal, Button, Switch } from 'antd'
-import { CheckCircleOutlined, CheckCircleTwoTone } from '@ant-design/icons';
+import { CheckCircleOutlined, CheckCircleTwoTone, PropertySafetyFilled } from '@ant-design/icons';
 
 import '../../less/calendar.less'
 
@@ -53,11 +53,11 @@ const CheckinModal = ({
       console.log(details)
   }
 
-  const isAtLeastXMinutesToCurTime = ({ date, x }) => {
+  const isAtLeastXMinutesToCurTime = ({ date, minutes }) => {
     const dateInMS = date.getTime();
     const MILLISECONDS_IN_A_MINUTE = 60_000;
 
-    return dateInMS + (x * MILLISECONDS_IN_A_MINUTE) >= Date.now();
+    return dateInMS + (minutes * MILLISECONDS_IN_A_MINUTE) >= Date.now();
   };
 
 
@@ -99,7 +99,7 @@ const CheckinModal = ({
         <Switch
           checked={isCheckedIn} 
           checkedChildren="Student Checked In" unCheckedChildren="Check-in Student"
-          disabled={isAtLeastXMinutesToCurTime({ date: start, x: 30 })}
+          disabled={isAtLeastXMinutesToCurTime({ date: start, minutes: 30 })}
           onChange={handleCheckIn}
       />
     </Modal>
