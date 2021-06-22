@@ -26,8 +26,8 @@ export const AddUserFailure = (error) => {
 export const AddUser = (id, NewUser) =>{
 return function (dispatch) {
   dispatch(AddUserRequest())
-  axiosWithAuth()
-.post(`/api/`, NewUser)
+  axios
+.post(`http://54.158.134.245/headmaster/`, NewUser)
   .then((res) => {
     dispatch(AddUserSuccess())
   })
