@@ -1,4 +1,5 @@
 import { createUser } from '../../mock-data/mockApi';
+import { refreshSearch } from '../actions';
 
 export const POST_FORM_DATA = 'POST_FORM_DATA';
 export const POST_FORM_DATA_SUCCESS = 'POST_FORM_DATA_SUCCESS';
@@ -28,6 +29,7 @@ export const registerMentee = (menteeData) => (dispatch) => {
   createUser(menteeData)
     .then((res) => {
       dispatch(postFormSuccess(res));
+      dispatch(refreshSearch());
     })
     .catch((err) => {
       dispatch(postFormFail(err));
