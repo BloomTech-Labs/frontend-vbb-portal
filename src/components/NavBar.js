@@ -1,8 +1,8 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import * as actions from '../redux/actions';
-import { Button, PageHeader } from 'antd';
+import { logOut } from '../redux/actions';
+import { Button } from 'antd';
 import { LoginOutlined, FormOutlined, LogoutOutlined } from '@ant-design/icons';
 
 import SearchBar from './search/SearchBar';
@@ -13,6 +13,43 @@ import fullLogo from '../images/vbb-full-logo.png';
 import '../less/index.less';
 import '../less/NavBar.less';
 
+const Title = () => (
+  <Link to="/" key="link-dashboard">
+    <img
+      className="logo"
+      src={fullLogo}
+      alt="Logo for Village Book Builders, small orange hut with Village Book Builders text"
+      width="200"
+    ></img>
+  </Link>
+);
+
+const SignInSignOut = ({ authToken, logOut }) =>
+  !authToken ? (
+    <Link to="/signin" key="link-signin">
+      <Button key="0" className="color-549BEA" block>
+        Sign In
+        <LoginOutlined />
+      </Button>
+    </Link>
+  ) : (
+    <Link to="/" key="link-signout">
+      <Button key="1" className="color-549BEA" onClick={logOut} block>
+        Sign Out
+        <LogoutOutlined />
+      </Button>
+    </Link>
+  );
+
+const RegisterButton = () => (
+  <Link to="/signup" key="link-signup">
+    <Button type="primary" key="2" block>
+      Register
+      <FormOutlined className="color-white" />
+    </Button>
+  </Link>
+);
+
 /**
  * NavBar
  * Connected functional component
@@ -22,52 +59,16 @@ import '../less/NavBar.less';
  * @param {redux store} authToken authentication token from redux store
  * @param {redux action} logOut action from logout import as a connected component
  */
-const NavBar = ({ history, authToken, logOut }) => {
-  const signInSignOut = !authToken ? (
-    <Link to="/signin" key="link-signin">
-      <Button key="0" className="margin-top-15 color-549BEA">
-        Sign In
-        <LoginOutlined />
-      </Button>
-    </Link>
-  ) : (
-    <React.Fragment key="group">
-      <Link to="/" key="link-signout">
-        <Button
-          key="1"
-          className="margin-top-15 color-549BEA"
-          onClick={logOut}
-        >
-          Sign Out
-          <LogoutOutlined />
-        </Button>
-      </Link>
-    </React.Fragment>
-  );
+const NavBar = ({ authToken, logOut }) => {
   return (
-    <PageHeader
-      className="navbar-page-header width-100 height-200"
-      title={
-        <Link to="/" key="link-dashboard">
-          <img
-            src={fullLogo}
-            alt="Logo for Village Book Builders, small orange hut with Village Book Builders text"
-            width="200"
-          ></img>
-        </Link>
-      }
-      extra={[
-        signInSignOut,
-        <Link to="/signup" key="link-signup">
-          <Button type="primary" key="2">
-            Register
-            <FormOutlined className="color-white" />
-          </Button>
-        </Link>,
-      ]}
-    >
-      {authToken ? <SearchBar /> : null}
-    </PageHeader>
+    <nav className="navbar-page-header navbar-grid width-100">
+      <Title />
+      <div className="searchbar-wrapper">{authToken && <SearchBar />}</div>
+      <div className="navbtn-wrapper">
+        <SignInSignOut authToken={authToken} logOut={logOut} />
+        <RegisterButton />
+      </div>
+    </nav>
   );
 };
 
@@ -76,4 +77,4 @@ const mapStateToProps = (state) => {
     authToken: state.authToken,
   };
 };
-export default withRouter(connect(mapStateToProps, actions)(NavBar));
+export default connect(mapStateToProps, { logOut })(NavBar);

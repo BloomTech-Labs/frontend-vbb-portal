@@ -67,6 +67,10 @@ body {
     margin: 0 100px;
   }
 
+  &-4 {
+    margin: 4px;
+  }
+
   &-5 {
     margin: 5px;
   }
@@ -263,6 +267,12 @@ body {
       max-height: 40vh;
     }
   }
+
+  &-width {
+    &-40rem {
+      max-width: 40rem;
+    }
+  }
 }
 
 .display {
@@ -304,6 +314,27 @@ body {
     &-scroll {
       overflow-y: scroll;
     }
+  }
+}
+
+.position {
+  &-relative {
+    position: relative;
+  }
+  &-absolute {
+    position: absolute;
+  }
+}
+
+.hover-lighten {
+  -webkit-transition: 1s -webkit-filter linear;
+  -moz-transition: 1s -moz-filter linear;
+  -moz-transition: 1s filter linear;
+  -ms-transition: 1s -ms-filter linear;
+  -o-transition: 1s -o-filter linear;
+  transition: 1s filter linear, 1s -webkit-filter linear;
+  &:hover {
+    filter: brightness(120%) saturate(105%);
   }
 }
 
