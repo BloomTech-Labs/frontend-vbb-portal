@@ -1,8 +1,9 @@
-import React from 'react'
-import { Modal, Button, Switch } from 'antd'
+import React from 'react';
+import { Modal, Button, Switch } from 'antd';
 import { CheckCircleOutlined, CheckCircleTwoTone, PropertySafetyFilled } from '@ant-design/icons';
+import Moment from 'moment';
 
-import '../../less/calendar.less'
+import '../../less/calendar.less';
 
 const CheckinModal = ({
   details,
@@ -38,9 +39,9 @@ const CheckinModal = ({
       setIsModalVisible(false);
     };
   
-  const dayString = start.toLocaleDateString()
-  const startString = start.toLocaleTimeString()
-  const endString = end.toLocaleTimeString()
+  const dayString = start.toLocaleDateString();
+  const startString = start.toLocaleTimeString();
+  const endString = end.toLocaleTimeString();
 
 
   const isCheckedIn = checkedIn
@@ -49,17 +50,9 @@ const CheckinModal = ({
       setClickSelected({
           ...details,
           checkedIn: !checkedIn
-      })
-      console.log(details)
+      });
+      console.log(details);
   }
-
-  const isAtLeastXMinutesToCurTime = ({ date, minutes }) => {
-    const dateInMS = date.getTime();
-    const MILLISECONDS_IN_A_MINUTE = 60_000;
-
-    return dateInMS + (minutes * MILLISECONDS_IN_A_MINUTE) >= Date.now();
-  };
-
 
   return (
       <Modal 
@@ -99,11 +92,11 @@ const CheckinModal = ({
         <Switch
           checked={isCheckedIn} 
           checkedChildren="Student Checked In" unCheckedChildren="Check-in Student"
-          disabled={isAtLeastXMinutesToCurTime({ date: start, minutes: 30 })}
+          disabled={Moment(start).isAfter(Moment(Date.now()).subtract(30, 'minute'))}
           onChange={handleCheckIn}
       />
     </Modal>
-  )
+  );
 }
 
-export default CheckinModal
+export default CheckinModal;
