@@ -14,7 +14,6 @@ const StudentInfoModal = ({ user, setModalConfig, editUser }) => {
 
   const onSubmit = () => {
     form.validateFields().then((values) => {
-      console.log('values', values);
       editUser(user.id, values);
       setEditing(false);
     });
@@ -42,4 +41,14 @@ const StudentInfoModal = ({ user, setModalConfig, editUser }) => {
   );
 };
 
-export default connect(null, { setModalConfig, editUser })(StudentInfoModal);
+const mapStateToProps = (state, { userId, userType }) => {
+  const user = state.searchBarReducer.results[userType].find(
+    (e) => e.id === userId
+  );
+
+  return { user };
+};
+
+export default connect(mapStateToProps, { setModalConfig, editUser })(
+  StudentInfoModal
+);
