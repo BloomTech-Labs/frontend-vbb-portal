@@ -21,9 +21,9 @@ const localizer = dateFnsLocalizer({
   startOfWeek,
   getDay,
   locales,
-})
+});
 
-//location dropdown menu
+// location dropdown menu
 const schoolMenu = (
   <Menu>
     <Menu.Item key="1">
@@ -35,7 +35,7 @@ const schoolMenu = (
   </Menu>
 );
 
-//custom toolbar and custom event displayed
+// custom toolbar and custom event displayed
 let components = {
   toolbar: Toolbar,
   week: {
@@ -44,19 +44,19 @@ let components = {
   day: {
     event: customResourceViewEvent
   }
-}
+};
 
-const MyCalendar = props => {
+const MyCalendar = () => {
 
-  const [showWeekView, setShowWeekView] = useState(true)
-  const [showCalendar, setShowCalendar] = useState(true)
+  const [showWeekView, setShowWeekView] = useState(true);
+  const [showCalendar, setShowCalendar] = useState(true);
   const [dragSelected, setDragSelected] = useState({
     start: "",
     end: "",
     mentor: "",
     student: "",
-    resourceId: 0
-  })
+    resourceId: 0,
+  });
   const [clickSelected, setClickSelected] = useState({
     start: "",
     end: "",
@@ -64,12 +64,12 @@ const MyCalendar = props => {
     student: "",
     resourceId: 0,
     title: "",
-    checkedIn: false
-  })
+    checkedIn: false,
+  });
 
   // State to manage visibility of event Modal
 
-  const [isModalVisiable, setIsModalVisible] = useState(false)
+  const [isModalVisiable, setIsModalVisible] = useState(false);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -80,16 +80,16 @@ const MyCalendar = props => {
     setDragSelected({
       ...dragSelected,
       start: start,
-      end: end
+      end: end,
     })
     setShowCalendar(!showCalendar)
-  }
+  };
 
 
 
   const handleEventClick = e => {
 
-    //If in week view clicking an event will hide the calendar, to show computer list
+    // If in week view clicking an event will hide the calendar, to show computer list
 
     if(showWeekView){
       setDragSelected({
@@ -98,14 +98,11 @@ const MyCalendar = props => {
         end: e.end,
         mentor: e.mentor,
         student: e.student,
-        resourceId: e.resourceId
-      }
-      );
-      setShowCalendar(!showCalendar)
+        resourceId: e.resourceId,
+      });
+      setShowCalendar(!showCalendar);
     }
-
     // Else clicking a event will bring pop-up of event details
-
     else {
       setClickSelected({
         ...dragSelected,
@@ -114,9 +111,10 @@ const MyCalendar = props => {
         mentor: e.mentor,
         student: e.student,
         resourceId: e.resourceId,
-        title: e.title
-      })
-      showModal()
+        title: e.title,
+        checkedIn: e.checkedIn,
+      });
+      showModal();
     }
   }
 
@@ -156,7 +154,7 @@ const MyCalendar = props => {
             day: true,
           }}
           components={components}
-          //toggle showWeekView to switch with showing the resource view
+          // toggle showWeekView to switch with showing the resource view
           resources={showWeekView === true ? null : resourceMap}
           resourceIdAccessor="resourceId"
           resourceTitleAccessor="resourceTitle"
@@ -169,7 +167,7 @@ const MyCalendar = props => {
         <ComputersList setShowWeekView={setShowWeekView} dragSelected={dragSelected} setShowCalendar={setShowCalendar} showCalendar={showCalendar} />
       }
     </div>
-  )
+  );
 }
 
-export default MyCalendar
+export default MyCalendar;

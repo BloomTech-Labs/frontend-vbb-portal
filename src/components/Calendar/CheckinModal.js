@@ -1,6 +1,5 @@
-import React from 'react';
-import { Modal, Button, Switch } from 'antd';
-import { CheckCircleOutlined, CheckCircleTwoTone, PropertySafetyFilled } from '@ant-design/icons';
+import React, { useEffect, useState } from 'react';
+import { Modal, Switch } from 'antd';
 import Moment from 'moment';
 
 import '../../less/calendar.less';
@@ -20,6 +19,33 @@ const CheckinModal = ({
     student,
     title,
   } = details;
+  const dayString = start.toLocaleDateString();
+  const startString = start.toLocaleTimeString();
+  const endString = end.toLocaleTimeString();
+  const isCheckedIn = checkedIn;
+  
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+  
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+
+
+  // const deriveStatus = () => {
+    
+  //   Moment(start).isAfter(Moment(Date.now()).subtract(30, 'minute'))
+  // };
+
+  // const [appointmentStatus, setAppointmentStatus] = useState();
+
+  // useEffect(() => {
+  //   switchStatusInterval = setInterval(() => {
+      
+  //   }, 1000);
+  // }, []);
 
   if(!start) {
       return(
@@ -31,20 +57,6 @@ const CheckinModal = ({
 
   console.log(details)
 
-  const handleOk = () => {
-      setIsModalVisible(false);
-    };
-  
-    const handleCancel = () => {
-      setIsModalVisible(false);
-    };
-  
-  const dayString = start.toLocaleDateString();
-  const startString = start.toLocaleTimeString();
-  const endString = end.toLocaleTimeString();
-
-
-  const isCheckedIn = checkedIn
 
   const handleCheckIn = () => {
       setClickSelected({
