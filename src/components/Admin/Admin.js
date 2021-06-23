@@ -62,9 +62,12 @@ const buttonLayout = {
   wrapperCol: { offset: 12, span: 16 },
 };
 /*End Form Styling*/
+
 const Admin = props => {
     const [show, setShow] = useState(true)
+
     const onClick = () => setShow(!show)
+
     return(
         <>
             <Form.Item {...buttonLayout}>
@@ -77,7 +80,10 @@ const Admin = props => {
             <Collapse accordion>
               {data.map(record => (
                   <Panel header={record.first_name + ' ' + record.last_name} key={record.key}>
-                    <AddUserForm EditMode Record={record}/>
+                    <AddUserForm 
+                      EditMode 
+                      Record={record}
+                    />
                   </Panel>
                 )
               )}

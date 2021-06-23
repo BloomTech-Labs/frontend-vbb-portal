@@ -9,6 +9,8 @@ import {
 
 import useForm from '../../hooks/useForm';
 
+import './admin.css';
+
 /*Form Styling*/
 const layout = {
     labelCol: { span: 5 },
@@ -32,15 +34,17 @@ const initialValues = {
 };
 
 const AddUserForm = props => {
-    const { EditMode, Record } = props;
+    const { EditMode, Record, formUpdated } = props;
 
-    const [values, handleChanges, clearForm] = useForm(initialValues);
+    const [editedNotSaved, setEditedNotSaved] = useState(false);
+    const [values, handleChanges, clearForm, handleSubmit] = useForm(initialValues);
 
     return(
         <div>
             <Form
                 {...layout}
                 name= "basic"
+                className={editedNotSaved ? 'editing' : ''}
                 initialValues={initialValues}
             >
                 {EditMode ? (<Form.Item {...switchLayout}>
@@ -59,7 +63,12 @@ const AddUserForm = props => {
                     <Input
                         name="first_name" 
                         defaultValue={EditMode ? Record.first_name : ''}
-                        onChange={handleChanges}
+                        onChange={
+                            (e) => {
+                                handleChanges(e);
+                                setEditedNotSaved(true);
+                            }
+                        }
                     />
                 </Form.Item>
                 <Form.Item
@@ -68,7 +77,12 @@ const AddUserForm = props => {
                     <Input
                         name="last_name"
                         defaultValue={EditMode ? Record.last_name : ''}
-                        onChange={handleChanges}
+                        onChange={
+                            (e) => {
+                                handleChanges(e);
+                                setEditedNotSaved(true);
+                            }
+                        }
                     />
                 </Form.Item>
                 <Form.Item
@@ -77,13 +91,19 @@ const AddUserForm = props => {
                     <Input
                         name="phone"
                         defaultValue={EditMode ? Record.phone : ''}
-                        onChange={handleChanges}
+                        onChange={
+                            (e) => {
+                                handleChanges(e);
+                                setEditedNotSaved(true);
+                            }
+                        }
                     />
                 </Form.Item>
                 <Form.Item {...buttonLayout}>
                     <Button
                         type="primary"
                         htmlType="submit"
+                        onClick={() => setEditedNotSaved(false)}
                     >
                         {EditMode ? 'Edit User' : 'Add New User'}
                     </Button>
