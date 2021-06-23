@@ -3,8 +3,8 @@ export const events = [
   {
     id: 0,
     title: 'Board meeting',
-    start: new Date(Date.UTC(2021, 5, 17, 13, 0, 0)),
-    end: new Date(Date.UTC(2021, 5, 17, 13, 30, 0)),
+    start: new Date(Date.UTC(2021, 5, 22, 8, 0, 0)),
+    end: new Date(Date.UTC(2021, 5, 22, 8, 30, 0)),
     availableComputers: 3,
     unavailableComputers: 6,
     mentor: 'Liz',
@@ -15,8 +15,8 @@ export const events = [
   {
     id: 1,
     title: 'MS training',
-    start: new Date(Date.UTC(2021, 5, 17, 12, 0, 0)),
-    end: new Date(Date.UTC(2021, 5, 17, 12, 30, 0)),
+    start: new Date(Date.UTC(2021, 5, 22, 12, 0, 0)),
+    end: new Date(Date.UTC(2021, 5, 22, 12, 30, 0)),
     availableComputers: 8,
     unavailableComputers: 5,
     mentor: 'Maple',
@@ -27,8 +27,8 @@ export const events = [
   {
     id: 2,
     title: 'Team lead meeting',
-    start: new Date(Date.UTC(2021, 5, 17, 15, 30, 0)),
-    end: new Date(Date.UTC(2021, 5, 17, 16, 0, 0)),
+    start: new Date(Date.UTC(2021, 5, 22, 23, 30, 0)),
+    end: new Date(Date.UTC(2021, 5, 22, 23, 0, 0)),
     availableComputers: 8,
     unavailableComputers: 2,
     mentor: 'Morgan',
@@ -39,8 +39,8 @@ export const events = [
   {
     id: 11,
     title: 'Birthday Party',
-    start: new Date(Date.UTC(2021, 5, 17, 14, 0, 0)),
-    end: new Date(Date.UTC(2021, 5, 17, 14, 30, 0)),
+    start: new Date(Date.UTC(2021, 5, 22, 14, 0, 0)),
+    end: new Date(Date.UTC(2021, 5, 22, 14, 30, 0)),
     availableComputers: 7,
     unavailableComputers: 3,
     mentor: 'Calli',
@@ -51,15 +51,15 @@ export const events = [
   {
     id: 12,
     title: 'Dog Walking',
-    start: new Date(Date.UTC(2021, 4, 18, 19, 0, 0)),
-    end: new Date(Date.UTC(2021, 4, 18, 19, 30, 0)),
+    start: new Date(Date.UTC(2021, 5, 22, 19, 0, 0)),
+    end: new Date(Date.UTC(2021, 5, 22, 19, 30, 0)),
     availableComputers: 5,
     unavailableComputers: 3,
     mentor: 'Leo',
     student: 'Nyx',
     //resourceId is a required field in order to map to the resources in day view
     resourceId: 5,
-    eventStatus: true,
+    eventStatus: false,
   },
   {
     id: 13,

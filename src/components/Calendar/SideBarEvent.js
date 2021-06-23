@@ -1,8 +1,9 @@
 import React from 'react';
 
-function Event({ event, showModal, setClickSelected }) {
+function SideBarEvent({ event, showModal, setClickSelected }) {
   const eventStartTime = Date.parse(event.start);
   const newTime = Date.now();
+  console.log(Date.UTC.toString());
 
   return (
     <div
@@ -35,4 +36,4 @@ function Event({ event, showModal, setClickSelected }) {
   );
 }
 
-export default Event;
+export default SideBarEvent;

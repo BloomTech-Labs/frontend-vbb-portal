@@ -1,6 +1,6 @@
 import { events } from './data';
 
-import Event from './Event';
+import SideBarEvent from './SideBarEvent';
 
 function EventListSideBar({ showModal, setClickSelected }) {
   const pendings = events
@@ -37,7 +37,7 @@ function EventListSideBar({ showModal, setClickSelected }) {
           <h5>Pending:</h5>
           <div className="events">
             {pendings.map((e) => (
-              <Event
+              <SideBarEvent
                 key={e.resourceId}
                 setClickSelected={setClickSelected}
                 showModal={showModal}

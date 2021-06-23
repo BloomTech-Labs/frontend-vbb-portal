@@ -66,7 +66,7 @@ const MyCalendar = (props) => {
 
   // State to manage visibility of event Modal
 
-  const [isModalVisiable, setIsModalVisible] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -115,14 +115,14 @@ const MyCalendar = (props) => {
     <div className="calendarWrapperDiv" id="section-to-print">
       <CheckinModal
         details={{ ...clickSelected }}
-        isModalVisiable={isModalVisiable}
+        isModalVisible={isModalVisible}
         setIsModalVisible={setIsModalVisible}
         setClickSelected={setClickSelected}
       />
 
       <EventListSideBar
         showModal={showModal}
-        isModalVisiable={isModalVisiable}
+        isModalVisible={isModalVisible}
         setIsModalVisible={setIsModalVisible}
         setClickSelected={setClickSelected}
       />
