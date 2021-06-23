@@ -40,7 +40,9 @@ const AddUserForm = props => {
         <div>
             <Form
                 {...layout}
-                name= "basic">
+                name= "basic"
+                initialValues={initialValues}
+            >
                 {EditMode ? (<Form.Item {...switchLayout}>
                                 <Switch
                                     defaultChecked
@@ -53,27 +55,27 @@ const AddUserForm = props => {
                             )}
                 <Form.Item
                     label="First Name"
-                    name="first_name"
                 >
-                    <Input 
+                    <Input
+                        name="first_name" 
                         defaultValue={EditMode ? Record.first_name : ''}
                         onChange={handleChanges}
                     />
                 </Form.Item>
                 <Form.Item
                     label="Last Name"
-                    name="last_name"
                 >
                     <Input
+                        name="last_name"
                         defaultValue={EditMode ? Record.last_name : ''}
                         onChange={handleChanges}
                     />
                 </Form.Item>
                 <Form.Item
                     label="Phone"
-                    name="phone"
                 >
-                    <Input 
+                    <Input
+                        name="phone"
                         defaultValue={EditMode ? Record.phone : ''}
                         onChange={handleChanges}
                     />
