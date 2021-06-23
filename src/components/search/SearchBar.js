@@ -1,42 +1,21 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { Input } from 'antd';
 import { connect } from 'react-redux';
-
 import SearchField from './SearchField';
-import { searchUsers } from '../../mock-data/mockApi';
+import { searchFilterFunction } from '../../redux/actions';
 import { createModal } from '../../redux/actions';
 import StudentInfoModal from '../StudentInfo/StudentInfoModal';
+import { useDebounce } from '../../hooks/useDebounce';
 
 import '../../less/index.less';
 
 const { Search } = Input;
 
-const LIMIT = 50;
-
-const SearchBar = ({ createModal }) => {
-  const [value, setValue] = useState('');
+const SearchBar = ({ createModal, searchFilterFunction, results }) => {
   const [toggle, setToggle] = useState(false);
-  const [results, setResults] = useState({});
+  const [, setValue] = useDebounce(searchFilterFunction, '', {});
 
   const clickAwayRef = useRef();
-
-  useEffect(() => {
-    if (value.length) {
-      const parts = value.split(':').map((e) => e.trim());
-      if (parts.length > 1) {
-        searchUsers(parts[1], {
-          userTypes: [parts[0]],
-          limit: LIMIT,
-        }).then((data) => setResults(data));
-      } else {
-        searchUsers(parts[0], { limit: LIMIT }).then((data) =>
-          setResults(data)
-        );
-      }
-    } else {
-      setResults({});
-    }
-  }, [value]);
 
   const handleClickOutside = useCallback((event) => {
     if (!clickAwayRef.current?.contains(event.target)) {
@@ -59,19 +38,30 @@ const SearchBar = ({ createModal }) => {
   };
 
   return (
-    <div className="flex justify-center">
-      <div ref={clickAwayRef} className="width-80">
-        <Search
-          type="text"
-          enterButton="Search"
-          onChange={(e) => setValue(e.target.value)}
-          onClick={() => setToggle(true)}
-          onPressEnter={handlePressEnter}
-        />
-        {toggle && <SearchField results={results} setToggle={setToggle} />}
-      </div>
+    <div
+      ref={clickAwayRef}
+      className="width-100 position-relative max-width-40rem"
+    >
+      <Search
+        type="text"
+        enterButton="Search"
+        allowClear
+        onChange={(e) => setValue(e.target.value)}
+        onClick={() => setToggle(true)}
+        onPressEnter={handlePressEnter}
+      />
+      {toggle && <SearchField results={results} setToggle={setToggle} />}
     </div>
   );
 };
 
-export default connect(null, { createModal })(SearchBar);
+function mapStateToProps(state) {
+  return {
+    value: state.searchBarReducer.value,
+    results: state.searchBarReducer.results,
+  };
+}
+
+export default connect(mapStateToProps, { searchFilterFunction, createModal })(
+  SearchBar
+);

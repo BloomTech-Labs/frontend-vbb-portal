@@ -50,7 +50,7 @@ function EventListSideBar({ showModal, setClickSelected }) {
           <h5>Checked-in:</h5>
           <div className="events">
             {checkedIns.map((e) => (
-              <Event
+              <SideBarEvent
                 key={e.resourceId}
                 setClickSelected={setClickSelected}
                 showModal={showModal}

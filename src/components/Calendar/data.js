@@ -3,8 +3,8 @@ export const events = [
   {
     id: 0,
     title: 'Board meeting',
-    start: new Date(Date.UTC(2021, 5, 22, 8, 0, 0)),
-    end: new Date(Date.UTC(2021, 5, 22, 8, 30, 0)),
+    start: new Date(Date.UTC(2021, 5, 23, 8, 0, 0)),
+    end: new Date(Date.UTC(2021, 5, 23, 8, 30, 0)),
     availableComputers: 3,
     unavailableComputers: 6,
     mentor: 'Liz',
@@ -15,14 +15,14 @@ export const events = [
   {
     id: 1,
     title: 'MS training',
-    start: new Date(Date.UTC(2021, 5, 22, 12, 0, 0)),
-    end: new Date(Date.UTC(2021, 5, 22, 12, 30, 0)),
+    start: new Date(Date.UTC(2021, 5, 23, 12, 0, 0)),
+    end: new Date(Date.UTC(2021, 5, 23, 12, 30, 0)),
     availableComputers: 8,
     unavailableComputers: 5,
     mentor: 'Maple',
     student: 'Alley',
     resourceId: 2,
-    eventStatus: false,
+    eventStatus: true,
   },
   {
     id: 2,
@@ -91,6 +91,8 @@ export const events = [
 
 export const mentors = ['Leo', 'Calli', 'Morgan'];
 export const students = ['Nyx', 'Steven', 'Morgan'];
+export const startTime = ['10am', '11am', '12pm'];
+export const endTime = ['11am', '12pm', '1pm'];
 
 const resourcesArray = [
   'computer 1',

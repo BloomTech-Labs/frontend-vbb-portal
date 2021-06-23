@@ -2,12 +2,16 @@ import React, { useEffect, useState } from 'react'
 import '../../../less/computers-list-style.less'
 import { students } from '../data'
 import { mentors } from '../data'
+import { startTime } from '../data'
+import { endTime } from '../data'
 
 const ComputersList = (props) => {
 
     const [assigned, setAssigned] = useState({
         mentor: false,
-        student: false
+        student: false,
+        startTime: false,
+        endTime: false
     })
 
     const newList = []
@@ -43,6 +47,20 @@ const ComputersList = (props) => {
                                             return <option key={i}>{student}</option>
                                         })}
                                     </select>
+                                    <select className='start-time-list' >
+                                        <option value="none" selected disabled>Start Time</option>
+                                        {startTime.map((start, i) => {
+                                            return <option key={i}>{start}</option>
+                                        })}
+                                    </select>
+                                    <select className='end-time-list' >
+                                        <option value="none" selected disabled>End Time</option>
+                                        {endTime.map((end, i) => {
+                                            return <option key={i}>{end}</option>
+                                        })}
+                                    </select>
+                                    <button className='scheduler-button'>Save Changes</button>
+                                    <button className='scheduler-button'>Cancel</button>
                                 </div>
                             </div>
                         )
@@ -50,7 +68,6 @@ const ComputersList = (props) => {
                 </div>
             </div>
             <div className='buttons-container'>
-                <button className='scheduler-button'>Submit</button>
                 <button className='scheduler-button' onClick={() => {
                     props.setShowWeekView(true)
                     props.setShowCalendar(!props.showCalendar);
