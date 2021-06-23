@@ -14,9 +14,15 @@ export default function useForm(initialValues){
         console.log(values);
     };
 
+    const handleSubmit = e => {
+        e.preventDefault();
+
+
+    }
+
     const clearForm = () => {
         setValues(initialValues);
     };
 
-    return [values, handleChanges, clearForm];
+    return [values, handleChanges, clearForm, handleSubmit];
 }
