@@ -4,6 +4,13 @@ import Moment from 'moment';
 
 import '../../less/calendar.less';
 
+const meetingStatus = {
+  CHECKED_IN: 'CHECKED_IN',
+  PRE_CHECK_IN: 'PRE_CHECK_IN',
+  NOT_CHECK_IN: 'NOT_CHECKED_IN',
+  EXPIRED: 'EXPIRED',
+};
+
 const CheckinModal = ({
   details,
   isModalVisiable,
@@ -22,7 +29,6 @@ const CheckinModal = ({
   const dayString = start.toLocaleDateString();
   const startString = start.toLocaleTimeString();
   const endString = end.toLocaleTimeString();
-  const isCheckedIn = checkedIn;
   
   const handleOk = () => {
     setIsModalVisible(false);
@@ -34,10 +40,23 @@ const CheckinModal = ({
 
 
 
-  // const deriveStatus = () => {
-    
-  //   Moment(start).isAfter(Moment(Date.now()).subtract(30, 'minute'))
-  // };
+  const deriveStatus = ({ start, end, checkedIn }) => {
+    const nowMoment = Moment(Date.now());
+    const halfHourBeforeMeetingStart = Moment(start).subtract(30, 'minutes');
+
+    if (checkedIn) {
+      return meetingStatus.CHECKED_IN;
+    }
+    else if (nowMoment.isBefore(halfHourBeforeMeetingStart)) {
+      return meetingStatus.PRE_CHECK_IN;
+    }
+    else if (nowMoment.isAfter(halfHourBeforeMeetingStart) && nowMoment.isBefore(end)) {
+      return meetingStatus.NOT_CHECK_IN;
+    }
+    else {
+      return meetingStatus.EXPIRED;
+    }
+  };
 
   // const [appointmentStatus, setAppointmentStatus] = useState();
 
@@ -79,7 +98,7 @@ const CheckinModal = ({
               paddingBottom: '1rem', 
               color: checkedIn ? '#52c41a' : 'red'
               }}>
-                  Status: {isCheckedIn ? 'checked-in' : 'not checked-in'}</h6>
+                  Status: {checkedIn ? 'checked-in' : 'not checked-in'}</h6>
         <h2>{title}</h2>
           {
         //If the details haven't loaded yet do not display, to handle toLocalDateString() error
@@ -102,7 +121,7 @@ const CheckinModal = ({
             {resourceId}
           </p>
         <Switch
-          checked={isCheckedIn} 
+          checked={checkedIn} 
           checkedChildren="Student Checked In" unCheckedChildren="Check-in Student"
           disabled={Moment(start).isAfter(Moment(Date.now()).subtract(30, 'minute'))}
           onChange={handleCheckIn}
