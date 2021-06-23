@@ -7,6 +7,8 @@ import {
   Button
 } from 'antd';
 
+import useForm from '../../hooks/useForm';
+
 /*Form Styling*/
 const layout = {
     labelCol: { span: 5 },
@@ -21,14 +23,18 @@ const switchLayout = {
     wrapperCol: { offset: 20 },
 };
 
-
 /*End Form Styling*/
+
+const initialValues = {
+    first_name: '',
+    last_name: '',
+    phone: ''
+};
+
 const AddUserForm = props => {
     const { EditMode, Record } = props;
 
-    const onChange = checked => {
-        console.log(`switch to ${checked}`)
-    };
+    const [values, handleChanges, clearForm] = useForm(initialValues);
 
     return(
         <div>
@@ -40,28 +46,37 @@ const AddUserForm = props => {
                                     defaultChecked
                                     checkedChildren="Activated"
                                     unCheckedChildren="Deactivated"
-                                    onChange={onChange}
+                                    onChange={handleChanges}
                                 />
                             </Form.Item>) : (
                                 <></>
                             )}
                 <Form.Item
                     label="First Name"
-                    name="fname"
+                    name="first_name"
                 >
-                    <Input defaultValue={EditMode ? Record.first_name : ''}/>
+                    <Input 
+                        defaultValue={EditMode ? Record.first_name : ''}
+                        onChange={handleChanges}
+                    />
                 </Form.Item>
                 <Form.Item
                     label="Last Name"
-                    name="lname"
+                    name="last_name"
                 >
-                    <Input defaultValue={EditMode ? Record.last_name : ''}/>
+                    <Input
+                        defaultValue={EditMode ? Record.last_name : ''}
+                        onChange={handleChanges}
+                    />
                 </Form.Item>
                 <Form.Item
                     label="Phone"
                     name="phone"
                 >
-                    <Input defaultValue={EditMode ? Record.phone : ''}/>
+                    <Input 
+                        defaultValue={EditMode ? Record.phone : ''}
+                        onChange={handleChanges}
+                    />
                 </Form.Item>
                 <Form.Item {...buttonLayout}>
                     <Button
