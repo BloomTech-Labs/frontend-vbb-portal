@@ -7,3 +7,5 @@
 export const sleep = async (timeInMS) => {
   return new Promise((resolve) => setTimeout(resolve, timeInMS));
 };
+
+export default sleep;

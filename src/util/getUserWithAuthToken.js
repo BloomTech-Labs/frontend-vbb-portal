@@ -28,3 +28,5 @@ export const getUserFromAuthToken = async (authToken = null) => {
 
   return data;
 };
+
+export default getUserFromAuthToken;

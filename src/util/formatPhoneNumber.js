@@ -10,3 +10,5 @@ export const formatPhoneNumber = (phoneNumber) => {
   const onlyNumbers = phoneNumber.replace(/\D+/gm, '');
   return `+${onlyNumbers}`;
 };
+
+export default formatPhoneNumber;
