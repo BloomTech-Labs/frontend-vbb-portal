@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, Switch } from 'antd';
-import Moment from 'moment';
+
+import {
+  meetingStatus,
+  deriveStatus,
+} from '../../util';
 
 import '../../less/calendar.less';
-
-const meetingStatus = {
-  CHECKED_IN: 'CHECKED_IN',
-  PRE_CHECK_IN: 'PRE_CHECK_IN',
-  NOT_CHECK_IN: 'NOT_CHECKED_IN',
-  EXPIRED: 'EXPIRED',
-};
 
 const CheckinModal = ({
   details,
@@ -26,10 +23,54 @@ const CheckinModal = ({
     student,
     title,
   } = details;
-  const dayString = start.toLocaleDateString();
-  const startString = start.toLocaleTimeString();
-  const endString = end.toLocaleTimeString();
-  
+  const dayString = start ? start.toLocaleDateString() : '';
+  const startString = start ? start.toLocaleTimeString() : '';
+  const endString = end ? end.toLocaleTimeString() : '';
+
+  const [status, setStatus] = useState(deriveStatus({ start, end, checkedIn }));
+  const [statusUpdateInterval, setStatusUpdateInterval] = useState(0);
+
+  const updateStatus = () => {
+    const curStatus = deriveStatus({ start, end, checkedIn });
+    console.log('line 35');
+
+    if (status !== curStatus) {
+      console.log('line 38');
+      setStatus(curStatus);
+    }
+  };
+
+  const clearStatusUpdateInterval = () => {
+    console.log('line 44');
+    if (statusUpdateInterval !== 0) {
+      console.log('line 46');
+      clearInterval(statusUpdateInterval);
+    }
+  };
+
+  useEffect(() => {
+    console.log('line 52');
+    switch (status) {
+      case meetingStatus.PRE_CHECK_IN:
+      case meetingStatus.NOT_CHECK_IN:
+        console.log('line 56');
+        setStatusUpdateInterval((oldInterval) => {
+          console.log('line 58');
+          clearStatusUpdateInterval();
+          return setInterval(updateStatus, 1000);
+        });
+        return clearStatusUpdateInterval;
+      default:
+        console.log('line 64');
+        break;
+    }
+  }, [status]);
+    
+  useEffect(() => {
+    console.log('line 70');
+    return clearStatusUpdateInterval;
+  }, [statusUpdateInterval]);
+
   const handleOk = () => {
     setIsModalVisible(false);
   };
@@ -37,34 +78,6 @@ const CheckinModal = ({
   const handleCancel = () => {
     setIsModalVisible(false);
   };
-
-
-
-  const deriveStatus = ({ start, end, checkedIn }) => {
-    const nowMoment = Moment(Date.now());
-    const halfHourBeforeMeetingStart = Moment(start).subtract(30, 'minutes');
-
-    if (checkedIn) {
-      return meetingStatus.CHECKED_IN;
-    }
-    else if (nowMoment.isBefore(halfHourBeforeMeetingStart)) {
-      return meetingStatus.PRE_CHECK_IN;
-    }
-    else if (nowMoment.isAfter(halfHourBeforeMeetingStart) && nowMoment.isBefore(end)) {
-      return meetingStatus.NOT_CHECK_IN;
-    }
-    else {
-      return meetingStatus.EXPIRED;
-    }
-  };
-
-  // const [appointmentStatus, setAppointmentStatus] = useState();
-
-  // useEffect(() => {
-  //   switchStatusInterval = setInterval(() => {
-      
-  //   }, 1000);
-  // }, []);
 
   if(!start) {
       return(
@@ -123,7 +136,7 @@ const CheckinModal = ({
         <Switch
           checked={checkedIn} 
           checkedChildren="Student Checked In" unCheckedChildren="Check-in Student"
-          disabled={Moment(start).isAfter(Moment(Date.now()).subtract(30, 'minute'))}
+          disabled={status === meetingStatus.PRE_CHECK_IN}
           onChange={handleCheckIn}
       />
     </Modal>

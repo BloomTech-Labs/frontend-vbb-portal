@@ -56,6 +56,17 @@ export const events = [
     //resourceId is a required field in order to map to the resources in day view
     resourceId: 5,
   },
+  {
+    id: 13,
+    title: 'Test',
+    start: new Date(Date.UTC(2021, 5, 24, 1, 0, 0)),
+    end: new Date(Date.UTC(2021, 5, 24, 1, 30, 0)),
+    availableComputers: 5,
+    unavailableComputers: 3,
+    mentor: 'Calli',
+    student: 'Morgan',
+    resourceId: 6,
+  },
 ]
 
 export const mentors = ['Leo','Calli','Morgan']
