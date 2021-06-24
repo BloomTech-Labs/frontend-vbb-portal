@@ -2,7 +2,7 @@ import { useState, useCallback, useRef, useEffect } from 'react';
 import { Input } from 'antd';
 import { connect } from 'react-redux';
 import SearchField from './SearchField';
-import { searchFilterFunction } from '../../redux/SearchBar.redux/SearchBar.reducer';
+import { searchFilterFunction } from '../../redux/actions';
 import { createModal } from '../../redux/actions';
 import StudentInfoModal from '../StudentInfo/StudentInfoModal';
 import { useDebounce } from '../../hooks/useDebounce';
@@ -38,18 +38,19 @@ const SearchBar = ({ createModal, searchFilterFunction, results }) => {
   };
 
   return (
-    <div className="flex justify-center">
-      <div ref={clickAwayRef} className="width-80">
-        <Search
-          type="text"
-          enterButton="Search"
-          allowClear
-          onChange={(e) => setValue(e.target.value)}
-          onClick={() => setToggle(true)}
-          onPressEnter={handlePressEnter}
-        />
-        {toggle && <SearchField results={results} setToggle={setToggle} />}
-      </div>
+    <div
+      ref={clickAwayRef}
+      className="width-100 position-relative max-width-40rem"
+    >
+      <Search
+        type="text"
+        enterButton="Search"
+        allowClear
+        onChange={(e) => setValue(e.target.value)}
+        onClick={() => setToggle(true)}
+        onPressEnter={handlePressEnter}
+      />
+      {toggle && <SearchField results={results} setToggle={setToggle} />}
     </div>
   );
 };
