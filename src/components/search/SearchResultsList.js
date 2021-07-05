@@ -13,10 +13,13 @@ const SearchResultsList = ({ title, results, createModal }) => {
           <li
             key={e.id}
             className="searchBar"
-            onClick={() => createModal(<StudentInfoModal user={e} />)}
+            onClick={() =>
+              createModal(
+                <StudentInfoModal userId={e.id} userType={e.user_type} />
+              )
+            }
           >
-            {' '}
-            {`${e.first_name} ${e.last_name}`}{' '}
+            {`${e.first_name} ${e.last_name}`}
           </li>
         ))}
       </ul>
