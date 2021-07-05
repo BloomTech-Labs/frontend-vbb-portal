@@ -34,6 +34,7 @@ const CheckinModal = ({
     const curStatus = deriveStatus({ start, end, checkedIn });
 
     if (status !== curStatus) {
+      clearStatusUpdateInterval();
       setStatus(curStatus);
     }
   };
