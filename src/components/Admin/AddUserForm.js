@@ -4,6 +4,8 @@ import {
   Form,
   Input,
   Switch,
+  DatePicker,
+  Space,
   Button
 } from 'antd';
 
@@ -52,12 +54,6 @@ const AddUserForm = (props) => {
                                     defaultChecked
                                     checkedChildren="Activated"
                                     unCheckedChildren="Deactivated"
-                                    onChange={
-                                        (e) => {
-                                            console.log(e);
-                                            handleChanges(e);
-                                        }
-                                    }
                                     name="activate"
                                 />
                             </Form.Item>) : (
@@ -117,6 +113,15 @@ const AddUserForm = (props) => {
                             }
                         }
                     />
+                </Form.Item>
+                <Form.Item
+                    label="DOB"
+                >
+                    <Space direction="vertical">
+                        <DatePicker
+                            defaultValue={EditMode ? Record.dob : ''}
+                        />
+                    </Space>
                 </Form.Item>
                 <Form.Item {...buttonLayout}>
                     <Button

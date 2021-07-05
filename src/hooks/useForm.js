@@ -5,7 +5,7 @@ export default function useForm(initialValues){
 
     const handleChanges = e => {
         if(e.target.type !== "button") e.persist();
-console.log(e);
+
         setValues({
             ...values,
             [e.target.name]: e.target.name === "activate" ? [e.target.value] : e.target.value
