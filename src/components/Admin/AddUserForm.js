@@ -30,12 +30,12 @@ const switchLayout = {
 const initialValues = {
     first_name: '',
     last_name: '',
-    phone: ''
+    phone: '',
+    email: ''
 };
 
-const AddUserForm = props => {
-    const { EditMode, Record, formUpdated } = props;
-
+const AddUserForm = (props) => {
+    const {EditMode, Record, formUpdated} = props;
     const [editedNotSaved, setEditedNotSaved] = useState(false);
     const [values, handleChanges, clearForm, handleSubmit] = useForm(initialValues);
 
@@ -52,7 +52,13 @@ const AddUserForm = props => {
                                     defaultChecked
                                     checkedChildren="Activated"
                                     unCheckedChildren="Deactivated"
-                                    onChange={handleChanges}
+                                    onChange={
+                                        (e) => {
+                                            console.log(e);
+                                            handleChanges(e);
+                                        }
+                                    }
+                                    name="activate"
                                 />
                             </Form.Item>) : (
                                 <></>
@@ -95,6 +101,19 @@ const AddUserForm = props => {
                             (e) => {
                                 handleChanges(e);
                                 setEditedNotSaved(true);
+                            }
+                        }
+                    />
+                </Form.Item>
+                <Form.Item
+                    label="Email"
+                >
+                    <Input
+                        name="email"
+                        defaultValue={EditMode ? Record.email : ''}
+                        onChange={
+                            (e) => {
+                                handleChanges(e);
                             }
                         }
                     />

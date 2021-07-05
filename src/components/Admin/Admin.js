@@ -18,31 +18,36 @@ const data = [
       key: '1',
       first_name: 'John',
       last_name: 'Brown',
-      phone: '123-000-0000'
+      phone: '123-456-7890',
+      email: 'test1@test.com'
     },
     {
       key: '2',
       first_name: 'Jim',
       last_name: 'Green',
-      phone: '123-000-0000'
+      phone: '888-523-8850',
+      email: 'test2@test.com'
     },
     {
       key: '3',
       first_name: 'Joe',
       last_name: 'Black',
-      phone: '123-000-0000'
+      phone: '123-000-0000',
+      email: 'test3@test.com'
     },
     {
       key: '4',
       first_name: 'Joe',
       last_name: 'Black',
-      phone: '123-000-0000'
+      phone: '123-000-0000',
+      email: 'test3@test.com'
     },
     {
       key: '5',
       first_name: 'Joe',
       last_name: 'Black',
-      phone: '123-000-0000'
+      phone: '123-000-0000',
+      email: 'test3@test.com'
     },
 ];
 
