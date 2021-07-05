@@ -21,7 +21,7 @@ const localizer = dateFnsLocalizer({
   startOfWeek,
   getDay,
   locales,
-})
+}) 
 
 //location dropdown menu
 const schoolMenu = (

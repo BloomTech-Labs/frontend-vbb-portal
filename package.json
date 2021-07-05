@@ -23,7 +23,6 @@
     "date-fns": "^2.21.1",
     "dayjs": "^1.10.4",
     "dotenv-cli": "^4.0.0",
-    "moment": "^2.29.1",
     "moment-timezone": "^0.5.33",
     "react": "^17.0.2",
     "react-big-calendar": "^0.33.2",
