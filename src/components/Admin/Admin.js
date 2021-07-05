@@ -1,14 +1,12 @@
-import {React, Component, useState} from 'react';
+import {useState} from 'react';
 import AddUserForm from './AddUserForm';
 import {
-  Table,
-  Tag,
-  Space,
   Form,
-  Input,
   Button,
   Collapse
 } from 'antd';
+
+import moment from 'moment';
 
 /*Placeholder data*/
 const { Panel } = Collapse;
@@ -19,35 +17,40 @@ const data = [
       first_name: 'John',
       last_name: 'Brown',
       phone: '123-456-7890',
-      email: 'test1@test.com'
+      email: 'test1@test.com',
+      dob: moment('01/01/2000','MM/DD/YYYY')
     },
     {
       key: '2',
       first_name: 'Jim',
       last_name: 'Green',
       phone: '888-523-8850',
-      email: 'test2@test.com'
+      email: 'test2@test.com',
+      dob: moment('12/22/2011')
     },
     {
       key: '3',
       first_name: 'Joe',
       last_name: 'Black',
       phone: '123-000-0000',
-      email: 'test3@test.com'
+      email: 'test3@test.com',
+      dob: moment('04/05/2010')
     },
     {
       key: '4',
       first_name: 'Joe',
       last_name: 'Black',
       phone: '123-000-0000',
-      email: 'test3@test.com'
+      email: 'test3@test.com',
+      dob: moment('04/05/2010')
     },
     {
       key: '5',
       first_name: 'Joe',
       last_name: 'Black',
       phone: '123-000-0000',
-      email: 'test3@test.com'
+      email: 'test3@test.com',
+      dob: moment('04/05/2010')
     },
 ];
 
