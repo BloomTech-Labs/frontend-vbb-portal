@@ -89,8 +89,8 @@ const Admin = props => {
               {data.map(record => (
                   <Panel header={record.first_name + ' ' + record.last_name} key={record.key}>
                     <AddUserForm 
-                      EditMode 
-                      Record={record}
+                      editMode 
+                      record={record}
                     />
                   </Panel>
                 )
