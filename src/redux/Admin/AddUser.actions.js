@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {setIsError} from '.././actions'
 
 export const ADD_USER_REQUEST = "ADD_USER_REQUEST"
 export const ADD_USER_SUCCESS = "ADD_USER_SUCCESS"
@@ -34,6 +35,6 @@ return function (dispatch) {
     dispatch(AddUserSuccess())
   })
   .catch(err => {
-    dispatch(AddUserFailure(err.message))
+    setIsError('Not able to add new user')
   })
 }}
