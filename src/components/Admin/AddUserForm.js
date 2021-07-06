@@ -36,10 +36,10 @@ const initialValues = {
     email: ''
 };
 
-const AddUserForm = (props) => {
-    const {EditMode, Record, formUpdated} = props;
+const AddUserForm = ({editMode, record, formUpdated}) => {
+
     const [editedNotSaved, setEditedNotSaved] = useState(false);
-    const [values, handleChanges, clearForm, handleSubmit] = useForm(initialValues);
+    const [values, handleChanges, clearForm] = useForm(initialValues);
 
     return(
         <div>
@@ -49,7 +49,7 @@ const AddUserForm = (props) => {
                 className={editedNotSaved ? 'editing' : ''}
                 initialValues={initialValues}
             >
-                {EditMode ? (<Form.Item {...switchLayout}>
+                {editMode ? (<Form.Item {...switchLayout}>
                                 <Switch
                                     defaultChecked
                                     checkedChildren="Activated"
@@ -64,7 +64,7 @@ const AddUserForm = (props) => {
                 >
                     <Input
                         name="first_name" 
-                        defaultValue={EditMode ? Record.first_name : ''}
+                        defaultValue={editMode ? record.first_name : ''}
                         onChange={
                             (e) => {
                                 handleChanges(e);
@@ -78,7 +78,7 @@ const AddUserForm = (props) => {
                 >
                     <Input
                         name="last_name"
-                        defaultValue={EditMode ? Record.last_name : ''}
+                        defaultValue={editMode ? record.last_name : ''}
                         onChange={
                             (e) => {
                                 handleChanges(e);
@@ -92,7 +92,7 @@ const AddUserForm = (props) => {
                 >
                     <Input
                         name="phone"
-                        defaultValue={EditMode ? Record.phone : ''}
+                        defaultValue={editMode ? record.phone : ''}
                         onChange={
                             (e) => {
                                 handleChanges(e);
@@ -106,7 +106,7 @@ const AddUserForm = (props) => {
                 >
                     <Input
                         name="email"
-                        defaultValue={EditMode ? Record.email : ''}
+                        defaultValue={editMode ? record.email : ''}
                         onChange={
                             (e) => {
                                 handleChanges(e);
@@ -119,7 +119,7 @@ const AddUserForm = (props) => {
                 >
                     <Space direction="vertical">
                         <DatePicker
-                            defaultValue={EditMode ? Record.dob : ''}
+                            defaultValue={editMode ? record.dob : ''}
                         />
                     </Space>
                 </Form.Item>
@@ -129,7 +129,7 @@ const AddUserForm = (props) => {
                         htmlType="submit"
                         onClick={() => setEditedNotSaved(false)}
                     >
-                        {EditMode ? 'Edit User' : 'Add New User'}
+                        {editMode ? 'Edit User' : 'Add New User'}
                     </Button>
                 </Form.Item>
             </Form>
