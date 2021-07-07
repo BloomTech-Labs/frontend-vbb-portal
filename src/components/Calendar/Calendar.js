@@ -9,11 +9,11 @@ import parse from 'date-fns/parse';
 import startOfWeek from 'date-fns/startOfWeek';
 import getDay from 'date-fns/getDay';
 import Toolbar from './ResourcesToolbar';
-import { Menu, Dropdown } from 'antd';
 import ComputersList from './assign-computers/computers-list';
 import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
 import CheckinModal from './CheckinModal';
 import EventListSideBar from './EventListSideBar';
+
 
 const locales = {
   'en-US': require('date-fns/locale/en-US'),
@@ -28,15 +28,6 @@ const localizer = dateFnsLocalizer({
 
 //drag and drop
 const TheCalendar = withDragAndDrop(Calendar);
-
-//location dropdown menu
-const schoolMenu = (
-  <Menu>
-    <Menu.Item key="1">India</Menu.Item>
-    <Menu.Item key="2">Africa</Menu.Item>
-    <Menu.Item key="3">All Locations</Menu.Item>
-  </Menu>
-);
 
 //custom toolbar and custom event displayed
 let components = {
@@ -80,6 +71,10 @@ const MyCalendar = (props) => {
   const showModal = () => {
     setIsModalVisible(true);
   };
+
+  // State to mange selecting locations
+  const [selectLocation, setSelectLocation] = useState(true)
+
 
   // Drag feature
   const handleDragStart = (event) => {
@@ -181,11 +176,6 @@ const MyCalendar = (props) => {
         setClickSelected={setClickSelected}
       />
       <div className="calendar-container">
-        <div className="rbc-toolbar rbc-btn-group">
-          <Dropdown overlay={schoolMenu}>
-            <button trigger={['click']}>Select Location</button>
-          </Dropdown>
-        </div>
         {/* if showCalendar is true, we give them the default, else we show the scheduler */}
         {showCalendar ? (
           <Calendar
