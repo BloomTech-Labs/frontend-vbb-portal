@@ -185,7 +185,7 @@ const MyCalendar = (props) => {
         </div>
         {/* if showCalendar is true, we give them the default, else we show the scheduler */}
         {showCalendar ? (
-          <TheCalendar
+          <Calendar
             selectable
             localizer={localizer}
             popup={true}
