@@ -8,8 +8,6 @@ const CheckinModal = (props) => {
     return <>loading</>;
   }
 
-  console.log(props.details);
-
   const handleOk = () => {
     props.setIsModalVisible(false);
   };
@@ -29,7 +27,6 @@ const CheckinModal = (props) => {
       ...props.details,
       checkedIn: !props.details.checkedIn,
     });
-    console.log(props.details);
   };
 
   return (
