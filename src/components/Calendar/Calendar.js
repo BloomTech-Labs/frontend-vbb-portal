@@ -34,6 +34,7 @@ const schoolMenu = (
   <Menu>
     <Menu.Item key="1">India</Menu.Item>
     <Menu.Item key="2">Africa</Menu.Item>
+    <Menu.Item key="3">All Locations</Menu.Item>
   </Menu>
 );
 
