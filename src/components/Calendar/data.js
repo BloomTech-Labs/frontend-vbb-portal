@@ -11,6 +11,7 @@ export const events = [
     student: 'Pete',
     resourceId: 1,
     eventStatus: false,
+    location: 'India'
   },
   {
     id: 1,
@@ -23,6 +24,7 @@ export const events = [
     student: 'Alley',
     resourceId: 2,
     eventStatus: true,
+    location: 'India'
   },
   {
     id: 2,
@@ -35,6 +37,7 @@ export const events = [
     student: 'Ares',
     resourceId: 3,
     eventStatus: false,
+    location: 'Africa'
   },
   {
     id: 11,
@@ -47,6 +50,7 @@ export const events = [
     student: 'Carlos',
     resourceId: 4,
     eventStatus: true,
+    location: 'Africa'
   },
   {
     id: 12,
@@ -60,6 +64,7 @@ export const events = [
     //resourceId is a required field in order to map to the resources in day view
     resourceId: 5,
     eventStatus: false,
+    location: 'India'
   },
   {
     id: 13,
@@ -73,6 +78,7 @@ export const events = [
     //resourceId is a required field in order to map to the resources in day view
     resourceId: 6,
     eventStatus: true,
+    location: 'Africa'
   },
   {
     id: 14,
@@ -86,6 +92,7 @@ export const events = [
     //resourceId is a required field in order to map to the resources in day view
     resourceId: 7,
     eventStatus: false,
+    location: 'India'
   },
 ];
 
