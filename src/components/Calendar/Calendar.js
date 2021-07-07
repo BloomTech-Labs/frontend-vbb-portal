@@ -143,6 +143,7 @@ const MyCalendar = (props) => {
         mentor: e.mentor,
         student: e.student,
         resourceId: e.resourceId,
+        location: e.location
       });
       setShowCalendar(!showCalendar);
     }
@@ -157,6 +158,7 @@ const MyCalendar = (props) => {
         student: e.student,
         resourceId: e.resourceId,
         title: e.title,
+        location: e.location
       });
       showModal();
     }
