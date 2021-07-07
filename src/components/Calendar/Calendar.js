@@ -102,7 +102,7 @@ const MyCalendar = props => {
       }
       );
       setShowCalendar(!showCalendar)
-    }
+          }
 
     // Else clicking a event will bring pop-up of event details
 
@@ -135,6 +135,7 @@ const MyCalendar = props => {
         <Dropdown overlay={schoolMenu}>
           <button trigger={['click']}>Select Location</button>
         </Dropdown>
+        
       </div>
       {/* if showCalendar is true, we give them the default, else we show the scheduler */}
       {showCalendar ?
@@ -164,7 +165,7 @@ const MyCalendar = props => {
           defaultView='week'
           onSelectSlot={handleDragSelect}
           onSelectEvent={handleEventClick}
-        />
+          />
         :
         <ComputersList setShowWeekView={setShowWeekView} dragSelected={dragSelected} setShowCalendar={setShowCalendar} showCalendar={showCalendar} />
       }
