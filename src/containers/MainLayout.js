@@ -15,18 +15,16 @@ const MainLayout = () => {
     <div>
       <Layout>
         <NavBar />
-        <Content
-          className="margin-top-200 padding-50 background-color-FFFFF6"
-        >
+        <Content className="padding-50 background-color-FFFFF6">
           <Breadcrumb className="margin-16-0">
             <Breadcrumb.Item>
               <Link to="/">Village Portal</Link>
             </Breadcrumb.Item>
             <Breadcrumb.Item>
-              <Link to="/signup">Mentor Registration</Link>
+              <Link to="/calendar/">Calendar</Link>
             </Breadcrumb.Item>
             <Breadcrumb.Item>
-              <Link to="/calendar/">Calendar</Link>
+              <Link to="/admin/">Admin</Link>
             </Breadcrumb.Item>
           </Breadcrumb>
           <div className="padding-24 min-height-380">

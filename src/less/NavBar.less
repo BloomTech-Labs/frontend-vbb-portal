@@ -1,5 +1,43 @@
 .navbar-page-header {
-    position: fixed;
-    z-index: 1;
-    background-color: #FF914D;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #ff914d;
+  padding: 1rem;
+}
+
+.navbar-grid {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  column-gap: 2rem;
+  align-items: center;
+
+  @media only screen and (max-width: 950px) {
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+  }
+}
+
+.logo {
+  margin-bottom: 25px;
+}
+
+.navbtn-wrapper {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 0.5rem;
+  justify-self: right;
+}
+
+.searchbar-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  @media only screen and (max-width: 950px) {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    justify-content: center;
+  }
 }
