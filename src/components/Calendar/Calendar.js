@@ -159,9 +159,9 @@ const MyCalendar = (props) => {
   };
 
   // useEffect for select location dropdown
-  useEffect(() => {
-    console.log(selectLocation)
-  }, [selectLocation])
+  // useEffect(() => {
+  //   console.log(selectLocation)
+  // }, [selectLocation])
 
   return (
     <div className="calendarWrapperDiv" id="section-to-print">
