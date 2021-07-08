@@ -1,3 +1,4 @@
+import { Calendar } from 'antd';
 import React, { useEffect, useState } from 'react'
 import * as yup from "yup";
 import '../../../less/computers-list-style.less'
@@ -5,6 +6,7 @@ import { students } from '../data'
 import { mentors } from '../data'
 import { startTime } from '../data'
 import { endTime } from '../data'
+
 const ComputersList = (props) => {
     const newList = []
     const numComputers = 10
@@ -14,7 +16,6 @@ const ComputersList = (props) => {
     useEffect(() => {
     })
     const [serverError, setServerError] = useState("");
-    const [cancelButton, setCancelButton] = useState(false);
     const [formState, setFormState] = useState({
         mentor: "",
         student: "",
@@ -28,7 +29,8 @@ const ComputersList = (props) => {
         startTime: "",
         endTime: "",
     });
-    const formSchema = yup.object().shape({
+
+        const formSchema = yup.object().shape({
         mentor: yup.string().oneOf(["Leo", "Calli", "Morgan"]),
         student: yup.string().oneOf(["Nyx", "Steven", "Morgan"]),
         startTime: yup.string().oneOf(["10am", "11am", "12pm"]),
@@ -79,7 +81,13 @@ const ComputersList = (props) => {
         validateChange(e);
         setFormState(newFormData);
     };
-    return (
+
+    const cancelChange=()=>{
+      window.location.reload();
+
+      }
+
+       return (
         <form onSubmit={formSubmit}>
             {/* in case we somehow got here without props. */}
             {props.dragSelected ? <p className='date-time-string'>{props.dragSelected.start.toLocaleString()} to {props.dragSelected.end.toLocaleString()}</p> : null}
@@ -133,17 +141,17 @@ const ComputersList = (props) => {
                         )
                     })}
                 </div>
-            </div>
-            <div className='buttons-container'>
-                {/* <button className='scheduler-button' type="submit"onClick={()=> {
-                    setCancelButton(true)
-                    // props.setShowCalendar(!props.showCalendar);
-                }}>Cancel</button> */}
+                </div>
+                <div className='buttons-container'>
+                <button className='scheduler-button' onClick={cancelChange}>Cancel</button>
                 <button className='scheduler-button' onClick={() => {
                     props.setShowWeekView(true)
                     props.setShowCalendar(!props.showCalendar);
+                    
                 }}>Return</button>
             </div>
+            
+            
         </form>
     )
 }

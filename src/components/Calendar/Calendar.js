@@ -78,8 +78,9 @@ const MyCalendar = (props) => {
 
   const showModal = () => {
     setIsModalVisible(true);
-  };
+      };
 
+  
   // Drag feature
   const handleDragStart = (event) => {
     setDraggedEvent(event);
@@ -161,17 +162,19 @@ const MyCalendar = (props) => {
         location: e.location
       });
       showModal();
+      
     }
   };
 
   return (
     <div className="calendarWrapperDiv" id="section-to-print">
-      <CheckinModal
+        <CheckinModal
         details={{ ...clickSelected }}
         isModalVisible={isModalVisible}
         setIsModalVisible={setIsModalVisible}
         setClickSelected={setClickSelected}
       />
+
 
       <EventListSideBar
         showModal={showModal}
