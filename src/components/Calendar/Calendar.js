@@ -143,6 +143,7 @@ const MyCalendar = (props) => {
         mentor: e.mentor,
         student: e.student,
         resourceId: e.resourceId,
+        location: e.location
       });
       setShowCalendar(!showCalendar);
     }
@@ -157,6 +158,7 @@ const MyCalendar = (props) => {
         student: e.student,
         resourceId: e.resourceId,
         title: e.title,
+        location: e.location
       });
       showModal();
     }
@@ -185,7 +187,7 @@ const MyCalendar = (props) => {
         </div>
         {/* if showCalendar is true, we give them the default, else we show the scheduler */}
         {showCalendar ? (
-          <TheCalendar
+          <Calendar
             selectable
             localizer={localizer}
             popup={true}
