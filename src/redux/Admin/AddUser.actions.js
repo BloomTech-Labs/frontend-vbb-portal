@@ -30,7 +30,7 @@ export const AddUser = (id, NewUser) =>{
 return function (dispatch) {
   dispatch(AddUserRequest())
   axios
-.post(`http://54.158.134.245/headmaster/`, NewUser)
+.post(``, NewUser)
   .then((res) => {
     dispatch(AddUserSuccess())
   })
