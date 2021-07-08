@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 const { Search } = Input;
 
 const AdminSearch = () => {
-  const [value, setValue] = useState();
+  const [, setValue] = useState();
 
   const { push } = useHistory();
 
@@ -14,10 +14,7 @@ const AdminSearch = () => {
   //Then navigating to the admin dashboard on keydown 'Enter' or button click when using search bar
 
   const onSearch = () => {
-    push('/admin/'),
-      //This console log is just to remove linting error that value slice of state is not yet in use
-      //Once backend is accessible value will be used with API call
-      console.log(value);
+    push('/admin/');
   };
 
   const handlePressEnter = () => {
