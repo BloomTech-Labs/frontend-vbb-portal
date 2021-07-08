@@ -4,7 +4,7 @@ import { Menu, Dropdown } from 'antd';
 
 import SideBarEvent from './SideBarEvent';
 
-function EventListSideBar({ showModal, setClickSelected }) {
+function EventListSideBar({ showModal, setClickSelected, setSelectLocation }) {
   const pendings = events
     .filter((e) => {
       if (
@@ -31,25 +31,25 @@ function EventListSideBar({ showModal, setClickSelected }) {
     }
   });
 
+  //change handler for select location
+  const handleLocationChange = (e) => {
+    setSelectLocation(e.item.props.value)
+  }
+
   const schoolMenu = (
-    <Menu>
-      <Menu.Item key="1">India</Menu.Item>
-      <Menu.Item key="2">Africa</Menu.Item>
-      <Menu.Item key="3">All Locations</Menu.Item>
+    <Menu onClick={handleLocationChange}>
+      <Menu.Item value="India" key="1">India</Menu.Item>
+      <Menu.Item value="Africa" key="2">Africa</Menu.Item>
+      <Menu.Item value="AllLocations" key="3">All Locations</Menu.Item>
     </Menu>
   );
-
-// handle change for select location
-  const handleLocationChange = (props) => {
-    props.setSelectLocation({ name: events.target.value });
-  }
 
   return (
     <div className="sidebar-container">
       <div className="calendar-container">
         <div className="rbc-toolbar rbc-btn-group">
           <Dropdown overlay={schoolMenu}>
-            <button trigger={['click']} onClick={handleLocationChange}>Select Location</button>
+            <button trigger={['click']}>Select Location</button>
           </Dropdown>
         </div>
         <h4>Today's Sessions</h4>

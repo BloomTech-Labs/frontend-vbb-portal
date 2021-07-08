@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { events, resourceMap } from './data';
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/addons/dragAndDrop/';
@@ -65,7 +65,6 @@ const MyCalendar = (props) => {
   });
 
   // State to manage visibility of event Modal
-
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
@@ -74,7 +73,6 @@ const MyCalendar = (props) => {
 
   // State to mange selecting locations
   const [selectLocation, setSelectLocation] = useState(true)
-
 
   // Drag feature
   const handleDragStart = (event) => {
@@ -160,6 +158,11 @@ const MyCalendar = (props) => {
     }
   };
 
+  // useEffect for select location dropdown
+  useEffect(() => {
+    console.log(selectLocation)
+  }, [selectLocation])
+
   return (
     <div className="calendarWrapperDiv" id="section-to-print">
       <CheckinModal
@@ -174,6 +177,7 @@ const MyCalendar = (props) => {
         isModalVisible={isModalVisible}
         setIsModalVisible={setIsModalVisible}
         setClickSelected={setClickSelected}
+        setSelectLocation={setSelectLocation}
       />
       <div className="calendar-container">
         {/* if showCalendar is true, we give them the default, else we show the scheduler */}
