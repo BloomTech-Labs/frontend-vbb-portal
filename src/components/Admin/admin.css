@@ -1,5 +1,5 @@
 .editing::before {
-  content: '*';
+  content: '* Not Yet Saved';
   position: relative;
   top: -53px;
   left: 120px;
