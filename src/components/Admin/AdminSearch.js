@@ -22,19 +22,21 @@ const AdminSearch = () => {
   };
 
   return (
-    <div>
-      <p>Admin Dashboard: </p>
-      <Space direction="vertical">
-        <Search
-          type="text"
-          placeholder="Search by name or role"
-          enterButton="Search"
-          size="large"
-          onClick={(e) => setValue(e.target.value)}
-          onPressEnter={handlePressEnter}
-          onSearch={onSearch}
-        />
-      </Space>
+    <div className="adminSearchWrapper">
+      <span className="adminSearch-container">
+        <p className="adminSearch-p">Admin Dashboard: </p>
+        <Space direction="vertical">
+          <Search
+            type="text"
+            placeholder="Search by name or role"
+            enterButton="Search"
+            size="large"
+            onClick={(e) => setValue(e.target.value)}
+            onPressEnter={handlePressEnter}
+            onSearch={onSearch}
+          />
+        </Space>
+      </span>
     </div>
   );
 };
