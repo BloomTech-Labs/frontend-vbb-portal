@@ -1,4 +1,3 @@
-import { Calendar } from 'antd';
 import React, { useEffect, useState } from 'react'
 import * as yup from "yup";
 import '../../../less/computers-list-style.less'
@@ -6,7 +5,6 @@ import { students } from '../data'
 import { mentors } from '../data'
 import { startTime } from '../data'
 import { endTime } from '../data'
-
 const ComputersList = (props) => {
     const newList = []
     const numComputers = 10
@@ -29,8 +27,7 @@ const ComputersList = (props) => {
         startTime: "",
         endTime: "",
     });
-
-        const formSchema = yup.object().shape({
+    const formSchema = yup.object().shape({
         mentor: yup.string().oneOf(["Leo", "Calli", "Morgan"]),
         student: yup.string().oneOf(["Nyx", "Steven", "Morgan"]),
         startTime: yup.string().oneOf(["10am", "11am", "12pm"]),
@@ -50,12 +47,11 @@ const ComputersList = (props) => {
             startTime: "",
             endTime: "",
         });
-        setServerError(null);
     };
     const validateChange = (e) => {
         yup
             .reach(formSchema, e.target.name)
-            .validate(e.target.name === "formInputs" ? e.target.checked : e.target.value)
+            .validate(e.target.name === "clicked" ? e.target.checked : e.target.value)
             .then((inputIsValid) => {
                 setErrors({
                     ...errors,
@@ -76,18 +72,16 @@ const ComputersList = (props) => {
         const newFormData = {
             ...formState,
             [e.target.name]:
-                e.target.name === "formInputs" ? e.target.checked : e.target.value
+                e.target.name === "clicked" ? e.target.checked : e.target.value
         };
+        setServerError(null);
         validateChange(e);
         setFormState(newFormData);
     };
-
-    const cancelChange=()=>{
-      window.location.reload();
-
-      }
-
-       return (
+    const cancelChange = () => {
+        window.location.reload();
+    }
+    return (
         <form onSubmit={formSubmit}>
             {/* in case we somehow got here without props. */}
             {props.dragSelected ? <p className='date-time-string'>{props.dragSelected.start.toLocaleString()} to {props.dragSelected.end.toLocaleString()}</p> : null}
@@ -96,7 +90,7 @@ const ComputersList = (props) => {
                     {newList.map((computer, i) => {
                         return (
                             <div className='computer-list' key={i}>
-                                <div className={formState.mentor && formState.student && startTime && endTime ? `unavailable mentee-mentors-container` : `unavailable`}>{computer + (i + 1)}</div>
+                                <div className={formState.mentor && formState.student && formState.startTime && formState.endTime ? `unavailable mentee-mentors-container` : `unavailable`}>{computer + (i + 1)}</div>
                                 <div>
                                     {serverError ? <p className="error">{serverError}</p> : null}
                                     <select className='mentor-list' id="mentor" name="mentor" onChange={inputChange}>
@@ -135,23 +129,21 @@ const ComputersList = (props) => {
                                     {errors.endTime.length > 0 ? (
                                         <p className="error">{errors.endTime}</p>
                                     ) : null}
-                                    <button className='scheduler-button' type="submit" disabled={buttonDisabled} onClick={() => alert(`Save Changes for computer${i + 1}`)}>Save Changes </button>
+                                    {/* <button className='scheduler-button' type="submit" disabled={buttonDisabled} onClick={() => alert(`Save Changes for computer${i + 1}`)}>Save Changes </button> */}
                                 </div>
                             </div>
                         )
                     })}
                 </div>
-                </div>
-                <div className='buttons-container'>
-                <button className='scheduler-button' onClick={cancelChange}>Cancel</button>
+            </div>
+            <div className='buttons-container'>
+                <button className='scheduler-button' type="submit" disabled={buttonDisabled} onClick={() => alert(`Would you like to save all changes?`)}>Save Changes </button>
                 <button className='scheduler-button' onClick={() => {
+                   alert('Would you like to return to the calendar and not save your changes?') 
                     props.setShowWeekView(true)
                     props.setShowCalendar(!props.showCalendar);
-                    
                 }}>Return</button>
             </div>
-            
-            
         </form>
     )
 }

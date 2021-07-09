@@ -4,8 +4,14 @@ import {
   Form,
   Input,
   Switch,
+  DatePicker,
+  Space,
   Button
 } from 'antd';
+
+import useForm from '../../hooks/useForm';
+
+import './admin.css';
 
 /*Form Styling*/
 const layout = {
@@ -21,54 +27,109 @@ const switchLayout = {
     wrapperCol: { offset: 20 },
 };
 
-
 /*End Form Styling*/
-const AddUserForm = props => {
-    const { EditMode, Record } = props;
 
-    const onChange = checked => {
-        console.log(`switch to ${checked}`)
-    };
+const initialValues = {
+    first_name: '',
+    last_name: '',
+    phone: '',
+    email: ''
+};
+
+const AddUserForm = ({editMode, record, formUpdated}) => {
+
+    const [editedNotSaved, setEditedNotSaved] = useState(false);
+    const [values, handleChanges, clearForm] = useForm(initialValues);
 
     return(
         <div>
             <Form
                 {...layout}
-                name= "basic">
-                {EditMode ? (<Form.Item {...switchLayout}>
+                name= "basic"
+                className={editedNotSaved ? 'editing' : ''}
+                initialValues={initialValues}
+            >
+                {editMode ? (<Form.Item {...switchLayout}>
                                 <Switch
                                     defaultChecked
                                     checkedChildren="Activated"
                                     unCheckedChildren="Deactivated"
-                                    onChange={onChange}
+                                    name="activate"
                                 />
                             </Form.Item>) : (
                                 <></>
                             )}
                 <Form.Item
                     label="First Name"
-                    name="fname"
                 >
-                    <Input defaultValue={EditMode ? Record.first_name : ''}/>
+                    <Input
+                        name="first_name" 
+                        defaultValue={editMode ? record.first_name : ''}
+                        onChange={
+                            (e) => {
+                                handleChanges(e);
+                                setEditedNotSaved(true);
+                            }
+                        }
+                    />
                 </Form.Item>
                 <Form.Item
                     label="Last Name"
-                    name="lname"
                 >
-                    <Input defaultValue={EditMode ? Record.last_name : ''}/>
+                    <Input
+                        name="last_name"
+                        defaultValue={editMode ? record.last_name : ''}
+                        onChange={
+                            (e) => {
+                                handleChanges(e);
+                                setEditedNotSaved(true);
+                            }
+                        }
+                    />
                 </Form.Item>
                 <Form.Item
                     label="Phone"
-                    name="phone"
                 >
-                    <Input defaultValue={EditMode ? Record.phone : ''}/>
+                    <Input
+                        name="phone"
+                        defaultValue={editMode ? record.phone : ''}
+                        onChange={
+                            (e) => {
+                                handleChanges(e);
+                                setEditedNotSaved(true);
+                            }
+                        }
+                    />
+                </Form.Item>
+                <Form.Item
+                    label="Email"
+                >
+                    <Input
+                        name="email"
+                        defaultValue={editMode ? record.email : ''}
+                        onChange={
+                            (e) => {
+                                handleChanges(e);
+                            }
+                        }
+                    />
+                </Form.Item>
+                <Form.Item
+                    label="DOB"
+                >
+                    <Space direction="vertical">
+                        <DatePicker
+                            defaultValue={editMode ? record.dob : ''}
+                        />
+                    </Space>
                 </Form.Item>
                 <Form.Item {...buttonLayout}>
                     <Button
                         type="primary"
                         htmlType="submit"
+                        onClick={() => setEditedNotSaved(false)}
                     >
-                        {EditMode ? 'Edit User' : 'Add New User'}
+                        {editMode ? 'Edit User' : 'Add New User'}
                     </Button>
                 </Form.Item>
             </Form>

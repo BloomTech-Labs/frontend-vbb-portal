@@ -1,0 +1,6 @@
+.editing::before{
+    content: '*';
+    position: relative;
+    top: -53px;
+    left: 120px;
+}
