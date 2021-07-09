@@ -139,9 +139,12 @@ const ComputersList = (props) => {
             <div className='buttons-container'>
                 <button className='scheduler-button' type="submit" disabled={buttonDisabled} onClick={() => alert(`Would you like to save all changes?`)}>Save Changes </button>
                 <button className='scheduler-button' onClick={() => {
-                   alert('Would you like to return to the calendar and not save your changes?') 
-                    props.setShowWeekView(true)
-                    props.setShowCalendar(!props.showCalendar);
+                   /* alert('Would you like to return to the calendar and not save your changes?')  */
+                   const r = window.confirm("Would you like to return to the calendar and not save your changes?");
+                   if(r == true){ window.location.reload()}
+                   else{alert("You pressed Cancel")
+                    props.setShowWeekView(false)
+                    props.setShowCalendar(props.showCalendar);}
                 }}>Return</button>
             </div>
         </form>
