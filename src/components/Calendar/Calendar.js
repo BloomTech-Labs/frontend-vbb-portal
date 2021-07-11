@@ -1,19 +1,20 @@
-import { React, useState, useEffect } from 'react';
-import { events, resourceMap } from './data';
+import { React, useState } from 'react';
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/addons/dragAndDrop/';
-import '../../less/calendar.less';
-import { customWeekViewEvent, customResourceViewEvent } from './CustomEvent';
 import format from 'date-fns/format';
 import parse from 'date-fns/parse';
 import startOfWeek from 'date-fns/startOfWeek';
 import getDay from 'date-fns/getDay';
+import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
+
+import { events, resourceMap } from './data';
+import { customWeekViewEvent, customResourceViewEvent } from './CustomEvent';
 import Toolbar from './ResourcesToolbar';
 import ComputersList from './assign-computers/computers-list';
-import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
 import CheckinModal from './CheckinModal';
 import EventListSideBar from './EventListSideBar';
 
+import '../../less/calendar.less';
 
 const locales = {
   'en-US': require('date-fns/locale/en-US'),
