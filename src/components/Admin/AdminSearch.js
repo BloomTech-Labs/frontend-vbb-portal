@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Input, Space } from 'antd';
 import { useHistory } from 'react-router-dom';
 
+import '../../less/admin.less';
+
 const { Search } = Input;
 
 const AdminSearch = () => {
