@@ -89,33 +89,34 @@ const MyCalendar = () => {
       title: draggedEvent.title,
       start,
       end,
-      allDay: allDay,
+      allDay,
     };
     setDraggedEvent(null);
     moveEvent({ event, start, end });
   };
 
   const moveEvent = ({ event, start, end, isAllDay: droppedOnAllDaySlot }) => {
-    let allDay = event.allDay;
-    if (!event.allDay && droppedOnAllDaySlot) {
-      allDay = true;
-    } else if (event.allDay && !droppedOnAllDaySlot) {
-      allDay = false;
-    }
-    const nextEvents = allEvents.map((existingEvent) => {
-      return existingEvent.id === event.id
-        ? { ...existingEvent, start, end, allDay }
-        : existingEvent;
-    });
-    setAllEvents(nextEvents);
+    const deriveAllDayStatus = ({ allDay }) => {
+      if (!event.allDay && droppedOnAllDaySlot) return true;
+      else if (event.allDay && !droppedOnAllDaySlot) return false;
+      else return allDay;
+    };
+
+    const allDay = deriveAllDayStatus({ allDay: event.allDay });
+    setAllEvents((oldEvents) => (
+      oldEvents.map((existingEvent) => (
+        existingEvent.id === event.id
+          ? { ...existingEvent, start, end, allDay }
+          : existingEvent
+      ))
+    ));
   };
 
   const resizeEvent = ({ event, start, end }) => {
-    const nextEvents = allEvents.map((existingEvent) => {
-      return existingEvent.id === event.id
-        ? { ...existingEvent, start, end }
-        : existingEvent;
-    });
+    const nextEvents = allEvents.map((existingEvent) => (existingEvent.id === event.id
+      ? { ...existingEvent, start, end }
+      : existingEvent
+    ));
     setAllEvents(nextEvents);
   };
 
@@ -129,8 +130,6 @@ const MyCalendar = () => {
   };
 
   const handleEventClick = (e) => {
-    //If in week view clicking an event will hide the calendar, to show computer list
-
     if (showWeekView) {
       setDragSelected({
         ...dragSelected,
@@ -145,21 +144,8 @@ const MyCalendar = () => {
       setShowCalendar(!showCalendar);
     }
 
-    // Else clicking a event will bring pop-up of event details
     else {
-      console.log(e);
-      setClickSelected({
-        ...dragSelected,
-        id: e.id,
-        start: e.start,
-        end: e.end,
-        mentor: e.mentor,
-        student: e.student,
-        resourceId: e.resourceId,
-        title: e.title,
-        location: e.location,
-        eventStatus: e.eventStatus,
-      });
+      setClickSelected(e);
       showModal();
     }
   };
