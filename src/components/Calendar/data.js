@@ -55,7 +55,7 @@ export const events = [
   {
     id: 12,
     title: 'Dog Walking',
-    start: new Date(Date.UTC(2021, 5, 22, 19, 0, 0)),
+    start: new Date(Date.UTC(2021, 7, 22, 19, 0, 0)),
     end: new Date(Date.UTC(2021, 5, 22, 19, 30, 0)),
     availableComputers: 5,
     unavailableComputers: 3,
