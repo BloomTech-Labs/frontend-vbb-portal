@@ -1,6 +1,6 @@
 import Moment from 'moment';
 
-import { meetingStatus } from '.';
+import { meetingStatus } from './meetingStatus';
 
 const {
   CHECKED_IN,
