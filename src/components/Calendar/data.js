@@ -3,54 +3,54 @@ export const events = [
   {
     id: 0,
     title: 'Board meeting',
-    start: new Date(Date.UTC(2021, 5, 23, 8, 0, 0)),
-    end: new Date(Date.UTC(2021, 5, 23, 8, 30, 0)),
+    start: new Date(Date.UTC(2021, 7, 13, 8, 0, 0)),
+    end: new Date(Date.UTC(2021, 7, 13, 8, 30, 0)),
     availableComputers: 3,
     unavailableComputers: 6,
     mentor: 'Liz',
     student: 'Pete',
     resourceId: 1,
     eventStatus: false,
-    location: 'India'
+    location: 'India',
   },
   {
     id: 1,
     title: 'MS training',
-    start: new Date(Date.UTC(2021, 5, 23, 12, 0, 0)),
-    end: new Date(Date.UTC(2021, 5, 23, 12, 30, 0)),
+    start: new Date(Date.UTC(2021, 7, 13, 12, 0, 0)),
+    end: new Date(Date.UTC(2021, 7, 13, 12, 30, 0)),
     availableComputers: 8,
     unavailableComputers: 5,
     mentor: 'Maple',
     student: 'Alley',
     resourceId: 2,
     eventStatus: true,
-    location: 'India'
+    location: 'India',
   },
   {
     id: 2,
     title: 'Team lead meeting',
-    start: new Date(Date.UTC(2021, 5, 22, 23, 30, 0)),
-    end: new Date(Date.UTC(2021, 5, 22, 23, 0, 0)),
+    start: new Date(Date.UTC(2021, 7, 13, 23, 30, 0)),
+    end: new Date(Date.UTC(2021, 7, 13, 23, 0, 0)),
     availableComputers: 8,
     unavailableComputers: 2,
     mentor: 'Morgan',
     student: 'Ares',
     resourceId: 3,
     eventStatus: false,
-    location: 'Africa'
+    location: 'Africa',
   },
   {
     id: 11,
     title: 'Birthday Party',
-    start: new Date(Date.UTC(2021, 5, 22, 14, 0, 0)),
-    end: new Date(Date.UTC(2021, 5, 22, 14, 30, 0)),
+    start: new Date(Date.UTC(2021, 7, 13, 14, 0, 0)),
+    end: new Date(Date.UTC(2021, 7, 13, 14, 30, 0)),
     availableComputers: 7,
     unavailableComputers: 3,
     mentor: 'Calli',
     student: 'Carlos',
     resourceId: 4,
     eventStatus: true,
-    location: 'Africa'
+    location: 'Africa',
   },
   {
     id: 12,
@@ -64,7 +64,7 @@ export const events = [
     //resourceId is a required field in order to map to the resources in day view
     resourceId: 5,
     eventStatus: false,
-    location: 'India'
+    location: 'India',
   },
   {
     id: 13,
@@ -78,7 +78,7 @@ export const events = [
     //resourceId is a required field in order to map to the resources in day view
     resourceId: 6,
     eventStatus: true,
-    location: 'Africa'
+    location: 'Africa',
   },
   {
     id: 14,
@@ -92,7 +92,7 @@ export const events = [
     //resourceId is a required field in order to map to the resources in day view
     resourceId: 7,
     eventStatus: false,
-    location: 'India'
+    location: 'India',
   },
 ];
 

@@ -1,16 +1,20 @@
-import { events } from './data';
 import { Menu, Dropdown } from 'antd';
-
 
 import SideBarEvent from './SideBarEvent';
 
-function EventListSideBar({ showModal, setClickSelected, setSelectLocation }) {
+function EventListSideBar({
+  events,
+  showModal,
+  setClickSelected,
+  setSelectLocation,
+}) {
+  console.log(events);
   const pendings = events
     .filter((e) => {
       if (
         e.eventStatus === false &&
         e.start.getMonth() + e.start.getDate() ===
-        new Date().getUTCMonth() + new Date().getUTCDate()
+          new Date().getUTCMonth() + new Date().getUTCDate()
       ) {
         {
           return e;
@@ -23,7 +27,7 @@ function EventListSideBar({ showModal, setClickSelected, setSelectLocation }) {
     if (
       e.eventStatus === true &&
       e.start.getMonth() + e.start.getDate() ===
-      new Date().getUTCMonth() + new Date().getUTCDate()
+        new Date().getUTCMonth() + new Date().getUTCDate()
     ) {
       {
         return e;
@@ -33,14 +37,20 @@ function EventListSideBar({ showModal, setClickSelected, setSelectLocation }) {
 
   //change handler for select location
   const handleLocationChange = (e) => {
-    setSelectLocation(e.item.props.value)
-  }
+    setSelectLocation(e.item.props.value);
+  };
 
   const schoolMenu = (
     <Menu onClick={handleLocationChange}>
-      <Menu.Item value="India" key="1">India</Menu.Item>
-      <Menu.Item value="Africa" key="2">Africa</Menu.Item>
-      <Menu.Item value="AllLocations" key="3">All Locations</Menu.Item>
+      <Menu.Item value="India" key="1">
+        India
+      </Menu.Item>
+      <Menu.Item value="Africa" key="2">
+        Africa
+      </Menu.Item>
+      <Menu.Item value="" key="3">
+        All Locations
+      </Menu.Item>
     </Menu>
   );
 
