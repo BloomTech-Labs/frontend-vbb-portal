@@ -9,7 +9,7 @@ import {
   Button
 } from 'antd';
 
-import useForm from '../../hooks/useForm';
+import { useForm } from '../../hooks';
 
 import './admin.css';
 
