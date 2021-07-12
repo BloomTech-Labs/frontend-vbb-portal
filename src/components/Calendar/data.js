@@ -94,6 +94,34 @@ export const events = [
     eventStatus: false,
     location: 'India'
   },
+  {
+    id: 15,
+    title: 'StakeHolder Meeting',
+    start: new Date(Date.UTC(2021, 6, 11, 18, 0, 0)),
+    end: new Date(Date.UTC(2021, 6, 11, 18, 30, 0)),
+    availableComputers: 5,
+    unavailableComputers: 3,
+    mentor: 'CEO',
+    student: 'Danielle',
+    //resourceId is a required field in order to map to the resources in day view
+    resourceId: 7,
+    eventStatus: false,
+    location: 'India'
+  },
+  {
+    id: 16,
+    title: 'StakeHolder Meeting',
+    start: new Date(Date.UTC(2021, 6, 12, 18, 0, 0)),
+    end: new Date(Date.UTC(2021, 6, 12, 18, 30, 0)),
+    availableComputers: 5,
+    unavailableComputers: 3,
+    mentor: 'CEO',
+    student: 'Danielle',
+    //resourceId is a required field in order to map to the resources in day view
+    resourceId: 7,
+    eventStatus: false,
+    location: 'India'
+  },
 ];
 
 export const mentors = ['Leo', 'Calli', 'Morgan'];

@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import Moment from 'moment';
 
 import SideBarEvent from './SideBarEvent';
-import { events } from './data';
 
-function EventListSideBar({ showModal, setClickSelected }) {
+function EventListSideBar({ events, showModal, setClickSelected }) {
   const isScheduledToday = (e) => (Moment(e.start).isSame(Moment(Date.now()), 'day'));
   // eslint-disable-next-line no-unused-vars
   const [forceRenderHackVar, setForceRenderHackVar] = useState(false);

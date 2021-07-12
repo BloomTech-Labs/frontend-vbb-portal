@@ -41,7 +41,7 @@ let components = {
   },
 };
 
-const MyCalendar = (props) => {
+const MyCalendar = () => {
   const [displayDragItemInCell, setDisplayDragItemInCell] = useState(true);
   const [draggedEvent, setDraggedEvent] = useState(null);
   const [allEvents, setAllEvents] = useState(events);
@@ -56,13 +56,14 @@ const MyCalendar = (props) => {
   });
 
   const [clickSelected, setClickSelected] = useState({
+    id: 0,
     start: '',
     end: '',
     mentor: '',
     student: '',
     resourceId: 0,
     title: '',
-    checkedIn: false,
+    eventStatus: false,
   });
 
   // State to manage visibility of event Modal
@@ -102,7 +103,7 @@ const MyCalendar = (props) => {
       allDay = false;
     }
     const nextEvents = allEvents.map((existingEvent) => {
-      return existingEvent.id == event.id
+      return existingEvent.id === event.id
         ? { ...existingEvent, start, end, allDay }
         : existingEvent;
     });
@@ -111,7 +112,7 @@ const MyCalendar = (props) => {
 
   const resizeEvent = ({ event, start, end }) => {
     const nextEvents = allEvents.map((existingEvent) => {
-      return existingEvent.id == event.id
+      return existingEvent.id === event.id
         ? { ...existingEvent, start, end }
         : existingEvent;
     });
@@ -133,6 +134,7 @@ const MyCalendar = (props) => {
     if (showWeekView) {
       setDragSelected({
         ...dragSelected,
+        id:e.id,
         start: e.start,
         end: e.end,
         mentor: e.mentor,
@@ -145,15 +147,18 @@ const MyCalendar = (props) => {
 
     // Else clicking a event will bring pop-up of event details
     else {
+      console.log(e);
       setClickSelected({
         ...dragSelected,
+        id: e.id,
         start: e.start,
         end: e.end,
         mentor: e.mentor,
         student: e.student,
         resourceId: e.resourceId,
         title: e.title,
-        location: e.location
+        location: e.location,
+        eventStatus: e.eventStatus,
       });
       showModal();
     }
@@ -169,6 +174,7 @@ const MyCalendar = (props) => {
       <CheckinModal
         details={{ ...clickSelected }}
         isModalVisible={isModalVisible}
+        setEvents={setAllEvents}
         setIsModalVisible={setIsModalVisible}
         setClickSelected={setClickSelected}
       />
@@ -179,6 +185,7 @@ const MyCalendar = (props) => {
         setIsModalVisible={setIsModalVisible}
         setClickSelected={setClickSelected}
         setSelectLocation={setSelectLocation}
+        events={allEvents}
       />
       <div className="calendar-container">
         {/* if showCalendar is true, we give them the default, else we show the scheduler */}

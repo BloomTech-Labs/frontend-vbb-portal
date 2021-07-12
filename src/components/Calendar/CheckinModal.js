@@ -17,10 +17,12 @@ const CheckinModal = ({
   details,
   isModalVisible,
   setClickSelected,
+  setEvents,
   setIsModalVisible,
 }) => {
   const {
-    checkedIn = false,
+    id,
+    eventStatus: checkedIn,
     end,
     mentor,
     resourceId,
@@ -53,10 +55,18 @@ const CheckinModal = ({
   if (!start) return (<>loading</>);
 
   const handleCheckIn = () => {
-    setClickSelected({
-        ...details,
-        checkedIn: !checkedIn,
-    });
+    const updatedEvent = {
+      ...details,
+      eventStatus: !checkedIn,
+    };
+    console.log(updatedEvent);
+    setClickSelected(updatedEvent);
+    setEvents((oldEvents) => (
+      oldEvents.map((event) => event.id === id
+        ? updatedEvent
+        : event
+      )
+    ));
   }
 
   return (
