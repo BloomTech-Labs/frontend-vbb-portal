@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Moment from 'moment';
 
 import SideBarEvent from './SideBarEvent';
