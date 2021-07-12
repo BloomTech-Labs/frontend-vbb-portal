@@ -17,7 +17,6 @@ export const useManageStatus = ({
     PRE_CHECK_IN,
   } = meetingStatus;
   const [manageStatusInterval, setManageStatusInterval] = useState(0);
-  const [test, setTest] = useState(true);
 
   const updateStatus = () => {
     const newStatus = deriveStatus({ start, end, checkedIn });
@@ -40,14 +39,14 @@ export const useManageStatus = ({
     if ([PRE_CHECK_IN, NOT_CHECK_IN].includes(status)) setManageStatusInterval(getNewInterval);
     else updateStatus();
   };
+
+  useEffect(() => {
+    manageStatus();
+  }, [status]);
     
   useEffect(() => {
     return clearManageStatusInterval;
   }, [manageStatusInterval]);
-
-  manageStatus();
-
-  return [test, setTest];
 };
 
 export default useManageStatus;

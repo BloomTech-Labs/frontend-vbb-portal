@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal, Switch } from 'antd';
 
 import {
@@ -43,6 +43,10 @@ const CheckinModal = ({
     start,
     status,
   });
+
+  useEffect(() => {
+    setStatus(deriveStatus({ start, end, checkedIn }));
+  }, [details]);
 
   const handleOk = () => {
     setIsModalVisible(false);
