@@ -113,11 +113,12 @@ const MyCalendar = () => {
   };
 
   const resizeEvent = ({ event, start, end }) => {
-    const nextEvents = allEvents.map((existingEvent) => (existingEvent.id === event.id
-      ? { ...existingEvent, start, end }
-      : existingEvent
+    setAllEvents((oldEvents) => (
+      oldEvents.map((existingEvent) => (existingEvent.id === event.id
+        ? { ...existingEvent, start, end }
+        : existingEvent
+      ))
     ));
-    setAllEvents(nextEvents);
   };
 
   const handleDragSelect = ({ start, end }) => {
