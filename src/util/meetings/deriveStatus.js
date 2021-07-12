@@ -10,7 +10,6 @@ const {
 } = meetingStatus;
 
 export const deriveStatus = ({ start, end, checkedIn }) => {
-  console.log('deriveStatus');
   const nowMoment = Moment(Date.now());
   const halfHourBeforeMeetingStart = Moment(start).subtract(30, 'minutes');
   const args = new Set([start, end, checkedIn]);

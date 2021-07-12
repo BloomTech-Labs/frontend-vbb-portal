@@ -63,7 +63,6 @@ const CheckinModal = ({
       ...details,
       eventStatus: !checkedIn,
     };
-    console.log(updatedEvent);
     setClickSelected(updatedEvent);
     setEvents((oldEvents) => (
       oldEvents.map((event) => event.id === id
