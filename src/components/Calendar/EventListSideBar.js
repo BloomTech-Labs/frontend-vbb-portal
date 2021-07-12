@@ -8,7 +8,6 @@ function EventListSideBar({
   setClickSelected,
   setSelectLocation,
 }) {
-  console.log(events);
   const pendings = events
     .filter((e) => {
       if (
