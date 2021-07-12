@@ -134,7 +134,7 @@ const MyCalendar = () => {
     if (showWeekView) {
       setDragSelected({
         ...dragSelected,
-        id:e.id,
+        id: e.id,
         start: e.start,
         end: e.end,
         mentor: e.mentor,
