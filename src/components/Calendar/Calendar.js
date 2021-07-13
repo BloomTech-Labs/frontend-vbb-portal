@@ -161,7 +161,7 @@ const MyCalendar = (props) => {
     if (location === '') {
       setAllEvents(events);
     } else {
-      const filteredEvents = allEvents.filter((e) => e.location === location);
+      const filteredEvents = events.filter((e) => e.location === location);
       setAllEvents(filteredEvents);
     }
   };
@@ -170,6 +170,8 @@ const MyCalendar = (props) => {
   useEffect(() => {
     filterEventsByLocation(selectLocation);
   }, [selectLocation]);
+
+  console.log(allEvents);
 
   return (
     <div className="calendarWrapperDiv" id="section-to-print">

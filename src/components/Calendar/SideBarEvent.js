@@ -3,7 +3,6 @@ import React from 'react';
 function SideBarEvent({ event, showModal, setClickSelected }) {
   const eventStartTime = Date.parse(event.start);
   const newTime = Date.now();
-  console.log(Date.UTC.toString());
 
   return (
     <div
