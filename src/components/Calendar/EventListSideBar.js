@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import Moment from 'moment';
+import { Menu, Dropdown } from 'antd';
+
+
+import { events } from './data';
+
 
 import SideBarEvent from './SideBarEvent';
 
-function EventListSideBar({ events, showModal, setClickSelected }) {
+function EventListSideBar({ showModal, setClickSelected, setSelectLocation }) {
   const isScheduledToday = (e) => (Moment(e.start).isSame(Moment(Date.now()), 'day'));
   // eslint-disable-next-line no-unused-vars
   const [forceRenderHackVar, setForceRenderHackVar] = useState(false);
@@ -27,20 +32,40 @@ function EventListSideBar({ events, showModal, setClickSelected }) {
     />
   );
 
+  //change handler for select location
+  const handleLocationChange = (e) => {
+    setSelectLocation(e.item.props.value)
+  }
+
+  const schoolMenu = (
+    <Menu onClick={handleLocationChange}>
+      <Menu.Item value="India" key="1">India</Menu.Item>
+      <Menu.Item value="Africa" key="2">Africa</Menu.Item>
+      <Menu.Item value="AllLocations" key="3">All Locations</Menu.Item>
+    </Menu>
+  );
+
   return (
     <div className="sidebar-container">
-      <h4>Today&apos;s Sessions</h4>
-      <div className="events-container">
-        <div className="pendings">
-          <h5>Pending:</h5>
-          <div className="events">
-            {pendingEvents.map(buildSideBarEvent)}
-          </div>
+      <div className="calendar-container">
+        <div className="rbc-toolbar rbc-btn-group">
+          <Dropdown overlay={schoolMenu}>
+            <button trigger={['click']}>Select Location</button>
+          </Dropdown>
         </div>
-        <div className="checked-ins">
-          <h5>Checked-in:</h5>
-          <div className="events">
-            {checkedInEvents.map(buildSideBarEvent)}
+        <h4>Today&apos;s Sessions</h4>
+        <div className="events-container">
+          <div className="pendings">
+            <h5>Pending:</h5>
+            <div className="events">
+              {pendingEvents.map(buildSideBarEvent)}
+            </div>
+          </div>
+          <div className="checked-ins">
+            <h5>Checked-in:</h5>
+            <div className="events">
+              {checkedInEvents.map(buildSideBarEvent)}
+            </div>
           </div>
         </div>
       </div>

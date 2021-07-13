@@ -7,7 +7,7 @@ import {
 } from '../../util';
 
 import '../../less/calendar.less';
-import useManageStatus from '../../hooks/useManageStatus';
+import { useManageStatus } from '../../hooks';
 
 const {
   PRE_CHECK_IN,
@@ -87,7 +87,6 @@ const CheckinModal = ({
       }}>
         Status: {checkedIn ? 'checked-in' : 'not checked-in'}
       </h6>
-      <h6>ExactStatus: {status}</h6>
       <h2>{title}</h2>
         {
         // If the details haven't loaded yet do not display, to handle toLocalDateString() error
