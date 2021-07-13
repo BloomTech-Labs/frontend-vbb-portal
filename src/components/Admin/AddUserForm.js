@@ -1,7 +1,18 @@
-import { React, Component, useState } from 'react';
-import { Divider, Form, Input, Switch, DatePicker, Space, Button } from 'antd';
+import React, {
+  Component,
+  useState,
+} from 'react';
+import {
+  Divider,
+  Form,
+  Input,
+  Switch,
+  DatePicker,
+  Space,
+  Button
+} from 'antd';
 
-import useForm from '../../hooks/useForm';
+import { useForm } from '../../hooks';
 
 import '../../less/admin.less';
 

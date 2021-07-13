@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { formatPhoneNumber } from '../../util/formatPhoneNumber';
+import { formatPhoneNumber } from '../../util';
 import { PYTHON_API, setLoading, setLoadingFalse } from '../actions';
 import { NEWSLETTER_SUBSCRIBER_TYPES } from './Newsletter.types';
 
