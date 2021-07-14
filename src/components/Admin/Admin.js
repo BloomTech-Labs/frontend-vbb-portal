@@ -18,7 +18,8 @@ const data = [
       last_name: 'Brown',
       phone: '123-456-7890',
       email: 'test1@test.com',
-      dob: moment('01/01/2000','MM/DD/YYYY')
+      dob: moment('01/01/2000','MM/DD/YYYY'),
+      role: 'Mentor'
     },
     {
       key: '2',
@@ -26,7 +27,8 @@ const data = [
       last_name: 'Green',
       phone: '888-523-8850',
       email: 'test2@test.com',
-      dob: moment('12/22/2011')
+      dob: moment('12/22/2011'),
+      role: 'Mentee'
     },
     {
       key: '3',
@@ -34,7 +36,8 @@ const data = [
       last_name: 'Black',
       phone: '123-000-0000',
       email: 'test3@test.com',
-      dob: moment('04/05/2010')
+      dob: moment('04/05/2010'),
+      role: 'Admin'
     },
     {
       key: '4',
@@ -42,7 +45,8 @@ const data = [
       last_name: 'Black',
       phone: '123-000-0000',
       email: 'test3@test.com',
-      dob: moment('04/05/2010')
+      dob: moment('04/05/2010'),
+      role: 'Admin'
     },
     {
       key: '5',
@@ -50,7 +54,8 @@ const data = [
       last_name: 'Black',
       phone: '123-000-0000',
       email: 'test3@test.com',
-      dob: moment('04/05/2010')
+      dob: moment('04/05/2010'),
+      role: 'Admin'
     },
 ];
 

@@ -4,7 +4,11 @@ export default function useForm(initialValues){
     const [values, setValues] = useState(initialValues);
 
     const handleChanges = e => {
-        if(e.target.type !== "button") e.persist();
+        if(typeof(e) === "string"){
+            return;
+        }
+        
+        e.persist();
 
         setValues({
             ...values,

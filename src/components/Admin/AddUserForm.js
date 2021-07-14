@@ -4,6 +4,7 @@ import {
   Form,
   Input,
   Switch,
+  Select,
   DatePicker,
   Space,
   Button
@@ -28,6 +29,8 @@ const switchLayout = {
 };
 
 /*End Form Styling*/
+
+const { Option } = Select;
 
 const initialValues = {
     first_name: '',
@@ -113,6 +116,22 @@ const AddUserForm = ({editMode, record, formUpdated}) => {
                             }
                         }
                     />
+                </Form.Item>
+                <Form.Item
+                    label="Role">
+                    <Select
+                        name="role"
+                        defaultValue={editMode ? record.role : ''}
+                        onChange={
+                            (e) => {
+                                handleChanges(e);
+                            }
+                        }
+                    >
+                        <Option value="Admin">Admin</Option>
+                        <Option value="Mentee">Mentee</Option>
+                        <Option value="Mentor">Mentor</Option>
+                    </Select>
                 </Form.Item>
                 <Form.Item
                     label="DOB"
