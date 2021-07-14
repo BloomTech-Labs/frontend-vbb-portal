@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
 import Moment from 'moment';
-import { Menu, Dropdown } from 'antd';
-
+import {
+  Dropdown,
+  Menu,
+} from 'antd';
 
 import SideBarEvent from './SideBarEvent';
 
-function EventListSideBar({ showModal, setClickSelected, setSelectLocation, selectLocation, events }) {
+function EventListSideBar({
+  events,
+  showModal,
+  setClickSelected,
+  setSelectLocation,
+  selectLocation,
+}) {
   const isScheduledToday = (e) => (Moment(e.start).isSame(Moment(Date.now()), 'day'));
   // eslint-disable-next-line no-unused-vars
   const [forceRenderHackVar, setForceRenderHackVar] = useState(false);
@@ -31,7 +39,6 @@ function EventListSideBar({ showModal, setClickSelected, setSelectLocation, sele
 
   const [selectedKey, setSelectedKey] = useState('3')
 
-  //change handler for select location
   const handleLocationChange = (e) => {
     setSelectLocation(e.item.props.value)
     setSelectedKey(e.item.props.eventKey)
