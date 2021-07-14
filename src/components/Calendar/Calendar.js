@@ -197,8 +197,8 @@ const MyCalendar = () => {
             localizer={localizer}
             popup={true}
             // min and max sets the start and end time of day displayed
-            // min={new Date(Date.UTC(0, 0, 0, 12, 0, 0))}
-            // max={new Date(Date.UTC(0, 0, 0, 22, 0, 0))}
+            min={new Date(Date.UTC(0, 0, 0, 12, 0, 0))}
+            max={new Date(Date.UTC(0, 0, 0, 22, 0, 0))}
             onView={() => {
               setShowWeekView(!showWeekView);
             }}
