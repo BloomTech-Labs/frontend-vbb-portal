@@ -1,7 +1,0 @@
-.editing::before{
-    content: '* Not Yet Saved';
-    font-weight: bold;
-    position: relative;
-    top: -57px;
-    left: 125px;
-}

@@ -35,7 +35,8 @@
     "react-scripts": "^4.0.3",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "uuid": "^3.4.0"
+    "uuid": "^3.4.0",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "@babel/helper-define-map": "^7.13.12",

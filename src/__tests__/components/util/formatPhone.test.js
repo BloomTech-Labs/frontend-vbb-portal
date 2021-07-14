@@ -1,4 +1,4 @@
-const { formatPhoneNumber } = require('../../../util/formatPhoneNumber');
+const { formatPhoneNumber } = require('../../../util');
 
 describe('formatPhoneNumber', () => {
   test('Correctly formats phone number', () => {

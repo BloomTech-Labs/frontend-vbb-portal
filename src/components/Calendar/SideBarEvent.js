@@ -1,9 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useManageStatus } from '../../hooks';
 
-function SideBarEvent({ event, showModal, setClickSelected }) {
-  const eventStartTime = Date.parse(event.start);
-  const newTime = Date.now();
-  console.log(Date.UTC.toString());
+import {
+  deriveStatus,
+  meetingStatus,
+  meetingStatusToClassName,
+} from '../../util';
+
+const { EXPIRED } = meetingStatus;
+
+function SideBarEvent({
+    event,
+    forceRender,
+    setClickSelected,
+    showModal,
+}) {
+  const { start, end, eventStatus: checkedIn } = event;
+  const [status, setStatus] = useState(deriveStatus({ start, end, checkedIn }));
+
+  useManageStatus({
+    checkedIn,
+    end,
+    setStatus,
+    start,
+    status,
+  });
+
+  useEffect(() => {
+    forceRender()
+  }, [status]);
 
   return (
     <div
@@ -11,26 +36,19 @@ function SideBarEvent({ event, showModal, setClickSelected }) {
         showModal();
         setClickSelected({ ...event });
       }}
-      className={`${
-        eventStartTime < newTime && event.eventStatus === false
-          ? 'no-show'
-          : event.eventStatus === true
-          ? 'checked-in-status'
-          : 'pending-status'
-      } event`}
+      className={`${meetingStatusToClassName[status]} event`}
     >
-      {eventStartTime < newTime && event.eventStatus === false ? (
-        <h5>
-          {event.student} - <span className="no-show-span">no show</span>
-        </h5>
-      ) : (
-        <h5>{event.student}</h5>
-      )}
-
+      {status === EXPIRED
+        ? (<h5>
+            {event.student} - <span className="no-show-span">no show</span>
+          </h5>
+        ) : (<h5>{event.student}</h5>)
+      }
       <p>
         {event.mentor === ''.trim()
           ? 'No mentor has been assigned'
-          : `${event.title} with ${event.mentor}.`}
+          : `${event.title} with ${event.mentor}.`
+        }
       </p>
     </div>
   );

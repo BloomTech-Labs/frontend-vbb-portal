@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { sleep } from '../../util/sleep';
+import { sleep } from '../../util';
 import { getDateStr } from '../../helpers';
 import {
   PYTHON_API,

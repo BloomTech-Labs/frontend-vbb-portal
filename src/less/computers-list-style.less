@@ -2,89 +2,82 @@
   display: flex;
   flex-wrap: wrap;
 }
-
 select {
   width: 90%;
   margin: 2.5% 5%;
 }
-
 .computer-list-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-
 .computer-list {
   display: flex;
   flex-direction: column;
   width: 220px;
 }
-
 .computer-list div {
   padding: 0.5% 1%;
   font-weight: 600;
   margin-top: -3%;
   color: rgb(12, 19, 32);
-  border: 1px solid #180e0e;
+  border: 1px solid #180E0E;
   text-align: center;
   margin-bottom: 5%;
 }
-
 .mentor-list {
   display: flex;
   flex-wrap: wrap;
 }
-
 .students-list {
   display: flex;
   flex-wrap: wrap;
 }
-
 .start-time-list {
   display: flex;
   flex-wrap: wrap;
 }
-
 .end-time-list {
   display: flex;
   flex-wrap: wrap;
 }
-
 .ant-switch-handle {
   border: none !important;
 }
-
 .available {
   background-color: rgb(125, 209, 125);
 }
-
 .unavailable {
-  background-color: #ff914d;
+  background-color: #FF914D;
 }
-
 .buttons-container {
   display: flex;
   justify-content: center;
   padding: 2%;
 }
-
 .scheduler-button {
   border-radius: 16px;
-  background-color: #549bea;
-  color: #ffffff;
-  border: 1px solid #ffffff;
+  background-color: #549BEA;
+  color: #FFFFFF;
+  border: 1px solid #FFFFFF;
   padding: 0.3rem .75rem;
   margin: 1% 2.5%;
 }
-
 .scheduler-button:hover {
-  background-color: #ffffff;
-  color: #549bea;
-  border-color: #ffffff;
+  background-color: #FFFFFF;
+  color: #549BEA;
+  border-color: #FFFFFF;
   outline: none;
 }
-
 .date-time-string {
   text-align: center;
   margin-bottom: 3%;
 }
+button:disabled{
+  background-image: none;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #549BEA;
+  cursor: not-allowed;
+}
+

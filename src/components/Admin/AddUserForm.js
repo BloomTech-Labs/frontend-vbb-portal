@@ -1,4 +1,7 @@
-import {React, Component, useState} from 'react';
+import React, {
+  Component,
+  useState,
+} from 'react';
 import {
   Divider,
   Form,
@@ -10,22 +13,22 @@ import {
   Button
 } from 'antd';
 
-import useForm from '../../hooks/useForm';
+import { useForm } from '../../hooks';
 
-import './admin.css';
+import '../../less/admin.less';
 
 /*Form Styling*/
 const layout = {
-    labelCol: { span: 5 },
-    wrapperCol: { span: 16 },
-  };
-  
+  labelCol: { span: 5 },
+  wrapperCol: { span: 16 },
+};
+
 const buttonLayout = {
-    wrapperCol: { offset: 12, span: 16 },
+  wrapperCol: { offset: 12, span: 16 },
 };
 
 const switchLayout = {
-    wrapperCol: { offset: 20 },
+  wrapperCol: { offset: 20 },
 };
 
 /*End Form Styling*/
@@ -33,14 +36,14 @@ const switchLayout = {
 const { Option } = Select;
 
 const initialValues = {
-    first_name: '',
-    last_name: '',
-    phone: '',
-    email: ''
+  first_name: '',
+  last_name: '',
+  phone: '',
+  email: '',
+  role: '',
 };
 
-const AddUserForm = ({editMode, record, formUpdated}) => {
-
+const AddUserForm = ({ editMode, record, formUpdated }) => {
     const [editedNotSaved, setEditedNotSaved] = useState(false);
     const [values, handleChanges, clearForm] = useForm(initialValues);
 
@@ -129,6 +132,7 @@ const AddUserForm = ({editMode, record, formUpdated}) => {
                         }
                     >
                         <Option value="Admin">Admin</Option>
+                        <Option value="Headmaster">Headmaster</Option>
                         <Option value="Mentee">Mentee</Option>
                         <Option value="Mentor">Mentor</Option>
                     </Select>
