@@ -1,6 +1,8 @@
 import axios from 'axios';
-import { formatPhoneNumber } from '../../util/formatPhoneNumber';
-import { sleep } from '../../util/sleep';
+import {
+  formatPhoneNumber,
+  sleep,
+} from '../../util';
 import {
   clearIsError,
   PYTHON_API,
