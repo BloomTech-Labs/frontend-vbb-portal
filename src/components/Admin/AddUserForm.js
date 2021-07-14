@@ -109,6 +109,7 @@ const AddUserForm = ({ editMode, record, formUpdated }) => {
         </Form.Item>
         <Form.Item {...buttonLayout}>
           <Button
+            className={editedNotSaved ? 'button-editing' : 'button'}
             type="primary"
             htmlType="submit"
             onClick={() => setEditedNotSaved(false)}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Layout, Breadcrumb } from 'antd';
 
@@ -9,14 +10,14 @@ import AdminSearch from '../components/Admin/AdminSearch';
 
 import '../less/index.less';
 
-const MainLayout = () => {
+const MainLayout = ({user}) => {
   const { Content } = Layout;
 
   return (
     <div>
       <Layout>
         <NavBar />
-        <AdminSearch />
+        {user.id === process.env.REACT_APP_DEMO_ADMIN_ID ? <AdminSearch /> : ''}
         <Content className="padding-50 background-color-FFFFF6">
           <Breadcrumb className="margin-16-0">
             <Breadcrumb.Item>
@@ -35,4 +36,11 @@ const MainLayout = () => {
     </div>
   );
 };
-export default MainLayout;
+
+const mapStateToProps = (state) => {
+  const user = state.user;
+
+  return {user};
+};
+
+export default connect(mapStateToProps)(MainLayout);
