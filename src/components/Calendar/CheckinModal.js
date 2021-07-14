@@ -56,7 +56,7 @@ const CheckinModal = ({
     setIsModalVisible(false);
   };
 
-  if (!start) return (<>loading</>);
+  if (!start) return (<></>);
 
   const handleCheckIn = () => {
     const updatedEvent = {
