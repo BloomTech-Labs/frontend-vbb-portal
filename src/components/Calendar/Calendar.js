@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/addons/dragAndDrop/';
 import format from 'date-fns/format';
@@ -74,7 +74,7 @@ const MyCalendar = () => {
   };
 
   // State to mange selecting locations
-  const [selectLocation, setSelectLocation] = useState(true)
+  const [selectLocation, setSelectLocation] = useState('')
 
   // Drag feature
   const handleDragStart = (event) => {
@@ -156,6 +156,20 @@ const MyCalendar = () => {
   //   console.log(selectLocation)
   // }, [selectLocation])
 
+  const filterEventsByLocation = (location) => {
+    if (location === '') {
+      setAllEvents(events);
+    } else {
+      const filteredEvents = events.filter((e) => e.location === location);
+      setAllEvents(filteredEvents);
+    }
+  };
+
+  useEffect(() => {
+    filterEventsByLocation(selectLocation);
+  }, [selectLocation]);
+
+
   return (
     <div className="calendarWrapperDiv" id="section-to-print">
       <CheckinModal
@@ -172,6 +186,7 @@ const MyCalendar = () => {
         setIsModalVisible={setIsModalVisible}
         setClickSelected={setClickSelected}
         setSelectLocation={setSelectLocation}
+        selectLocation={selectLocation}
         events={allEvents}
       />
       <div className="calendar-container">
