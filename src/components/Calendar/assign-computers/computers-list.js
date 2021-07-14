@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import Dialog from "@material-ui/core/Dialog";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import Button from "@material-ui/core/Button";
+import { Modal, Button } from 'antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 import * as yup from "yup";
 import '../../../less/computers-list-style.less'
 import { students } from '../data'
@@ -86,29 +82,30 @@ const ComputersList = (props) => {
     };
     
     /*Funcionality for Return and Save Changes button*/
-    const [open, setOpen] = React.useState(false);
-  
-    const handleClickToOpen = () => {
-    setOpen(true);
-  };
-  
-  const handleToClose = () => {
-    setOpen(false);
-  };
+function save() {
+  Modal.info({
+     content: (
+      <div>
+        <p>Would you like to save all changes?</p>
+      </div>
+    ),
+    onOk() {},
+  });
+}
 
-  const [openReturn, setOpenReturn] = React.useState(false);
-  
-    const handleClickToOpenReturn = () => {
-    setOpenReturn(true);
-  };
-  
-  const handleToCloseReturn = () => {
-    setOpenReturn(false);
-  };
 
-  const handleCalender=()=>{
-    window.location.reload();
-  }
+function Return(){
+    Modal.confirm({
+    title: 'Would you like to return to the calendar?',
+    icon: <ExclamationCircleOutlined />,
+     onOk() {
+      window.location.reload();
+    },
+    onCancel() {
+      console.log('Cancel');
+    },
+  });
+}
 
     return (
         <form onSubmit={formSubmit}>
@@ -167,45 +164,14 @@ const ComputersList = (props) => {
 
            {/*  Code for React popup message*/ }
             <div className='buttons-container'>
-               <button className='scheduler-button' disabled={buttonDisabled} type="submit" onClick={handleClickToOpen}>
-                Save Changes
-                </button>
-                <Dialog open={open} onClose={handleToClose}>
-                    <DialogTitle></DialogTitle>
-                    <DialogContent>
-                    <DialogContentText>
-                    Would you like to save all changes?
-                    </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                    <Button onClick={handleToClose} 
-                            color="primary" autoFocus>
-                        Yes
-                    </Button>
-                    </DialogActions>
-                </Dialog>
-
-                <button className='scheduler-button' onClick={handleClickToOpenReturn}>
-                 Return
-                </button>
-                <Dialog open={openReturn} onClose={handleToCloseReturn}>
-                   <DialogContent>
-                    <DialogContentText>
-                    Would you like to return to the calendar and not save your changes?
-                    </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                    <Button onClick={handleToCloseReturn} 
-                            color="primary" autoFocus>
-                        Cancel
-                    </Button>
-                    <Button onClick={handleCalender} 
-                            color="primary">
-                        Ok
-                    </Button>
-                    </DialogActions>
-                </Dialog>
-    </div>
+            <button className='scheduler-button' disabled={buttonDisabled} type="submit" onClick={save}>
+          Save Changes
+        </button>
+                                  
+            <Button className='scheduler-button' type="primary" onClick={Return}>
+          Retrun
+        </Button>
+   </div>
   </form>
     )
 }
