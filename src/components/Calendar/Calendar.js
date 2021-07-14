@@ -186,6 +186,7 @@ const MyCalendar = () => {
         setIsModalVisible={setIsModalVisible}
         setClickSelected={setClickSelected}
         setSelectLocation={setSelectLocation}
+        selectLocation={selectLocation}
         events={allEvents}
       />
       <div className="calendar-container">

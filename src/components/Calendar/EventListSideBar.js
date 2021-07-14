@@ -5,7 +5,7 @@ import { Menu, Dropdown } from 'antd';
 
 import SideBarEvent from './SideBarEvent';
 
-function EventListSideBar({ showModal, setClickSelected, setSelectLocation, events }) {
+function EventListSideBar({ showModal, setClickSelected, setSelectLocation, selectLocation, events }) {
   const isScheduledToday = (e) => (Moment(e.start).isSame(Moment(Date.now()), 'day'));
   // eslint-disable-next-line no-unused-vars
   const [forceRenderHackVar, setForceRenderHackVar] = useState(false);
@@ -29,13 +29,16 @@ function EventListSideBar({ showModal, setClickSelected, setSelectLocation, even
     />
   );
 
+  const [selectedKey, setSelectedKey] = useState('3')
+
   //change handler for select location
   const handleLocationChange = (e) => {
     setSelectLocation(e.item.props.value)
+    setSelectedKey(e.item.props.eventKey)
   }
 
   const schoolMenu = (
-    <Menu onClick={handleLocationChange}>
+    <Menu onClick={handleLocationChange} selectedKeys={selectedKey}>
       <Menu.Item value="India" key="1">India</Menu.Item>
       <Menu.Item value="Africa" key="2">Africa</Menu.Item>
       <Menu.Item value="" key="3">All Locations</Menu.Item>
@@ -47,7 +50,7 @@ function EventListSideBar({ showModal, setClickSelected, setSelectLocation, even
       <div className="calendar-container">
         <div className="rbc-toolbar rbc-btn-group">
           <Dropdown overlay={schoolMenu}>
-            <button trigger={['click']}>Select Location</button>
+            <button trigger={['click']}>{selectLocation ? `Location: ${selectLocation}` : 'Filter by Location'}</button>
           </Dropdown>
         </div>
         <h4>Today&apos;s Sessions</h4>
