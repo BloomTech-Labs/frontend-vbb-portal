@@ -1,4 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import Dialog from "@material-ui/core/Dialog";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import Button from "@material-ui/core/Button";
 import * as yup from "yup";
 import '../../../less/computers-list-style.less'
 import { students } from '../data'
@@ -78,9 +84,32 @@ const ComputersList = (props) => {
         validateChange(e);
         setFormState(newFormData);
     };
-    const cancelChange = () => {
-        window.location.reload();
-    }
+    
+    /*Funcionality for Return and Save Changes button*/
+    const [open, setOpen] = React.useState(false);
+  
+    const handleClickToOpen = () => {
+    setOpen(true);
+  };
+  
+  const handleToClose = () => {
+    setOpen(false);
+  };
+
+  const [openReturn, setOpenReturn] = React.useState(false);
+  
+    const handleClickToOpenReturn = () => {
+    setOpenReturn(true);
+  };
+  
+  const handleToCloseReturn = () => {
+    setOpenReturn(false);
+  };
+
+  const handleCalender=()=>{
+    window.location.reload();
+  }
+
     return (
         <form onSubmit={formSubmit}>
             {/* in case we somehow got here without props. */}
@@ -129,25 +158,55 @@ const ComputersList = (props) => {
                                     {errors.endTime.length > 0 ? (
                                         <p className="error">{errors.endTime}</p>
                                     ) : null}
-                                    {/* <button className='scheduler-button' type="submit" disabled={buttonDisabled} onClick={() => alert(`Save Changes for computer${i + 1}`)}>Save Changes </button> */}
-                                </div>
+                                    </div>
                             </div>
                         )
                     })}
                 </div>
             </div>
+
+           {/*  Code for React popup message*/ }
             <div className='buttons-container'>
-                <button className='scheduler-button' type="submit" disabled={buttonDisabled} onClick={() => alert(`Would you like to save all changes?`)}>Save Changes </button>
-                <button className='scheduler-button' onClick={() => {
-                   /* alert('Would you like to return to the calendar and not save your changes?')  */
-                   const r = window.confirm("Would you like to return to the calendar and not save your changes?");
-                   if(r == true){ window.location.reload()}
-                   else{alert("You pressed Cancel")
-                    props.setShowWeekView(false)
-                    props.setShowCalendar(props.showCalendar);}
-                }}>Return</button>
-            </div>
-        </form>
+               <button className='scheduler-button' disabled={buttonDisabled} type="submit" onClick={handleClickToOpen}>
+                Save Changes
+                </button>
+                <Dialog open={open} onClose={handleToClose}>
+                    <DialogTitle></DialogTitle>
+                    <DialogContent>
+                    <DialogContentText>
+                    Would you like to save all changes?
+                    </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={handleToClose} 
+                            color="primary" autoFocus>
+                        Yes
+                    </Button>
+                    </DialogActions>
+                </Dialog>
+
+                <button className='scheduler-button' onClick={handleClickToOpenReturn}>
+                 Return
+                </button>
+                <Dialog open={openReturn} onClose={handleToCloseReturn}>
+                   <DialogContent>
+                    <DialogContentText>
+                    Would you like to return to the calendar and not save your changes?
+                    </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={handleToCloseReturn} 
+                            color="primary" autoFocus>
+                        Cancel
+                    </Button>
+                    <Button onClick={handleCalender} 
+                            color="primary">
+                        Ok
+                    </Button>
+                    </DialogActions>
+                </Dialog>
+    </div>
+  </form>
     )
 }
 export default ComputersList
