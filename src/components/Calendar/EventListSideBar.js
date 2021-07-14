@@ -3,12 +3,9 @@ import Moment from 'moment';
 import { Menu, Dropdown } from 'antd';
 
 
-import { events } from './data';
-
-
 import SideBarEvent from './SideBarEvent';
 
-function EventListSideBar({ showModal, setClickSelected, setSelectLocation }) {
+function EventListSideBar({ showModal, setClickSelected, setSelectLocation, events }) {
   const isScheduledToday = (e) => (Moment(e.start).isSame(Moment(Date.now()), 'day'));
   // eslint-disable-next-line no-unused-vars
   const [forceRenderHackVar, setForceRenderHackVar] = useState(false);
@@ -41,7 +38,7 @@ function EventListSideBar({ showModal, setClickSelected, setSelectLocation }) {
     <Menu onClick={handleLocationChange}>
       <Menu.Item value="India" key="1">India</Menu.Item>
       <Menu.Item value="Africa" key="2">Africa</Menu.Item>
-      <Menu.Item value="AllLocations" key="3">All Locations</Menu.Item>
+      <Menu.Item value="" key="3">All Locations</Menu.Item>
     </Menu>
   );
 
