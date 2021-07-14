@@ -1,5 +1,12 @@
-import { React, useState, useEffect } from 'react';
-import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
+import {
+  React, 
+  useState,
+  useEffect,
+} from 'react';
+import {
+  Calendar,
+  dateFnsLocalizer,
+} from 'react-big-calendar';
 import 'react-big-calendar/lib/addons/dragAndDrop/';
 import format from 'date-fns/format';
 import parse from 'date-fns/parse';
@@ -7,8 +14,14 @@ import startOfWeek from 'date-fns/startOfWeek';
 import getDay from 'date-fns/getDay';
 import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
 
-import { events, resourceMap } from './data';
-import { customWeekViewEvent, customResourceViewEvent } from './CustomEvent';
+import {
+  events,
+  resourceMap,
+} from './data';
+import {
+  customWeekViewEvent,
+  customResourceViewEvent,
+} from './CustomEvent';
 import Toolbar from './ResourcesToolbar';
 import ComputersList from './assign-computers/computers-list';
 import CheckinModal from './CheckinModal';
@@ -66,17 +79,14 @@ const MyCalendar = () => {
     eventStatus: false,
   });
 
-  // State to manage visibility of event Modal
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
     setIsModalVisible(true);
-      };
+  };
 
-  // State to mange selecting locations
-  const [selectLocation, setSelectLocation] = useState('')
+  const [selectLocation, setSelectLocation] = useState('');
 
-  // Drag feature
   const handleDragStart = (event) => {
     setDraggedEvent(event);
   };
@@ -103,6 +113,7 @@ const MyCalendar = () => {
     };
 
     const allDay = deriveAllDayStatus({ allDay: event.allDay });
+
     setAllEvents((oldEvents) => (
       oldEvents.map((existingEvent) => (
         existingEvent.id === event.id
@@ -144,18 +155,11 @@ const MyCalendar = () => {
       });
       setShowCalendar(!showCalendar);
     }
-
     else {
       setClickSelected(e);
       showModal();
-      
     }
   };
-
-  // useEffect for select location dropdown
-  // useEffect(() => {
-  //   console.log(selectLocation)
-  // }, [selectLocation])
 
   const filterEventsByLocation = (location) => {
     if (location === '') {
@@ -170,18 +174,15 @@ const MyCalendar = () => {
     filterEventsByLocation(selectLocation);
   }, [selectLocation]);
 
-
   return (
     <div className="calendarWrapperDiv" id="section-to-print">
-        <CheckinModal
+      <CheckinModal
         details={{ ...clickSelected }}
         isModalVisible={isModalVisible}
         setEvents={setAllEvents}
         setIsModalVisible={setIsModalVisible}
         setClickSelected={setClickSelected}
       />
-
-
       <EventListSideBar
         showModal={showModal}
         isModalVisible={isModalVisible}
