@@ -40,10 +40,8 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
-//drag and drop
 const TheCalendar = withDragAndDrop(Calendar);
 
-//custom toolbar and custom event displayed
 let components = {
   toolbar: Toolbar,
   week: {
@@ -169,6 +167,9 @@ const MyCalendar = () => {
       setAllEvents(filteredEvents);
     }
   };
+  
+  const dayStart = new Date(Date.UTC(0, 0, 0, 12, 0, 0));
+  const dayEnd = new Date(Date.UTC(0, 0, 0, 22, 0, 0));
 
   useEffect(() => {
     filterEventsByLocation(selectLocation);
@@ -199,9 +200,8 @@ const MyCalendar = () => {
             selectable
             localizer={localizer}
             popup={true}
-            // min and max sets the start and end time of day displayed
-            min={new Date(Date.UTC(0, 0, 0, 12, 0, 0))}
-            max={new Date(Date.UTC(0, 0, 0, 22, 0, 0))}
+            min={dayStart}
+            max={dayEnd}
             onView={() => {
               setShowWeekView(!showWeekView);
             }}
@@ -214,7 +214,6 @@ const MyCalendar = () => {
               day: true,
             }}
             components={components}
-            //toggle showWeekView to switch with showing the resource view
             resources={showWeekView === true ? null : resourceMap}
             resourceIdAccessor="resourceId"
             resourceTitleAccessor="resourceTitle"
