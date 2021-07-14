@@ -12,6 +12,8 @@ import TempRegistration from '../components/registration/TempRegistration';
 import Calendar from '../components/Calendar/Calendar';
 import Admin from '../components/Admin/Admin';
 
+import ComputersList from '../components/Calendar/assign-computers/computers-list';
+
 const Routes = () => {
   return (
     <div className="App">
@@ -38,8 +40,11 @@ const Routes = () => {
           <Donation />
         </Route>
         <Route exact path="/calendar/">
-          <Calendar />
+          <Calendar/> 
         </Route>
+
+      
+         
       </Switch>
     </div>
   );

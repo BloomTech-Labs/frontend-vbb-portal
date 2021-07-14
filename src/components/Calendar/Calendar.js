@@ -71,7 +71,7 @@ const MyCalendar = () => {
 
   const showModal = () => {
     setIsModalVisible(true);
-  };
+      };
 
   // State to mange selecting locations
   const [selectLocation, setSelectLocation] = useState('')
@@ -148,6 +148,7 @@ const MyCalendar = () => {
     else {
       setClickSelected(e);
       showModal();
+      
     }
   };
 
@@ -172,13 +173,14 @@ const MyCalendar = () => {
 
   return (
     <div className="calendarWrapperDiv" id="section-to-print">
-      <CheckinModal
+        <CheckinModal
         details={{ ...clickSelected }}
         isModalVisible={isModalVisible}
         setEvents={setAllEvents}
         setIsModalVisible={setIsModalVisible}
         setClickSelected={setClickSelected}
       />
+
 
       <EventListSideBar
         showModal={showModal}
