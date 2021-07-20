@@ -150,6 +150,7 @@ const AddUserForm = ({ editMode, record, formUpdated }) => {
                     <Button
                         type="primary"
                         htmlType="submit"
+                        className={editedNotSaved ? 'button-editing' : 'button'}
                         onClick={() => setEditedNotSaved(false)}
                     >
                         {editMode ? 'Edit User' : 'Add New User'}
