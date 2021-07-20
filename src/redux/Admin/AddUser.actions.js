@@ -15,7 +15,6 @@ export const AddUserSuccess = (NewUser) => {
   return {
     type: ADD_USER_SUCCESS,
     payload: NewUser
-   
   }
 }
 
@@ -31,11 +30,11 @@ export const AddUser = (id, NewUser) =>{
 return function (dispatch) {
   dispatch(AddUserRequest())
   axios
-.post('', NewUser)
-  .then(() => {
-    dispatch(AddUserSuccess())
-  })
-  .catch(() => {
-    setIsError('Not able to add new user')
-  })
+  .post('', NewUser)
+    .then(() => {
+      dispatch(AddUserSuccess())
+    })
+    .catch(() => {
+      setIsError('Not able to add new user')
+    })
 }}

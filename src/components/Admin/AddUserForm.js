@@ -2,6 +2,9 @@ import React, {
   Component,
   useState,
 } from 'react';
+
+import { connect } from 'react-redux';
+
 import {
   Divider,
   Form,
@@ -162,4 +165,10 @@ const AddUserForm = ({ editMode, record, formUpdated }) => {
     )
 }
 
-export default AddUserForm;
+const mapStateToProps = (state) => {
+    return {
+        users: state.users
+    }
+};
+
+export default connect(mapStateToProps)(AddUserForm);

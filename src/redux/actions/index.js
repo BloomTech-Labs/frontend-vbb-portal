@@ -17,3 +17,5 @@ export * from '../MenteeRegistration.redux/MenteeRegistration.actions';
 export * from '../Modal.redux/Modal.actions';
 export * from '../StudentEdit.redux/StudentEdit.actions';
 export * from '../SearchBar.redux/SearchBar.actions';
+export * from '../Admin/AddUser.actions';
+export * from '../Admin/GetUsers.actions';
