@@ -221,7 +221,8 @@ const ComputersList = (props) => {
           Return
         </Button>
       </div>
-  </form>
-)}
+    </form>
+  );
+}
 
 export default ComputersList;
