@@ -2,6 +2,9 @@ import React, {
   Component,
   useState,
 } from 'react';
+
+import { connect } from 'react-redux';
+
 import {
   Divider,
   Form,
@@ -150,9 +153,7 @@ const AddUserForm = ({ editMode, record, formUpdated }) => {
                     <Button
                         type="primary"
                         htmlType="submit"
-
                         className={editedNotSaved ? 'button-editing' : 'button'}
-
                         onClick={() => setEditedNotSaved(false)}
                     >
                         {editMode ? 'Edit User' : 'Add New User'}
@@ -164,4 +165,10 @@ const AddUserForm = ({ editMode, record, formUpdated }) => {
     )
 }
 
-export default AddUserForm;
+const mapStateToProps = (state) => {
+    return {
+        users: state.users
+    }
+};
+
+export default connect(mapStateToProps)(AddUserForm);

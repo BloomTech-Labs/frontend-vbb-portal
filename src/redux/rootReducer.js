@@ -10,6 +10,7 @@ import { modal } from './Modal.redux/Modal.reducer';
 import { editUser } from './StudentEdit.redux/StudentEdit.reducer';
 import { searchBarReducer } from './SearchBar.redux/SearchBar.reducer';
 import menteeRegistration from './MenteeRegistration.redux/MenteeRegistration.reducer';
+import { getUsersReducer } from './Admin/GetUsers.reducer';
 
 /**
  * Exports all reducers as a single combined reducer
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   authToken,
   sessionSlot,
   user,
+  getUsersReducer,
   registrationForm,
   modal,
   editUser,
