@@ -10,6 +10,7 @@ import SessionDetails from '../components/SessionDetails';
 import Donation from '../components/registration/Donation';
 import TempRegistration from '../components/registration/TempRegistration';
 import Calendar from '../components/Calendar/Calendar';
+import Student from '../components/StudentProfile';
 import Admin from '../components/Admin/Admin';
 
 import ComputersList from '../components/Calendar/assign-computers/computers-list';
@@ -21,6 +22,7 @@ const Routes = () => {
         <Route exact path="/register/">
           <TempRegistration />
         </Route>
+        <PrivateRoute exact path="/student" component={Student} />
         <PrivateRoute exact path="/" component={Dashboard} />
         <PrivateRoute exact path="/booking/" component={Booking} />
         <PrivateRoute exact path="/admin/" component={Admin} />
